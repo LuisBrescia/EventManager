@@ -1,4 +1,4 @@
-# Quanto fica?
+# :car: Quanto fica?
 Um site feito para ajudar com os cálculos de uma viagem de carro, com base no consumo do veículo e no preço da gasolina. 
 
 ## Sobre o projeto
