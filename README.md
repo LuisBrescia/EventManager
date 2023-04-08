@@ -1,6 +1,10 @@
 # Quanto fica?
 Um site feito para ajudar com os cálculos de uma viagem de carro, com base no consumo do veículo e no preço da gasolina. 
 
+## Sobre o projeto
+
+[Wiki](https://github.com/cefetmg-2022-psi-g2/wiki/wiki)
+
 ## Alunos integrantes da equipe
 
 * Luís Felipe Teixeira Dias Brescia
