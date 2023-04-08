@@ -1,7 +1,7 @@
 # :car: Quanto fica?
-Um site feito para ajudar com os cálculos de uma viagem de carro, com base no consumo do veículo e no preço da gasolina. 
+Um site desenvolvido para ajudar com os cálculos de uma viagem de carro, com base no consumo do veículo e no preço da gasolina. 
 
-## Sobre o projeto
+### `Sobre o projeto`
 
 > [Documentação](https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2023-1-ti1-2401100-conversor-de-medidas-2/tree/master/docs)
 
