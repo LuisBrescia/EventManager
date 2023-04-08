@@ -1,19 +1,20 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-c66648af7eb3fe8bc4f294546bfd86ef473780cde1dea487d3c4ff354943c9ae.svg)](https://classroom.github.com/online_ide?assignment_repo_id=10649877&assignment_repo_type=AssignmentRepo)
-# Nome do projeto
-Escreva um ou dois  parágrafo resumindo o objetivo do seu projeto.
+# Quanto fica?
+Um site feito para ajudar com os cálculos de uma viagem de carro, com base no consumo do veículo e no preço da gasolina. 
 
 ## Alunos integrantes da equipe
 
 * Luís Felipe Teixeira Dias Brescia
-* Nome completo do aluno 2
-* Nome completo do aluno 3
-* Nome completo do aluno 4
+* Bernardo Carvalho Denucci Mercado
+* João Victor Borges de Oliveira
+* Thiago Cury Freire
+* Vitor Rebula Nogueira
 
 ## Professores responsáveis
 
-* Nome completo do professor 1
-* Nome completo do professor 2
+* Cleiton Silva Tavares
+* Thiago Augusto Nicolini Silva
 
 ## Instruções de utilização
+Assim que a primeira versão do sistema estiver disponível, iremos descrever aqui como instalar eventuais dependências e como executar a aplicação.
 
-Assim que a primeira versão do sistema estiver disponível, deverá complementar com as instruções de utilização. Descreva como instalar eventuais dependências e como executar a aplicação.
+[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-c66648af7eb3fe8bc4f294546bfd86ef473780cde1dea487d3c4ff354943c9ae.svg)](https://classroom.github.com/online_ide?assignment_repo_id=10649877&assignment_repo_type=AssignmentRepo)
