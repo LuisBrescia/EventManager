@@ -1,21 +1,17 @@
-# Informações do Projeto
-`TÍTULO DO PROJETO`  
+# Informações do Projeto:
 
-......  COLOQUE AQUI O SEU TEXTO ......
+`TÍTULO DO PROJETO:`
+Calculadora de rolê
 
-`CURSO` 
+`CURSO:` 
+<strong>Engenharia de Software</strong>
 
-......  COLOQUE AQUI O SEU TEXTO ......
-
-## Participantes
-
-......  COLOQUE AQUI O SEU TEXTO ......
-
-> Inclua a lista dos membros da equipe com seus nomes completos.
->
-> Os membros do grupo são: 
-> - Fulano da Silva
-> - Ciclano Albuquerque
+## Participantes:
+* Luís Felipe Teixeira Dias Brescia
+* Bernardo Carvalho Denucci Mercado
+* João Victor Borges de Oliveira
+* Thiago Cury Freire
+* Vitor Rebula Nogueira
 
 # Estrutura do Documento
 
@@ -89,7 +85,7 @@
 
 ## Justificativa
 
-......  COLOQUE AQUI O SEU TEXTO ......
+Estamos criando este site com o intuito de ajudar outras pessoas a organizarem seus eventos, e também, de aprimorar nossas habilidade de trabalho em equipe, e desenvolvimento de Software.
 
 > Descreva a importância ou a motivação para trabalhar com esta aplicação
 > que você escolheu. Indique as razões pelas quais você escolheu seus
