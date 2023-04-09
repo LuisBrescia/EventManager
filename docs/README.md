@@ -1,4 +1,4 @@
-# :office: Wiki do Projeto
+# :office: Documentação do Projeto
 
 **Nome provisório:** Quanto fica?  
 
