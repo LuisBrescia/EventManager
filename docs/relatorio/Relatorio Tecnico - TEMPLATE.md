@@ -50,9 +50,15 @@ Calculadora de rolê
 
 # Introdução
 
+Eventos sempre existiram, sejam eles, festas, encontros, comemorações, e a maneira que o seu planejamento é feito não apresenta grandes mudanças.
+
+Ao planejar eventos, geralmente, as pessoas levam em conta os gastos individuais de cada convidado, como comida e local. Existem diversas formas de realizar esse planejamento, há pessoas que utilizam o papel, pessoas que anotam no celular, mas até hoje não existem ferramentas específicas para esse planejamento.
+
+Diante disso, torna-se fundamental que existam ferramentas que auxiliem o usuário a realizar seu planejamento de uma forma mais eficaz.
+
 ## Problema
 
-......  COLOQUE AQUI O SEU TEXTO ......
+Conforme exposto, os principais problemas que se busca resolver com este projeto são o desgaste e a desorganização gerados pelo planejamento de um evento.
 
 > Nesse momento você deve apresentar o problema que a sua aplicação deve
 > resolver. No entanto, não é a hora de comentar sobre a aplicação.
@@ -72,7 +78,13 @@ Calculadora de rolê
 
 ## Objetivos
 
-......  COLOQUE AQUI O SEU TEXTO ......
+O objetivo <strong>geral</strong> deste trabalho é a criação de um site que auxilie no planejamento de eventos:
+
+Como objetivos específicos, podemos ressaltar:
+* Calcular a demanda de um evento.
+* Estimar o valor de um evento.
+* Gerir convidados de um evento.
+
 
 > Aqui você deve descrever os objetivos do trabalho indicando que o
 > objetivo geral é desenvolver um software para solucionar o problema
@@ -85,7 +97,10 @@ Calculadora de rolê
 
 ## Justificativa
 
-Estamos criando este site com o intuito de ajudar outras pessoas a organizarem seus eventos, e também, de aprimorar nossas habilidade de trabalho em equipe, e desenvolvimento de Software.
+Segundo dados obtidos através de entrevistas realizadas dentro do nosso ciclo social, 
+100% das pessoas que organizaram eventos em um período de 1 ano, não usaram uma ferramenta específica para isso, a maior parte anotou em um papel ou no whatsapp, e algumas pessoas utilizaram o Canva ou o excel, não houveram eventos não planejados com mais de 8 pessoas.
+
+Adicionalmente, existem sites que calculam gastos específicos, como comida e bebida, mas não encontrei nenhum site que engloba todos os gastos necessários para realizar um evento.
 
 > Descreva a importância ou a motivação para trabalhar com esta aplicação
 > que você escolheu. Indique as razões pelas quais você escolheu seus
@@ -101,7 +116,7 @@ Estamos criando este site com o intuito de ajudar outras pessoas a organizarem s
 
 ## Público-Alvo
 
-......  COLOQUE AQUI O SEU TEXTO ......
+Qualquer pessoa que for planejar um evento pode se beneficiar do site, porém visto que é um site de fácil manuseio, rápido de aprender, é voltado a usuários que não tem experiência em organizar eventos.
 
 > Descreva quem serão as pessoas que usarão a sua aplicação indicando os
 > diferentes perfis. O objetivo aqui não é definir quem serão os
@@ -120,7 +135,7 @@ Estamos criando este site com o intuito de ajudar outras pessoas a organizarem s
  
 # Especificações do Projeto
 
-......  COLOQUE AQUI O SEU TEXTO ......
+Definição técnica do problema e os pontos mais relevantes a serem tratados neste projeto. Foram realizadas entrevistas pelos membros da equipe com possíveis usuários. Os detalhes levantados nesse processo foram consolidados na forma de personas e histórias de usuários.
 
 > Apresente uma visão geral do que será abordado nesta parte do
 > documento, enumerando as técnicas e/ou ferramentas utilizadas para
