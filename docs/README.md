@@ -6,7 +6,7 @@
 
 ## Sprint 1 - Relatório Técnico - Documentação do Projeto
 
-*[Relatório Técnico](https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2023-1-ti1-2401100-quantofica/blob/master/docs/relatorio/Relatorio%20Tecnico%20-%20TEMPLATE.md)
+* [Relatório Técnico](https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2023-1-ti1-2401100-quantofica/blob/master/docs/relatorio/Relatorio%20Tecnico%20-%20TEMPLATE.md)
 * [Contexto do Projeto]()
 * [Especificação do Projeto]()
 * [Projeto de Interface]()
