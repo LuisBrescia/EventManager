@@ -1,21 +1,14 @@
 # Informações do Projeto
-`TÍTULO DO PROJETO`  
+`QUANTO CUSTA?`  
+`ENGENHARIA DE SOFTWARE` 
 
-......  COLOQUE AQUI O SEU TEXTO ......
+## Participantes:
 
-`CURSO` 
-
-......  COLOQUE AQUI O SEU TEXTO ......
-
-## Participantes
-
-......  COLOQUE AQUI O SEU TEXTO ......
-
-> Inclua a lista dos membros da equipe com seus nomes completos.
->
-> Os membros do grupo são: 
-> - Fulano da Silva
-> - Ciclano Albuquerque
+* Luís Felipe Teixeira Dias Brescia
+* Bernardo Carvalho Denucci Mercado
+* João Victor Borges de Oliveira
+* Thiago Cury Freire
+* Vitor Rebula Nogueira
 
 # Estrutura do Documento
 
@@ -56,56 +49,22 @@
 
 ## Problema
 
-......  COLOQUE AQUI O SEU TEXTO ......
-
-> Nesse momento você deve apresentar o problema que a sua aplicação deve
-> resolver. No entanto, não é a hora de comentar sobre a aplicação.
-> Descreva também o contexto em que essa aplicação será usada, se
-> houver: empresa, tecnologias, etc. Novamente, descreva apenas o que de
-> fato existir, pois ainda não é a hora de apresentar requisitos
-> detalhados ou projetos.
->
-> Nesse momento, o grupo pode optar por fazer uso
-> de ferramentas como Design Thinking, que permite um olhar de ponta a
-> ponta para o problema.
->
-> **Links Úteis**:
-> - [Objetivos, Problema de pesquisa e Justificativa](https://medium.com/@versioparole/objetivos-problema-de-pesquisa-e-justificativa-c98c8233b9c3)
-> - [Matriz Certezas, Suposições e Dúvidas](https://medium.com/educa%C3%A7%C3%A3o-fora-da-caixa/matriz-certezas-suposi%C3%A7%C3%B5es-e-d%C3%BAvidas-fa2263633655)
-> - [Brainstorming](https://www.euax.com.br/2018/09/brainstorming/)
+Calcular custos de uma viagem não é algo trivial, sendo necessário consultar em mais de 1 lugar para obter uma estimativa precisa.
 
 ## Objetivos
 
-......  COLOQUE AQUI O SEU TEXTO ......
+#### Objetivo geral: 
+- Desenvolver um site que calcula precisamente o valor gasto de uma viagem
 
-> Aqui você deve descrever os objetivos do trabalho indicando que o
-> objetivo geral é desenvolver um software para solucionar o problema
-> apresentado acima. Apresente também alguns (pelo menos 2) objetivos
-> específicos dependendo de onde você vai querer concentrar a sua
-> prática investigativa, ou como você vai aprofundar no seu trabalho.
-> 
-> **Links Úteis**:
-> - [Objetivo geral e objetivo específico: como fazer e quais verbos utilizar](https://blog.mettzer.com/diferenca-entre-objetivo-geral-e-objetivo-especifico/)
+#### Objetivos específicos: 
+- Notificar usuário dos preços de postos
+- Adquirir conhecimento estátistico sobre postos mais visitados
 
 ## Justificativa
-
-......  COLOQUE AQUI O SEU TEXTO ......
-
-> Descreva a importância ou a motivação para trabalhar com esta aplicação
-> que você escolheu. Indique as razões pelas quais você escolheu seus
-> objetivos específicos ou as razões para aprofundar em certos aspectos
-> do software.
-> 
-> O grupo de trabalho pode fazer uso de questionários, entrevistas e
-> dados estatísticos, que podem ser apresentados, com o objetivo de
-> esclarecer detalhes do problema que será abordado pelo grupo.
->
-> **Links Úteis**:
-> - [Como montar a justificativa](https://guiadamonografia.com.br/como-montar-justificativa-do-tcc/)
+Tem o potencial de fazer o usuário economizar dinheiro, seja indicando postos mais baratos, quanto caminhos que vão exigir menos do motor do carro.
 
 ## Público-Alvo
-
-......  COLOQUE AQUI O SEU TEXTO ......
+Pessoas que não atingiram a liberdade financeira e gastam dinheiro com combústivel.
 
 > Descreva quem serão as pessoas que usarão a sua aplicação indicando os
 > diferentes perfis. O objetivo aqui não é definir quem serão os
