@@ -1,21 +1,16 @@
-# Informações do Projeto
+# Informações do Projeto:
 `TÍTULO DO PROJETO`  
-
-......  COLOQUE AQUI O SEU TEXTO ......
+#### Calculadora de Rolê  
 
 `CURSO` 
+#### Engenharia de Software
 
-......  COLOQUE AQUI O SEU TEXTO ......
-
-## Participantes
-
-......  COLOQUE AQUI O SEU TEXTO ......
-
-> Inclua a lista dos membros da equipe com seus nomes completos.
->
-> Os membros do grupo são: 
-> - Fulano da Silva
-> - Ciclano Albuquerque
+## Participantes:
+* Luís Felipe Teixeira Dias Brescia
+* Bernardo Carvalho Denucci Mercado
+* João Victor Borges de Oliveira
+* Thiago Cury Freire
+* Vitor Rebula Nogueira
 
 # Estrutura do Documento
 
