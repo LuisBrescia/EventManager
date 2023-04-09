@@ -1,9 +1,10 @@
 # Informações do Projeto:
-`TÍTULO DO PROJETO`  
-#### Calculadora de Rolê  
 
-`CURSO` 
-#### Engenharia de Software
+`TÍTULO DO PROJETO:`
+Calculadora de rolê
+
+`CURSO:` 
+<strong>Engenharia de Software</strong>
 
 ## Participantes:
 * Luís Felipe Teixeira Dias Brescia
@@ -84,7 +85,7 @@
 
 ## Justificativa
 
-......  COLOQUE AQUI O SEU TEXTO ......
+Estamos criando este site com o intuito de ajudar outras pessoas a organizarem seus eventos, e também, de aprimorar nossas habilidade de trabalho em equipe, e desenvolvimento de Software.
 
 > Descreva a importância ou a motivação para trabalhar com esta aplicação
 > que você escolheu. Indique as razões pelas quais você escolheu seus
