@@ -179,8 +179,7 @@ Com base na análise das personas forma identificadas as seguintes histórias de
 |Ana Beatriz | azer uma estimativa de custo por convidado em 1 evento        | fazer a lista de quantas pessoas vou convidar             |
 |Maria Lana  | reaproveitar o planejamento de um evento.      | não ter que escrever tudo novamente, e encher meu whatsapp com mensagens desnecessárias.  |
 |Maria Lana  | listar, e lembrar o que falta ser avaliado         | não esquecer de algo essencial para o evento.               |
-|Caio Martins | personalizar os preços médios com gastos do eventos   | personalizar os preços médios com gastos do evento
-ter uma estimativa do custo/lucro.|
+|Caio Martins | personalizar os preços médios com gastos do eventos | personalizar os preços médios com gastos do evento ter uma estimativa do custo lucro.|
 |Caio Martins | planejar o evento junto de outras pessoas          | criar grupos sobre a todo momento é desgastante.             |
 |Gabriel Chagas | facilidade em adicionar gastos         | usar o teclado para fazer tudo cansa.              |
 |Gabriel Chagas       | diferenciação do tipo de evento que irá acontecer     | alguns eventos precisarão de mais espaço que outros, mesmo tendo menos convidados. |
