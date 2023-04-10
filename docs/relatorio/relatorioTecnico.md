@@ -1,9 +1,9 @@
 # Informações do Projeto:
 
 `TÍTULO DO PROJETO:`
-Calculadora de rolê
+Gerenciador de Eventos
 
-`CURSO:` re
+`CURSO:` 
 <strong>Engenharia de Software</strong>
 
 ## Participantes:
