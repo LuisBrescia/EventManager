@@ -3,7 +3,8 @@ Um site desenvolvido para ajudar para ajudar pessoas a realizarem um planejament
 
 ### `Sobre o projeto`
 
-> [Documentação](https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2023-1-ti1-2401100-conversor-de-medidas-2/tree/master/docs)
+> [Documentação](https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2023-1-ti1-2401100-conversor-de-medidas-2/tree/master/docs) <br/>
+> [Relatório Técnico](https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2023-1-ti1-2401100-quantofica/blob/master/docs/relatorio/Relatorio%20Tecnico%20-%20TEMPLATE.md)
 
 ## Alunos integrantes da equipe:
 
