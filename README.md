@@ -1,4 +1,4 @@
-# 🎂 Gerenciador de Eventos?
+# 🎂 Gerenciador de Eventos
 Um site desenvolvido para ajudar para ajudar pessoas a realizarem um planejamento dos seus eventos.
 
 ### `Sobre o projeto`
