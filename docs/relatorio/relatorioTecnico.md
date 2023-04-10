@@ -3,7 +3,7 @@
 `TÍTULO DO PROJETO:`
 Calculadora de rolê
 
-`CURSO:` 
+`CURSO:` re
 <strong>Engenharia de Software</strong>
 
 ## Participantes:
