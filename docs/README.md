@@ -1,6 +1,6 @@
 # :office: Documentação do Projeto
 
-**Nome provisório:** Quanto fica?  
+**Nome provisório:** Gerenciador de Eventos  
 
 **Missão/Objetivo**: Site que realiza o calculo do valor gasto para ir do ponto A para o ponto B com determinado veículo.
 
