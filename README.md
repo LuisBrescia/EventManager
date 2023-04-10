@@ -1,5 +1,5 @@
-# :car: Quanto fica?
-Um site desenvolvido para ajudar com os cálculos de uma viagem de carro, com base no consumo do veículo e no preço da gasolina. 
+# 🎂 Gerenciador de Eventos?
+Um site desenvolvido para ajudar para ajudar pessoas a realizarem um planejamento dos seus eventos.
 
 ### `Sobre o projeto`
 
