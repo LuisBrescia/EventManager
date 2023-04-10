@@ -167,6 +167,22 @@ Definição técnica do problema e os pontos mais relevantes a serem tratados ne
 > ![Exemplo de Persona](imaages/../images/persona.png)
 > 
 > Fonte: [Como criar uma persona para o seu negócio](https://raissaviegas.com.br/como-criar-uma-persona/)
+|Ana Beatriz|
+|Idade: 16<br/>Ocupação: Estudante da área de tecnologia.|
+|Aplicativos:Canva,Whatsapp|
+|Frustrações:Muitas opções desnecessárias.Sair do aplicativo para fazer conta.|
+|Motivações: Armazenar informações sobre os convidados e o que iriam levar.Objetividade do site|
+
+|Caio Martins|Idade: 21<br/>Ocupação: Disciplinário de Ensino Fundamental.|
+|Aplicativos:Whatsapp|
+|Frustrações:Perder as mensagens.Planejamento de eventos maiores se tornam confusos.|
+|Motivações:Interfaces simplesTudo no mesmo lugar.|
+
+
+
+
+
+
 
 
 ## Histórias de Usuários
@@ -229,6 +245,10 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |-------|-------------------------|----|
 |RNF-001| O sistema deve ser responsivo para rodar em um dispositivos móvel | MÉDIA | 
 |RNF-002| Deve processar requisições do usuário em no máximo 3s |  BAIXA | 
+|RNF-003|O site deverá usar Ajax para fornecer melhor experiência para usuários.|Baixa|
+|RNF-004|O site deverá ser de fácil entendimento, e seus comandos auto explicativos.|Alta|
+
+
 
 > Com base nas Histórias de Usuário, enumere os requisitos da sua
 > solução. Classifique esses requisitos em dois grupos:
@@ -260,6 +280,8 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 |--|-------------------------------------------------------|
 |01| O projeto deverá ser entregue até o final do semestre |
 |02| Não pode ser desenvolvido um módulo de backend        |
+|03|A equipe não pode subcontratar o desenvolvimento do trabalho.|
+
 
 
 > Enumere as restrições à sua solução. Lembre-se de que as restrições
