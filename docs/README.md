@@ -2,7 +2,7 @@
 
 **Nome provisório:** Gerenciador de Eventos  
 
-**Missão/Objetivo**: Site que realiza o calculo do valor gasto para ir do ponto A para o ponto B com determinado veículo.
+**Missão/Objetivo**: Auxiliar no planejamento de um evento.
 
 ## A documentação do projeto é composta pelos seguintes itens: 
  - [Processo de Design Thinking](concepcao/Processo%20Design%20Thinking%20-%20TEMPLATE.pdf)
