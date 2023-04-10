@@ -205,6 +205,22 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |------|-----------------------------------------|----|
 |RF-001| Permitir que o usuário cadastre tarefas | ALTA | 
 |RF-002| Emitir um relatório de tarefas no mês   | MÉDIA |
+|RF-003| O site deverá permitir que o usuário informe seu orçamento para um evento|Alta|
+|RF-004| O site deverá permitir que o usuário insira a área de um evento.|Média|
+|RF-005| O site deverá permitir que o usuário especifique o que será considerado um gasto em cada evento.|Alta|
+|RF-006| O site deve permitir ao usuário personalizar informações específicas sobre cada convidado|Média|
+|RF-007| O site deverá lembrar o usuário do que falta ser avaliado em seu evento.|Média|
+|RF-008| O site deverá recomendar mudanças sobre o planejamento de um evento.|Baixa|
+|RF-009| O site deverá utilizar algum meio para reconhecer o preço médio de um produto. (API)|Baixa|
+|RF-010| O site deverá diferenciar diferentes eventos.|Baixa|
+|RF-011| O site deverá permitir que mais de uma pessoa planeje cada evento.|Baixa|
+
+
+
+
+
+
+
 
 
 ### Requisitos não Funcionais
