@@ -147,8 +147,8 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 |ID    | Descrição do Requisito  | Prioridade |
 |------|-----------------------------------------|----|
-|RF-001| Permitir que o usuário cadastre tarefas | ALTA | 
-|RF-002| Emitir um relatório de tarefas no mês   | MÉDIA |
+|RF-001| Permitir que o usuário cadastre tarefas | Alta | 
+|RF-002| Emitir um relatório de tarefas no mês   | Média |
 |RF-003| O site deverá permitir que o usuário informe seu orçamento para um evento|Alta|
 |RF-004| O site deverá permitir que o usuário insira a área de um evento.|Média|
 |RF-005| O site deverá permitir que o usuário especifique o que será considerado um gasto em cada evento.|Alta|
@@ -177,7 +177,8 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 | -- |-------------------------------------------------------|
 | RE-01 | O projeto deverá ser entregue até o final do semestre. |
 | RE-02 | A equipe deverá reportar todo o desenvolvimento no Trello. |
-| RE-03 |A equipe não pode subcontratar o desenvolvimento do trabalho.|
+| RE-03 | A equipe não pode subcontratar o desenvolvimento do trabalho. |
+| RE-04 | As tecnologias utilizadas devem restringir à HTML, CSS e JavaScript. |
 
 # Projeto de Interface
 
