@@ -1,0 +1,31 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    border-radius: 0px;
+}
+#Convidados{
+    width: 580px;
+    height: 94px;
+    border: solid black 3px;
+}
+#send{
+    width: 60px;
+    height: 100px;
+    border-top: solid black 3px;
+    border-bottom: solid black 3px;
+    border-right: solid black 3px;
+}
+#Convidados, #send{
+    background-color: #A0E8D4;
+}
+input[type=number]::-webkit-inner-spin-button { 
+    -webkit-appearance: none;
+}
+#Convidados{
+    font-size: 1.8em;
+    padding-left: 20px;
+}
+form{
+    display: flex;
+}
