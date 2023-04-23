@@ -1,10 +1,8 @@
-const btn = document.querySelector("#send");
+const botaoCalcular = document.querySelector("#send");
 
-btn.addEventListener("click", function(e){
-
+botaoCalcular.addEventListener("click", (e) =>{
     e.preventDefault();
     
-    const name = document.querySelector("#Convidados");
-    const value = name.value;
+    const value = document.querySelector("#Convidados").value;
     console.log(value);
 })
