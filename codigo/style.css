@@ -111,5 +111,11 @@ footer {
     padding: 0;
 }
 .precos li:nth-child(2n) {
-    font-size: 2.5em;
+    font-size: 2em;
+    padding: 0.5em;
+    margin: 0;
+}
+.precos li:nth-child(2n + 1), .evento li:nth-child(2n + 1) {
+    font-size: 1.2em;
+    text-align: center;
 }
