@@ -1,15 +1,6 @@
-/*
-? Cores:
-#F0F0F0 - neutra clara
-#F9D949 - cor primária
-#F45050 - cor secundária
-#212A3E - cor escura
-*/
-
 body { margin: 0; padding: 0; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;}
 li { list-style: none;}
 a { text-decoration: none; color: #fff;}
-a:hover { text-decoration: underline; }
 main li {
     width: 80%;
     box-sizing: border-box;

@@ -11,7 +11,6 @@ main {background-color: #F9D949;}
 main li {background-color: #F0F0F0;}
 li [type="text"] {background-color: #F0F0F0;}
 body {background-color: #F9D949;}
-.coluna {background-color: #F9D949;}
 header {background-color: #F45050;}
 .calculo .coluna-direita li:last-child { background-color: #212A3E;}
 nav {background-color: #212A3E; margin: 0;}
@@ -35,7 +34,7 @@ body {background-color: #212a3e;}
 /** Responsividade */
 @media (max-width: 800px) {
     main { flex-flow: column wrap;}
-    .coluna { width: 100%;}
+    .coluna { width: 100%; text-align: center;}
     .coluna-esquerda { border-right: 0;}
     .coluna-direita {border-left: 0;}
     header ul { flex-flow: column wrap; text-align: center; margin-right: 0em;}
