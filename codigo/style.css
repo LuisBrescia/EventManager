@@ -91,7 +91,6 @@ footer {
     footer {position: relative;}
 }
 
-
 /** Página resultado */
 .coluna {
     flex: 1;
@@ -117,6 +116,7 @@ footer {
     background-color: #f00 !important;
     width: 60%;
     height: 15em;
+    margin: 3em !important;
 }
 .evento li:last-child {font-size: larger;}
 .precos {
