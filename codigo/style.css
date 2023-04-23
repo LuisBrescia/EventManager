@@ -119,7 +119,6 @@ footer {
 .calculo .coluna-direita li:last-child {
     padding: 0;
 }
-
 .precos li:nth-child(2n) {
     font-size: 2.5em;
 }
