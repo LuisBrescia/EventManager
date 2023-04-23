@@ -14,8 +14,12 @@ body {background-color: #F9D949;}
 .coluna {background-color: #F9D949;}
 header {background-color: #F45050;}
 .calculo .coluna-direita li:last-child { background-color: #212A3E;}
-header nav {background-color: #212A3E;}
-footer{ background-color: #212A3E; }
+nav {background-color: #212A3E; margin: 0;}
+nav {border-radius: 0.2em; border: 1px solid #f0f0f0;}
+nav li {padding: 1em; margin: 0;}
+nav li:hover {background-color: #F9D949; color: #212A3E;}
+nav li a:hover {color: #212A3E;}
+footer{ background-color: #212A3E;}
 
 /*! Específicos de cada página */
 #enviarCalculo {background-color: #F45050; color: #212A3E; border: 0;}
@@ -34,6 +38,6 @@ body {background-color: #212a3e;}
     .coluna-direita {border-left: 0;}
     header ul { flex-flow: column wrap; text-align: center; margin-right: 0em;}
     header {justify-content: center; flex-flow: column;}
-    header nav {display: inline; background-color: #F45050; margin-top: 1em;}
-    footer {padding-bottom: 2em;}
+    nav {display: inline; margin-top: 1em;}
+    nav li:hover {text-decoration: underline; text-decoration-line: underline; text-decoration-color: #f0f0f0;}
 }

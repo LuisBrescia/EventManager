@@ -18,8 +18,8 @@ main li {
     border-left: 5px solid #212A3E ;
     border-right: 5px solid #212A3E ;
 }
-main .coluna-esquerda ul li:first-child { border-top: 5px solid #212A3E; border-top-left-radius: 2em; }
-main .coluna-direita ul li:first-child { border-top: 5px solid #212A3E; border-top-right-radius: 2em; }
+main .coluna-esquerda ul li:first-of-type { border-top: 5px solid #212A3E; border-top-left-radius: 2em; }
+main .coluna-direita ul li:first-of-type { border-top: 5px solid #212A3E; border-top-right-radius: 2em; }
 li [type="text"]{
     width: 100%;
     box-sizing: border-box;
@@ -40,13 +40,9 @@ header {
     flex-flow: row wrap;
     justify-content: space-between;
     padding: 1em;
-    border-bottom: 3px solid #212A3E ;
+    border-bottom: 3px solid #212A3E;
 }
-header nav {
-    padding: 0 1em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+nav {    
     text-align: center;
     border-radius: 0.2em;
 }
@@ -61,23 +57,18 @@ header div {
 header ul {
     display: flex;
     flex-flow: row wrap;
-    gap: 3em;
     margin: 0 auto;
 }
 
 /** Main */
 main {
     display: flex;
-    align-items: center;
+    justify-content: flex-start;
+    flex-flow: row wrap;
 }
-.coluna {
-    width: 50%;
-    text-align: center;
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: space-between;
-}
-.calculo { padding-bottom: 2em; }
+.coluna-esquerda {width: 50%;}
+.coluna-direita {width: 50%;}
+.calculo { padding-bottom: 2em;}
 #enviarCalculo {
     padding: 1em;
     font-size: larger;
