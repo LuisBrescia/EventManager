@@ -83,7 +83,7 @@ footer {
 }
 
 /** Responsividade */
-@media (max-width: 600px) {
+@media (max-width: 800px) {
     main { flex-flow: column wrap;}
     .coluna { width: 100%;}
     .coluna-esquerda { border-right: 0;}
