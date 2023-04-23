@@ -1,0 +1,36 @@
+/*
+? Cores:
+#F0F0F0 - neutra clara
+#F9D949 - cor primária
+#F45050 - cor secundária
+#212A3E - cor escura
+*/
+
+header div {background-color: #F0F0F0;}
+main li {background-color: #F0F0F0;}
+li [type="text"] {background-color: #F0F0F0;}
+body {background-color: #F9D949;}
+.coluna {background-color: #F9D949;}
+header {background-color: #F45050;}
+.calculo .coluna-direita li:last-child { background-color: #212A3E;}
+header nav {background-color: #212A3E;}
+footer{ background-color: #212A3E; }
+
+/*! Específicos de cada página */
+#enviarCalculo {background-color: #F45050; color: #212A3E;}
+#enviarCalculo:hover {background-color: #f0f0f0; color: #F45050;}
+.precos li:nth-child(2n + 1) { background-color: #F45050; }
+.evento div {background-color: #58607D;}
+.evento div li {background-color: #f00 !important;}
+
+/** Responsividade */
+@media (max-width: 1100px) { footer {position: relative;} }
+@media (max-width: 800px) {
+    main { flex-flow: column wrap;}
+    .coluna { width: 100%;}
+    .coluna-esquerda { border-right: 0;}
+    .coluna-direita {border-left: 0;}
+    header ul { flex-flow: column wrap; text-align: center; margin-right: 0em;}
+    header {justify-content: center; flex-flow: column;}
+    header nav {display: inline; background-color: #F45050;}
+}
