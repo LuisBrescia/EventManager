@@ -7,6 +7,7 @@
 */
 
 header div {background-color: #F0F0F0;}
+main {background-color: #F9D949;}
 main li {background-color: #F0F0F0;}
 li [type="text"] {background-color: #F0F0F0;}
 body {background-color: #F9D949;}
@@ -23,8 +24,9 @@ footer{ background-color: #212A3E; }
 .evento div {background-color: #58607D;}
 .evento div li {background-color: #f00 !important;}
 
+body {background-color: #212a3e;}
+
 /** Responsividade */
-@media (max-width: 1100px) { footer {position: relative;} }
 @media (max-width: 800px) {
     main { flex-flow: column wrap;}
     .coluna { width: 100%;}
@@ -33,4 +35,5 @@ footer{ background-color: #212A3E; }
     header ul { flex-flow: column wrap; text-align: center; margin-right: 0em;}
     header {justify-content: center; flex-flow: column;}
     header nav {display: inline; background-color: #F45050; margin-top: 1em;}
+    footer {padding-bottom: 2em;}
 }

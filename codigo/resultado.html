@@ -7,7 +7,6 @@
     <title>Calculadora de Evento</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="cores.css">
-    <script src="script.js"></script>
 </head>
 <body>
     <header>
@@ -26,11 +25,11 @@
         <div class="coluna coluna-esquerda">
             <ul class="precos">
                 <li>Seu evento ficará</li>
-                <li>R$1.500</li>
+                <li>R$<span id="orcamento"></span></li>
                 <li>Cada convidado custará</li>
-                <li>R$200</li>
+                <li>R$<span id="convidados"></span></li>
                 <li>Levando em consideração o espaço, o número adequado de convidados seria entre:</li>
-                <li>1-1.000.000</li>
+                <li><span id="area"></li>
             </ul>
         </div>
         <div class="coluna coluna-direita">
@@ -50,4 +49,5 @@
         All rights reserved
     </footer>
 </body>
+<script src="recuperaDadosEvento.js"></script>
 </html>
