@@ -11,7 +11,7 @@ body {
     padding: 0;
     font-family: 'Roboto', sans-serif;
 }
-li { list-style: none; border-radius: 0.2em;}
+li { list-style: none;}
 a { text-decoration: none; color: #fff;}
 a:hover { text-decoration: underline; }
 main li {
@@ -22,7 +22,8 @@ main li {
     border-left: 5px solid #212A3E ;
     border-right: 5px solid #212A3E ;
 }
-main ul li:first-child { border-top: 5px solid #212A3E ; }
+main .coluna-esquerda ul li:first-child { border-top: 5px solid #212A3E; border-top-left-radius: 2em; }
+main .coluna-direita ul li:first-child { border-top: 5px solid #212A3E; border-top-right-radius: 2em; }
 li [type="text"]{
     width: 100%;
     box-sizing: border-box;
@@ -80,17 +81,8 @@ main {
     flex-flow: column wrap;
     justify-content: space-between;
 }
-.coluna-esquerda { border-right: 1px solid #212A3E ;}
-.coluna-direita {border-left: 1px solid #212A3E ;}
 .calculo { padding-bottom: 2em; }
 #enviarCalculo {
-    padding: 1em;
-    font-size: larger;
-    width: 100%;
-    box-sizing: border-box;
-    cursor: pointer;
-}
-#enviarCalculo:hover {
     padding: 1em;
     font-size: larger;
     width: 100%;
@@ -139,6 +131,9 @@ footer {
     align-items: center;
     width: 100%;
     flex-flow: column wrap;
+}
+.calculo .coluna-direita li:last-child {
+    padding: 0;
 }
 
 .precos li:nth-child(2n) {

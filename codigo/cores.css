@@ -17,8 +17,8 @@ header nav {background-color: #212A3E;}
 footer{ background-color: #212A3E; }
 
 /*! Específicos de cada página */
-#enviarCalculo {background-color: #F45050; color: #212A3E;}
-#enviarCalculo:hover {background-color: #f0f0f0; color: #F45050;}
+#enviarCalculo {background-color: #F45050; color: #212A3E; border: 0;}
+#enviarCalculo:hover {background-color: #212a3e; color: #F0F0F0;}
 .precos li:nth-child(2n + 1) { background-color: #F45050; }
 .evento div {background-color: #58607D;}
 .evento div li {background-color: #f00 !important;}
@@ -32,5 +32,5 @@ footer{ background-color: #212A3E; }
     .coluna-direita {border-left: 0;}
     header ul { flex-flow: column wrap; text-align: center; margin-right: 0em;}
     header {justify-content: center; flex-flow: column;}
-    header nav {display: inline; background-color: #F45050;}
+    header nav {display: inline; background-color: #F45050; margin-top: 1em;}
 }
