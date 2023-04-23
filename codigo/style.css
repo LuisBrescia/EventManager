@@ -4,11 +4,10 @@ body {
     font-family: 'Roboto', sans-serif;
     background-color: #93a1d3;
 }
-
+li { list-style: none;}
 a { text-decoration: none; color: #fff;}
 a:hover { text-decoration: underline; }
-li {
-    list-style: none;
+main li {
     background-color: #a0e8d4;;
     width: 80%;
     box-sizing: border-box;
@@ -17,7 +16,7 @@ li {
     border-left: 5px solid #000;
     border-right: 5px solid #000;
 }
-ul li:first-child { border-top: 5px solid #000; }
+main ul li:first-child { border-top: 5px solid #000; }
 .coluna-direita li:last-child {
     background-color: #58607D;
     color: #fff;
@@ -33,19 +32,20 @@ li [type="text"]{
     background-color: #a0e8d4;
     font-size: larger;
 }
-ul{
-    padding: 0;
+main ul{
     display: flex;
     flex-flow: column wrap;
     align-items: center;
 }
+ul {padding: 0}
 
 /** Header */
 header {
     background-color: #a0afe8;
     color: #000;
     display: flex;
-    justify-content: flex-start;
+    flex-flow: row wrap;
+    justify-content: space-between;
     padding: 1em;
     border-bottom: 3px solid #000;
 }
@@ -53,6 +53,16 @@ header div {
     background-color: #a1ccdb;
     border: 1px solid #000;
     padding: 1em 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+header ul {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    gap: 3em;
+    margin-right: 2em;
 }
 
 /** Main */
@@ -91,6 +101,8 @@ footer {
     .coluna { width: 100%;}
     .coluna-esquerda { border-right: 0;}
     .coluna-direita {border-left: 0;}
+    header ul { flex-flow: column wrap; text-align: center; margin-right: 0em;}
+    header {justify-content: center; flex-flow: column;}
 }
 
 /** Página resultado */
