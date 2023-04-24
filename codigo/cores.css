@@ -13,10 +13,10 @@ li [type="text"] {background-color: #F0F0F0;}
 body {background-color: #F9D949;}
 header {background-color: #F45050;}
 .calculo .coluna-direita li:last-child { background-color: #212A3E;}
-nav {background-color: #212A3E; margin: 0;}
-nav {border-radius: 0.2em; border: 1px solid #f0f0f0;}
-nav li {padding: 1em; margin: 0;}
-nav li:hover {background-color: #F9D949; color: #212A3E;}
+nav {background-color: #F0F0F0; color: #212A3E; margin: 0;}
+nav {border-radius: 0.2em; border: 5px solid #212A3E;}
+nav li {padding: 1em; margin: 0; color: #212A3E;}
+nav li:hover {background-color: #212A3E; color: #F0F0F0;}
 nav li a:hover {color: #212A3E;}
 footer{ background-color: #212A3E;}
 

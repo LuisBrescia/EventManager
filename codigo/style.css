@@ -33,17 +33,14 @@ header {
     padding: 1em;
     border-bottom: 3px solid #212A3E;
 }
-nav {    
-    text-align: center;
-    border-radius: 0.2em;
-}
+nav { text-align: center; font-weight: 900; border-radius: 1em !important;}
 header div {
     border: 1px solid #212A3E ;
     padding: 1em 2em;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 0.2em;
+    border-radius: 1em;
 }
 header ul {
     display: flex;
@@ -75,7 +72,7 @@ footer {
     padding: 0.5em;
     text-align: center;
     padding: .2em;
-    color: #fff;
+    color: #F0F0F0;
 }
 
 /** Página resultado */
