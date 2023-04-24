@@ -20,14 +20,18 @@
             </ul>
         </nav>
     </header>
-    <div class="convidado" id="exibeJanela">
+    <div class="convidado" style="display: none;" id="exibeJanela">
+        <button id="fechaConvidado"  onclick="exibeConvidados()"">X</button>
         <ul>
-           <li><h1>CONVIDADOS</h1></li> 
+            <li><h1>CONVIDADOS</h1></li> 
             
-            <li><input type="text" style = "text-align: center;" placeholder="INSERIR CONVIDADO"></li>
-            <li><input type="text" style = "text-align: center;" placeholder="REMOVER CONVIDADO"></li>
-            <li><input type="text" style = "text-align: center;" placeholder="EXIBIR LISTA"></li>
+            <li><button id="enviarCalculo" style="font-weight: 900;">INSERIR CONVIDADO</button></li>
+          
+            <li><button id="enviarCalculo" style="font-weight: 900;">REMOVER CONVIDADO</button></li>
+            
+            <li><button id="enviarCalculo" style="font-weight: 900;">EXIBIR LISTA</button></li>
         </ul>
+        
     </div>
 
     <main class="calculo">

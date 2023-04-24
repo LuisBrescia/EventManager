@@ -55,7 +55,7 @@ main {
     display: flex;
     justify-content: flex-start;
     flex-flow: row wrap;
-    align-items: center;
+    align-items: flex-start;
 }
 .coluna-esquerda {width: 50%;}
 .coluna-direita {width: 50%;}
@@ -85,12 +85,12 @@ footer {
 }
 
 /** Página resultado */
-.evento .preco {
+.evento .precos {
     display: flex;
     flex-direction: column;
     justify-content: stretch;
 }
-.preco li:last-child,
+.precos li:last-child,
 .evento li:last-child {
   margin-top: auto;
 }
@@ -110,21 +110,20 @@ footer {
     justify-content: center;
 }
 .evento li:last-child {font-size: larger;}
-.preco {
+.precos {
     
     justify-content: space-around;
     align-items: center;
     flex-flow: column wrap;
 }
-.calculo .coluna-direita li:last-child {
-    padding: 0;
-}
-.preco li:nth-child(2n) {
+.calculo .coluna-direita li:last-child, .calculo .coluna-direita li:nth-child(3) { padding: 0; }
+
+.precos li:nth-child(2n) {
     font-size: 2em;
     padding: 0.5em;
     margin: 0;
 }
-.preco li:nth-child(2n + 1), .evento li:nth-child(2n + 1) {
+.precos li:nth-child(2n + 1), .evento li:nth-child(2n + 1) {
     font-size: 1.2em;
     text-align: center;
     font-weight: 900;
@@ -134,18 +133,44 @@ footer {
 
 
 .convidado {
-    position:absolute;
+    display: none;
+    position: absolute;
+    z-index: 1;
     left: 0;
     right: 0;
-    z-index: 10;
-    width: 50%;
-    background-color: black;
     margin: 0 auto;
+    width: 30%;
+    background-color: #F0F0F0;
     display: flex;
-    flex-direction: column;
-    justify-content: stretch;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-flow: column wrap;
+    text-align: center;
+    gap: 1em;
+    border: solid #212A3E 5px;
+    margin-top: 20px;
+    box-sizing: border-box;
+    cursor: pointer;
 }
+.convidado ul {
+    display: flex;
+    gap: 1em;
+    flex-flow: column nowrap;
+}
+.convidado li {
+    margin: 0 5em;
+    background-color: #F0F0F0 !important;
+    border: solid #212A3E 5px;
+}
+#fechaConvidado {
+    right: 1.2em;
+    top: 1.0em;
+    position: absolute;
+    background-color: #212A3E;
+    font-weight: 900;
+    border-radius: 1em;
+    color: #F0F0F0;
+}
+#abrirConvidados {font-weight: 900; border: 0;}
+.convidado li:first-of-type {border: 0;}
+
+
+
+

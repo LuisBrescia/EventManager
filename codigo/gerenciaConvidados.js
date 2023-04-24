@@ -1,11 +1,10 @@
-function exibeConvidados(){
-    const divConvidados = document.getElementById("exibeJanela")
-    if(divConvidados.style.display === "none"){
-       divConvidados.style.display = "block";
-    }
-    else{
-       divConvidados.style.display = "none";
-    }
-    
+const divConvidados = document.getElementById("exibeJanela")
 
+function exibeConvidados(){
+    if(divConvidados.style.display === "block"){
+       divConvidados.style.display = "none";
+      }
+      else{
+         divConvidados.style.display = "block";
+    }
 }
