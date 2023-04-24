@@ -20,6 +20,15 @@
             </ul>
         </nav>
     </header>
+    <div class="convidado" id="exibeJanela">
+        <ul>
+           <li><h1>CONVIDADOS</h1></li> 
+            
+            <li><input type="text" style = "text-align: center;" placeholder="INSERIR CONVIDADO"></li>
+            <li><input type="text" style = "text-align: center;" placeholder="REMOVER CONVIDADO"></li>
+            <li><input type="text" style = "text-align: center;" placeholder="EXIBIR LISTA"></li>
+        </ul>
+    </div>
 
     <main class="calculo">
         <div class="coluna coluna-esquerda">
@@ -37,7 +46,7 @@
             <ul>
                     <h1>OUTROS GASTOS</h2>
                     <li><input type="date"></li>
-                    <li><input type="text" style="text-align: center;" placeholder="EM CONSTRUÇÃO"></li>
+                    <li><button onclick="exibeConvidados()" id="abrirConvidados">CONVIDADOS</button></li>
                     <li><input type="text" style="text-align: center;" placeholder="EM CONSTRUÇÃO"></li>
                     <li><input type="text" style="text-align: center;" placeholder="EM CONSTRUÇÃO"></li>
                     <li><input type="text" style="text-align: center;" placeholder="EM CONSTRUÇÃO"></li>
@@ -56,4 +65,5 @@
 </body>
 <script src="coletaDadosEvento.js"></script>
 <script src="recuperaDadosEvento.js"></script>
+<script src="gerenciaConvidados.js"></script>
 </html>

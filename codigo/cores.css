@@ -23,7 +23,7 @@ footer{ background-color: #212A3E;}
 /*! Específicos de cada página */
 #enviarCalculo {background-color: #F45050; color: #212A3E; border: 0;}
 #enviarCalculo:hover {background-color: #212a3e; color: #F0F0F0;}
-.precos li:nth-child(2n + 1) { background-color: #F45050; }
+.preco li:nth-child(2n + 1) { background-color: #F45050; }
 .evento li:first-child { background-color: #F45050; }
 .evento div {background-color: #bba236;}
 .evento div li {background-color: #f00 !important;}

@@ -60,13 +60,20 @@ main {
 .coluna-esquerda {width: 50%;}
 .coluna-direita {width: 50%;}
 .calculo { padding-bottom: 2em;}
-#enviarCalculo {
-    padding: 1em;
-    font-size: larger;
-    width: 100%;
-    box-sizing: border-box;
-    cursor: pointer;
-}
+    #enviarCalculo {
+        padding: 1em;
+        font-size: larger;
+        width: 100%;
+        box-sizing: border-box;
+        cursor: pointer;
+    }
+    #abrirConvidados {
+        padding: 1em;
+        font-size: larger;
+        width: 100%;
+        box-sizing: border-box;
+        cursor: pointer;
+    }
 
 /** Footer */
 footer {
@@ -78,12 +85,12 @@ footer {
 }
 
 /** Página resultado */
-.evento, .precos {
+.evento .preco {
     display: flex;
     flex-direction: column;
     justify-content: stretch;
 }
-.precos li:last-child,
+.preco li:last-child,
 .evento li:last-child {
   margin-top: auto;
 }
@@ -103,8 +110,8 @@ footer {
     justify-content: center;
 }
 .evento li:last-child {font-size: larger;}
-.precos {
-    display: flex;
+.preco {
+    
     justify-content: space-around;
     align-items: center;
     flex-flow: column wrap;
@@ -112,13 +119,33 @@ footer {
 .calculo .coluna-direita li:last-child {
     padding: 0;
 }
-.precos li:nth-child(2n) {
+.preco li:nth-child(2n) {
     font-size: 2em;
     padding: 0.5em;
     margin: 0;
 }
-.precos li:nth-child(2n + 1), .evento li:nth-child(2n + 1) {
+.preco li:nth-child(2n + 1), .evento li:nth-child(2n + 1) {
     font-size: 1.2em;
     text-align: center;
     font-weight: 900;
+}
+
+
+
+
+.convidado {
+    position:absolute;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    width: 50%;
+    background-color: black;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-flow: column wrap;
 }
