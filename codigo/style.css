@@ -171,6 +171,7 @@ footer {
 #abrirConvidados {font-weight: 900; border: 0;}
 .convidado li:first-of-type {border: 0;}
 
+.convidado li [type="text"] { text-align: center;}
 
 
 
