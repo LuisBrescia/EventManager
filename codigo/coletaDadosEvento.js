@@ -1,7 +1,6 @@
 /* Em vez de ficarmos colocando document.querySelector toda hora,
 podemos criar uma variável que armazena o valor do document.querySelector e depois só chamamos a variável.*/
 const quantoFica = document.querySelector("#enviarCalculo");
-console.log("Hello World!");
 
 // Aqui estamos criando uma função que será executada quando o botão for clicado.
 quantoFica.addEventListener("click", () =>{

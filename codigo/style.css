@@ -11,12 +11,14 @@ main li {
 }
 main .coluna-esquerda ul li:first-of-type { border-top: 5px solid #212A3E; border-top-left-radius: 2em; }
 main .coluna-direita ul li:first-of-type { border-top: 5px solid #212A3E; border-top-right-radius: 2em; }
-li [type="text"]{
+li [type="text"]:focus, li [type="text"], li [type="date"]:focus, li [type="date"] {
     width: 100%;
     box-sizing: border-box;
-    border: 0;
+    outline: none;
+    border: none;
     height:2em;
     font-size: larger;
+    background-color: #F0F0F0;
 }
 main ul{
     display: flex;
