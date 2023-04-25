@@ -35,7 +35,7 @@
     <main class="calculo">
         <div class="coluna coluna-esquerda">
             <ul>
-                <h1>GASTOS PRINCIPAIS</h2>
+                <h1>GASTOS</h2>
                 <li><input type="text" name="orcamento" placeholder="Insira o orçamento para seu evento..."></li>
                 <li><input type="text" name="convidados" placeholder="Insira o número de convidados para seu evento..."></li>
                 <li><input type="text" name="area" placeholder="Informe a área disponível para o evento..."></li>
@@ -46,18 +46,15 @@
         </div>
         <div class="coluna coluna-direita" style="margin: 0 auto;">
             <ul>
-                    <h1>GASTOS</h2>
-                    <li style="padding: 1em;"><input type="date"></li>
-                    <li><button onclick="exibeInterface(this)" id="botaoInterface" class="abrirInterface">CONVIDADOS</button></li>
-                    <li><button onclick="exibeInterface(this)" id="botaoInterface" class="abrirInterface">ORÇAMENTO</button></li>
-                    <li><button onclick="exibeInterface(this)" id="botaoInterface" class="abrirInterface">ÁREA</button></li>
-                    
-                    <li>
-                        <a href="resultado.html">
-                            <button id="enviarCalculo" class="abrirInterface">QUANTO FICA?</button>
-                        </a>
-                    </li>
-                </ul>
+                <h1>DADOS</h2>
+                <li style="padding: 1em;"><input type="date"></li>
+                <li><button onclick="exibeInterface(this)" id="botaoInterface" class="abrirInterface">CONVIDADOS</button></li>
+                <li><button onclick="exibeInterface(this)" id="botaoInterface" class="abrirInterface">ORÇAMENTO</button></li>
+                <li><button onclick="exibeInterface(this)" id="botaoInterface" class="abrirInterface">ÁREA</button></li>
+                <li>
+                <a href="resultado.html"><button id="enviarCalculo" class="abrirInterface">QUANTO FICA?</button></a>
+                </li>
+            </ul>
         </div>
     </main>
 
