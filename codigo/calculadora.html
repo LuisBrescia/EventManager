@@ -20,18 +20,16 @@
             </ul>
         </nav>
     </header>
-    <div class="convidado" style="display: none;" id="exibeJanela">
-        <button id="fechaConvidado"  onclick="exibeConvidados()"">X</button>
+
+    <div id="exibeInterface" class="interface" style="display: none;">
+        <button id="fechaConvidado"  onclick="fechaInterface()">X</button>
         <ul>
-            <li><h1>CONVIDADOS</h1></li> 
-            <li><input type="text" name="convidado" placeholder="Nome:"></li>
-            <li><button id="enviarCalculo" style="font-weight: 900;">INSERIR CONVIDADO</button></li>
-          
-            <li><button id="enviarCalculo" style="font-weight: 900;">REMOVER CONVIDADO</button></li>
-            
-            <li><button id="enviarCalculo" style="font-weight: 900;">EXIBIR LISTA</button></li>
+            <li><h1><span id="interfaceNome"></span></h1></li> 
+            <li><input type="text" name="convidado" placeholder="DIGITE AQUI"></li>
+            <li><button onclick="confirma(this)" class="abrirInterface">INSERIR</button></li>
+            <li><button onclick="confirma(this)" class="abrirInterface">REMOVER</button></li>
+            <li><button class="abrirInterface">EXIBIR</button></li>
         </ul>
-        
     </div>
 
     <main class="calculo">
@@ -46,17 +44,17 @@
                 <li><input type="text" style = "text-align: center;" placeholder="EM CONSTRUÇÃO"></li>
             </ul>
         </div>
-        <div class="coluna coluna-direita">
+        <div class="coluna coluna-direita" style="margin: 0 auto;">
             <ul>
-                    <h1>OUTROS GASTOS</h2>
-                    <li><input type="date"></li>
-                    <li><button onclick="exibeConvidados()" id="abrirConvidados">CONVIDADOS</button></li>
-                    <li><input type="text" style="text-align: center;" placeholder="EM CONSTRUÇÃO"></li>
-                    <li><input type="text" style="text-align: center;" placeholder="EM CONSTRUÇÃO"></li>
-                    <li><input type="text" style="text-align: center;" placeholder="EM CONSTRUÇÃO"></li>
+                    <h1>GASTOS</h2>
+                    <li style="padding: 1em;"><input type="date"></li>
+                    <li><button onclick="exibeInterface(this)" id="botaoInterface" class="abrirInterface">CONVIDADOS</button></li>
+                    <li><button onclick="exibeInterface(this)" id="botaoInterface" class="abrirInterface">ORÇAMENTO</button></li>
+                    <li><button onclick="exibeInterface(this)" id="botaoInterface" class="abrirInterface">ÁREA</button></li>
+                    
                     <li>
                         <a href="resultado.html">
-                            <button id="enviarCalculo" style="font-weight: 900;">QUANTO FICA?</button>
+                            <button id="enviarCalculo" class="abrirInterface">QUANTO FICA?</button>
                         </a>
                     </li>
                 </ul>
