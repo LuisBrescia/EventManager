@@ -1,10 +1,10 @@
 # Informações do Projeto:
 
 `TÍTULO DO PROJETO:`
-Gerenciador de Eventos
+**Gerenciador de Eventos**
 
 `CURSO:` 
-<strong>Engenharia de Software</strong>
+**Engenharia de Software**
 
 ## Participantes:
 * Luís Felipe Teixeira Dias Brescia
