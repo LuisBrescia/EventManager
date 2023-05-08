@@ -9,8 +9,8 @@ main li {
     border-left: 5px solid #212A3E ;
     border-right: 5px solid #212A3E ;
 }
-main .coluna-esquerda ul li:first-of-type { border-top: 5px solid #212A3E; border-top-left-radius: 2em; }
-main .coluna-direita ul li:first-of-type { border-top: 5px solid #212A3E; border-top-right-radius: 2em; }
+main .coluna-esquerda ul li:first-of-type { border-top: 5px solid #212A3E; }
+main .coluna-direita ul li:first-of-type  { border-top: 5px solid #212A3E; }
 li [type="text"]:focus, li [type="text"], li [type="date"]:focus, li [type="date"] {
     width: 100%;
     box-sizing: border-box;
