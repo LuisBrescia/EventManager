@@ -1,6 +1,16 @@
-body {margin: 0; padding: 0; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;}
-li {list-style: none;}
-a {text-decoration: none;}
+body { margin: 0; padding: 0; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;}
+li { list-style: none;}
+a { text-decoration: none; color: #fff;}
+main li {
+    width: 80%;
+    box-sizing: border-box;
+    padding: 1em;
+    border-bottom: 5px solid #212A3E ;
+    border-left: 5px solid #212A3E ;
+    border-right: 5px solid #212A3E ;
+}
+main .coluna-esquerda ul li:first-of-type { border-top: 5px solid #212A3E; border-top-left-radius: 2em; }
+main .coluna-direita ul li:first-of-type { border-top: 5px solid #212A3E; border-top-right-radius: 2em; }
 li [type="text"]:focus, li [type="text"], li [type="date"]:focus, li [type="date"] {
     width: 100%;
     box-sizing: border-box;

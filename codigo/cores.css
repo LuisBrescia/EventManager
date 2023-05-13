@@ -1,9 +1,9 @@
-* {color: #212A3E;}
+* {color: #212A3E; border-radius: 0 !important;}
 header div {background-color: #F0F0F0;}
 main {background-color: #F9D949;}
 main li {background-color: #F0F0F0;}
 li [type="text"] {background-color: #F0F0F0;}
-body {background-color: #F9D949;}
+body {background-color: #F9D949 !important;}
 header {background-color: #F45050;}
 .calculo .coluna-direita li:last-child { background-color: #212A3E;}
 nav {background-color: #F0F0F0; color: #212A3E; margin: 0;}
