@@ -1,59 +1,76 @@
+a {
+  text-decoration: none;
+}
+
 body {
   background: #fff;
 }
 
 main {
-  background: #8f2400;
+  background: #f0f0f0;
+  min-height: 100vh;
+  width: 100%;
 }
 
 main h1 {
   background: #fff;
 }
 
-#side_nav {
+aside {
   background: #ff4400;
-  min-width: 250px;
-  max-width: 250px;
 }
 
-.content {
-  min-height: 100vh;
-  width: 100%;
-}
-
-.sidebar li:hover {
+aside li:hover {
+  color: #fff;
   background: #fe4400;
 }
 
-.sidebar li.active {
+aside li.active {
   background: #fe4400;
 }
 
-.sidebar li.active:hover {
+aside li.active:hover {
   background: #ee3300;
 }
 
-.sidebar li.active a, .sidebar li.active a:hover {
+aside li.active a, aside li.active a:hover, li a:hover {
   color: #fff;
 }
 
-.sidebar li a {
+aside li a {
   color: #fff;
 }
 
-a {
+footer a {
+  color: #212529;
   text-decoration: none;
 }
 
+footer a:hover {
+  color: #fff;
+  transition: all 0.5s;
+  font-size: 1.2rem;
+}
+
+button {
+  font-size: 1.2rem;
+  transition: all 0.3s;
+}
+
+button:hover {
+  font-size: 1.2rem;
+  transition: all 0.3s;
+}
+
 @media (max-width: 767px) {
-  #side-nav {
+  aside {
     margin-left: -250px;
     position: fixed;
     min-height: 100vh;
     z-index: 1;
     transition: all 0.3s;
   }
-  #side-nav.active {
+  aside.active {
     margin-left: 0;
     transition: all 0.3s;
   }

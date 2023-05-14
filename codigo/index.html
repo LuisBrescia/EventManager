@@ -11,15 +11,15 @@
   </head>
 
   <body>
-    <div class="main-container d-flex">
+    <div class="d-flex">
 
       <!-- ? Ínicio da Barra Lateral -->
-      <aside class="sidebar bg-gradient" id="side_nav">
+      <aside class="bg-gradient">
          <!-- * Título da Barra Lateral -->
-        <div class="header-box px-2 py-3 d-flex justify-content-between">
+        <div class="px-2 py-3 d-flex justify-content-between">
           <h1 class="fs-4">
-            <span class="bg-white text-dark rounded shadow px-2 me-2"><i class="bi-amd"></i></span>
-            <span class="text-white fs-4">Event Manager</span>
+            <span class="bg-white text-dark rounded shadow px-2"><i class="bi-amd"></i></span>
+            <span class="text-white me-3">Event Manager</span>
           </h1>
         </div>
          <!-- * 4 primeiras páginas da barra lateral -->
@@ -35,10 +35,10 @@
               <i class="me-2 bi-cash"></i>Custo
           </a></li>
           <li><a href="#" class="px-3 py-2 d-block">
-              <i class="me-2 bi-database-fill"></i>Geral
+              <i class="me-2 bi-music-note-list"></i>Playlist
           </a></li>
         </ul>
-        <hr class="text-dark mx-3" />
+        <hr class="text-dark mx-3"/>
         <!-- * 4 últimas -->
         <ul class="list-unstyled">
           <li class="">
@@ -62,18 +62,19 @@
       <!-- ! Fim da Barra Lateral -->
 
       <!-- ? Página -->
-      <main class="content bg-gradient h-100 d-flex flex-column justify-content-between">
-        <div class="d-grid">
-          <textarea class="mt-5 mx-auto" name="" id="" cols="90" rows="15"></textarea>
+      <main class="col bg-gradient h-100 d-flex flex-column justify-content-between">
+        <div class="btn-group shadow-lg" role="group" aria-label="Basic example">
+          <button type="button" class="btn btn-dark rounded-0 fw-light"><i class="bi-clipboard-plus me-2"></i>Adicionar</button>
+          <button type="button" class="btn btn-dark rounded-0 fw-light"><i class="bi-clipboard-minus me-2"></i>Remover</button>
+          <button type="button" class="btn btn-dark rounded-0 fw-light"><i class="bi-clipboard me-2"></i>Exibir</button>
         </div>
-        <div class="d-grid">
-          <button class="btn btn-light bg-gradient text-center fw-normal fs-4 mx-5 my-3 py-3 px-0 border border-dark shadow">
-            Exibir Lista <i class="bi-clipboard"></i></button>
-          <button class="btn btn-light bg-gradient text-center fw-normal fs-4 mx-5 my-3 py-3 px-0 border border-dark shadow">
-            Adicionar Convidado <i class="ms-2 bi-clipboard-plus"></i></button>
-          <button class="btn btn-light bg-gradient text-center fw-normal fs-4 mx-5 my-3 py-3 px-0 border border-dark shadow">
-            Remover Convidado <i class="bi-clipboard-minus"></i></button>
-        </div>
+        <footer>
+          <a href="https://github.com/LuisBrescia/" target="_blank">
+          <p class="text-center bg-dark fw-lighter position-absolute px-3 py-1 bottom-0 my-0 start-0 end-0">
+           Luís Brescia
+          </p>
+          </a>
+        </footer>
       </main>
     </div>
 
@@ -81,7 +82,7 @@
     <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script>
-      const sidebarItems = document.querySelectorAll(".sidebar ul li");
+      const sidebarItems = document.querySelectorAll("aside ul li");
 
       sidebarItems.forEach(function (item) {
         item.addEventListener("click", function () {
