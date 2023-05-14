@@ -20,7 +20,7 @@ aside {
   background: #ff4400;
 }
 
-aside li:hover {
+aside li:hover, aside li.active:hover {
   color: #fff;
   background: #fe4400;
 }
@@ -44,20 +44,20 @@ aside li a {
 footer a {
   color: #212529;
   text-decoration: none;
+  font-size: 0.5rem;
+  transition: all 0.5s;
 }
-
 footer a:hover {
   color: #fff;
   transition: all 0.5s;
   font-size: 1.2rem;
 }
 
-button {
-  font-size: 1.2rem;
+button.funcionalidade {
+  font-size: initial;
   transition: all 0.3s;
 }
-
-button:hover {
+button.funcionalidade:hover {
   font-size: 1.2rem;
   transition: all 0.3s;
 }

@@ -4,16 +4,17 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gerenciador de Eventos</title>
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css"/>
-    <link rel="stylesheet" href="css/style.css" />
+    <title>Event Manager</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css"/>
+    <link rel="stylesheet" href="../CSS/style.css" />
   </head>
 
   <body>
     <div class="d-flex">
 
       <!-- ? Ínicio da Barra Lateral -->
+      <!-- > Barra Lateral vai ser a mesma para todas as páginas -->
       <aside class="bg-gradient">
          <!-- * Título da Barra Lateral -->
         <div class="px-2 py-3 d-flex justify-content-between">
@@ -24,17 +25,17 @@
         </div>
          <!-- * 4 primeiras páginas da barra lateral -->
         <ul class="list-unstyled">
-          <li><a href="#" class="px-3 py-2 d-block">
+          <li><a href="dashboard.html" class="px-3 py-2 d-block">
               <i class="me-2 bi-house-fill"></i>Dashboard
           </a></li>
           <li>
-            <a href="#" class="px-3 py-2 d-block">
+            <a href="participantes.html" class="px-3 py-2 d-block">
               <i class="me-2 bi-people-fill"></i>Participantes</a>
           </li>
-          <li><a href="#" class="px-3 py-2 d-block">
+          <li><a href="custo.html" class="px-3 py-2 d-block">
               <i class="me-2 bi-cash"></i>Custo
           </a></li>
-          <li><a href="#" class="px-3 py-2 d-block">
+          <li><a href="playlist.html" class="px-3 py-2 d-block">
               <i class="me-2 bi-music-note-list"></i>Playlist
           </a></li>
         </ul>
@@ -42,17 +43,17 @@
         <!-- * 4 últimas -->
         <ul class="list-unstyled">
           <li class="">
-            <a href="#" class="px-3 py-2 d-block">
+            <a href="settings.html" class="px-3 py-2 d-block">
               <i class="me-2 bi-gear-fill"></i>Configurações
             </a>
           </li>
           <li class="">
-            <a href="#" class="px-3 py-2 d-block">
+            <a href="temas.html" class="px-3 py-2 d-block">
               <i class="me-2 bi-sliders"></i>Temas
             </a>
           </li>
           <li class="">
-            <a href="#" class="px-3 py-2 d-inline-block d-flex justify-content-between">
+            <a href="perfil.html" class="px-3 py-2 d-inline-block d-flex justify-content-between">
               <span><i class="me-2 bi-person-fill"></i>Perfil</span>
               <!-- // <span class="bg-dark rounded-pill text-white py-0 px-2">02</span> -->
             </a>
@@ -64,23 +65,25 @@
       <!-- ? Página -->
       <main class="col bg-gradient h-100 d-flex flex-column justify-content-between">
         <div class="btn-group shadow-lg" role="group" aria-label="Basic example">
-          <button type="button" class="btn btn-dark rounded-0 fw-light"><i class="bi-clipboard-plus me-2"></i>Adicionar</button>
-          <button type="button" class="btn btn-dark rounded-0 fw-light"><i class="bi-clipboard-minus me-2"></i>Remover</button>
-          <button type="button" class="btn btn-dark rounded-0 fw-light"><i class="bi-clipboard me-2"></i>Exibir</button>
+          <button type="button" class="funcionalidade btn btn-dark rounded-0 fw-light">
+            <i class="bi-person-add me-2"></i>Adicionar</button>
+          <button type="button" class="funcionalidade btn btn-dark rounded-0 fw-light">
+            <i class="bi-person-dash me-2"></i>Remover</button>
+          <button type="button" class="funcionalidade btn btn-dark rounded-0 fw-light">
+            <i class="bi-person-gear me-2"></i>Exibir</button>
         </div>
+        <p class="mx-auto p-3 bg-white rounded shadow text-center fw-bolder fst-italic fs-1">Participantes</p>
         <footer>
           <a href="https://github.com/LuisBrescia/" target="_blank">
-          <p class="text-center bg-dark fw-lighter position-absolute px-3 py-1 bottom-0 my-0 start-0 end-0">
-           Luís Brescia
-          </p>
+          <p class="text-center bg-dark fw-lighter position-absolute px-3 py-1 bottom-0 my-0 start-0 end-0">Luís Brescia</p>
           </a>
         </footer>
       </main>
     </div>
 
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
-    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script>
       const sidebarItems = document.querySelectorAll("aside ul li");
 
