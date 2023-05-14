@@ -1,10 +1,62 @@
-#side_nav{
-    background: #000;
-    min-width: 250px;
-    max-width: 250px;
-}
-.content{
-    min-height: 100vh;
-    width: 100%;
+body {
+  background: #fff;
 }
 
+main {
+  background: #8f2400;
+}
+
+main h1 {
+  background: #fff;
+}
+
+#side_nav {
+  background: #ff4400;
+  min-width: 250px;
+  max-width: 250px;
+}
+
+.content {
+  min-height: 100vh;
+  width: 100%;
+}
+
+.sidebar li:hover {
+  background: #fe4400;
+}
+
+.sidebar li.active {
+  background: #fe4400;
+}
+
+.sidebar li.active:hover {
+  background: #ee3300;
+}
+
+.sidebar li.active a, .sidebar li.active a:hover {
+  color: #fff;
+}
+
+.sidebar li a {
+  color: #fff;
+}
+
+a {
+  text-decoration: none;
+}
+
+@media (max-width: 767px) {
+  #side-nav {
+    margin-left: -250px;
+    position: fixed;
+    min-height: 100vh;
+    z-index: 1;
+    transition: all 0.3s;
+  }
+  #side-nav.active {
+    margin-left: 0;
+    transition: all 0.3s;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
