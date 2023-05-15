@@ -8,7 +8,6 @@ const toastLiveExample = document.getElementById('liveToast')
 adicionaCard.on('click', () => {
 
     if (canvas.children().length >= 5) {
-        // alert('Não é possível adicionar mais de 4 cards em uma mesma página.');
         const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
         toastBootstrap.show();
         setTimeout(() => {toastBootstrap.hide();}, 3000);
@@ -17,7 +16,7 @@ adicionaCard.on('click', () => {
 
     var newCard = $(
         '<div class="card-container">' +
-            '<div class="cardConvidado draggable card col-3 shadow border-0 rounded overflow-auto" style="max-height:300px">' +
+            '<div class="cardConvidado draggable card col-3 shadow border-0 rounded-3 overflow-auto" style="max-height:300px">' +
                 '<div class="card-header fs-4 fw-bolder text-center d-flex justify-content-between align-items-center">' +
                     '<span>' + 
                         'Lista' + contador + '</span>' + 
@@ -27,8 +26,8 @@ adicionaCard.on('click', () => {
                     '<button type="button" class="btn bi-x-lg removeCard btn-sm" aria-label="Close"></button>' +
                     '</span>' +
                 '</div>' +
-                '<div class="card-body overflow-auto" style="max-height: 500px">' +
-                    '<ul class="list-group list-group-flush">' +
+                '<div class="card-body overflow-auto mx-1 p-0" style="max-height: 500px">' +
+                    '<ul class="list-group list-group-flush mx-0 px-0">' +
                         '<li class="list-group-item fw-lighter" contenteditable="true"></li>' +
                     '</ul>' +
                 '</div>' +
