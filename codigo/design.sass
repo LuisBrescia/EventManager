@@ -1,5 +1,5 @@
 // @import 'node_modules/bootstrap/scss/_variables.scss'
-// sass --watch design.sass:CSS/style.css
+// sass --watch design.sass:css/style.css
 $blue: "#007bff"   
 
 a
@@ -38,7 +38,7 @@ aside li a
 footer a
     color: #212529
     text-decoration: none
-    font-size: 0.5rem
+    font-size: 1px
     transition: all 0.5s
     
     &:hover
@@ -51,12 +51,32 @@ button.funcionalidade
     transition: all 0.3s
 
     &:hover
-        font-size: 1.2rem
+        font-size: 1.4rem
         transition: all 0.3s
 
+.nomeiaCard
+    color: #9FA6B2
+    transition: all 0.3s
+    &:hover
+        color: #212529
+        font-size: 18px
+        transition: all 0.3s
+.removeCard
+    color: #9FA6B2
+    transition: all 0.3s
+    &:hover
+        color: #212529
+        font-size: 18px
+        transition: all 0.3s
 
 footer
-    z-index: 15
+    z-index: 9999
+
+li:focus
+    outline: none
+
+*:focus
+    outline: none
 
 // Remove a navbar
 @media (max-width: 767px)
