@@ -35,9 +35,16 @@ adicionaCard.on('click', () => {
             '</div>'+
         '</div>'
     );
-    
-    // Quero que uma função seja executada caso o usuário pressione enter
-    // dentro do input de adicionar participante
+    // * Permite que o card seja arrastado
+    newCard.find(".draggable").draggable({
+        containment: "section",
+        scroll: false,
+        snap: false,
+        stack: ".draggable",
+        cursor: "grabbing",
+        handle: ".card-header",
+    });
+    // * Editar o conteúdo do card
     newCard.find('.list-group').on('keydown', function (e) {
 
         var listGroup = $(this).closest('.card-container').find('.list-group');
@@ -66,34 +73,23 @@ adicionaCard.on('click', () => {
         }
 
         if (e.keyCode === 13) {
-            console.log('enter');
             e.preventDefault();
             var liVazia = $('<li class="list-group-item fw-lighter" contenteditable="true"></li>').text("");
             $(this).closest('.card-container').find('.list-group').append(liVazia);
             liVazia.focus();
         }
+        if (e.keyCode === 38) {
+            e.preventDefault();
+            var liAnterior = $(this).closest('.card-container').find('.list-group li:focus').prev();
+            liAnterior.focus();
+        }
+        if (e.keyCode === 40) {
+            e.preventDefault();
+            var liPosterior = $(this).closest('.card-container').find('.list-group li:focus').next();
+            liPosterior.focus();
+        }
     });
-
-    newCard.find('.resetaCard').on('click', function () {
-        $(this).closest('.card-container').find('.list-group li').remove();
-        var liVazia = $('<li class="list-group-item fw-lighter" contenteditable="true"></li>').text("");
-        $(this).closest('.card-container').find('.list-group').append(liVazia);
-    });
-
-    newCard.find(".draggable").draggable({
-        containment: "section",
-        scroll: false,
-        snap: false,
-        stack: ".draggable",
-        cursor: "grabbing",
-        handle: ".card-header",
-    });
-
-    newCard.find('.removeCard').on('click', function() {
-        $(this).closest('.card-container').remove();
-        contador--;
-    });
-
+    // * Botão que edita o título do card
     newCard.find('.nomeiaCard').on('click', function () {
         var cardContainer = $(this).closest('.card-container');
         var cardTitle = cardContainer.find('.card-header span:first-child');
@@ -123,8 +119,12 @@ adicionaCard.on('click', () => {
                     cardTitle.text(novoNome);
                 }
                 cardTitle.attr('contenteditable', 'false');
+                // Foca na primeira linha do card
+                var listGroup = cardContainer.find('.list-group');
+                var firstLi = listGroup.find('li:last-child');
+                firstLi.focus();
             } else {
-                var maxLength = 15; // Defina o número máximo de caracteres permitidos
+                var maxLength = 15; // Máximo de caracteres permitidos
                 var currentLength = $(this).text().length;
                 var isContentSelected = isTextSelected(cardTitle[0]);
                 if (currentLength >= maxLength && !isContentSelected && e.keyCode !== 8 && e.keyCode !== 46 && !e.ctrlKey) {
@@ -132,14 +132,25 @@ adicionaCard.on('click', () => {
                 }
             }
         });
-
+        // * Permite alterar o título caso conteúdo esteja inteiramente selecionado
         function isTextSelected(element) {
             var selection = window.getSelection();
             var selectedText = selection.toString();
             var elementText = element.textContent;
             
             return selectedText === elementText;
-            }
+        }
+    });
+    // * Botão que reseta o conteúdo do card
+    newCard.find('.resetaCard').on('click', function () {
+        $(this).closest('.card-container').find('.list-group li').remove();
+        var liVazia = $('<li class="list-group-item fw-lighter" contenteditable="true"></li>').text("");
+        $(this).closest('.card-container').find('.list-group').append(liVazia);
+    });
+    // * Botão que apaga o card
+    newCard.find('.removeCard').on('click', function() {
+        $(this).closest('.card-container').remove();
+        contador--;
     });
       
     contador++;
