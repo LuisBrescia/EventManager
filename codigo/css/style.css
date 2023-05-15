@@ -62,6 +62,10 @@ button.funcionalidade:hover {
   transition: all 0.3s;
 }
 
+footer {
+  z-index: 15;
+}
+
 @media (max-width: 767px) {
   aside {
     margin-left: -250px;

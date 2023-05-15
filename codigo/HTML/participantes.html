@@ -5,41 +5,55 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Event Manager</title>
-    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css"/>
+    <link
+      rel="stylesheet"
+      href="../node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/bootstrap-icons/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css" integrity="sha512-P6+eIBy/n8WYUc3qUzbTF6UfST+0GyZh7O3ArDxEP1KjzB9XZdvl+Z1il2F5f5lLb2Sg7oJmkxM0zJJVru1gXw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../CSS/style.css" />
   </head>
 
   <body>
     <div class="d-flex">
-
       <!-- ? Ínicio da Barra Lateral -->
       <!-- > Barra Lateral vai ser a mesma para todas as páginas -->
       <aside class="bg-gradient">
-         <!-- * Título da Barra Lateral -->
+        <!-- * Título da Barra Lateral -->
         <div class="px-2 py-3 d-flex justify-content-between">
           <h1 class="fs-4">
-            <span class="bg-white text-dark rounded shadow px-2"><i class="bi-amd"></i></span>
+            <span class="bg-white text-dark rounded shadow px-2"
+              ><i class="bi-amd"></i
+            ></span>
             <span class="text-white me-3">Event Manager</span>
           </h1>
         </div>
-         <!-- * 4 primeiras páginas da barra lateral -->
+        <!-- * 4 primeiras páginas da barra lateral -->
         <ul class="list-unstyled">
-          <li><a href="dashboard.html" class="px-3 py-2 d-block">
-              <i class="me-2 bi-house-fill"></i>Dashboard
-          </a></li>
           <li>
+            <a href="dashboard.html" class="px-3 py-2 d-block">
+              <i class="me-2 bi-house-fill"></i>Dashboard
+            </a>
+          </li>
+          <li class="active">
             <a href="participantes.html" class="px-3 py-2 d-block">
               <i class="me-2 bi-people-fill"></i>Participantes</a>
           </li>
-          <li><a href="custo.html" class="px-3 py-2 d-block">
+          <li>
+            <a href="custo.html" class="px-3 py-2 d-block">
               <i class="me-2 bi-cash"></i>Custo
-          </a></li>
-          <li><a href="playlist.html" class="px-3 py-2 d-block">
+            </a>
+          </li>
+          <li>
+            <a href="playlist.html" class="px-3 py-2 d-block">
               <i class="me-2 bi-music-note-list"></i>Playlist
-          </a></li>
+            </a>
+          </li>
         </ul>
-        <hr class="text-dark mx-3"/>
+        <hr class="text-dark mx-3" />
         <!-- * 4 últimas -->
         <ul class="list-unstyled">
           <li class="">
@@ -48,12 +62,15 @@
             </a>
           </li>
           <li class="">
-            <a href="temas.html" class="px-3 py-2 d-block">
+            <a href="#" class="px-3 py-2 d-block">
               <i class="me-2 bi-sliders"></i>Temas
             </a>
           </li>
           <li class="">
-            <a href="perfil.html" class="px-3 py-2 d-inline-block d-flex justify-content-between">
+            <a
+              href="perfil.html"
+              class="px-3 py-2 d-inline-block d-flex justify-content-between"
+            >
               <span><i class="me-2 bi-person-fill"></i>Perfil</span>
               <!-- // <span class="bg-dark rounded-pill text-white py-0 px-2">02</span> -->
             </a>
@@ -63,39 +80,59 @@
       <!-- ! Fim da Barra Lateral -->
 
       <!-- ? Página -->
-      <main class="col bg-gradient h-100 d-flex flex-column justify-content-between">
-        <div class="btn-group shadow-lg" role="group" aria-label="Basic example">
-          <button type="button" class="funcionalidade btn btn-dark rounded-0 fw-light">
-            <i class="bi-person-add me-2"></i>Adicionar</button>
-          <button type="button" class="funcionalidade btn btn-dark rounded-0 fw-light">
-            <i class="bi-person-dash me-2"></i>Remover</button>
-          <button type="button" class="funcionalidade btn btn-dark rounded-0 fw-light">
-            <i class="bi-person-gear me-2"></i>Exibir</button>
+      <main
+        class="col bg-gradient h-100 d-flex flex-column justify-content-between"
+      >
+        <!-- * Botões -->
+        <div
+          class="btn-group shadow-lg"
+          role="group"
+          aria-label="Basic example"
+        >
+          <button
+            type="button" id="adicionaCard"
+            class="funcionalidade btn btn-dark rounded-0 fw-light"
+          >
+            <i class="bi-person-add me-2"></i>Adicionar
+          </button>
+          <button
+            type="button"
+            class="funcionalidade btn btn-dark rounded-0 fw-light"
+          >
+            <i class="bi-person-dash me-2"></i>Remover
+          </button>
+          <button
+            type="button"
+            class="funcionalidade btn btn-dark rounded-0 fw-light"
+          >
+            <i class="bi-person-gear me-2"></i>Exibir
+          </button>
         </div>
-        <p class="mx-auto p-3 bg-white rounded shadow text-center fw-bolder fst-italic fs-1">Participantes</p>
-        <footer>
+
+        <!-- * Nosso "Canvas" onde os cards serão adicionados -->
+        <div class="card-container col">
+          <!-- >Exemplo de Card -->
+          <!-- <div class="cardConvidado card draggable col-3 text-center shadow border-0 rounded-0">
+            <div class="card-header fw-bolder">Título</div>
+            <div class="card-body"><p contenteditable="true">Nomes dos convidados</p></div>
+          </div> -->
+        </div>
+
+        <!-- <p class="mx-auto p-3 bg-white rounded shadow text-center fw-bolder fst-italic fs-1">Participantes</p> -->
+        <footer class="position-absolute bottom-0 start-0 end-0">
           <a href="https://github.com/LuisBrescia/" target="_blank">
-          <p class="text-center bg-dark fw-lighter position-absolute px-3 py-1 bottom-0 my-0 start-0 end-0">Luís Brescia</p>
+            <p class="text-center bg-dark fw-lighter position-absolute px-3 py-1 bottom-0 my-0 start-0 end-0">
+              Luís Brescia
+            </p>
           </a>
         </footer>
       </main>
     </div>
-
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
     <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script>
-      const sidebarItems = document.querySelectorAll("aside ul li");
-
-      sidebarItems.forEach(function (item) {
-        item.addEventListener("click", function () {
-          sidebarItems.forEach(function (item) {
-            item.classList.remove("active");
-          });
-          this.classList.add("active");
-        });
-      });
-
-    </script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../JS/script.js"></script>
   </body>
 </html>

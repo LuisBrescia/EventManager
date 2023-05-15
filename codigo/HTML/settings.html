@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Card Editável</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css" integrity="sha512-P6+eIBy/n8WYUc3qUzbTF6UfST+0GyZh7O3ArDxEP1KjzB9XZdvl+Z1il2F5f5lLb2Sg7oJmkxM0zJJVru1gXw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+      .draggable {
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ! Página para TESTES -->
+    <main class="col bg-gradient h-100 d-flex flex-column justify-content-between">
+      <!-- * Botões -->
+      <div class="btn-group shadow-lg" role="group" aria-label="Basic example">
+        <button type="button" class="funcionalidade btn btn-dark rounded-0 fw-light">
+          <i class="bi-person-add me-2"></i>Adicionar
+        </button>
+        <button type="button" class="funcionalidade btn btn-dark rounded-0 fw-light">
+          <i class="bi-person-dash me-2"></i>Remover
+        </button>
+        <button type="button" class="funcionalidade btn btn-dark rounded-0 fw-light">
+          <i class="bi-person-gear me-2"></i>Exibir
+        </button>
+      </div>
+
+      <div class="card draggable col-3 text-center shadow border-0 rounded-0">
+        <div class="card-header fw-bolder">Meu Card</div>
+        <div class="card-body"><p contenteditable="true">Conteúdo do card</p></div>
+      </div>
+
+      <footer>
+        <a href="https://github.com/LuisBrescia/" target="_blank">
+          <p class="text-center bg-dark fw-lighter position-absolute px-3 py-1 bottom-0 my-0 start-0 end-0">
+            Luís Brescia
+          </p>
+        </a>
+      </footer>
+    </main>    
