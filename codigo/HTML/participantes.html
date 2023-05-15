@@ -18,7 +18,7 @@
   <div class="d-flex">
     <!-- ? Ínicio da Barra Lateral -->
     <!-- > Barra Lateral vai ser a mesma para todas as páginas -->
-    <aside class="bg-gradient">
+    <aside class="bg-gradient active">
       <!-- * Título da Barra Lateral -->
       <div class="px-2 py-3 d-flex justify-content-between">
         <h1 class="fs-4">
@@ -50,7 +50,7 @@
       </ul>
       <hr class="text-dark mx-3" />
       <!-- * 4 últimas -->
-      <!-- > Usar componente MODAL do Bootstrap -->>
+      <!-- > Usar componente MODAL do Bootstrap -->
       <ul class="list-unstyled">
         <li class="">
           <a href="settings.html" class="px-3 py-2 d-block">
@@ -79,11 +79,11 @@
         <button type="button" id="adicionaCard" class="funcionalidade btn btn-dark rounded-0 fw-light">
           <i class="bi-person-add me-2"></i>Adicionar
         </button>
-        <button type="button" id="removeCard" class="funcionalidade btn btn-dark rounded-0 fw-light">
-          <i class="bi-person-dash me-2"></i>Limpar
+        <button type="button" id="salvaCard"class="funcionalidade btn btn-dark rounded-0 fw-light">
+          <i class="bi-arrow-down-circle me-2"></i>Deploy
         </button>
-        <button type="button" class="funcionalidade btn btn-dark rounded-0 fw-light">
-          <i class="bi-person-gear me-2"></i>Salvar
+        <button type="button" id="removeCard" class="funcionalidade btn btn-dark rounded-0 fw-light">
+          <i class="bi-person-x me-2"></i>Limpar
         </button>
       </div>
 
@@ -136,6 +136,7 @@
   <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
   <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../JS/barraLateral.js"></script>
   <script src="../JS/cardConvidados.js"></script>
 </body>
 

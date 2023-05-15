@@ -62,21 +62,11 @@ button.funcionalidade:hover {
   transition: all 0.3s;
 }
 
-.nomeiaCard {
+.cardConvidado button {
   color: #9FA6B2;
   transition: all 0.3s;
 }
-.nomeiaCard:hover {
-  color: #212529;
-  font-size: 18px;
-  transition: all 0.3s;
-}
-
-.removeCard {
-  color: #9FA6B2;
-  transition: all 0.3s;
-}
-.removeCard:hover {
+.cardConvidado button:hover {
   color: #212529;
   font-size: 18px;
   transition: all 0.3s;
@@ -94,18 +84,27 @@ li:focus {
   outline: none;
 }
 
-@media (max-width: 767px) {
-  aside {
-    margin-left: -250px;
-    position: fixed;
-    min-height: 100vh;
-    z-index: 1;
-    transition: all 0.3s;
-  }
-  aside.active {
-    margin-left: 0;
-    transition: all 0.3s;
-  }
+aside {
+  margin-left: -250px;
+  transition: all 0.3s;
+  z-index: 1;
+  min-height: 100vh;
+}
+
+aside.active {
+  margin-left: 0;
+  transition: all 0.3s;
+}
+
+.cardConvidado .card-header {
+  background: #FFF;
+  border-image: linear-gradient(to right, #ff4400, #ffa07d);
+  border-image-slice: 100% 0 0 0;
+  border-image-width: 2px;
+  color: #212529;
+  font-size: 1.2rem;
+  font-weight: 500;
+  padding: 0.75rem 1.25rem;
 }
 
 /*# sourceMappingURL=style.css.map */
