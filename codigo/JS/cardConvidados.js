@@ -49,11 +49,15 @@ adicionaCard.on('click', () => {
         var listGroup = $(this).closest('.card-container').find('.list-group');
         var lastLi = listGroup.find('li:last-child');
         var lastLiText = lastLi.text().trim();
+        // Valot do texto da li atual
+    
+        var atualLi = $(this).closest('.card-container').find('.list-group li:focus');
+        var atualLiText = $(this).closest('.card-container').find('.list-group li:focus').text();
 
         // Se o usuário pressionar backspace e a linha estiver vazia, e não houver apenas 1 linha, linha atual é apagada, e o focus irá para a linha anterior
-        if ((e.keyCode === 8 ||e.keyCode === 38) && lastLiText === '' && listGroup.children().length > 1) {
+        if ((e.keyCode === 8 ||e.keyCode === 38 || e.keyCode === 40) && atualLiText === '' && listGroup.children().length > 1) {
             e.preventDefault();
-            lastLi.remove();
+            atualLi.remove();
             var liAnterior = listGroup.find('li:last-child');
             liAnterior.focus();
             // o focus vai para o final da linha
@@ -66,7 +70,7 @@ adicionaCard.on('click', () => {
             return;
         }
 
-        if (e.keyCode === 13 && lastLiText === '') {
+        if (e.keyCode === 13 && atualLiText === '') {
             e.preventDefault();
             return;
         }
