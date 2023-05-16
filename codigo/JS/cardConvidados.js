@@ -21,7 +21,7 @@ adicionaCard.on('click', () => {
         // Se colocado position absolute aqui, outros cards não serão movidos para baixo
         // Porém acontecerá bugs de cards se tornarem imovéis
         // > Adicionar e remover propriedade position absolute quando necessário
-        '<div class="col-10 card-container start-50" style="top:'+ contador +'0%">' +
+        '<div class="col-10 card-container ms-5" style="top:'+ contador +'0%">' +
         '<div class="cardConvidado draggable card col-3 shadow border-0 rounded-3 overflow-x-hidden" style="max-height:300px">' +
         '<div class="card-header fs-4 fw-bolder text-nowrap d-flex justify-content-between align-items-center">' +
         '<span class="mt-2 lh-lg">' +
