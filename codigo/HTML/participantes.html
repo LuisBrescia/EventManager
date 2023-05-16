@@ -14,11 +14,20 @@
   <link rel="stylesheet" href="../CSS/style.css" />
 </head>
 
-<body>
-  <div class="d-flex">
+<body class="overflow-hidden">
+  <div class="telaInteira d-flex">
+    <!-- ! GAMBIARRA EM SEU ESTADO MAIS PURO-->
+    <aside class="ultraGambiarra active">
+      <div class="px-2 py-3 d-flex justify-content-between">
+        <h1 class="fs-4">
+          <span class="bg-white text-dark rounded shadow px-2"><i class="bi-amd"></i></span>
+          <span class="text-white me-3">Event Manager</span>
+        </h1>
+      </div>
+    </aside>
     <!-- ? Ínicio da Barra Lateral -->
     <!-- > Barra Lateral vai ser a mesma para todas as páginas -->
-    <aside class="bg-gradient active">
+    <aside class="col bg-gradient active position-fixed">
       <!-- * Título da Barra Lateral -->
       <div class="px-2 py-3 d-flex justify-content-between">
         <h1 class="fs-4">
@@ -71,11 +80,10 @@
       </ul>
     </aside>
     <!-- ! Fim da Barra Lateral -->
-
     <!-- ? Página -->
     <main class="col bg-gradient h-100 d-flex flex-column justify-content-between">
       <!-- * Botões -->
-      <div class="btn-group shadow-lg" role="group" aria-label="Basic example">
+      <div class="btn-group shadow-lg d-flex" role="group" aria-label="Basic example">
         <button type="button" id="adicionaCard" class="funcionalidade btn btn-dark rounded-0 fw-light">
           <i class="bi-person-add me-2"></i>Adicionar
         </button>
@@ -93,15 +101,15 @@
       <!-- * Caso exceder o número limite de cards-->
       <div class="toast-container position-fixed bottom-0 end-0 p-3">
         <div id="liveToast" class="toast shadow" role="alert" aria-live="assertive" aria-atomic="true">
-          <div class="toast-header text-dark">
+          <div class="toast-header text-dark border-bottom border-2 bg-dark text-white">
             <!-- <img src="..." class="rounded me-2" alt="..."> -->
             <i class="bi-amd me-3"></i>
             <strong class="me-auto">Event Manager</strong>
             <small>agora</small>
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
           </div>
           <div class="toast-body">
-            Não é possível adicionar mais de cards.
+            Não é possível adicionar mais cards.
           </div>
         </div>
       </div>

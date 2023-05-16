@@ -3,6 +3,7 @@ $('#salvaCard').on('click', () => {
     $('aside').toggleClass('active');
     $('#salvaCard span').toggleClass('rodar');
 });
+
 var allowCtrl = true;
 
 // * Atalho: Ctrl + B

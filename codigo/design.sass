@@ -6,12 +6,11 @@ a
     text-decoration: none
 
 body
-    background: #fff
+    background: #f0f0f0
 
 main
     background: #f0f0f0
     min-height: 100vh
-    width: 100%
 
 main h1
     background: #fff
@@ -87,9 +86,17 @@ aside.active
 .cardConvidado .card-header
     background: #FFF
     border-image: linear-gradient(to right, #ff4400, #ffa07d)
-    border-image-slice: 100% 0 0 0 
+    border-image-slice: 100% 25% 0 25% 
     border-image-width: 2px
     color: #212529
     font-size: 1.2rem
     font-weight: 500
     padding: 0.75rem 1.25rem
+
+.toast-header
+    border-image: linear-gradient(to right, #ff4400, #ffa07d)
+    border-image-slice: 100% 25% 100% 25%
+    border-image-width: 2px
+
+.card-container
+    position: absolute

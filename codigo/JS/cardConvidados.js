@@ -8,6 +8,7 @@ var contador = 1; // Contador de cards
 
 // ? Botão de adicionar card
 adicionaCard.on('click', () => {
+
     // * Limite de 4 cards
     if (canvas.children().length >= 5) {
         const toastBootstrap = bootstrap.Toast.getOrCreateInstance($('#liveToast'))
@@ -17,7 +18,10 @@ adicionaCard.on('click', () => {
     }
     // * Conteúdo HTML do card
     var newCard = $(
-        '<div class="card-container">' +
+        // Se colocado position absolute aqui, outros cards não serão movidos para baixo
+        // Porém acontecerá bugs de cards se tornarem imovéis
+        // > Adicionar e remover propriedade position absolute quando necessário
+        '<div class="col-10 card-container start-50" style="top:'+ contador +'0%">' +
         '<div class="cardConvidado draggable card col-3 shadow border-0 rounded-3 overflow-x-hidden" style="max-height:300px">' +
         '<div class="card-header fs-4 fw-bolder text-nowrap d-flex justify-content-between align-items-center">' +
         '<span class="mt-2 lh-lg">' +
@@ -51,7 +55,7 @@ adicionaCard.on('click', () => {
         // ? Apenas para simplificar o código
         var listGroup = $(this).closest('.card-container').find('.list-group');
         var currentLi = listGroup.find('li:focus');
-        var currentLiText = listGroup.find('li:focus').text();
+        var currentLiText = listGroup.find('li:focus').text();;
 
         // Se o usuário pressionar backspace e a linha estiver vazia, e não houver apenas 1 linha, linha atual é apagada, e o focus irá para a linha anterior
         if ((e.keyCode === 8 || e.keyCode === 38 || e.keyCode === 40) && currentLiText === '' && listGroup.children().length > 1) {
@@ -150,6 +154,7 @@ adicionaCard.on('click', () => {
         $(this).closest('.card-container').find('.list-group li').remove();
         var liVazia = $('<li class="list-group-item fw-lighter" contenteditable="true"></li>').text("");
         $(this).closest('.card-container').find('.list-group').append(liVazia);
+        // > Adiciona Position Absolute ao card
     });
     // * Botão que apaga o card
     newCard.find('.removeCard').on('click', function () {
