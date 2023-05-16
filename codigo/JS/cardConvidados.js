@@ -1,26 +1,29 @@
 var adicionaCard = $('#adicionaCard');  // Botão de adicionar card
 var removeCard = $('#removeCard');      // Botão de remover card
 var canvas = $('section');              // Os botões também contam como filhos
+var maxWidth = 250; // Máximo de pixels permitidos no título
+var maxLength = 15; // Máximo de caracteres permitidos no título
 
-var contador = 1;
-const toastLiveExample = document.getElementById('liveToast')
+var contador = 1; // Contador de cards
 
+// ? Botão de adicionar card
 adicionaCard.on('click', () => {
-
+    // * Limite de 4 cards
     if (canvas.children().length >= 5) {
-        const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+        const toastBootstrap = bootstrap.Toast.getOrCreateInstance($('#liveToast'))
         toastBootstrap.show();
         setTimeout(() => { toastBootstrap.hide(); }, 3000);
         return;
     }
-
+    // * Conteúdo HTML do card
     var newCard = $(
         '<div class="card-container">' +
-        '<div class="cardConvidado draggable card col-3 shadow border-0 rounded-3 overflow-auto" style="max-height:300px">' +
+        '<div class="cardConvidado draggable card col-3 shadow border-0 rounded-3 overflow-x-hidden" style="max-height:300px">' +
         '<div class="card-header fs-4 fw-bolder text-nowrap d-flex justify-content-between align-items-center">' +
-        '<span>' +
-        'Lista' + contador + '</span>' +
-        '<span>' +
+        '<span class="mt-2 lh-lg">' +
+        'Lista' + contador + 
+        '</span>' +
+        '<span class="position-absolute end-0 top-0 m-0 p-0">' +
         '<button type="button" class="btn bi-arrow-clockwise resetaCard btn-sm"></button>' +
         '<button type="button" class="btn bi-pen nomeiaCard btn-sm"></button>' +
         '<button type="button" class="btn bi-x-lg removeCard btn-sm" aria-label="Close"></button>' +
@@ -85,11 +88,13 @@ adicionaCard.on('click', () => {
     // * Botão que edita o título do card
     newCard.find('.nomeiaCard').on('click', function () {
         var cardContainer = $(this).closest('.card-container');
+        var cardConvidado = cardContainer.find('.cardConvidado');
         var cardTitle = cardContainer.find('.card-header span:first-child');
         cardTitle.attr('contenteditable', 'true');
         cardTitle.focus();
         selectAll(cardTitle[0]);
 
+        // ! Não entendi o que isso faz
         function selectAll(element) {
             if (document.body.createTextRange) { // Suporte para Internet Explorer
                 var range = document.body.createTextRange();
@@ -103,7 +108,7 @@ adicionaCard.on('click', () => {
                 selection.addRange(range);
             }
         }
-
+        // * Ao pressionar enter, o título é alterado
         cardTitle.on('keydown', function (e) {
             if (e.keyCode === 13) {
                 e.preventDefault();
@@ -112,18 +117,24 @@ adicionaCard.on('click', () => {
                     cardTitle.text(novoNome);
                 }
                 cardTitle.attr('contenteditable', 'false');
-                // Foca na primeira linha do card
                 var listGroup = cardContainer.find('.list-group');
-                var firstLi = listGroup.find('li:last-child');
-                firstLi.focus();
+                var lastLi = listGroup.find('li:last-child').focus();
+                finalDaLinha(lastLi[0]);
             } else {
-                var maxLength = 14; // Máximo de caracteres permitidos
+                var currentWidth = $(this).width();
                 var currentLength = $(this).text().length;
+
                 var isContentSelected = isTextSelected(cardTitle[0]);
-                if (currentLength >= maxLength && !isContentSelected && e.keyCode !== 8 && e.keyCode !== 46 && !e.ctrlKey) {
+                
+                if ((currentWidth >= maxWidth || currentLength >= maxLength ) && !isContentSelected && e.keyCode !== 8 && e.keyCode !== 46 && !e.ctrlKey) {
                     e.preventDefault();
-                }
+                } 
             }
+            if (currentLength > maxLength) {
+                var trimmedText = $(this).text().substring(0, maxLength);
+                cardTitle.text(trimmedText);
+              }
+              
         });
         // * Permite alterar o título caso conteúdo esteja inteiramente selecionado
         function isTextSelected(element) {
@@ -149,13 +160,13 @@ adicionaCard.on('click', () => {
     contador++;
     canvas.append(newCard); // Adiciona o novo card ao canvas
 });
-
+// ? Apaga todos os cards
 $('#removeCard').on('click', () => {
     $('.card').parent().remove();
     contador = 1;
 });
 
-// * Cursor no final da linha
+// * Cursor no final de cada linha
 function finalDaLinha(element) {
     var range = document.createRange();
     var sel = window.getSelection();

@@ -96,6 +96,10 @@ aside.active {
   transition: all 0.3s;
 }
 
+.rodar {
+  transform: rotate(90deg);
+}
+
 .cardConvidado .card-header {
   background: #FFF;
   border-image: linear-gradient(to right, #ff4400, #ffa07d);
