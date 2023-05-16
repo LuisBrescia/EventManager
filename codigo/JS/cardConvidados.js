@@ -51,7 +51,7 @@ adicionaCard.on('click', () => {
         var lastLiText = lastLi.text().trim();
 
         // Se o usuário pressionar backspace e a linha estiver vazia, e não houver apenas 1 linha, linha atual é apagada, e o focus irá para a linha anterior
-        if (e.keyCode === 8 && lastLiText === '' && listGroup.children().length > 1) {
+        if ((e.keyCode === 8 ||e.keyCode === 38) && lastLiText === '' && listGroup.children().length > 1) {
             e.preventDefault();
             lastLi.remove();
             var liAnterior = listGroup.find('li:last-child');
@@ -81,11 +81,23 @@ adicionaCard.on('click', () => {
             e.preventDefault();
             var liAnterior = $(this).closest('.card-container').find('.list-group li:focus').prev();
             liAnterior.focus();
+            var range = document.createRange();
+            var sel = window.getSelection();
+            range.setStart(liAnterior[0].childNodes[0], liAnterior[0].childNodes[0].length);
+            range.collapse(true);
+            sel.removeAllRanges();
+            sel.addRange(range);
         }
         if (e.keyCode === 40) {
             e.preventDefault();
             var liPosterior = $(this).closest('.card-container').find('.list-group li:focus').next();
             liPosterior.focus();
+            var range = document.createRange();
+            var sel = window.getSelection();
+            range.setStart(liPosterior[0].childNodes[0], liPosterior[0].childNodes[0].length);
+            range.collapse(true);
+            sel.removeAllRanges();
+            sel.addRange(range);
         }
     });
     // * Botão que edita o título do card
