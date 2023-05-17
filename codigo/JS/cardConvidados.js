@@ -6,6 +6,9 @@ var maxLength = 15; // Máximo de caracteres permitidos no título
 
 var contador = 1; // Contador de cards
 
+// > Preciso que cards com position diferentes tenham a mesma largura
+// > Preciso que todos os cards manteham suas coordenadas após mudança de posição
+
 // ? Botão de adicionar card
 adicionaCard.on('click', () => {
 
@@ -21,6 +24,7 @@ adicionaCard.on('click', () => {
         // Se colocado position absolute aqui, outros cards não serão movidos para baixo
         // Porém acontecerá bugs de cards se tornarem imovéis
         // > Adicionar e remover propriedade position absolute quando necessário
+        // ? Acredito que a solução envolva mudar algo desta linha de baixo
         '<div class="col-10 card-container ms-5" style="top:'+ contador +'0%">' +
         '<div class="cardConvidado draggable card col-3 shadow border-0 rounded-3 overflow-x-hidden" style="max-height:300px">' +
         '<div class="card-header fs-4 fw-bolder text-nowrap d-flex justify-content-between align-items-center">' +
@@ -52,10 +56,11 @@ adicionaCard.on('click', () => {
     });
     // * Editar o conteúdo do card
     newCard.find('.list-group').on('keydown', function (e) {
+        
         // ? Apenas para simplificar o código
         var listGroup = $(this).closest('.card-container').find('.list-group');
         var currentLi = listGroup.find('li:focus');
-        var currentLiText = listGroup.find('li:focus').text();;
+        var currentLiText = listGroup.find('li:focus').text();
 
         // Se o usuário pressionar backspace e a linha estiver vazia, e não houver apenas 1 linha, linha atual é apagada, e o focus irá para a linha anterior
         if ((e.keyCode === 8 || e.keyCode === 38 || e.keyCode === 40) && currentLiText === '' && listGroup.children().length > 1) {
@@ -72,6 +77,7 @@ adicionaCard.on('click', () => {
         // * Enter
         if (e.keyCode === 13) {
             e.preventDefault();
+            // $('.card-container').css('position', 'absolute'); // ! Desenvolvimento
             var liVazia = $('<li class="list-group-item fw-lighter" contenteditable="true"></li>').text("");
             $(this).closest('.card-container').find('.list-group').append(liVazia);
             liVazia.focus();
@@ -88,6 +94,11 @@ adicionaCard.on('click', () => {
             currentLi.next().focus();
             finalDaLinha(currentLi.next()[0]);
         }
+        $(document).on('click', function(e) {
+            if (!$(e.target).closest('.card-container').length) {
+                // $('.card-container').css('position', 'sticky'); // ! Desenvolvimento
+            }
+        });
     });
     // * Botão que edita o título do card
     newCard.find('.nomeiaCard').on('click', function () {
@@ -165,7 +176,7 @@ adicionaCard.on('click', () => {
     contador++;
     canvas.append(newCard); // Adiciona o novo card ao canvas
 });
-// ? Apaga todos os cards
+// * Apaga todos os cards
 $('#removeCard').on('click', () => {
     $('.card').parent().remove();
     contador = 1;
