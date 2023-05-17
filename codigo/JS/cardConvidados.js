@@ -24,11 +24,17 @@ adicionaCard.on('click', () => {
         // Se colocado position absolute aqui, outros cards não serão movidos para baixo
         // Porém acontecerá bugs de cards se tornarem imovéis
         // > Adicionar e remover propriedade position absolute quando necessário
+
+        // ? Possível solução:          (Farei quando tiver tempo)
+        /* 
+        > Cards que não estão sendo utilizados, terão position fixed       
+        */
+
         // ? Acredito que a solução envolva mudar algo desta linha de baixo
         '<div class="col-10 card-container ms-5" style="top:'+ contador +'0%">' +
         '<div class="cardConvidado draggable card col-3 shadow border-0 rounded-3 overflow-x-hidden" style="max-height:300px">' +
         '<div class="card-header fs-4 fw-bolder text-nowrap d-flex justify-content-between align-items-center">' +
-        '<span class="mt-2 lh-lg">' +
+        '<span class="mt-3 lh-1 pt-2">' +
         'Lista' + contador + 
         '</span>' +
         '<span class="position-absolute end-0 top-0 m-0 p-0">' +
@@ -77,7 +83,9 @@ adicionaCard.on('click', () => {
         // * Enter
         if (e.keyCode === 13) {
             e.preventDefault();
-            // $('.card-container').css('position', 'absolute'); // ! Desenvolvimento
+            // $('.card-container').css('position', 'static'); // ! Desenvolvimento
+            // > Por algum motivo, todos os cards são afetados pelas mudanças
+            // > Talvez seja necessário criar uma classe específica para cada card
             var liVazia = $('<li class="list-group-item fw-lighter" contenteditable="true"></li>').text("");
             $(this).closest('.card-container').find('.list-group').append(liVazia);
             liVazia.focus();
@@ -96,7 +104,7 @@ adicionaCard.on('click', () => {
         }
         $(document).on('click', function(e) {
             if (!$(e.target).closest('.card-container').length) {
-                // $('.card-container').css('position', 'sticky'); // ! Desenvolvimento
+                $('.card-container').css('position', 'fixed'); // ! Desenvolvimento
             }
         });
     });

@@ -117,7 +117,7 @@ aside.active {
 }
 
 .card-container {
-  position: absolute;
+  position: fixed;
 }
 
 /*# sourceMappingURL=style.css.map */
