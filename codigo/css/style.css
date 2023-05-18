@@ -1,3 +1,7 @@
+*:focus {
+  outline: none;
+}
+
 a {
   text-decoration: none;
 }
@@ -19,17 +23,26 @@ aside {
   background: #ff4400;
 }
 
-aside li:hover, aside li.active:hover {
+aside li {
+  transition: all 0.3s;
+}
+aside li:hover {
   color: #fff;
   background: #fe4400;
+  padding-left: 1em;
+  padding-right: 1em;
+  transition: all 0.3s;
 }
 
 aside li.active {
-  background: #fe4400;
+  background: #fa3a00;
 }
-
 aside li.active:hover {
+  color: #fff;
   background: #ee3300;
+  padding-left: 1em;
+  padding-right: 1em;
+  transition: all 0.3s;
 }
 
 aside li.active a, aside li.active a:hover, li a:hover {
@@ -57,7 +70,7 @@ button.funcionalidade {
   transition: all 0.3s;
 }
 button.funcionalidade:hover {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   transition: all 0.3s;
 }
 
@@ -73,14 +86,6 @@ button.funcionalidade:hover {
 
 footer {
   z-index: 9999;
-}
-
-li:focus {
-  outline: none;
-}
-
-*:focus {
-  outline: none;
 }
 
 aside {
@@ -110,14 +115,18 @@ aside.active {
   padding: 0.75rem 1.25rem;
 }
 
+.card-container {
+  position: absolute;
+}
+
 .toast-header {
   border-image: linear-gradient(to right, #ff4400, #ffa07d);
   border-image-slice: 100% 25% 100% 25%;
   border-image-width: 2px;
 }
 
-.card-container {
-  position: fixed;
+.funcionalidades {
+  z-index: 100;
 }
 
 /*# sourceMappingURL=style.css.map */

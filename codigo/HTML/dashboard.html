@@ -37,12 +37,12 @@
       </div>
       <!-- * 4 primeiras páginas da barra lateral -->
       <ul class="list-unstyled">
-        <li>
+        <li class="active">
           <a href="dashboard.html" class="px-3 py-2 d-block">
             <i class="me-2 bi-house-fill"></i>Dashboard
           </a>
         </li>
-        <li class="active">
+        <li>
           <a href="participantes.html" class="px-3 py-2 d-block">
             <i class="me-2 bi-people-fill"></i>Participantes</a>
         </li>
@@ -82,69 +82,33 @@
     <!-- ! Fim da Barra Lateral -->
     <!-- ? Página -->
     <main class="col bg-gradient h-100 d-flex flex-column justify-content-between">
-      <!-- * Botões -->
-      <!-- > Ao ser adicionado fixed-top conserta o problema crescer para baixo,
-      > porém outros cards acabam subindo juntos-->
-      <div class="funcionalidades btn-group shadow-lg d-flex" role="group" aria-label="Basic example">
-        <button type="button" id="adicionaCard" class="funcionalidade btn btn-dark rounded-0 fw-light">
-          <i class="bi-person-add me-2"></i>Adicionar
-        </button>
-        <button type="button" id="salvaCard" class="funcionalidade btn btn-dark rounded-0 fw-light">
-          <!-- > Animar ícone
+        <!-- * Botões -->
+        <!-- > Ao ser adicionado fixed-top conserta o problema crescer para baixo,
+            > porém outros cards acabam subindo juntos-->
+      <div class="btn-group shadow-lg d-flex" role="group" aria-label="Basic example">
+          <button type="button" id="adicionaCard" class="funcionalidade btn btn-dark rounded-0 fw-light">
+              <i class="bi-person-add me-2"></i>Adicionar
+            </button>
+            <button type="button" id="salvaCard" class="funcionalidade btn btn-dark rounded-0 fw-light">
+                <!-- > Animar ícone
           <span class="d-inline-block rodar"><i class="bi-arrow-down-circle"></i></span>
           <span class="ms-1">Deploy</span> -->
           <i class="bi-arrow-down-circle"></i>
           Deploy
         </button>
         <button type="button" id="removeCard" class="funcionalidade btn btn-dark rounded-0 fw-light">
-          <i class="bi-person-x me-2"></i>Limpar
+            <i class="bi-person-x me-2"></i>Limpar
         </button>
-      </div>
-      <!-- * Caso exceder o número limite de cards-->
-      <div class="toast-container position-fixed bottom-0 end-0 p-3">
-        <div id="liveToast" class="toast shadow" role="alert" aria-live="assertive" aria-atomic="true">
-          <div class="toast-header text-dark border-bottom border-2 bg-dark text-white">
-            <!-- <img src="..." class="rounded me-2" alt="..."> -->
-            <i class="bi-amd me-3"></i>
-            <strong class="me-auto">Event Manager</strong>
-            <small>agora</small>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
-          </div>
-          <div class="toast-body">
-            Não é possível adicionar mais cards.
-          </div>
-        </div>
-      </div>
-
-      <!-- * Nosso "Canvas" onde os cards serão adicionados -->
-      <section class="col">
-        <!-- >Exemplo de Card -->
-        <!-- <div class="card-container">
-            <div class="cardConvidado draggable selecionado card col-3 shadow border-0 rounded">
-                <div class="card-header fw-bolder text-center">Homens</div>
-                <div class="card-body overflow-auto" style="max-height: 300px">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Leandro Souto</li>
-                        <li class="list-group-item">Edj</li>
-                        <li class="list-group-item">Zorn</li>
-                        <li class="list-group-item"><span contenteditable="true"></span></li>
-                    </ul>
-                </div>
-            </div>
-          </div>
-        </div> -->
-        <p class="info d-inline-block p-3 bg-white rounded top-50 start-50 shadow position-absolute fw-bolder fst-italic fs-1">
-          Participantes</p>
-      </section>
-    </main>
-  </div>
+    </div>
+    <p class="mx-auto my-auto p-3 bg-white rounded shadow text-center fw-bolder fst-italic fs-1">Dashboard</p>
+</main>
+</div>
   <script src="../node_modules/jquery/dist/jquery.min.js"></script>
   <script src="../node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
   <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
   <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../JS/barraLateral.js"></script>
-  <script src="../JS/cardConvidados.js"></script>
 </body>
 
 </html>
