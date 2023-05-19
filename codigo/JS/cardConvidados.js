@@ -1,19 +1,18 @@
 var canvas = $('section');  // Os botões também contam como filhos
 var maxWidth = 250;         // Máximo de pixels permitidos no título
 var maxLength = 15;         // Máximo de caracteres permitidos no título
-var contador = 1;           // Contador de cards
-var ordem = 1;              // Ordem em que os cards foram adicionados
+const TAM = 6; // ? Quantidade de cards que será possível adicionar
 // : TRUE == DISPONÍVEL
 // ! FALSE == OCUPADO
-vetor = [true, true, true, true, true, true];  
+const vetor = Array(TAM).fill(true);
 
 // > Preciso que cards com position diferentes tenham a mesma largura
 // > Preciso que todos os cards manteham suas coordenadas após mudança de posição
 
 // ? Botão de adicionar card
 $('#adicionaCard').on('click', () => {
-    // * Limite de 6 cards
-    if (canvas.children().length >= 7) {
+    // * Percorre o vetor, se existir algum elemento com o valor true, criará card
+    if (!vetor.includes(true)) {
         const toastBootstrap = bootstrap.Toast.getOrCreateInstance($('#liveToast'))
         toastBootstrap.show();
         setTimeout(() => { toastBootstrap.hide(); }, 3000);
@@ -27,12 +26,12 @@ $('#adicionaCard').on('click', () => {
         // ? Possível solução:          (Farei quando tiver tempo)
         // > Cards que não estão sendo utilizados, terão position fixed       
         // ? Acredito que a solução envolva mudar algo desta linha de baixo
-        '<div id="card-' + ordem + '" class="card-container ms-5" style="top:' + contador + '0%">' +
+        '<div id="card-' + vetor.indexOf(true) + '" class="card-container ms-5" style="top:' + (vetor.indexOf(true) + 1) + '0%">' +
         '<div class="cardConvidado draggable card col-3 shadow border-0 rounded-3 overflow-x-hidden"' +
         'style="max-height:300px; width:300px">' +
         '<div class="card-header fs-4 fw-bolder text-nowrap d-flex justify-content-between align-items-center">' +
         '<span class="mt-3 mb-1 lh-1 pt-2">' +
-        'Lista' + contador + ' _id:' + ordem +
+        'Lista ' + vetor.indexOf(true) +
         '</span>' +
         '<span class="position-absolute end-0 top-0 m-0 p-0">' +
         '<button type="button" class="btn bi-arrow-clockwise resetaCard btn-sm"></button>' +
@@ -230,11 +229,12 @@ $('#adicionaCard').on('click', () => {
     });
     // * Botão que apaga o card
     newCard.find('.removeCard').on('click', function () {
+        var cardId = $(this).closest('.card-container').attr('id');
+        var cardNumber = parseInt(cardId.split('-')[1]); 
+        vetor[cardNumber] = true;
         $(this).closest('.card-container').remove();
-        contador--;
     });
-    contador++;
-    ordem++;
+    vetor[vetor.indexOf(true)] = false; // ! Desenvolvimento
     $('.info').addClass('d-none');
     canvas.append(newCard);
 });
@@ -243,8 +243,7 @@ $('#adicionaCard').on('click', () => {
 // ? ID só é reiniciado quando todos cards são apagados 
 $('#removeCard').on('click', () => {
     $('.card').parent().remove();
-    contador = 1;
-    ordem = 1;
+    vetor.fill(true);
     $('.info').removeClass('d-none');
 });
 // * No momento #salvaCard está sendo utilizado para esconder o menu lateral
