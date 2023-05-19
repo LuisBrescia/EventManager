@@ -22,7 +22,6 @@ main h1 {
 aside {
   background: #ff4400;
 }
-
 aside li {
   transition: all 0.3s;
 }
@@ -33,7 +32,6 @@ aside li:hover {
   padding-right: 1em;
   transition: all 0.3s;
 }
-
 aside li.active {
   background: #fa3a00;
 }
@@ -44,11 +42,9 @@ aside li.active:hover {
   padding-right: 1em;
   transition: all 0.3s;
 }
-
 aside li.active a, aside li.active a:hover, li a:hover {
   color: #fff;
 }
-
 aside li a {
   color: #fff;
 }
@@ -73,7 +69,6 @@ button.funcionalidade:hover {
   font-size: 1.2rem;
   transition: all 0.3s;
 }
-
 .cardConvidado button {
   color: #9FA6B2;
   transition: all 0.3s;
@@ -87,14 +82,12 @@ button.funcionalidade:hover {
 footer {
   z-index: 9999;
 }
-
 aside {
   margin-left: -250px;
   transition: all 0.3s;
   z-index: 1;
   min-height: 100vh;
 }
-
 aside.active {
   margin-left: 0;
   transition: all 0.3s;

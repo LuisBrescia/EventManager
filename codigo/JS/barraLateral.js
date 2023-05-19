@@ -5,7 +5,6 @@ var allowCtrl = true;
 $('#salvaCard').on('click', () => {  
     console.log('salvaCard');
     $('aside').toggleClass('active');
-    $('#salvaCard span').toggleClass('rodar');
     $('.card-container').removeClass('mover');
     menuAtivo = !menuAtivo;
 });
