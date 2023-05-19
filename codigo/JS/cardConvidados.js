@@ -1,9 +1,6 @@
-var adicionaCard = $('#adicionaCard');  // Botão de adicionar card
-var removeCard = $('#removeCard');      // Botão de remover card
 var canvas = $('section');              // Os botões também contam como filhos
 var maxWidth = 250; // Máximo de pixels permitidos no título
 var maxLength = 15; // Máximo de caracteres permitidos no título
-
 var contador = 1; // Contador de cards
 var ordem = 1;    // Ordem em que os cards foram adicionados
 
@@ -11,8 +8,7 @@ var ordem = 1;    // Ordem em que os cards foram adicionados
 // > Preciso que todos os cards manteham suas coordenadas após mudança de posição
 
 // ? Botão de adicionar card
-adicionaCard.on('click', () => {
-
+$('#adicionaCard').on('click', () => {
     // * Limite de 6 cards
     if (canvas.children().length >= 7) {
         const toastBootstrap = bootstrap.Toast.getOrCreateInstance($('#liveToast'))
@@ -22,13 +18,13 @@ adicionaCard.on('click', () => {
     }
     // * Conteúdo HTML do card
     var newCard = $(
-        // Se colocado position absolute aqui, outros cards não serão movidos para baixo
-        // Porém acontecerá bugs de cards se tornarem imovéis
+        // ! Periódicamente cards se tornam impossíveis de serem arrastados	
+        // ! Realizar testes para checar se foi corrigido
         // > Adicionar e remover propriedade position absolute quando necessário
         // ? Possível solução:          (Farei quando tiver tempo)
         // > Cards que não estão sendo utilizados, terão position fixed       
         // ? Acredito que a solução envolva mudar algo desta linha de baixo
-        '<div id="card-' + ordem + '" class="col-10 card-container ms-5" style="top:' + contador + '0%">' +
+        '<div id="card-' + ordem + '" class="bg-dark card-container ms-5" style="top:' + contador + '0%">' +
         '<div class="cardConvidado draggable card col-3 shadow border-0 rounded-3 overflow-x-hidden"' +
         'style="max-height:300px; width:300px">' +
         '<div class="card-header fs-4 fw-bolder text-nowrap d-flex justify-content-between align-items-center">' +
@@ -59,17 +55,42 @@ adicionaCard.on('click', () => {
         handle: ".card-header",
         stop: function () {
             $(this).closest('.card-container').css('position', 'absolute');
-            // > Se a ID do card
-            // if (contador <= 2) {
-            //     // * Só funciona na primeira vez porque o calor não é resetado
-            //     if ($('.funcionalidades:hover').length > 0) {
-            //         $(this).css('top', '10px');
-            //     } 
-            //     $(this).closest('.card-container').css('position', 'static');
-            // }
+            // > Descobrir como a coordenada é calculada
+            // * Adicionando 300 estará me falando onde o card acaba
+            var cardPosition = $(this).position().left + 48 + 300;
+            var canvasWidth = canvas.width();
+             
+            // : ASIDE IS ACTIVE?
+            // : IF YES NÃO FAZER NADA
+            if (!$('aside').hasClass('active')) {
+                // : PEGAR A LARGURA DO CANVAS SUBTRAIR POR 250
+                larguraPermitida = canvasWidth - 250;
+                // : SE ALGUM CARD ESTIVER COM A COORDENADA MAIOR QUE A LARGURA PERMITIDA
+                if (cardPosition > larguraPermitida) {
+                    // : VAI SER ADICIONADA A ELE A CLASSE MOVER
+                    $(this).addClass('mover');
+                    $(this).find('.card-container').addClass('mover');
+                    $(this).find('.card-header').css('background-color', '#ff4400');
+                    // $(this).css('transform', 'translateX(-' + (cardPosition - larguraPermitida) + 'px)');
+                    // console.log('Será movido ' + (cardPosition - larguraPermitida) + 'px para esquerda');
+                } else {
+                    $(this).removeClass('mover');
+                    $(this).find('.card-container').removeClass('mover');
+                    $(this).find('.card-header').css('background-color', '#fff');
+                    // $(this).css('transform', 'translateX(0px)');
+                }
+            } 
+            // : VOU PEGAR A COORDENADA DESTE CARD E SUBTRAIR PELA LARGURA PERMITIDA
+            // : MOVER = COORDENADA DO CARD - LARGURA PERMITIDA
+            // : E QUANDO O USUÁRIO APERTAR O BOTÃO DE MENU, VOU MOVER O CARD
+            // : TRANSFORM: TRANSLATEX(-MOVER)
+
+            // * Verifica se o card está do lado direito
+            console.log('Coordenada X do card:', cardPosition);
+            console.log('Largura do canvas:', canvasWidth);
+            console.log('mouseup');
         }
     });
-
     // * Editar o conteúdo do card
     newCard.find('.list-group').on('keydown', function (e) {
         // ? Apenas para simplificar o código
@@ -114,25 +135,24 @@ adicionaCard.on('click', () => {
             finalDaLinha(currentLi.next()[0]);
         }
         // * Remove li vazias quando um click é realizado
-        $(document).on('click', function() {
+        $(document).on('click', function () {
             // > Aqui possívelmente está gastando mais processamento que o necessário
-            $('.card-container').each(function() {
+            $('.card-container').each(function () {
                 removerLiVazias($(this));
             });
         });
-        
-        $(document).on('click', function (e) {
-            var currentLi = $('.list-group li:focus');
-            var currentLiText = currentLi.text();
-            var listGroup = currentLi.closest('.list-group');
-
-            if ((!$(e.target).closest('.card-container').length) && currentLiText === '' && listGroup.children().length > 1) {
-                e.preventDefault();
-                currentLi.remove();
-                var lastLi = listGroup.find('li:last-child').focus();
-                finalDaLinha(lastLi[0]);
-            }
-        });
+        // ! Não sei para o que serve mas estou com medo de remover
+        // $(document).on('click', function (e) {
+        //     var currentLi = $('.list-group li:focus');
+        //     var currentLiText = currentLi.text();
+        //     var listGroup = currentLi.closest('.list-group');
+        //     if ((!$(e.target).closest('.card-container').length) && currentLiText === '' && listGroup.children().length > 1) {
+        //         e.preventDefault();
+        //         currentLi.remove();
+        //         var lastLi = listGroup.find('li:last-child').focus();
+        //         finalDaLinha(lastLi[0]);
+        //     }
+        // });
     });
     // * Botão que edita o título do card
     newCard.find('.nomeiaCard').on('click', function () {
@@ -209,15 +229,20 @@ adicionaCard.on('click', () => {
     contador++;
     ordem++;
     $('.info').addClass('d-none');
-    canvas.append(newCard); // Adiciona o novo card ao canvas
+    canvas.append(newCard);
 });
+
 // * Apaga todos os cards
 // * ID só é reiniciado quando todos cards são apagados 
 $('#removeCard').on('click', () => {
     $('.card').parent().remove();
     contador = 1;
     ordem = 1;
-    $('.info').removeClass('d-none');   
+    $('.info').removeClass('d-none');
+});
+// * No momento #salvaCard está sendo utilizado para esconder o menu lateral
+$('#salvaCard').on('click', () => {  
+    $('.card').find('.card-container').removeClass('mover');
 });
 // * Cursor no final de cada linha
 function finalDaLinha(element) {
@@ -230,7 +255,7 @@ function finalDaLinha(element) {
 }
 // * Remove li vazias
 function removerLiVazias(cardContainer) {
-    cardContainer.find('.list-group-item').each(function() {
+    cardContainer.find('.list-group-item').each(function () {
         // * Vai remover todos os espaços em branco, e checar se ainda resta alguma coisa
         if ($(this).text().trim() === '' && cardContainer.find('.list-group-item').length > 1) {
             $(this).remove();

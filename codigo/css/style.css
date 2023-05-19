@@ -108,6 +108,9 @@ aside.active {
   transition: all 0.3s;
 } */
 
+.mover {
+  padding: 1em;
+}
 
 .cardConvidado .card-header {
   background: #FFF;
@@ -119,7 +122,9 @@ aside.active {
   font-weight: 500;
   padding: 0.75rem 1.25rem;
 }
-
+.cardConvidado {
+  max-height:300px; width:300px
+}
 .card-container {
   position: absolute;
 }

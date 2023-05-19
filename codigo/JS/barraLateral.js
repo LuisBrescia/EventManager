@@ -1,15 +1,14 @@
 var menuAtivo = true;
 var allowCtrl = true;
 
+// * No momento #salvaCard está sendo utilizado para esconder o menu lateral
 $('#salvaCard').on('click', () => {  
     console.log('salvaCard');
     $('aside').toggleClass('active');
-    // $('.card-container').toggleClass('minimizado');
     $('#salvaCard span').toggleClass('rodar');
-
+    $('.card-container').removeClass('mover');
     menuAtivo = !menuAtivo;
 });
-
 
 // * Atalho: Ctrl + B
 $(document).on('keydown', function (e) {
