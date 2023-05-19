@@ -98,6 +98,7 @@ $('#adicionaCard').on('click', () => {
             // console.log('mouseup');
         }
     });
+    
     // * Editar o conteúdo do card
     newCard.find('.list-group').on('keydown', function (e) {
         // ? Apenas para simplificar o código
@@ -183,6 +184,7 @@ $('#adicionaCard').on('click', () => {
                 selection.addRange(range);
             }
         }
+        
         // * Ao pressionar enter, o título é alterado
         cardTitle.on('keydown', function (e) {
             if (e.keyCode === 13) {
@@ -190,6 +192,9 @@ $('#adicionaCard').on('click', () => {
                 var novoNome = $(this).text().trim();
                 if (novoNome !== '') {
                     cardTitle.text(novoNome);
+                    var cardId = $(this).closest('.card-container').attr('id');
+                    var cardNumber = parseInt(cardId.split('-')[1]); 
+                    localStorage.setItem('titulo-' + cardNumber, novoNome);
                 }
                 cardTitle.attr('contenteditable', 'false');
                 var listGroup = cardContainer.find('.list-group');
@@ -234,8 +239,10 @@ $('#adicionaCard').on('click', () => {
         vetor[cardNumber] = true;
         $(this).closest('.card-container').remove();
     });
-    vetor[vetor.indexOf(true)] = false; // ! Desenvolvimento
+    console.log('Primeiro LOG ' + vetor.indexOf(true));
+    localStorage.setItem('titulo-' + vetor.indexOf(true), 'Lista ' + vetor.indexOf(true));
     $('.info').addClass('d-none');
+    vetor[vetor.indexOf(true)] = false; // ! Desenvolvimento
     canvas.append(newCard);
 });
 
