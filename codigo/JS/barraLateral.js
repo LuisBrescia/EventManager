@@ -1,10 +1,15 @@
+var menuAtivo = true;
+var allowCtrl = true;
+
 $('#salvaCard').on('click', () => {  
     console.log('salvaCard');
     $('aside').toggleClass('active');
+    // $('.card-container').toggleClass('minimizado');
     $('#salvaCard span').toggleClass('rodar');
+
+    menuAtivo = !menuAtivo;
 });
 
-var allowCtrl = true;
 
 // * Atalho: Ctrl + B
 $(document).on('keydown', function (e) {

@@ -27,7 +27,7 @@
     </aside>
     <!-- ? Ínicio da Barra Lateral -->
     <!-- > Barra Lateral vai ser a mesma para todas as páginas -->
-    <aside class="col bg-gradient active position-fixed">
+    <aside class="bg-gradient active position-fixed">
       <!-- * Título da Barra Lateral -->
       <div class="px-2 py-3 d-flex justify-content-between">
         <h1 class="fs-4">
@@ -86,20 +86,21 @@
       <!-- > Ao ser adicionado fixed-top conserta o problema crescer para baixo,
       > porém outros cards acabam subindo juntos-->
       <div class="funcionalidades btn-group shadow-lg d-flex" role="group" aria-label="Basic example">
-        <button type="button" id="adicionaCard" class="funcionalidade btn btn-dark rounded-0 fw-light">
+        <button type="button" id="adicionaCard" class="col funcionalidade btn btn-dark rounded-0 fw-light">
           <i class="bi-person-add me-2"></i>Adicionar
         </button>
-        <button type="button" id="salvaCard" class="funcionalidade btn btn-dark rounded-0 fw-light">
+        <button type="button" id="salvaCard" class="col funcionalidade btn btn-dark rounded-0 fw-light">
           <!-- > Animar ícone
-          <span class="d-inline-block rodar"><i class="bi-arrow-down-circle"></i></span>
-          <span class="ms-1">Deploy</span> -->
+              <span class="d-inline-block rodar"><i class="bi-arrow-down-circle"></i></span>
+              <span class="ms-1">Deploy</span> -->
           <i class="bi-arrow-down-circle"></i>
           Deploy
         </button>
-        <button type="button" id="removeCard" class="funcionalidade btn btn-dark rounded-0 fw-light">
+        <button type="button" id="removeCard" class="col funcionalidade btn btn-dark rounded-0 fw-light">
           <i class="bi-person-x me-2"></i>Limpar
         </button>
       </div>
+
       <!-- * Caso exceder o número limite de cards-->
       <div class="toast-container position-fixed bottom-0 end-0 p-3">
         <div id="liveToast" class="toast shadow" role="alert" aria-live="assertive" aria-atomic="true">
@@ -117,28 +118,28 @@
       </div>
 
       <!-- * Nosso "Canvas" onde os cards serão adicionados -->
-      <section class="col">
+      <section class="col minimizado">
         <!-- >Exemplo de Card -->
         <!-- <div class="card-container">
-            <div class="cardConvidado draggable selecionado card col-3 shadow border-0 rounded">
-                <div class="card-header fw-bolder text-center">Homens</div>
-                <div class="card-body overflow-auto" style="max-height: 300px">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Leandro Souto</li>
-                        <li class="list-group-item">Edj</li>
-                        <li class="list-group-item">Zorn</li>
-                        <li class="list-group-item"><span contenteditable="true"></span></li>
-                    </ul>
-                </div>
+          <div class="cardConvidado draggable selecionado card col-3 shadow border-0 rounded">
+            <div class="card-header fw-bolder text-center">Homens</div>
+              <div class="card-body overflow-auto" style="max-height: 300px">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">Leandro Souto</li>
+                  <li class="list-group-item">Edj</li>
+                  <li class="list-group-item">Zorn</li>
+                  <li class="list-group-item"><span contenteditable="true"></span></li>
+                </ul>
+              </div>
             </div>
           </div>
         </div> -->
-        <div class="d-flex align-items-center" style="height: 100vh;">
-          <p class="info d-block mx-auto text-center p-3 bg-white rounded shadow fw-bolder fst-italic fs-1">
-          Participantes</p>
+        <div class="info d-flex align-items-center" style="height: 100vh;">
+          <p class="d-block mx-auto text-center p-3 bg-white rounded shadow fw-bolder fst-italic fs-1">
+            Participantes</p>
         </div>
-        
       </section>
+      <!-- <footer class="d-block bg-dark">ALGUMA COISA</footer> -->
     </main>
   </div>
   <script src="../node_modules/jquery/dist/jquery.min.js"></script>

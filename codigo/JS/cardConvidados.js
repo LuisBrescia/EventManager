@@ -14,7 +14,7 @@ var ordem = 1;    // Ordem em que os cards foram adicionados
 adicionaCard.on('click', () => {
 
     // * Limite de 6 cards
-    if (canvas.children().length >= 6) {
+    if (canvas.children().length >= 7) {
         const toastBootstrap = bootstrap.Toast.getOrCreateInstance($('#liveToast'))
         toastBootstrap.show();
         setTimeout(() => { toastBootstrap.hide(); }, 3000);
@@ -56,17 +56,18 @@ adicionaCard.on('click', () => {
         snap: false,
         stack: ".draggable",
         cursor: "grabbing",
-        handle: ".card-header"//,
-        // stop: function () {
-        //     // > Se a ID do card
-        //     if (contador <= 2) {
-        //         // * Só funciona na primeira vez porque o calor não é resetado
-        //         if ($('.funcionalidades:hover').length > 0) {
-        //             $(this).css('top', '10px');
-        //         } 
-        //         $(this).closest('.card-container').css('position', 'static');
-        //     }
-        // }
+        handle: ".card-header",
+        stop: function () {
+            $(this).closest('.card-container').css('position', 'absolute');
+            // > Se a ID do card
+            // if (contador <= 2) {
+            //     // * Só funciona na primeira vez porque o calor não é resetado
+            //     if ($('.funcionalidades:hover').length > 0) {
+            //         $(this).css('top', '10px');
+            //     } 
+            //     $(this).closest('.card-container').css('position', 'static');
+            // }
+        }
     });
 
     // * Editar o conteúdo do card
@@ -84,7 +85,7 @@ adicionaCard.on('click', () => {
             var lastLi = listGroup.find('li:last-child').focus();
             finalDaLinha(lastLi[0]);
         }
-        // Usuário não pode criar nova linha se atual est
+        // * Usuário não pode criar nova linha se atual está em branco
         if (e.keyCode === 13 && currentLiText === '') {
             e.preventDefault();
             return;
@@ -96,7 +97,7 @@ adicionaCard.on('click', () => {
             // > Por algum motivo, todos os cards são afetados pelas mudanças
             // > Talvez seja necessário criar uma classe específica para cada card
             var liVazia = $('<li class="list-group-item fw-lighter" contenteditable="true"></li>').text("");
-            // otherCards.css('position', 'fixed');
+            otherCards.css('position', 'fixed');
             $(this).closest('.card-container').find('.list-group').append(liVazia);
             liVazia.focus();
         }

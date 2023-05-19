@@ -99,10 +99,15 @@ aside.active {
   margin-left: 0;
   transition: all 0.3s;
 }
-
-.rodar {
-  transform: rotate(90deg);
+/* .card-container {
+  transition: all 0.3s;
+  transform: translateY(0);
 }
+.card-container.minimizado {
+  transform: translateX(-250px) translateY(0);
+  transition: all 0.3s;
+} */
+
 
 .cardConvidado .card-header {
   background: #FFF;
