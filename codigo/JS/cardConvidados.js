@@ -13,7 +13,7 @@ const vetor = Array(TAM).fill(true);
 $('#adicionaCard').on('click', () => {
     // * Percorre o vetor, se existir algum elemento com o valor true, criará card
     if (!vetor.includes(true)) {
-        const toastBootstrap = bootstrap.Toast.getOrCreateInstance($('#liveToast'))
+        const toastBootstrap = bootstrap.Toast.getOrCreateInstance($('#liveToast'));
         toastBootstrap.show();
         setTimeout(() => { toastBootstrap.hide(); }, 3000);
         return;
@@ -31,7 +31,7 @@ $('#adicionaCard').on('click', () => {
         'style="max-height:300px; width:300px">' +
         '<div class="card-header fs-4 fw-bolder text-nowrap d-flex justify-content-between align-items-center">' +
         '<span class="mt-3 mb-1 lh-1 pt-2">' +
-        'Lista ' + vetor.indexOf(true) +
+        'Lista ' + (vetor.indexOf(true) + 1) +
         '</span>' +
         '<span class="position-absolute end-0 top-0 m-0 p-0">' +
         '<button type="button" class="btn bi-arrow-clockwise resetaCard btn-sm"></button>' +
@@ -60,45 +60,34 @@ $('#adicionaCard').on('click', () => {
             $(this).closest('.card-container').css('position', 'absolute');
             // > Descobrir como a coordenada é calculada
             // * Adicionando 300 estará me falando onde o card acaba
-            // var cardPosition = $(this).position().left + 48 + 300;
-            // var canvasWidth = canvas.width();
-             
-            // // : ASIDE IS ACTIVE?
-            // // : IF YES NÃO FAZER NADA
-            // if (!$('aside').hasClass('active')) {
-            //     // : PEGAR A LARGURA DO CANVAS SUBTRAIR POR 250
-            //     larguraPermitida = canvasWidth - 250;
-            //     // : SE ALGUM CARD ESTIVER COM A COORDENADA MAIOR QUE A LARGURA PERMITIDA
-            //     if (cardPosition > larguraPermitida) {
-            //         // : VAI SER ADICIONADA A ELE A CLASSE MOVER
-            //         $(this).addClass('mover');
-            //         $(this).find('.card-container').addClass('mover');
-            //         $(this).find('.card-header').css('background-color', '#ff4400');
-            //         // $(this).css('transform', 'translateX(-' + (cardPosition - larguraPermitida) + 'px)');
-            //         // console.log('Será movido ' + (cardPosition - larguraPermitida) + 'px para esquerda');
-            //     } else {
-            //         $(this).removeClass('mover');
-            //         $(this).find('.card-container').removeClass('mover');
-            //         $(this).find('.card-header').css('background-color', '#fff');
-            //         // $(this).css('transform', 'translateX(0px)');
-            //     }
-            // } else {
-            //     $(this).removeClass('mover');
-            //     $(this).find('.card-container').removeClass('mover');
-            //     $(this).find('.card-header').css('background-color', '#fff');
-            // }
+            var cardPosition = $(this).position().left + 48 + 300;
+            var canvasWidth = canvas.width();
+
+            // : ASIDE IS ACTIVE?
+            // : IF YES NÃO FAZER NADA
+            if (!$('aside').hasClass('active')) {
+                // : PEGAR A LARGURA DO CANVAS SUBTRAIR POR 250
+                larguraPermitida = canvasWidth - 250;
+                // : SE ALGUM CARD ESTIVER COM A COORDENADA MAIOR QUE A LARGURA PERMITIDA
+                if (cardPosition > larguraPermitida && !$(this).hasClass('mover')) {
+                    // : VAI SER ADICIONADA A ELE A CLASSE MOVER
+                    $(this).addClass('mover');
+                    console.log('Mover adicionado');
+                    $(this).find('.card-header').css('background-color', '#f0f0f0'); 
+                } else if (cardPosition <= larguraPermitida && $(this).hasClass('mover')) {
+                    $(this).removeClass('mover');
+                    console.log("Mover removido");
+                    $(this).find('.card-header').css('background-color', '#fff');   
+                }
+            }
             // : VOU PEGAR A COORDENADA DESTE CARD E SUBTRAIR PELA LARGURA PERMITIDA
             // : MOVER = COORDENADA DO CARD - LARGURA PERMITIDA
             // : E QUANDO O USUÁRIO APERTAR O BOTÃO DE MENU, VOU MOVER O CARD
             // : TRANSFORM: TRANSLATEX(-MOVER)
-
-            // * Verifica se o card está do lado direito
             // console.log('Coordenada X do card:', cardPosition);
-            // console.log('Largura do canvas:', canvasWidth);
-            // console.log('mouseup');
         }
     });
-    
+
     // * Editar o conteúdo do card
     newCard.find('.list-group').on('keydown', function (e) {
         // ? Apenas para simplificar o código
@@ -184,7 +173,7 @@ $('#adicionaCard').on('click', () => {
                 selection.addRange(range);
             }
         }
-        
+
         // * Ao pressionar enter, o título é alterado
         cardTitle.on('keydown', function (e) {
             if (e.keyCode === 13) {
@@ -193,7 +182,7 @@ $('#adicionaCard').on('click', () => {
                 if (novoNome !== '') {
                     cardTitle.text(novoNome);
                     var cardId = $(this).closest('.card-container').attr('id');
-                    var cardNumber = parseInt(cardId.split('-')[1]); 
+                    var cardNumber = parseInt(cardId.split('-')[1]);
                     localStorage.setItem('titulo-' + cardNumber, novoNome);
                 }
                 cardTitle.attr('contenteditable', 'false');
@@ -235,15 +224,14 @@ $('#adicionaCard').on('click', () => {
     // * Botão que apaga o card
     newCard.find('.removeCard').on('click', function () {
         var cardId = $(this).closest('.card-container').attr('id');
-        var cardNumber = parseInt(cardId.split('-')[1]); 
+        var cardNumber = parseInt(cardId.split('-')[1]);
         vetor[cardNumber] = true;
         $(this).closest('.card-container').remove();
     });
-    console.log('Primeiro LOG ' + vetor.indexOf(true));
     localStorage.setItem('titulo-' + vetor.indexOf(true), 'Lista ' + vetor.indexOf(true));
     $('.info').addClass('d-none');
     vetor[vetor.indexOf(true)] = false; // ! Desenvolvimento
-    canvas.append(newCard);
+    $('section').append(newCard);
 });
 
 // * Apaga todos os cards
@@ -254,7 +242,7 @@ $('#removeCard').on('click', () => {
     $('.info').removeClass('d-none');
 });
 // * No momento #salvaCard está sendo utilizado para esconder o menu lateral
-$('#salvaCard').on('click', () => {  
+$('#salvaCard').on('click', () => {
     $('.card').find('.card-container').removeClass('mover');
 });
 // * Cursor no final de cada linha

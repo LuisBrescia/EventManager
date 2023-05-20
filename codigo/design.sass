@@ -1,112 +1,96 @@
 // @import 'node_modules/bootstrap/scss/_variables.scss'
 // sass --watch design.sass:css/style.css
-$blue: "#007bff"
+$primaria-n1: #ffa07d 
+$primaria: #ff4400 
+$primaria-1: #fe4400 
 
-*:focus
-    outline: none
-
-a
-    text-decoration: none
-
-body
-    background: #f0f0f0
-
-main
-    background: #f0f0f0
-    min-height: 100vh
-
-main h1
-    background: #fff
-
-aside
-    background: #ff4400
-
-aside li:hover, aside li.active:hover
-
-aside li
-    transition: all 0.3s
-    &:hover
-        color: #fff
-        background: #fe4400
-        padding-left: 1em
-        padding-right: 1em
-        transition: all 0.3s
-
-aside li.active
-    background: #fa3a00
-    &:hover
-        color: #fff
-        background: #ee3300
-        padding-left: 1em
-        padding-right: 1em
-        transition: all 0.3s
-
-aside li.active a, aside li.active a:hover, li a:hover
-    color: #fff
-
-aside li a
-    color: #fff
-
-footer a
-    color: #212529
-    text-decoration: none
-    font-size: 1px
-    transition: all 0.5s
-
-    &:hover
-        color: #fff
-        transition: all 0.5s
-        font-size: 1.2rem
-
-button.funcionalidade
-    font-size: initial
-    transition: all 0.3s
-
-    &:hover
-        font-size: 1.2rem
-        transition: all 0.3s
-
-.cardConvidado button
-    color: #9FA6B2
-    transition: all 0.3s
-    &:hover
-        color: #212529
-        font-size: 18px
-        transition: all 0.3s
-
-footer
-    z-index: 9999
-
-aside
-    margin-left: -250px
-    transition: all 0.3s
-    z-index: 1
-    min-height: 100vh
-
-aside.active
-    margin-left: 0
-    transition: all 0.3s
-
-.rodar
-    transform: rotate(90deg)
-
-.cardConvidado .card-header
-    background: #FFF
-    border-image: linear-gradient(to right, #ff4400, #ffa07d)
-    border-image-slice: 100% 25% 0 25%
-    border-image-width: 2px
-    color: #212529
-    font-size: 1.2rem
-    font-weight: 500
-    padding: 0.75rem 1.25rem
-
-.card-container
-    position: absolute
-
-.toast-header
-    border-image: linear-gradient(to right, #ff4400, #ffa07d)
-    border-image-slice: 100% 25% 100% 25%
-    border-image-width: 2px
-
-.funcionalidades
-    z-index: 100
+:root 
+	--primaria-n1: #ffa07d 
+	--primaria: #ff4400 
+	--primaria-1: #fe4400
+     
+:focus 
+	outline: none 
+a 
+	text-decoration: none 
+body 
+	background: #f0f0f0 
+main 
+	background: #f0f0f0 
+	min-height: 100vh 
+	h1 
+		background: #fff 
+aside 
+	background: #ff4400 
+	margin-left: -250px 
+	transition: all 0.3s 
+	z-index: 1 
+	min-height: 100vh 
+	li 
+		transition: all 0.3s 
+		&:hover 
+			color: #fff 
+			background: #fe4400 
+			padding-left: 1em 
+			padding-right: 1em 
+			transition: all 0.3s 
+		&.active 
+			background: #fa3a00 
+			&:hover 
+				color: #fff 
+				background: #ee3300 
+				padding-left: 1em 
+				padding-right: 1em 
+				transition: all 0.3s 
+		a 
+			color: #fff 
+	&.active 
+		margin-left: 0 
+		transition: all 0.3s 
+aside li.active a, aside li.active a:hover, li a:hover 
+	color: #fff 
+footer 
+	z-index: 9999 
+	a 
+		color: #212529 
+		text-decoration: none 
+		font-size: 1px 
+		transition: all 0.5s 
+		&:hover 
+			color: #fff 
+			transition: all 0.5s 
+			font-size: 1.2rem 
+button 
+	&.funcionalidade 
+		font-size: initial 
+		transition: all 0.3s 
+		&:hover 
+			font-size: 1.2rem 
+			transition: all 0.3s 
+.cardConvidado 
+	max-height: 300px 
+	width: 300px 
+	button 
+		color: #9FA6B2 
+		transition: all 0.3s 
+		&:hover 
+			color: #212529 
+			font-size: 18px 
+			transition: all 0.3s 
+	.card-header 
+		background: #FFF 
+		border-image: linear-gradient(to right, #ff4400, #ffa07d) 
+		border-image-slice: 100% 25% 0 25% 
+		border-image-width: 2px 
+		color: #212529 
+		font-size: 1.2rem 
+		font-weight: 500 
+		padding: 0.75rem 1.25rem 
+.card-container 
+	position: absolute 
+.toast-header 
+	border-image: linear-gradient(to right, #ff4400, #ffa07d) 
+	border-image-slice: 100% 25% 100% 25% 
+	border-image-width: 2px 
+.funcionalidades 
+	z-index: 100 
