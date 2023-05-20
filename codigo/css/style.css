@@ -1,9 +1,9 @@
 :root {
-  --primaria-n1:#7da0ff;
+  --primaria-n1:#00ffff;
   --primaria:   #0044ff;
-  --primaria-1: #0044fe;
-  --primaria-2: #003afa;
-  --primaria-3: #0033ee;
+  --primaria-1: #0040f0;
+  --primaria-2: #0033ee;
+  --primaria-3: #0022dd;
 }
 
 :focus {

@@ -3,8 +3,8 @@ var maxWidth = 250;         // Máximo de pixels permitidos no título
 var maxLength = 15;         // Máximo de caracteres permitidos no título
 const TAM = 6; // ? Quantidade de cards que será possível adicionar
 // : TRUE == DISPONÍVEL
-// ! FALSE == OCUPADO
-const vetor = Array(TAM).fill(true);
+// ! FALSE == OCUPADOe
+const vetor = Array(TAM).fill(true); 
 
 // > Preciso que cards com position diferentes tenham a mesma largura
 // > Preciso que todos os cards manteham suas coordenadas após mudança de posição
@@ -73,11 +73,11 @@ $('#adicionaCard').on('click', () => {
                     // : VAI SER ADICIONADA A ELE A CLASSE MOVER
                     $(this).addClass('mover');
                     console.log('Mover adicionado');
-                    $(this).find('.card-header').css('background-color', '#f0f0f0'); 
+                    $(this).find('.card-header').css('background-color', '#f0f0f0');
                 } else if (cardPosition <= larguraPermitida && $(this).hasClass('mover')) {
                     $(this).removeClass('mover');
                     console.log("Mover removido");
-                    $(this).find('.card-header').css('background-color', '#fff');   
+                    $(this).find('.card-header').css('background-color', '#fff');
                 }
             }
             // : VOU PEGAR A COORDENADA DESTE CARD E SUBTRAIR PELA LARGURA PERMITIDA
@@ -173,9 +173,18 @@ $('#adicionaCard').on('click', () => {
                 selection.addRange(range);
             }
         }
-
+        // > Provavelemente tem um jeito mais eficiente de fazer isso
+        // * Ao perder o foco, o título é alterado
+        cardTitle.on('blur', function () {
+            var novoNome = $(this).text().trim();
+            cardTitle.text(novoNome);
+            var cardId = $(this).closest('.card-container').attr('id');
+            var cardNumber = parseInt(cardId.split('-')[1]);
+            localStorage.setItem('titulo-' + cardNumber, novoNome);
+            console.log('Título salvo no card de ID ' + cardNumber + ' como: ' + novoNome);
+        });
         // * Ao pressionar enter, o título é alterado
-        cardTitle.on('keydown', function (e) {
+        cardTitle.on('keydown click', function (e) {
             if (e.keyCode === 13) {
                 e.preventDefault();
                 var novoNome = $(this).text().trim();
@@ -184,11 +193,13 @@ $('#adicionaCard').on('click', () => {
                     var cardId = $(this).closest('.card-container').attr('id');
                     var cardNumber = parseInt(cardId.split('-')[1]);
                     localStorage.setItem('titulo-' + cardNumber, novoNome);
+                    console.log('Título salvo no card de ID ' + cardNumber + ' como: ' + novoNome);
                 }
                 cardTitle.attr('contenteditable', 'false');
                 var listGroup = cardContainer.find('.list-group');
                 var lastLi = listGroup.find('li:last-child').focus();
                 finalDaLinha(lastLi[0]);
+                return;
             } else {
                 var currentWidth = $(this).width();
                 var currentLength = $(this).text().length;
@@ -230,7 +241,7 @@ $('#adicionaCard').on('click', () => {
     });
     localStorage.setItem('titulo-' + vetor.indexOf(true), 'Lista ' + vetor.indexOf(true));
     $('.info').addClass('d-none');
-    vetor[vetor.indexOf(true)] = false; // ! Desenvolvimento
+    vetor[vetor.indexOf(true)] = false;
     $('section').append(newCard);
 });
 
@@ -247,12 +258,14 @@ $('#salvaCard').on('click', () => {
 });
 // * Cursor no final de cada linha
 function finalDaLinha(element) {
-    var range = document.createRange();
-    var sel = window.getSelection();
-    range.setStart(element.childNodes[0], element.childNodes[0].length);
-    range.collapse(true);
-    sel.removeAllRanges();
-    sel.addRange(range);
+    if (element && element.childNodes && element.childNodes.length > 0) {
+        var range = document.createRange();
+        var sel = window.getSelection();
+        range.setStart(element.childNodes[0], element.childNodes[0].length);
+        range.collapse(true);
+        sel.removeAllRanges();
+        sel.addRange(range);
+    }
 }
 // * Remove li vazias
 function removerLiVazias(cardContainer) {

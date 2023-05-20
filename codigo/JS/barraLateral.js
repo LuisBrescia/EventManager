@@ -1,8 +1,10 @@
 var menuAtivo  =      true;
 var allowCtrl  =      true;
-var primariaN1 = "#ffa07d";
-var primaria1  = "#ff4400";
-var primaria2  = "#fe4400";
+var primariaN1 = "#00ffff";
+var primaria   = "#0044ff";
+var primaria1  = "#0044fe";
+var primaria2  = "#003bfb";
+var primaria3  = "#0033ee";
   
 // $('#azul').on('click', () => {
 
