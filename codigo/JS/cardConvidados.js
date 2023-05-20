@@ -10,6 +10,7 @@ var todasListas = [];
 // > Preciso que todos os cards manteham suas coordenadas após mudança de posição
 // * Carrega os cards salvos no localStorage
 $(document).ready(function () {
+    var cont = 0;
     for (var i = 0; i < TAM; i++) {
         var lista = {
             Lista: i,
@@ -17,15 +18,19 @@ $(document).ready(function () {
             linhas: ["elemento1", "elemento2", "elemento3"],
             quantidade: 10
         };
-        todasListas.push(lista);
-        var carregaCard = $(criaConteudo(i, localStorage.getItem('titulo-' + i)));
-        customDrag(carregaCard);
-        editaCard(carregaCard);
-        nomeiaCard(carregaCard);
-        resetaCard(carregaCard);
-        removeCard(carregaCard);
-        vetor[i] = false;
-        $('section').append(carregaCard);
+        console.log(i);
+        if (lista.titulo !== null) {
+            todasListas.push(lista);
+            var carregaCard = $(criaConteudo(i, localStorage.getItem('titulo-' + i), cont++));
+            // ? É como se estivessemos adicionando funcionalidades que um card é capaz de fazer
+            customDrag(carregaCard);
+            editaCard(carregaCard);
+            nomeiaCard(carregaCard);
+            resetaCard(carregaCard);
+            removeCard(carregaCard);
+            vetor[i] = false;
+            $('section').append(carregaCard);
+        }
     }
 });
 // ? Botão de adicionar card
@@ -39,8 +44,7 @@ $('#adicionaCard').on('click', () => {
     // : Sempre que um card é criado, é criado também um objeto que vai guardar as informações daquele card
     // * Realizar testes para checar se foi corrigido
     // ! Talvez cards se tornem impossíveis de serem arrastados	
-    var newCard = $(criaConteudo(vetor.indexOf(true), 'Lista ' + (vetor.indexOf(true) + 1)));
-    // ? É como se estivessemos aidicionando funcionalidades que um card é capaz de fazer
+    var newCard = $(criaConteudo(vetor.indexOf(true), 'Lista ' + (vetor.indexOf(true) + 1), vetor.indexOf(true)));
     customDrag(newCard);
     editaCard(newCard);
     nomeiaCard(newCard);
@@ -49,7 +53,7 @@ $('#adicionaCard').on('click', () => {
     localStorage.setItem('titulo-' + vetor.indexOf(true), 'Lista ' + (vetor.indexOf(true) + 1));
     vetor[vetor.indexOf(true)] = false;
     $('section').append(newCard);
-    
+
     $('.info').addClass('d-none');
 });
 // * Apaga todos os cards
@@ -262,14 +266,15 @@ function removeCard(element) {
     element.find('.removeCard').on('click', function () {
         var cardId = $(this).closest('.card-container').attr('id');
         var cardNumber = parseInt(cardId.split('-')[1]);
-        vetor[cardNumber] = true;
         $(this).closest('.card-container').remove();
+        localStorage.removeItem('titulo-' + cardNumber);
+        vetor[cardNumber] = true;
     });
 }
 // * HTML de um card
-function criaConteudo(elemento, titulo) {
+function criaConteudo(elemento, titulo, gapping) {
     return '<div id="card-' + elemento + '" class="card-container ms-5" style="top:' +
-        (elemento + 1) + '0%">' +
+        (gapping + 1) + '0%">' +
         '<div class="cardConvidado draggable card col-3 shadow border-0 rounded-3 overflow-x-hidden"' +
         'style="max-height:300px; width:300px">' +
         '<div class="card-header fs-4 fw-bolder text-nowrap d-flex justify-content-between align-items-center">' +
