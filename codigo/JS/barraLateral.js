@@ -38,9 +38,6 @@ $(document).on('keydown', function (e) {
         $('aside').toggleClass('active');
         $('#salvaCard span').toggleClass('rodar');
         allowCtrl = false;
-        const toastBootstrap = bootstrap.Toast.getOrCreateInstance($('#liveToast'));
-        toastBootstrap.show();
-        setTimeout(() => { toastBootstrap.hide(); }, 99999);
     }
 });
 

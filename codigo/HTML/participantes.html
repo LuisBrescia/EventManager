@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css" />
   <link rel="stylesheet" href="../CSS/style.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
 </head>
 
 <body class="overflow-hidden">
@@ -17,50 +18,51 @@
     <aside class="ultraGambiarra active">
       <div class="px-2 py-3 d-flex justify-content-between">
         <h1 class="fs-4">
-          <span class="bg-white text-dark rounded shadow px-2"><i class="bi-amd"></i></span>
-          <span class="text-white me-3">Sitiozada.com</span>
+          <span class="text-white rounded shadow fs-3 px-2"><i class="bi-flower1"></i></span>
+          <span class="text-white me-3 fw-bolder">Event Manager</span>
         </h1>
       </div>
     </aside>
     <!-- ? Ínicio da Barra Lateral -->
     <!-- > Barra Lateral vai ser a mesma para todas as páginas -->
-    <aside class="bg-gradienta active position-fixed">
+    <aside class="bg-gradient active position-fixed">
       <!-- * Título da Barra Lateral -->
       <div class="px-2 py-3 d-flex justify-content-between">
         <h1 class="fs-4">
-          <span class="bg-white text-dark rounded shadow px-2"><i class="bi-airplane-engines-fill"></i></span>
-          <span class="text-white me-3">Sitiozada.com</span>
+          <span class="text-white rounded shadow fs-3 px-2"><i class="bi-flower1"></i></span>
+          <span class="text-white me-3 fw-bolder">Event Manager</span>
         </h1>
       </div>
       <!-- * 4 primeiras páginas da barra lateral -->
       <ul class="list-unstyled">
         <li>
           <a href="dashboard.html" class="px-3 py-2 d-block">
-            <i class="me-2 bi-braces-asterisk"></i>Dashboard
+            <i class="me-2 bi-collection"></i>Coleção
           </a>
         </li>
         <li class="active">
           <a href="participantes.html" class="px-3 py-2 d-block">
-            <i class="me-2 bi-people-fill"></i>Participantes</a>
+            <i class="me-2 bi-journal"></i>Listas</a>
         </li>
         <li>
           <a href="custo.html" class="px-3 py-2 d-block">
-            <i class="me-2 bi-cash"></i>Custo
+            <i class="me-2 bi-stickies"></i>Serviços
           </a>
         </li>
         <li>
           <a href="playlist.html" class="px-3 py-2 d-block">
-            <i class="me-2 bi-music-note-list"></i>Playlist
+            <i class="me-2 bi-receipt"></i>Valores
           </a>
         </li>
       </ul>
-      <hr class="text-dark mx-3" />
+      <hr class="text-black fw-bolder mx-3"/>
       <!-- * 4 últimas -->
       <!-- > Usar componente MODAL do Bootstrap -->
       <ul class="list-unstyled">
         <li class="">
-          <a href="settings.html" class="px-3 py-2 d-block">
-            <i class="me-2 bi-gear-fill"></i>Configurações
+          <a href="perfil.html" class="px-3 py-2 d-inline-block d-flex justify-content-between">
+            <span><i class="me-2 bi-person"></i>Perfil</span>
+            <!-- // <span class="bg-dark rounded-pill text-white py-0 px-2">02</span> -->
           </a>
         </li>
         <li class="">
@@ -69,9 +71,8 @@
           </a>
         </li>
         <li class="">
-          <a href="perfil.html" class="px-3 py-2 d-inline-block d-flex justify-content-between">
-            <span><i class="me-2 bi-person-fill"></i>Perfil</span>
-            <!-- // <span class="bg-dark rounded-pill text-white py-0 px-2">02</span> -->
+          <a href="settings.html" class="px-3 py-2 d-block">
+            <i class="me-2 bi-gear"></i>Configurações
           </a>
         </li>
       </ul>
@@ -84,28 +85,28 @@
       <!-- > Ao ser adicionado fixed-top conserta o problema crescer para baixo,
       > porém outros cards acabam subindo juntos-->
       <div class="funcionalidades btn-group shadow-lg d-flex position-sticky top-0" role="group" aria-label="Basic example">
-        <button type="button" id="adicionaCard" class="col funcionalidade btn btn-dark rounded-0 fw-light">
-          <i class="bi-person-add me-2"></i>Adicionar
+        <button type="button" id="adicionaCard" class="border-0 col-4 funcionalidade btn btn-dark rounded-0 fw-light">
+          <i class="bi-journal-plus me-2"></i>
+          <span class="d-none d-md-inline">Adicionar</span>
         </button>
-        <button type="button" id="salvaCard" class="col funcionalidade btn btn-dark rounded-0 fw-light">
-          <!-- > Animar ícone
-              <span class="d-inline-block rodar"><i class="bi-arrow-down-circle"></i></span>
-              <span class="ms-1">Deploy</span> -->
-          <i class="bi-arrow-down-circle"></i>
-          Deploy
+        <button type="button" id="salvaCard" class="border-0 col-4 funcionalidade btn btn-dark rounded-0 fw-light">
+          <!-- > Animar ícone -->
+          <i class="bi-arrow-left-right"></i>
+          <span class="d-none d-md-inline">Switch</span>
         </button>
-        <button type="button" id="removeCard" class="col funcionalidade btn btn-dark rounded-0 fw-light">
-          <i class="bi-person-x me-2"></i>Limpar
+        <button type="button" id="removeCard" class="border-0 col-4 funcionalidade btn btn-dark rounded-0 fw-light">
+          <i class="bi-journal-x me-2"></i>
+          <span class="d-none d-md-inline">Limpar</span>
         </button>
       </div>
 
       <!-- * Caso exceder o número limite de cards-->
       <div class="toast-container position-fixed bottom-0 end-0 p-3">
         <div id="liveToast" class="toast shadow" role="alert" aria-live="assertive" aria-atomic="true">
-          <div class="toast-header text-dark border-bottom border-2 bg-dark text-white">
+          <div class="toast-header border-bottom border-2">
             <!-- <img src="..." class="rounded me-2" alt="..."> -->
-            <i class="bi-airplane-engines-fill me-3"></i>
-            <strong class="me-auto">Sitiozada.com</strong>
+            <i class="bi-flower1 me-3"></i>
+            <strong class="me-auto">Event Manager</strong>
             <small>agora</small>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
           </div>

@@ -1,9 +1,11 @@
 :root {
-  --primaria-n1:#00ffff;
+  /* Azul */
+  --primaria-n1:#00f0f0;
   --primaria:   #0044ff;
   --primaria-1: #0040f0;
   --primaria-2: #0033ee;
   --primaria-3: #0022dd;
+  /* Rosa */
 }
 
 :focus {
@@ -16,6 +18,7 @@ a {
 
 body {
   background: #f0f0f0;
+  font-family: 'Quicksand', sans-serif;
 }
 
 main {
@@ -27,7 +30,8 @@ main h1 {
 }
 
 aside {
-  background: var(--primaria);
+  /* background: linear-gradient(to bottom, var(--primaria) 50%, var(--primaria-3)); */
+  background: var(--primaria-1);
   margin-left: -250px;
   transition: all 0.3s;
   z-index: 1;
@@ -83,10 +87,12 @@ footer a:hover {
 button.funcionalidade {
   font-size: initial;
   transition: all 0.3s;
+  background-color: #0f0f0f;
 }
 button.funcionalidade:hover {
   font-size: 1.2rem;
   transition: all 0.3s;
+  background-color: #212529;
 }
 
 .cardConvidado {
@@ -121,6 +127,9 @@ button.funcionalidade:hover {
   border-image: linear-gradient(to right, var(--primaria), var(--primaria-n1));
   border-image-slice: 100% 25% 100% 25%;
   border-image-width: 2px;
+  border-radius: 0;
+  background-color: #0f0f0f;
+  color: #f0f0f0;
 }
 
 .funcionalidades {
