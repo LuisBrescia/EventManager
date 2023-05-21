@@ -20,7 +20,7 @@ $('#salvaCard').on('click', () => {
             $(this).find('.card-header').css('background-color', '#fff');
             $(this).css({
                 'transition': 'all 0.3s',
-                'left': '200%'
+                'left': '300%'
             });
             setTimeout(() => {
                 $(this).css('transition', '0s');

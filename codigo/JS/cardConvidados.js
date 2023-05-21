@@ -1,39 +1,59 @@
-var maxWidth = 250;         // Máximo de pixels permitidos no título
-var maxLength = 15;         // Máximo de caracteres permitidos no título
-const TAM = 6; // ? Quantidade de cards que será possível adicionar
-// : TRUE == DISPONÍVEL
-// ! FALSE == OCUPADO
-const vetor = Array(TAM).fill(true);
-var todasListas = [];
+/* 
+? Mesmo não havendo caracteres menores que 2.5 pixels, é bom definir uma margem de segurança
+? Seria possível colocar infinitos caracteres de largura 0
+? estéticamente não teria efeito algum, porém travaria o programa
+*/
+var maxWidth = 250;    // * Máximo de pixels permitidos no título
+var maxLength = 100;    // * Máximo de caracteres permitidos no título
+const TAM = 6;      // * Quantidade de cards que será possível adicionar
+
+const vetor = Array(TAM).fill(true); // * True = Disponível, False = Ocupado
+
+var todasListas = []; // ? Declarar aqui para conseguir utilizar globalmente
+
+// * Objeto que guarda as informações de cada card (Objeto do tipo Lista)
+function Lista(_id, titulo, linhas) {
+    this._id = _id;
+    this.titulo = titulo;
+    this.linhas = linhas;
+}
 
 // > Preciso que cards com position diferentes tenham a mesma largura
 // > Preciso que todos os cards manteham suas coordenadas após mudança de posição
-// * Carrega os cards salvos no localStorage
+// * Carrega os cards salvos no localStorage quando a página é carregada
 $(document).ready(function () {
-    var cont = 0;
-    for (var i = 0; i < TAM; i++) {
-        var lista = {
-            Lista: i,
-            titulo: localStorage.getItem('titulo-' + i),
-            linhas: ["elemento1", "elemento2", "elemento3"],
-            quantidade: 10
-        };
-        console.log(i);
-        if (lista.titulo !== null) {
-            todasListas.push(lista);
-            var carregaCard = $(criaConteudo(i, localStorage.getItem('titulo-' + i), cont++));
-            // ? É como se estivessemos adicionando funcionalidades que um card é capaz de fazer
-            customDrag(carregaCard);
-            editaCard(carregaCard);
-            nomeiaCard(carregaCard);
-            resetaCard(carregaCard);
-            removeCard(carregaCard);
-            vetor[i] = false;
-            $('section').append(carregaCard);
+    // * Neste ponto, todasListas é um vetor de objetos do tipo Lista
+    todasListas = JSON.parse(localStorage.getItem("Listas"));
+    console.log(todasListas);
+    if (todasListas) { // ? Caso não exista nada no localStorage, todasListas será null e não entrará no if
+        var cont = 0; // * Contador para definir a posição dos cards
+        for (var i = 0; i < TAM; i++) {
+            // * Caso não exista nenhuma informação salva naquela posição, não será criado o card
+            if (todasListas[i] !== undefined && todasListas[i] !== null) {
+
+                // * Cria um objeto do tipo Lista com as informações do objeto salvo no localStorage
+                console.log(todasListas[i]._id);
+                console.log(todasListas[i].titulo);
+                console.log(todasListas[i].linhas);
+                var lista = new Lista(todasListas[i]._id, todasListas[i].titulo, todasListas[i].linhas);
+                // * Cria o card com as informações do objeto
+                var carregaCard = $(criaConteudo(lista, cont++));
+
+                // ? É como se estivessemos adicionando funcionalidades que um card é capaz de fazer
+                customDrag(carregaCard);
+                editaCard(carregaCard);
+                nomeiaCard(carregaCard);
+                resetaCard(carregaCard);
+                removeCard(carregaCard);
+                $('section').append(carregaCard);
+                vetor[i] = false; // * Posição ocupada
+            }
         }
     }
+    console.log(todasListas);
 });
-// ? Botão de adicionar card
+
+// * Botão de adicionar card
 $('#adicionaCard').on('click', () => {
     // * Percorre o vetor, se existir algum elemento com o valor true, criará card
     if (!vetor.includes(true)) {
@@ -44,28 +64,90 @@ $('#adicionaCard').on('click', () => {
     // : Sempre que um card é criado, é criado também um objeto que vai guardar as informações daquele card
     // * Realizar testes para checar se foi corrigido
     // ! Talvez cards se tornem impossíveis de serem arrastados	
-    var newCard = $(criaConteudo(vetor.indexOf(true), 'Lista ' + (vetor.indexOf(true) + 1), vetor.indexOf(true)));
+    var lista = new Lista(vetor.indexOf(true), 'Lista ' + (vetor.indexOf(true) + 1), " ");
+    var newCard = $(criaConteudo(lista, vetor.indexOf(true)));
     customDrag(newCard);
     editaCard(newCard);
     nomeiaCard(newCard);
     resetaCard(newCard);
     removeCard(newCard);
-    localStorage.setItem('titulo-' + vetor.indexOf(true), 'Lista ' + (vetor.indexOf(true) + 1));
+    todasListas[vetor.indexOf(true)] = lista;
+    localStorage.setItem("Listas", JSON.stringify(todasListas));
     vetor[vetor.indexOf(true)] = false;
     $('section').append(newCard);
-
-    $('.info').addClass('d-none');
 });
-// * Apaga todos os cards
+// * Botão de apagar todos os cards
 $('#removeCard').on('click', () => {
     $('.card').parent().remove();
-    vetor.fill(true);
-    $('.info').removeClass('d-none');
+    vetor.fill(true); // * Todas as posições se tornam disponíveis
+    todasListas = []; // * Agora o vetor é vazio
+    localStorage.setItem("Listas", JSON.stringify(todasListas));
 });
 // * No momento #salvaCard está sendo utilizado para esconder o menu lateral
 $('#salvaCard').on('click', () => {
     $('.card').find('.card-container').removeClass('mover');
 });
+// * Botão que edita o título do card
+function nomeiaCard(element) {
+    element.find('.nomeiaCard').on('click', function () {
+        // * Seleciona o título, permite edição, foca nele, e seleciona todo o texto
+        var cardTitle = $(this).closest('.card-container').find('.card-header span:first-child');
+        cardTitle.attr('contenteditable', 'true');
+        cardTitle.focus();
+        selectAll(cardTitle[0]);
+
+        // > Provavelemente tem um jeito mais eficiente de fazer isso
+        // * Ao perder o foco, o título é alterado
+        cardTitle.on('blur', function () {
+            atualizaTitulo($(this));
+        });
+        // * Ao pressionar enter, o título é alterado
+        cardTitle.on('keydown click', function (e) {
+            if (e.keyCode === 13) {
+                e.preventDefault();
+                atualizaTitulo($(this));
+                cardTitle.attr('contenteditable', 'false');
+                var listGroup = $(this).closest('.card-container').find('.list-group');
+                var lastLi = listGroup.find('li:last-child').focus();
+                finalDaLinha(lastLi[0]);
+            } else if (($(this).width() >= maxWidth || $(this).text().length >= maxLength) &&
+                !isTextSelected(cardTitle[0]) && e.keyCode !== 8 && e.keyCode !== 46 && !e.ctrlKey) {
+                // * Impede que o usuário digite mais caracteres que o permitido
+                e.preventDefault();
+            }
+            // * Caso o usuário consiga digitar mais caracteres que o permitido, o título é cortado
+            if ($(this).text().length > maxLength) {
+                var trimmedText = $(this).text().substring(0, maxLength);
+                cardTitle.text(trimmedText);
+            }
+        });
+    });
+}
+// * Botão que reseta o conteúdo do card
+function resetaCard(element) {
+    element.find('.resetaCard').on('click', function () {
+        $(this).closest('.card-container').find('.list-group li').remove();
+        var liVazia = $('<li class="list-group-item fw-lighter" contenteditable="true"></li>').text("");
+        $(this).closest('.card-container').find('.list-group').append(liVazia);
+        liVazia.focus();
+        
+        var cardId = $(this).closest('.card-container').attr('id');
+        var cardNumber = parseInt(cardId.split('-')[1]);
+        todasListas[cardNumber].linhas = [];
+        localStorage.setItem("Listas", JSON.stringify(todasListas));
+    });
+}
+// * Botão que apaga o card
+function removeCard(element) {
+    element.find('.removeCard').on('click', function () {
+        var cardId = $(this).closest('.card-container').attr('id');
+        var cardNumber = parseInt(cardId.split('-')[1]);
+        $(this).closest('.card-container').remove();
+        todasListas[cardNumber] = null;
+        localStorage.setItem("Listas", JSON.stringify(todasListas));
+        vetor[cardNumber] = true;
+    });
+}
 // * Cursor no final de cada linha
 function finalDaLinha(element) {
     if (element && element.childNodes && element.childNodes.length > 0) {
@@ -93,9 +175,22 @@ function atualizaTitulo(element) {
         element.text(novoNome);
         var cardId = element.closest('.card-container').attr('id');
         var cardNumber = parseInt(cardId.split('-')[1]);
-        localStorage.setItem('titulo-' + cardNumber, novoNome);
+        todasListas[cardNumber].titulo = novoNome;
+        localStorage.setItem("Listas", JSON.stringify(todasListas));
         console.log('Título salvo no card de ID ' + cardNumber + ' como: ' + novoNome);
     }
+}
+// * Atualiza conteudo do card
+function atualizaConteudo(element) {
+    var novoConteudo = [];
+    element.find('.list-group-item').each(function () {
+        novoConteudo.push($(this).text().trim());
+    });
+    var cardId = element.closest('.card-container').attr('id');
+    var cardNumber = parseInt(cardId.split('-')[1]);
+    todasListas[cardNumber].linhas = novoConteudo;
+    localStorage.setItem("Listas", JSON.stringify(todasListas));
+    console.log('Conteúdo salvo no card de ID ' + cardNumber + ' como: ' + novoConteudo);
 }
 // * Permite alterar o título caso conteúdo esteja inteiramente selecionado
 function isTextSelected(element) {
@@ -147,6 +242,9 @@ function editaCard(element) {
         var currentLi = listGroup.find('li:focus');
         var currentLiText = listGroup.find('li:focus').text();
 
+        $(this).closest('.card-container').find('.list-item').on('blur', function () {
+            atualizaConteudo(listGroup);
+        });
         // * Se o usuário pressionar backspace e a linha estiver vazia, e não houver apenas 1 linha, linha atual é apagada, e o focus irá para a linha anterior
         if ((e.keyCode === 8 || e.keyCode === 38 || e.keyCode === 40) && currentLiText === '' && listGroup.children().length > 1) {
             e.preventDefault();
@@ -162,13 +260,12 @@ function editaCard(element) {
         // * Enter
         if (e.keyCode === 13) {
             e.preventDefault();
-            // $('.card-container').css('position', 'static'); // ! Desenvolvimento
-            // > Por algum motivo, todos os cards são afetados pelas mudanças
-            // > Talvez seja necessário criar uma classe específica para cada card
             var liVazia = $('<li class="list-group-item fw-lighter" contenteditable="true"></li>').text("");
             otherCards.css('position', 'fixed');
-            $(this).closest('.card-container').find('.list-group').append(liVazia);
+            listGroup.append(liVazia);
             liVazia.focus();
+            finalDaLinha(liVazia[0]);
+            atualizaConteudo($(this).closest('.card-container'));
         }
         // * Seta para cima
         if (e.keyCode === 38) {
@@ -188,97 +285,42 @@ function editaCard(element) {
             $('.card-container').each(function () {
                 removerLiVazias($(this));
             });
-        });
-        // ! Não sei para o que serve mas estou com medo de remover
-        // $(document).on('click', function (e) {
-        //     var currentLi = $('.list-group li:focus');
-        //     var currentLiText = currentLi.text();
-        //     var listGroup = currentLi.closest('.list-group');
-        //     if ((!$(e.target).closest('.card-container').length) && currentLiText === '' && listGroup.children().length > 1) {
-        //         e.preventDefault();
-        //         currentLi.remove();
-        //         var lastLi = listGroup.find('li:last-child').focus();
-        //         finalDaLinha(lastLi[0]);
-        //     }
-        // });
-    });
-}
-// * Botão que edita o título do card
-function nomeiaCard(element) {
-    element.find('.nomeiaCard').on('click', function () {
-        var cardContainer = $(this).closest('.card-container');
-        var cardTitle = cardContainer.find('.card-header span:first-child');
-        cardTitle.attr('contenteditable', 'true');
-        cardTitle.focus();
-        selectAll(cardTitle[0]);
-
-        // ! Não entendi o que isso faz
-        function selectAll(element) {
-            if (document.body.createTextRange) { // Suporte para Internet Explorer
-                var range = document.body.createTextRange();
-                range.moveToElementText(element);
-                range.select();
-            } else if (window.getSelection) { // Suporte para navegadores modernos
-                var range = document.createRange();
-                range.selectNodeContents(element);
-                var selection = window.getSelection();
-                selection.removeAllRanges();
-                selection.addRange(range);
-            }
-        }
-        // > Provavelemente tem um jeito mais eficiente de fazer isso
-        // * Ao perder o foco, o título é alterado
-        cardTitle.on('blur', function () {
-            atualizaTitulo($(this));
-        });
-        // * Ao pressionar enter, o título é alterado
-        cardTitle.on('keydown click', function (e) {
-            if (e.keyCode === 13) {
-                e.preventDefault();
-                atualizaTitulo($(this));
-                cardTitle.attr('contenteditable', 'false');
-                var listGroup = cardContainer.find('.list-group');
-                var lastLi = listGroup.find('li:last-child').focus();
-                finalDaLinha(lastLi[0]);
-            } else if (($(this).width() >= maxWidth || $(this).text().length >= maxLength) &&
-                !isTextSelected(cardTitle[0]) && e.keyCode !== 8 && e.keyCode !== 46 && !e.ctrlKey) {
-                e.preventDefault();
-            }
-            if ($(this).text().length > maxLength) {
-                var trimmedText = $(this).text().substring(0, maxLength);
-                cardTitle.text(trimmedText);
-            }
+            atualizaConteudo($(this).closest('.card-container'));
         });
     });
 }
-// * Botão que reseta o conteúdo do card
-function resetaCard(element) {
-    element.find('.resetaCard').on('click', function () {
-        $(this).closest('.card-container').find('.list-group li').remove();
-        var liVazia = $('<li class="list-group-item fw-lighter" contenteditable="true"></li>').text("");
-        $(this).closest('.card-container').find('.list-group').append(liVazia);
-        // > Adiciona Position Absolute ao card
-    });
-}
-// * Botão que apaga o card
-function removeCard(element) {
-    element.find('.removeCard').on('click', function () {
-        var cardId = $(this).closest('.card-container').attr('id');
-        var cardNumber = parseInt(cardId.split('-')[1]);
-        $(this).closest('.card-container').remove();
-        localStorage.removeItem('titulo-' + cardNumber);
-        vetor[cardNumber] = true;
-    });
+// * Permite selecionar todo o texto de um elemento
+function selectAll(element) {
+    if (document.body.createTextRange) { // Suporte para Internet Explorer
+        var range = document.body.createTextRange();
+        range.moveToElementText(element);
+        range.select();
+    } else if (window.getSelection) { // Suporte para navegadores modernos
+        var range = document.createRange();
+        range.selectNodeContents(element);
+        var selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+    }
 }
 // * HTML de um card
-function criaConteudo(elemento, titulo, gapping) {
-    return '<div id="card-' + elemento + '" class="card-container ms-5" style="top:' +
+function criaConteudo(lista, gapping) {
+    var conteudo = '<li class="list-group-item fw-lighter" contenteditable="true"></li>';
+    if (lista.linhas.length !== 0) {
+        conteudo = '';
+        for (var i = 0; i < lista.linhas.length; i++) {
+            // * Caso a linha não seja vazia, ela é adicionada ao conteúdo
+            if (lista.linhas[i] !== '') {
+                conteudo += '<li class="list-group-item fw-lighter" contenteditable="true">' + lista.linhas[i] + '</li>';
+            }
+        }
+    } 
+    return '<div id="card-' + lista._id + '" class="card-container ms-5" style="top:' +
         (gapping + 1) + '0%">' +
-        '<div class="cardConvidado draggable card col-3 shadow border-0 rounded-3 overflow-x-hidden"' +
-        'style="max-height:300px; width:300px">' +
+        '<div class="cardConvidado draggable card col-3 shadow border-0 rounded-3 overflow-x-hidden">' +
         '<div class="card-header fs-4 fw-bolder text-nowrap d-flex justify-content-between align-items-center">' +
-        '<span class="mt-3 mb-1 lh-1 pt-2">' +
-        titulo +
+        '<span class="mt-3 mb-1 lh-1 pt-2 fs-md-1">' +
+        lista.titulo +
         '</span>' +
         '<span class="position-absolute end-0 top-0 m-0 p-0">' +
         '<button type="button" class="btn bi-arrow-clockwise resetaCard btn-sm"></button>' +
@@ -288,33 +330,9 @@ function criaConteudo(elemento, titulo, gapping) {
         '</div>' +
         '<div class="card-body overflow-auto mx-1 p-0" style="max-height: 500px">' +
         '<ul class="list-group list-group-flush mx-0 px-0">' +
-        '<li class="list-group-item fw-lighter" contenteditable="true"></li>' +
+        conteudo +
         '</ul>' +
         '</div>' +
         '</div>' +
         '</div>';
 }
-/* localStorage.setItem("Listas", JSON.stringify(todasListas));
- Com esse código já é possível salvar o conteúdo de cada card
- Após a página ser carregada
- $(document).ready(function () {
-     todasListas = JSON.parse(localStorage.getItem("Listas"));
-     console.log("TODAS LISTAS",todasListas);
-     console.log(todasListas[i].titulo);
-     console.log(todasListas.length);
-     for (var i = 0; i < todasListas.length; i++) {
-         carregaCard = $(criaConteudo(todasListas[i].Lista, todasListas[i].titulo));    
-         vetor[todasListas[i].Lista] = false;
-         $('section').append(carregaCard);
-     }
- });
- function salvar() {
-     var lista = {
-         Lista : 1,
-         titulo: "Titulo",
-         linhas : ["elemento1", "elemento2", "elemento3"],
-         quantidade : 10
-     };
-     todasListas.push(lista);
-     localStorage.setItem("Listas", JSON.stringify(todasListas));
- }*/
