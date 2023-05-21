@@ -16,10 +16,10 @@
   <div class="telaInteira d-flex">
     <!-- ! GAMBIARRA EM SEU ESTADO MAIS PURO-->
     <aside class="ultraGambiarra active">
-      <div class="px-2 py-3 d-flex justify-content-between">
-        <h1 class="fs-4">
-          <span class="text-white rounded shadow fs-3 px-2"><i class="bi-flower1"></i></span>
-          <span class="text-white me-3 fw-bolder">Event Manager</span>
+      <div class="px-lg-2 py-3 d-flex justify-content-between">
+        <h1 class="fs-4 mx-auto">
+          <span class="text-white rounded shadow fs-3 px-2 text-center"><i class="bi-flower1"></i></span>
+          <span class="text-white me-3 fw-bolder d-none d-lg-inline-block">Event Manager</span>
         </h1>
       </div>
     </aside>
@@ -27,31 +27,37 @@
     <!-- > Barra Lateral vai ser a mesma para todas as páginas -->
     <aside class="bg-gradient active position-fixed">
       <!-- * Título da Barra Lateral -->
-      <div class="px-2 py-3 d-flex justify-content-between">
-        <h1 class="fs-4">
-          <span class="text-white rounded shadow fs-3 px-2"><i class="bi-flower1"></i></span>
-          <span class="text-white me-3 fw-bolder">Event Manager</span>
+      <div class="px-lg-2 py-3 d-flex">
+        <h1 class="fs-4 mx-auto my-0">
+          <span class="d-none d-lg-inline-block text-white rounded shadow fs-3 px-2 text-center"><i class="bi-flower1"></i></span>
+          <span class="d-lg-none text-white rounded fs-3 px-2 text-center"><i class="bi-flower1"></i></span>
+          <span class="text-white me-3 fw-bolder d-none d-lg-inline-block">Event Manager</span>
         </h1>
       </div>
       <!-- * 4 primeiras páginas da barra lateral -->
       <ul class="list-unstyled">
         <li>
           <a href="dashboard.html" class="px-3 py-2 d-block">
-            <i class="me-2 bi-collection"></i>Coleção
+            <i class="me-lg-2 bi-collection"></i>
+            <span class="d-none d-lg-inline-block">Coleção</span> 
           </a>
         </li>
         <li class="active">
           <a href="participantes.html" class="px-3 py-2 d-block">
-            <i class="me-2 bi-journal"></i>Listas</a>
+            <i class="me-lg-2 bi-journal"></i>
+            <span class="d-none d-lg-inline-block">Listas</span> 
+          </a>
         </li>
         <li>
           <a href="custo.html" class="px-3 py-2 d-block">
-            <i class="me-2 bi-stickies"></i>Serviços
+            <i class="me-lg-2 bi-stickies"></i>
+            <span class="d-none d-lg-inline-block">Serviços</span>
           </a>
         </li>
         <li>
           <a href="playlist.html" class="px-3 py-2 d-block">
-            <i class="me-2 bi-receipt"></i>Valores
+            <i class="me-lg-2 bi-receipt"></i>
+            <span class="d-none d-lg-inline-block">Valores</span> 
           </a>
         </li>
       </ul>
@@ -59,20 +65,23 @@
       <!-- * 4 últimas -->
       <!-- > Usar componente MODAL do Bootstrap -->
       <ul class="list-unstyled">
-        <li class="">
-          <a href="perfil.html" class="px-3 py-2 d-inline-block d-flex justify-content-between">
-            <span><i class="me-2 bi-person"></i>Perfil</span>
-            <!-- // <span class="bg-dark rounded-pill text-white py-0 px-2">02</span> -->
+        <li>
+          <a href="perfil.html" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-person"></i>
+            <span class="d-none d-lg-inline-block">Perfil</span>
           </a>
         </li>
-        <li class="">
+        <li>
           <a href="#" class="px-3 py-2 d-block">
-            <i class="me-2 bi-sliders"></i>Temas
+            <i class="me-lg-2 bi-sliders"></i>
+            <span class="d-none d-lg-inline-block">Temas</span> 
           </a>
         </li>
-        <li class="">
+        
+        <li>
           <a href="settings.html" class="px-3 py-2 d-block">
-            <i class="me-2 bi-gear"></i>Configurações
+            <i class="me-lg-2 bi-gear"></i>
+            <span class="d-none d-lg-inline-block">Configurações</span> 
           </a>
         </li>
       </ul>

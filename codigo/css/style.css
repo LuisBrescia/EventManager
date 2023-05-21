@@ -36,6 +36,7 @@ aside {
   transition: all 0.3s;
   z-index: 1;
   min-height: 100vh;
+  z-index: 9999;
 }
 aside li {
   transition: all 0.3s;
@@ -47,15 +48,24 @@ aside li:hover {
   padding-right: 1em;
   transition: all 0.3s;
 }
+@media screen and (max-width: 768px) {
+  aside {
+    margin-left: -100%;
+  }
+  aside li:hover {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+.expande {
+  background-color: #00f0f0 !important;
+}
 aside li.active {
   background: var(--primaria-2);
 }
 aside li.active:hover {
   color: #fff;
   background: var(--primaria-3);
-  padding-left: 1em;
-  padding-right: 1em;
-  transition: all 0.3s;
 }
 aside li a {
   color: #fff;

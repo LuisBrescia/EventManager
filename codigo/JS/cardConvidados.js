@@ -116,7 +116,6 @@ function customDrag(elemento) {
         stop: function () {
             $(this).closest('.card-container').css('position', 'absolute');
             // > Descobrir como a coordenada é calculada
-            // * Adicionando 300 estará me falando onde o card acaba
             var cardPosition = $(this).position().left + 48 + 300;
             var canvasWidth = $('section').width();
             if (!$('aside').hasClass('active')) {
@@ -295,7 +294,6 @@ function criaConteudo(elemento, titulo, gapping) {
         '</div>' +
         '</div>';
 }
-
 /* localStorage.setItem("Listas", JSON.stringify(todasListas));
  Com esse código já é possível salvar o conteúdo de cada card
  Após a página ser carregada
