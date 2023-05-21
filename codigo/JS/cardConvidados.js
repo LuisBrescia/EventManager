@@ -100,6 +100,7 @@ function nomeiaCard(element) {
         // * Ao perder o foco, o título é alterado
         cardTitle.on('blur', function () {
             atualizaTitulo($(this));
+            console.log('Título salvo no card de ID ' + cardNumber + ' como: ' + novoNome);
         });
         // * Ao pressionar enter, o título é alterado
         cardTitle.on('keydown click', function (e) {
@@ -130,7 +131,7 @@ function resetaCard(element) {
         var liVazia = $('<li class="list-group-item fw-lighter" contenteditable="true"></li>').text("");
         $(this).closest('.card-container').find('.list-group').append(liVazia);
         liVazia.focus();
-        
+
         var cardId = $(this).closest('.card-container').attr('id');
         var cardNumber = parseInt(cardId.split('-')[1]);
         todasListas[cardNumber].linhas = [];
@@ -187,10 +188,13 @@ function atualizaConteudo(element) {
         novoConteudo.push($(this).text().trim());
     });
     var cardId = element.closest('.card-container').attr('id');
-    var cardNumber = parseInt(cardId.split('-')[1]);
-    todasListas[cardNumber].linhas = novoConteudo;
-    localStorage.setItem("Listas", JSON.stringify(todasListas));
-    console.log('Conteúdo salvo no card de ID ' + cardNumber + ' como: ' + novoConteudo);
+    // Caso card id seja null, não é necessário atualizar o conteúdo
+    if (cardId !== null && cardId !== undefined) {
+        var cardNumber = parseInt(cardId.split('-')[1]);
+        todasListas[cardNumber].linhas = novoConteudo;
+        localStorage.setItem("Listas", JSON.stringify(todasListas));
+        console.log('Conteúdo salvo no card de ID ' + cardNumber + ' como: ' + novoConteudo);
+    }
 }
 // * Permite alterar o título caso conteúdo esteja inteiramente selecionado
 function isTextSelected(element) {
@@ -241,8 +245,8 @@ function editaCard(element) {
         var otherCards = $('.card-container').not($(this).closest('.card-container'));
         var currentLi = listGroup.find('li:focus');
         var currentLiText = listGroup.find('li:focus').text();
-
-        $(this).closest('.card-container').find('.list-item').on('blur', function () {
+        // * Ao perder o foco, o conteúdo é atualizado
+        listGroup.on('blur', 'li', function() {
             atualizaConteudo(listGroup);
         });
         // * Se o usuário pressionar backspace e a linha estiver vazia, e não houver apenas 1 linha, linha atual é apagada, e o focus irá para a linha anterior
@@ -314,7 +318,7 @@ function criaConteudo(lista, gapping) {
                 conteudo += '<li class="list-group-item fw-lighter" contenteditable="true">' + lista.linhas[i] + '</li>';
             }
         }
-    } 
+    }
     return '<div id="card-' + lista._id + '" class="card-container ms-5" style="top:' +
         (gapping + 1) + '0%">' +
         '<div class="cardConvidado draggable card col-3 shadow border-0 rounded-3 overflow-x-hidden">' +
