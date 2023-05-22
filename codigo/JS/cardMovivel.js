@@ -339,3 +339,11 @@ function criaConteudo(lista, gapping) {
         '</div>' +
         '</div>';
 }
+$('.moveStatic').draggable({
+    containment: "main",
+    scroll: false,
+    snap: false,
+    stack: ".draggable",
+    cursor: "grabbing",
+    handle: ".card"
+});
