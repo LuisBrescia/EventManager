@@ -11,7 +11,10 @@
 :focus {
   outline: none;
 }
-
+/* Toda span que conter a classe d-md-block */
+span.d-md-block {
+  font-size: smaller;
+}
 a {
   text-decoration: none;
 }
@@ -30,9 +33,9 @@ main h1 {
 }
 
 aside {
+  /* margin-left: -250px; */
   /* background: linear-gradient(to bottom, var(--primaria) 50%, var(--primaria-3)); */
   background: var(--primaria-1);
-  /* margin-left: -250px; */
   display: none;
   transition: all 0.3s;
   min-height: 100vh;
@@ -82,6 +85,8 @@ aside li.active a, aside li.active a:hover, li a:hover {
 
 footer {
   z-index: 9999;
+  background-color: #0f0f0f;
+  color: #f0f0f0;
 }
 footer a {
   color: #212529;
@@ -123,7 +128,16 @@ button.funcionalidade:hover {
   font-size: 18px;
   transition: all 0.3s;
 }
-.cardConvidado .card-header {
+.cardBotao {
+  color: #9FA6B2;
+  transition: all 0.3s;
+}
+.cardBotao:hover {
+  color: #212529;
+  font-size: 18px;
+  transition: all 0.3s;
+}
+.cardConvidado .card-header, .card-header {
   background: #FFF;
   border-image: linear-gradient(to right, var(--primaria), var(--primaria-n1));
   border-image-slice: 100% 25% 0 25%;

@@ -52,7 +52,6 @@ $(document).ready(function () {
     }
     console.log(todasListas);
 });
-
 // * Botão de adicionar card
 $('#adicionaCard').on('click', () => {
     // * Percorre o vetor, se existir algum elemento com o valor true, criará card

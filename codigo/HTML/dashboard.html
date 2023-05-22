@@ -8,106 +8,165 @@
   <title>Event Manager</title>
   <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css"
-    integrity="sha512-P6+eIBy/n8WYUc3qUzbTF6UfST+0GyZh7O3ArDxEP1KjzB9XZdvl+Z1il2F5f5lLb2Sg7oJmkxM0zJJVru1gXw=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="../CSS/style.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
 </head>
 
-<body class="overflow-hidden">
-  <div class="telaInteira d-flex">
-    <!-- ! GAMBIARRA EM SEU ESTADO MAIS PURO-->
-    <aside class="ultraGambiarra active">
-      <div class="px-2 py-3 d-flex justify-content-between">
-        <h1 class="fs-4">
-          <span class="bg-white text-dark rounded shadow px-2"><i class="bi-amd"></i></span>
-          <span class="text-white me-3">Event Manager</span>
-        </h1>
-      </div>
-    </aside>
+<body class="overflow-visible border border-3 border-dark">
+  <div class="d-flex">
     <!-- ? Ínicio da Barra Lateral -->
     <!-- > Barra Lateral vai ser a mesma para todas as páginas -->
-    <aside class="col bg-gradient active position-fixed">
+    <aside class="col-xxl-2 bg-gradient active position-sticky">
       <!-- * Título da Barra Lateral -->
-      <div class="px-2 py-3 d-flex justify-content-between">
-        <h1 class="fs-4">
-          <span class="bg-white text-dark rounded shadow px-2"><i class="bi-amd"></i></span>
-          <span class="text-white me-3">Event Manager</span>
+      <div class="px-lg-2 py-3 d-flex text-nowrap">
+        <h1 class="fs-4 mx-auto my-0">
+          <span class="d-none d-lg-inline-block text-white rounded shadow fs-3 px-2 text-center"><i
+              class="bi-flower1"></i></span>
+          <span class="d-lg-none text-white rounded fs-3 px-2 text-center"><i class="bi-flower1"></i></span>
+          <span class="text-white me-3 fw-bolder d-none d-lg-inline-block">Event Manager</span>
         </h1>
       </div>
       <!-- * 4 primeiras páginas da barra lateral -->
       <ul class="list-unstyled">
-        <li class="active">
+        <li class="active text-center text-lg-start">
           <a href="dashboard.html" class="px-3 py-2 d-block">
-            <i class="me-2 bi-house-fill"></i>Dashboard
+            <i class="me-lg-2 bi-collection"></i>
+            <span class="d-none d-lg-inline-block">Coleção</span>
+            <span class="d-none d-md-block d-lg-none">Coleção</span>
           </a>
         </li>
-        <li>
+        <li class="text-center text-lg-start">
           <a href="participantes.html" class="px-3 py-2 d-block">
-            <i class="me-2 bi-people-fill"></i>Participantes</a>
-        </li>
-        <li>
-          <a href="custo.html" class="px-3 py-2 d-block">
-            <i class="me-2 bi-cash"></i>Custo
+            <i class="me-lg-2 bi-journal"></i>
+            <span class="d-none d-lg-inline-block">Listas</span>
+            <span class="d-none d-md-block d-lg-none">Listas</span>
           </a>
         </li>
-        <li>
+        <li class="text-center text-lg-start">
+          <a href="custo.html" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-stickies"></i>
+            <span class="d-none d-lg-inline-block">Serviços</span>
+            <span class="d-none d-md-block d-lg-none">Serviços</span>
+          </a>
+        </li>
+        <li class="text-center text-lg-start">
           <a href="playlist.html" class="px-3 py-2 d-block">
-            <i class="me-2 bi-music-note-list"></i>Playlist
+            <i class="me-lg-2 bi-receipt"></i>
+            <span class="d-none d-lg-inline-block">Valores</span>
+            <span class="d-none d-md-block d-lg-none">Valores</span>
           </a>
         </li>
       </ul>
-      <hr class="text-dark mx-3" />
+      <hr class="text-black fw-bolder mx-3" />
       <!-- * 4 últimas -->
       <!-- > Usar componente MODAL do Bootstrap -->
       <ul class="list-unstyled">
-        <li class="">
-          <a href="settings.html" class="px-3 py-2 d-block">
-            <i class="me-2 bi-gear-fill"></i>Configurações
+        <li class="text-center text-lg-start">
+          <a href="perfil.html" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-person"></i>
+            <span class="d-none d-lg-inline-block">Perfil</span>
+            <span class="d-none d-md-block d-lg-none">Perfil</span>
           </a>
         </li>
-        <li class="">
+        <li class="text-center text-lg-start">
           <a href="#" class="px-3 py-2 d-block">
-            <i class="me-2 bi-sliders"></i>Temas
+            <i class="me-lg-2 bi-sliders"></i>
+            <span class="d-none d-lg-inline-block">Temas</span>
+            <span class="d-none d-md-block d-lg-none">Temas</span>
           </a>
         </li>
-        <li class="">
-          <a href="perfil.html" class="px-3 py-2 d-inline-block d-flex justify-content-between">
-            <span><i class="me-2 bi-person-fill"></i>Perfil</span>
-            <!-- // <span class="bg-dark rounded-pill text-white py-0 px-2">02</span> -->
+        <li class="text-center text-lg-start">
+          <a href="settings.html" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-gear"></i>
+            <span class="d-none d-lg-inline-block">Configurações</span>
+            <span class="d-none d-md-block d-lg-none">Settings</span>
           </a>
         </li>
       </ul>
     </aside>
     <!-- ! Fim da Barra Lateral -->
+
     <!-- ? Página -->
-    <main class="col bg-gradient h-100 d-flex flex-column justify-content-between">
-        <!-- * Botões -->
-        <!-- > Ao ser adicionado fixed-top conserta o problema crescer para baixo,
-            > porém outros cards acabam subindo juntos-->
-      <div class="btn-group shadow-lg d-flex" role="group" aria-label="Basic example">
-          <button type="button" id="adicionaCard" class="funcionalidade btn btn-dark rounded-0 fw-light">
-              <i class="bi-person-add me-2"></i>Adicionar
-            </button>
-            <button type="button" id="salvaCard" class="funcionalidade btn btn-dark rounded-0 fw-light">
-                <!-- > Animar ícone
-          <span class="d-inline-block rodar"><i class="bi-arrow-down-circle"></i></span>
-          <span class="ms-1">Deploy</span> -->
-          <i class="bi-arrow-down-circle"></i>
-          Deploy
-        </button>
-        <button type="button" id="removeCard" class="funcionalidade btn btn-dark rounded-0 fw-light">
-            <i class="bi-person-x me-2"></i>Limpar
-        </button>
-    </div>
-    <p class="mx-auto my-auto p-3 bg-white rounded shadow text-center fw-bolder fst-italic fs-1">Dashboard</p>
-</main>
-</div>
+    <main class="col d-flex bg-gradient align-items-stretch">
+      <div class="col-10 d-flex flex-column justify-content-between">
+        <div class="p-3 m-3 border border-3 border-dark rounded shadow bg-light">
+          <h1 class="bg-dark text-light rounded p-3">Hello World</h1>
+          <p class="d-block lh-md">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+            Nemo temporibus suscipit quidem unde sapiente mollitia vero quos, nihil saepe dicta. <br>
+          </p>
+          <form action="" class="d-flex gap-1 flex-wrap flex-md-nowrap">
+            <input type="text" class="col">
+            <input type="submit" class="col-3 btn btn-primary btn-sm">
+            <button class="btn btn-outline-warning col col-md-3 p-3">2</button>
+          </form>
+          <p class="mb-0 mt-3 fw-lighter">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+            Nemo temporibus suscipit quidem unde sapiente mollitia vero quos, nihil saepe dicta. <br>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+            Nemo temporibus suscipit quidem unde sapiente mollitia vero quos, nihil saepe dicta. <br>
+          </p>
+        </div>
+        <div class="p-3 m-3 border border-3 border-dark rounded shadow bg-light">
+          <h1 class="bg-dark text-light rounded p-3">Hello World</h1>
+          <p class="d-block lh-md">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+            Nemo temporibus suscipit quidem unde sapiente mollitia vero quos, nihil saepe dicta. <br>
+          </p>
+          <form action="" class="d-flex gap-1 flex-wrap flex-md-nowrap">
+            <input type="text" class="col">
+            <input type="submit" class="col-3 btn btn-primary btn-sm">
+            <button class="btn btn-outline-warning col col-md-3 p-3">2</button>
+          </form>
+          <p class="mb-0 mt-3 fw-lighter">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+            Nemo temporibus suscipit quidem unde sapiente mollitia vero quos, nihil saepe dicta. <br>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+            Nemo temporibus suscipit quidem unde sapiente mollitia vero quos, nihil saepe dicta. <br>
+          </p>
+        </div>
+        <div class="p-3 m-3 border border-3 border-dark rounded shadow bg-light">
+          <h1 class="bg-dark text-light rounded p-3">Hello World</h1>
+          <p class="d-block lh-md">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+            Nemo temporibus suscipit quidem unde sapiente mollitia vero quos, nihil saepe dicta. <br>
+          </p>
+          <form action="" class="d-flex gap-1 flex-wrap flex-md-nowrap">
+            <input type="text" class="col">
+            <input type="submit" class="col-3 btn btn-primary btn-sm">
+            <button class="btn btn-outline-warning col col-md-3 p-3">2</button>
+          </form>
+          <p class="mb-0 mt-3 fw-lighter">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+            Nemo temporibus suscipit quidem unde sapiente mollitia vero quos, nihil saepe dicta. <br>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+            Nemo temporibus suscipit quidem unde sapiente mollitia vero quos, nihil saepe dicta. <br>
+          </p>
+        </div>
+      </div>
+
+      <div class="col-2 d-flex flex-column justify-content-between">
+        <div class="p-3 m-3 border border-3 border-dark rounded shadow bg-light">
+          <h1 class="bg-dark text-light rounded p-3">Hello World</h1>
+          <p class="mb-0 mt-3 fw-lighter text-wrap">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+            Nemo temporibus suscipit quidem unde sapiente mollitia vero quos, nihil saepe dicta. <br>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+          </p>
+        </div>
+        <div class="p-3 m-3 border border-3 border-dark rounded shadow bg-light">
+          <h1 class="bg-dark text-light rounded p-3">Hello World</h1>
+          <p class="mb-0 mt-3 fw-lighter">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+            Nemo temporibus suscipit quidem unde sapiente mollitia vero quos, nihil saepe dicta. <br>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+            Nemo temporibus suscipit quidem unde sapiente mollitia vero quos, nihil saepe dicta. <br>
+          </p>
+        </div>
+      </div>
+    </main>
+  </div>
+
   <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-  <script src="../node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
   <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
   <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../JS/barraLateral.js"></script>
 </body>
 
