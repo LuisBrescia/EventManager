@@ -164,5 +164,40 @@ button.funcionalidade:hover {
 .funcionalidades {
   z-index: 100;
 }
+.accordion-body ul {
+  gap: 0.5em;
+}
+.accordion-body{
+  background-color: #f0f0f0;
+}
+.accordion-body ul li {
+  transition: all 0.3s;
+  border-radius: 1em;
+}
+.accordion-body ul li:hover {
+  background: linear-gradient(to bottom, var(--primaria-n1), var(--primaria));
+  color: #fff;
+  font-size: x-large;
+  transition: all 0.3s;
+}
+.accordion-header button{  
+  font-size: 2rem;
+}
 
+.accordion-item {
+  border: 0;
+}
+.accordion-button:focus-visible {
+  outline: none;
+}
+
+#accordion-servicos li {
+  display: flex;
+  justify-content: space-between;
+}
+
+.accordion {
+  max-height: 95vh;
+  overflow-y: scroll;
+}
 /*# sourceMappingURL=style.css.map */
