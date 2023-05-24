@@ -109,6 +109,7 @@ footer a:hover {
     background-color: #212529;
   }
 }
+/*> Quando funcionalidades de collection estiver em hover, aplicar blur a outras colunas */
 button.funcionalidade:hover {
   font-size: 1.2rem;
   transition: all 0.3s;
