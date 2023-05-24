@@ -25,3 +25,22 @@ executeOnScreenResize();
 $(window).on('resize', function () {
     executeOnScreenResize();
 });
+
+$('#collectionInsumos').hover (
+    () => { $('.accordionParticipantes').toggleClass('blur'); $('.accordionServicos').toggleClass('blur')}
+)
+$('#collectionParticipantes').hover (
+    () => { $('.accordionInsumos').toggleClass('blur'); $('.accordionServicos').toggleClass('blur') }
+)
+$('#collectionServicos').hover (
+    () => { $('.accordionInsumos').toggleClass('blur'); $('.accordionParticipantes').toggleClass('blur') }
+)
+
+$('#collectionInsumos').on('click', () => {
+    $('.colServicos').removeClass('col-md-4');
+    $('.colServicos').addClass('col-md-3');
+    $('.colParticipantes').removeClass('col-md-4');
+    $('.colParticipantes').addClass('col-md-3');
+    $('.colInsumos').removeClass('col-md-4');
+    $('.colInsumos').addClass('col-md-6');
+});
