@@ -173,19 +173,22 @@ button.funcionalidade:hover {
 }
 .accordion-body{
   background-color: #f0f0f0;
+  padding: 10px 0;
 }
 .accordion-body ul li {
   transition: font-size 0.3s;
   border-radius: 1em;
+  width: 95%;
+  margin: 0 auto;
 }
 .accordion-body ul li:hover {
   background: linear-gradient(to bottom, var(--primaria-n1), var(--primaria));
   color: #fff;
-  font-size: x-large;
+  font-size: larger;
   transition: font-size 0.3s;
 }
 .accordion-header button{  
-  font-size: 2rem;
+  font-size: x-large;
 }
 
 .accordion-item {
@@ -202,6 +205,32 @@ button.funcionalidade:hover {
 
 .accordion {
   max-height: 95vh;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
+
+.colInsumos {
+  border: #0f0f0f 1.5px solid;
+  border-bottom: none;
+  border-top: none;
+}
+.colServicos {
+  border-left: 3px #0f0f0f solid;
+}
+.colParticipantes {
+  border-right: 3px #0f0f0f solid;
+}
+::-webkit-scrollbar {
+  width: 0;
+}
+
+@media screen and (max-width: 767px) {
+  .colInsumos, .colParticipantes, .colServicos {
+    border: none;
+  }
+  ::-webkit-scrollbar {
+    width: initial;
+    background-color: #0f0f0f;
+  }
+}
+
 /*# sourceMappingURL=style.css.map */

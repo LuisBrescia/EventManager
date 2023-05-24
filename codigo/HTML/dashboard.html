@@ -86,30 +86,35 @@
     <!-- ! Fim da Barra Lateral -->
     <!-- ? Página -->
     <main class="col bg-gradient h-100 d-flex flex-column justify-content-between ">
-      <!-- * Botões -->
-      <div class="funcionalidades btn-group shadow-lg d-flex position-sticky top-0" role="group"
+      <!-- * Grupo Botões -->
+      <!-- <div class="funcionalidades btn-group shadow-lg d-flex position-sticky top-0" role="group"
         aria-label="Basic example">
-        <button type="button" id="removeCard"
-          class="w-100 border-0 col-4 btn btn-dark rounded-0 fw-light">
+        <button type="button" id="removeCard" class="w-100 border-0 col-4 btn btn-dark rounded-0 fw-light">
           <i class="bi-people me-2"></i>
           <span class="d-none d-md-inline">Participantes</span>
         </button>
-        <button type="button" id="removeCard"
-          class="w-100 border-0 col-4 btn btn-dark rounded-0 fw-light">
+        <button type="button" id="removeCard" class="w-100 border-0 col-4 btn btn-dark rounded-0 fw-light">
           <i class="bi-bucket me-2"></i>
           <span class="d-none d-md-inline">Insumos</span>
-        </button>
-        <button type="button" id="removeCard"
-          class="w-100 border-0 col-4 btn btn-dark rounded-0 fw-light">
+        </button>                 
+        <button type="button" id="removeCard" class="w-100 border-0 col-4 btn btn-dark rounded-0 fw-light">
           <i class="bi-briefcase me-2"></i>
           <span class="d-none d-md-inline">Serviços</span>
         </button>
-      </div>
+      </div> -->
 
-      <div class="d-flex overflow-hidden">
+      <div class="d-flex flex-column flex-md-row overflow-hidden">
         <!-- ! Participantes -->
-        <div class="col">
-          <div class="vh-100">
+        <div class="colParticipantes col-md-4 col-12 vh-100">
+          <!-- ? Botão -->
+          <div class="funcionalidades">
+            <button type="button" id="collectionParticipantes"
+              class="funcionalidade w-100 border-0 col-4 btn btn-dark rounded-0 fw-light">
+              <i class="bi-people me-2"></i>
+              <span class="d-none d-md-inline">Participantes</span>
+            </button>
+          </div>
+          <div>
             <div class="accordion accordion-flush" id="accordionPanelsStayOpenExample">
               <!-- * Item 1 -->
               <div class="accordion-item">
@@ -193,13 +198,20 @@
           </div>
         </div>
         <!-- ! Insumos -->
-        <div class="col">
-          <div class="vh-100">
+        <div class=" colInsumos col-md-4 col-12">
+          <div class="funcionalidades">
+            <!-- * Botão -->
+            <button type="button" id="collectionInsumos"
+            class="w-100 border-0 col-4 funcionalidade btn btn-dark rounded-0 fw-light">
+            <i class="bi-bucket me-2"></i>
+            <span class="d-none d-md-inline">Insumos</span>
+          </button>
+        </div>
+          <div>
             <div class="accordion" id="accordionPanelsStayOpenExample">
               <div class="accordion-item">
                 <h2 class="accordion-header">
-                  <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#insumos-0">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#insumos-0">
                     Bebidas (5)
                   </button>
                 </h2>
@@ -218,8 +230,7 @@
               </div>
               <div class="accordion-item">
                 <h2 class="accordion-header">
-                  <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#insumos-1">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#insumos-1">
                     Comidas (3)
                   </button>
                 </h2>
@@ -235,8 +246,7 @@
               </div>
               <div class="accordion-item">
                 <h2 class="accordion-header">
-                  <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#insumos-2">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#insumos-2">
                     Acessórios (3)
                   </button>
                 </h2>
@@ -255,13 +265,21 @@
 
         </div>
         <!-- ! Serviços -->
-        <div class="col">
-          <div class="vh-100">
+        <div class=" colServicos col-md-4 col-12">
+          <div class="funcionalidades">
+            <!-- * Botão -->
+            <button type="button" id="collectionServicos"
+            class="w-100 border-0 col-4 funcionalidade btn btn-dark rounded-0 fw-light">
+            <i class="bi-briefcase me-2"></i>
+            <span class="d-none d-md-inline">Serviços</span>
+          </button>
+        </div>
+
+          <div>
             <div class="accordion" id="accordion-servicos">
               <div class="accordion-item">
                 <h2 class="accordion-header">
-                  <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#servicos-0">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#servicos-0">
                     <span>Pré evento (4)</span>
                   </button>
                 </h2>
@@ -290,9 +308,8 @@
               </div>
               <div class="accordion-item">
                 <h2 class="accordion-header">
-                  <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#servicos-1">
-                    Durante Evento (2)
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#servicos-1">
+                    Evento (2)
                   </button>
                 </h2>
                 <div id="servicos-1" class="accordion-collapse show">
@@ -321,6 +338,7 @@
   <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
   <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="../JS/barraLateral.js"></script>
+  <script src="../JS/collection.js"></script>
 </body>
 
 </html>
