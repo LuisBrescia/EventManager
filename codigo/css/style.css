@@ -100,10 +100,14 @@ footer a:hover {
   font-size: 1.2rem;
 }
 
-button.funcionalidade {
+.funcionalidades button {
   font-size: initial;
   transition: all 0.3s;
   background-color: #0f0f0f;
+  &:hover {
+    transition: all 0.3s;
+    background-color: #212529;
+  }
 }
 button.funcionalidade:hover {
   font-size: 1.2rem;
