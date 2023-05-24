@@ -26,21 +26,88 @@ $(window).on('resize', function () {
     executeOnScreenResize();
 });
 
-$('#collectionInsumos').hover (
-    () => { $('.accordionParticipantes').toggleClass('blur'); $('.accordionServicos').toggleClass('blur')}
+$('#collectionInsumos').hover(
+    () => { $('.accordionParticipantes').toggleClass('blur'); $('.accordionServicos').toggleClass('blur') }
 )
-$('#collectionParticipantes').hover (
+$('#collectionParticipantes').hover(
     () => { $('.accordionInsumos').toggleClass('blur'); $('.accordionServicos').toggleClass('blur') }
 )
-$('#collectionServicos').hover (
+$('#collectionServicos').hover(
     () => { $('.accordionInsumos').toggleClass('blur'); $('.accordionParticipantes').toggleClass('blur') }
 )
 
+// > Se tiver 2 true o outro automaticamente será none
+var expandidos = [false, false, false]
+var elementos = [$('.colParticipantes'), $('.colInsumos'), $('.colServicos'),]
+
+$('#collectionParticipantes').on('click', () => {
+
+    elementos[1].toggleClass('col-md-4');
+    elementos[1].toggleClass('col-md-3');
+    elementos[2].toggleClass('col-md-4');
+    elementos[2].toggleClass('col-md-3');
+    elementos[0].toggleClass('col-md-6');
+    elementos[0].toggleClass('col-md-4');
+
+    if (expandidos[0] === true) {
+        expandidos[0] = false;
+        console.log("Partipantes expandido");
+        elementos[1].removeClass('d-none');
+        elementos[2].removeClass('d-none');
+    } else {
+        expandidos[0] = true;
+        console.log("Partipantes minimizado");
+        if (expandidos[1] === true) {
+            elementos[2].addClass('d-none');
+        } else if (expandidos[2] === true) {
+            elementos[1].addClass('d-none');
+        }
+    }
+});
 $('#collectionInsumos').on('click', () => {
-    $('.colServicos').removeClass('col-md-4');
-    $('.colServicos').addClass('col-md-3');
-    $('.colParticipantes').removeClass('col-md-4');
-    $('.colParticipantes').addClass('col-md-3');
-    $('.colInsumos').removeClass('col-md-4');
-    $('.colInsumos').addClass('col-md-6');
+    elementos[0].toggleClass('col-md-4');
+    elementos[0].toggleClass('col-md-3');
+    elementos[2].toggleClass('col-md-4');
+    elementos[2].toggleClass('col-md-3');
+    elementos[1].toggleClass('col-md-4');
+    elementos[1].toggleClass('col-md-6');
+
+    if (expandidos[1] === true) {
+        expandidos[1] = false;
+        console.log("Insumos minimizado");
+        elementos[0].removeClass('d-none');
+        elementos[2].removeClass('d-none');
+    } else {
+        expandidos[1] = true;
+        console.log("Insumos expandido");
+        if (expandidos[0] === true) {
+            elementos[2].addClass('d-none');
+        } else if (expandidos[2] === true) {
+            elementos[0].addClass('d-none');
+        }
+    }
+});
+$('#collectionServicos').on('click', () => {
+
+    elementos[0].toggleClass('col-md-4');
+    elementos[0].toggleClass('col-md-3');
+    elementos[1].toggleClass('col-md-4');
+    elementos[1].toggleClass('col-md-3');
+    elementos[2].toggleClass('col-md-4');
+    elementos[2].toggleClass('col-md-6');
+
+    if (expandidos[2] === true) {
+        expandidos[2] = false;
+        console.log("Insumos minimizado");
+        elementos[0].removeClass('d-none');
+        elementos[1].removeClass('d-none');
+    } else {
+        expandidos[2] = true;
+        console.log("Insumos expandido");
+        if (expandidos[0] === true) {
+            elementos[1].addClass('d-none');
+        } else if (expandidos[1] === true) {
+            elementos[0].addClass('d-none');
+        }
+    }
 });
