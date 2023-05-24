@@ -171,14 +171,14 @@ button.funcionalidade:hover {
   background-color: #f0f0f0;
 }
 .accordion-body ul li {
-  transition: all 0.3s;
+  transition: font-size 0.3s;
   border-radius: 1em;
 }
 .accordion-body ul li:hover {
   background: linear-gradient(to bottom, var(--primaria-n1), var(--primaria));
   color: #fff;
   font-size: x-large;
-  transition: all 0.3s;
+  transition: font-size 0.3s;
 }
 .accordion-header button{  
   font-size: 2rem;
