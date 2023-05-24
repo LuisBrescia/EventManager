@@ -104,10 +104,15 @@ footer a:hover {
   font-size: initial;
   transition: all 0.3s;
   background-color: #0f0f0f;
-  &:hover {
-    transition: all 0.3s;
-    background-color: #212529;
-  }
+}
+/*> Por algum motivo &: não roda em alguns computadores */
+.funcionalidades button:hover {
+  transition: all 0.3s;
+  background-color: #212529;
+}
+.blur {
+  filter: blur(2px);
+  transition: all 0.3s;
 }
 /*> Quando funcionalidades de collection estiver em hover, aplicar blur a outras colunas */
 button.funcionalidade:hover {
@@ -227,10 +232,6 @@ button.funcionalidade:hover {
 @media screen and (max-width: 767px) {
   .colInsumos, .colParticipantes, .colServicos {
     border: none;
-  }
-  ::-webkit-scrollbar {
-    width: initial;
-    background-color: #0f0f0f;
   }
 }
 
