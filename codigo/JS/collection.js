@@ -86,35 +86,3 @@ $('#collectionServicos').on('click', () => {
         elementos[0].toggleClass('d-none', expandidos[1] === true);
     }
 });
-
-// * Ativar sombra de um accordion somente quando último item estiver colapsado
-var participantesExpandido = true;
-$('.accordionParticipantes .accordion-item:last-child .accordion-button').on('click', () => {
-    if (participantesExpandido === true) {
-        $('.accordionParticipantes').addClass('shadow');
-    } else {
-        $('.accordionParticipantes').removeClass('shadow');
-    }
-    participantesExpandido = !participantesExpandido;
-    console.log("Clicou");
-});
-var insumosExpandido = true;
-$('.accordionInsumos .accordion-item:last-child .accordion-button').on('click', () => {
-    if (insumosExpandido === true) {
-        $('.accordionInsumos').addClass('shadow');
-    } else {
-        $('.accordionInsumos').removeClass('shadow');
-    }
-    insumosExpandido = !insumosExpandido;
-    console.log("Clicou");
-});
-var servicosExpandido = true;
-$('.accordionServicos .accordion-item:last-child .accordion-button').on('click', () => {
-    if (servicosExpandido === true) {
-        $('.accordionServicos').addClass('shadow');
-    } else {
-        $('.accordionServicos').removeClass('shadow');
-    }
-    servicosExpandido = !servicosExpandido;
-    console.log("Clicou");
-});
