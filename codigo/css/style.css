@@ -192,6 +192,8 @@ button.funcionalidade:hover {
   color: #fff;
   font-size: larger;
   transition: font-size 0.3s;
+  filter: hue-rotate(360deg);
+  transition: filter 1s, font-size 0.3s;
 }
 .accordion-header button{  
   font-size: x-large;
@@ -218,12 +220,15 @@ button.funcionalidade:hover {
   border: #0f0f0f 1.5px solid;
   border-bottom: none;
   border-top: none;
+  min-height: 100vh;
 }
 .colServicos {
   border-left: 3px #0f0f0f solid;
+  min-height: 100vh;
 }
 .colParticipantes {
   border-right: 3px #0f0f0f solid;
+  min-height: 100;
 }
 ::-webkit-scrollbar {
   width: 0;
@@ -233,6 +238,52 @@ button.funcionalidade:hover {
   .colInsumos, .colParticipantes, .colServicos {
     border: none;
   }
+  .blur {
+    filter: blur(0);
+  }
 }
-
+.accordion-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 1rem 1.25rem;
+  font-size: 1rem;
+  color: #0f0f0f;
+  text-align: left;
+  background-color: #fff;
+  border: 0;
+  border-image: linear-gradient(to right, var(--primaria), var(--primaria-n1));
+  border-image-slice: 100% 25% 0 25%;
+  border-image-width: 2px;
+  border-radius: 0;
+  overflow-anchor: none;
+}
+.accordion-button:focus {
+  box-shadow: none;
+  border-color: rgba(0,0,0,.125);
+}
+.accordion-button:not(.collapsed) {
+  color: #fff;
+  background-color: #0f0f0f;
+  border-color: #0f0f0f;
+}
+.accordion-button:not(.collapsed):hover {
+  color: #fff;
+  background-image: linear-gradient(to right, #0f0f0f 60%, var(--primaria-3));
+  border-color: #0f0f0f;
+}
+.accordion-button:hover {
+  color: #0f0f0f;
+  background-image: linear-gradient(to right, #fff 50%, var(--primaria-n1), var(--primaria));
+  filter: contrast(1.5);
+  filter: saturate(1.5);
+  filter: brightness(1.5);
+  filter: hue-rotate(720deg);
+  border-color: #0f0f0f;
+  transition: filter 3s, color 0.3s, background-image 0.3s;
+}
+.accordion-button:after {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;
+}
 /*# sourceMappingURL=style.css.map */
