@@ -1,10 +1,12 @@
 :root {
   /* Azul */
-  --primaria-n1:#00f0f0;
+  --primaria-n1:#00eeff;
+  --gradiente:   #0088ff;
   --primaria:   #0044ff;
   --primaria-1: #0040f0;
   --primaria-2: #0033ee;
   --primaria-3: #0022dd;
+  --escuro: #0f0f0f;
   /* Rosa */
 }
 
@@ -33,8 +35,6 @@ main h1 {
 }
 
 aside {
-  /* margin-left: -250px; */
-  /* background: linear-gradient(to bottom, var(--primaria) 50%, var(--primaria-3)); */
   background: var(--primaria-1);
   display: none;
   transition: all 0.3s;
@@ -114,7 +114,7 @@ footer a:hover {
   filter: blur(2px);
   border: none;
   box-shadow: none;
-  transition: filter 0.3s;
+  transition: filter 2s;
 }
 /*> Quando funcionalidades de collection estiver em hover, aplicar blur a outras colunas */
 button.funcionalidade:hover {
@@ -185,12 +185,11 @@ button.funcionalidade:hover {
 }
 .accordion-body ul li {
   transition: font-size 0.3s;
-  border-radius: 1em;
   width: 95%;
   margin: 0 auto;
 }
 .accordion-body ul li:hover {
-  background: linear-gradient(to bottom, var(--primaria-n1), var(--primaria));
+  background: linear-gradient(to bottom, var(--primaria-n1), var(--gradiente), var(--primaria));
   color: #fff;
   font-size: larger;
   transition: font-size 0.3s;
@@ -236,14 +235,14 @@ button.funcionalidade:hover {
   padding: 1rem 1.25rem;
   font-size: 1rem;
   color: #fff;
-  background-image: linear-gradient(to right,var(--primaria-n1), var(--primaria), var(--primaria-n1));
+  background-image: linear-gradient(to right,var(--gradiente), var(--primaria), var(--gradiente));
   border: #fff 2px solid;
-  border-right-width: 3px;
-  border-left-width: 3px;
   overflow-anchor: none;
+  filter: hue-rotate(0deg);
+  transition: filter 1s, color 0s, background-image 0.3s;
 }
 .accordion-button:last-child, .accordion-button:last-child:not(.collapsed) {
-  border-bottom: 4px solid #fff;
+  border-bottom: 2px solid #fff;
 }
 .accordion-button:focus {
   box-shadow: none;
@@ -251,8 +250,8 @@ button.funcionalidade:hover {
 }
 .accordion-button:not(.collapsed) {
   color: #fff;
-  background-image: linear-gradient(to right, var(--primaria), var(--primaria-n1), var(--primaria));
-  border: #ffffff 3px solid;
+  background-image: linear-gradient(to right, var(--primaria), var(--gradiente), var(--primaria));
+  border: #ffffff 2px solid;
 }
 .accordion-button:not(.collapsed):hover {
   color: #fff;
@@ -261,8 +260,8 @@ button.funcionalidade:hover {
 .accordion-button:hover {
   color: #fff;
   background-image: linear-gradient(to right,var(--primaria-n1), var(--primaria), var(--primaria-n1));
-  filter: hue-rotate(3600deg);
-  transition: filter 20s, color 0s, background-image 0.3s;
+  filter: hue-rotate(360deg);
+  transition: filter 2s, color 0s, background-image 0.3s;
 }
 .accordion-button:after {
   background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;
