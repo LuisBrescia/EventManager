@@ -23,6 +23,9 @@ $(window).on('resize', function () {
     if ($(window).width() >= 768) {
         console.log("Tela MD");
         $('.colInsumos, .colServicos, .colParticipantes').removeClass('d-none');
+        $('.colInsumos, .colServicos, .colParticipantes').addClass('col-md-4');
+        $('.colInsumos, .colServicos, .colParticipantes').removeClass('col-md-3');
+        $('.colInsumos, .colServicos, .colParticipantes').removeClass('col-md-6');
         telaMD = true;
     } else if (telaMD === true) {
         console.log("Tela SM");
