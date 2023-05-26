@@ -164,14 +164,7 @@ button.funcionalidade:hover {
   position: absolute;
 }
 
-.toast-header {
-  border-image: linear-gradient(to right, var(--primaria), var(--primaria-n1));
-  border-image-slice: 100% 25% 100% 25%;
-  border-image-width: 2px;
-  border-radius: 0;
-  background-color: #0f0f0f;
-  color: #f0f0f0;
-}
+
 
 .funcionalidades {
   z-index: 100;
@@ -210,23 +203,23 @@ button.funcionalidade:hover {
   justify-content: space-between;
 }
 
+
+
+/** Configurações gerais da página*/
+
+::-webkit-scrollbar { width: 0; }
+
+/* * ACCORDION */
+/*? Até o momento utilizado somente na página Collection */
 .accordion {
   max-height: 95vh;
   overflow-y: auto;
 }
-
-::-webkit-scrollbar {
-  width: 0;
+.accordion-button:focus {
+  box-shadow: none;
+  border-color: #fff;
 }
-
-@media screen and (max-width: 767px) {
-  .colInsumos, .colParticipantes, .colServicos {
-    border: none;
-  }
-  .blur {
-    filter: blur(0);
-  }
-}
+/*: Button Aberto*/
 .accordion-button {
   position: relative;
   display: flex;
@@ -238,16 +231,13 @@ button.funcionalidade:hover {
   background-image: linear-gradient(to right,var(--gradiente), var(--primaria), var(--gradiente));
   border: #fff 2px solid;
   overflow-anchor: none;
-  filter: hue-rotate(0deg);
-  transition: filter 1s, color 0s, background-image 0.3s;
 }
-.accordion-button:last-child, .accordion-button:last-child:not(.collapsed) {
-  border-bottom: 2px solid #fff;
+.accordion-button:hover {
+  color: #fff;
+  background-image: linear-gradient(to right,var(--primaria-n1), var(--primaria), var(--primaria-n1));
+  animation: hue-rotate-animation 2s infinite;
 }
-.accordion-button:focus {
-  box-shadow: none;
-  border-color: #fff;
-}
+/*: Button Fechado*/
 .accordion-button:not(.collapsed) {
   color: #fff;
   background-image: linear-gradient(to right, var(--primaria), var(--gradiente), var(--primaria));
@@ -257,13 +247,40 @@ button.funcionalidade:hover {
   color: #fff;
   background-image: linear-gradient(to right, var(--primaria), var(--primaria-n1), var(--primaria));
 }
-.accordion-button:hover {
-  color: #fff;
-  background-image: linear-gradient(to right,var(--primaria-n1), var(--primaria), var(--primaria-n1));
-  filter: hue-rotate(360deg);
-  transition: filter 2s, color 0s, background-image 0.3s;
-}
+/*> Seta para abrir e fechar accordion, precisa ser trocada*/
 .accordion-button:after {
-  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;
+  background-image: url("../node_modules/bootstrap-icons/icons/chevron-double-down.svg") !important;
+  filter: invert(1);
 }
-/*# sourceMappingURL=style.css.map */
+/** Toaster */
+/*? Janelhinha que abre no canto inferior direito */
+.toast-header {
+  border-image: linear-gradient(to right, var(--primaria), var(--primaria-n1));
+  border-image-slice: 100% 25% 100% 25%;
+  border-image-width: 2px;
+  border-radius: 0;
+  background-color: #0f0f0f;
+  color: #f0f0f0;
+}
+
+/** Media Queries */
+
+@media screen and (max-width: 767px) {
+  .colInsumos, .colParticipantes, .colServicos {
+    border: none;
+  }
+  .blur {
+    filter: blur(0);
+  }
+}
+
+/** Keyframes */
+
+@keyframes hue-rotate-animation {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
