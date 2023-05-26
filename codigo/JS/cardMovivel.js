@@ -316,7 +316,7 @@ function selectAll(element) {
 // * HTML de um card
 function criaConteudo(lista, gapping) {
     var conteudo = '<li class="list-group-item fw-lighter" contenteditable="true"></li>';
-    if (lista.linhas.length !== 0) {
+    if (lista.linhas.length !== 0 && lista.linhas[0] !== '') {
         conteudo = '';
         for (var i = 0; i < lista.linhas.length; i++) {
             // * Caso a linha não seja vazia, ela é adicionada ao conteúdo
