@@ -3,103 +3,110 @@
 ? Seria possível colocar infinitos caracteres de largura 0
 ? estéticamente não teria efeito algum, porém travaria o programa
 */
-var maxWidth = 250;    // * Máximo de pixels permitidos no título
-var maxLength = 100;    // * Máximo de caracteres permitidos no título
-const TAM = 6;      // * Quantidade de cards que será possível adicionar
-
-const vetor = Array(TAM).fill(true); // * True = Disponível, False = Ocupado
-
-var todasListas = []; // ? Declarar aqui para conseguir utilizar globalmente
-
 // * Objeto que guarda as informações de cada card (Objeto do tipo Lista)
 function Lista(_id, titulo, linhas) {
     this._id = _id;
     this.titulo = titulo;
     this.linhas = linhas;
 }
+var maxWidth = 250;    // * Máximo de pixels permitidos no título
+var maxLength = 100;    // * Máximo de caracteres permitidos no título
+const TAM = 6;      // * Quantidade de cards que será possível adicionar
+
+var vetor = Array(TAM).fill(true); // * True = Disponível, False = Ocupado
+var todasListas = JSON.parse(localStorage.getItem("Listas")); // * Pega todas as listas salvas no localStorage
+
+console.log(todasListas);
+// * Carrega os cards salvos no localStorage quando a página é carregada
+if (todasListas) { // ? Caso não exista nada no localStorage, todasListas será null e não entrará no if
+    let cont = 0; // * Contador para definir a posição dos cards
+    for (let i = 0; i < TAM; i++) {
+        // * Caso não exista nenhuma informação salva naquela posição, não será criado o card
+        if (todasListas[i] != null) {
+
+            // * Cria um objeto do tipo Lista com as informações do objeto salvo no localStorage
+            console.log(todasListas[i]._id);
+            console.log(todasListas[i].titulo);
+            console.log(todasListas[i].linhas);
+            var lista = new Lista(todasListas[i]._id, todasListas[i].titulo, todasListas[i].linhas);
+            // * Cria o card com as informações do objeto
+            var carregaCard = $(criaConteudo(lista, cont++));
+
+            // ? É como se estivessemos adicionando funcionalidades que um card é capaz de fazer
+            customDrag(carregaCard);
+            editaCard(carregaCard);
+            nomeiaCard(carregaCard);
+            resetaCard(carregaCard);
+            removeCard(carregaCard);
+            $('section').append(carregaCard);
+            vetor[i] = false; // * Posição ocupada
+        }
+    }
+}
+console.log(todasListas);
 
 // > Preciso que cards com position diferentes tenham a mesma largura
 // > Preciso que todos os cards manteham suas coordenadas após mudança de posição
-// * Carrega os cards salvos no localStorage quando a página é carregada
-$(document).ready(function () {
-    // * Neste ponto, todasListas é um vetor de objetos do tipo Lista
-    todasListas = JSON.parse(localStorage.getItem("Listas"));
-    console.log(todasListas);
-    if (todasListas) { // ? Caso não exista nada no localStorage, todasListas será null e não entrará no if
-        var cont = 0; // * Contador para definir a posição dos cards
-        for (var i = 0; i < TAM; i++) {
-            // * Caso não exista nenhuma informação salva naquela posição, não será criado o card
-            if (todasListas[i] !== undefined && todasListas[i] !== null) {
 
-                // * Cria um objeto do tipo Lista com as informações do objeto salvo no localStorage
-                console.log(todasListas[i]._id);
-                console.log(todasListas[i].titulo);
-                console.log(todasListas[i].linhas);
-                var lista = new Lista(todasListas[i]._id, todasListas[i].titulo, todasListas[i].linhas);
-                // * Cria o card com as informações do objeto
-                var carregaCard = $(criaConteudo(lista, cont++));
-
-                // ? É como se estivessemos adicionando funcionalidades que um card é capaz de fazer
-                customDrag(carregaCard);
-                editaCard(carregaCard);
-                nomeiaCard(carregaCard);
-                resetaCard(carregaCard);
-                removeCard(carregaCard);
-                $('section').append(carregaCard);
-                vetor[i] = false; // * Posição ocupada
+// * Botões só estarão disponíveis após o carregamento da página	
+$(document).ready(() => {
+    // * Botão de adicionar card
+    $('#adicionaCard').click(() => {
+        // * Percorre o vetor, se existir algum elemento com o valor true, criará card
+        if (!vetor.includes(true)) {
+            const toastBootstrap = bootstrap.Toast.getOrCreateInstance($('#liveToast'));
+            toastBootstrap.show();
+            return;
+        }
+        // : Sempre que um card é criado, é criado também um objeto que vai guardar as informações daquele card
+        // * Realizar testes para checar se foi corrigido
+        // ! Talvez cards se tornem impossíveis de serem arrastados	
+        var lista = new Lista(vetor.indexOf(true), 'Lista ' + (vetor.indexOf(true) + 1), " ");
+        var newCard = $(criaConteudo(lista, vetor.indexOf(true)));
+        customDrag(newCard);
+        editaCard(newCard);
+        nomeiaCard(newCard);
+        resetaCard(newCard);
+        removeCard(newCard);
+        // todasListas[vetor.indexOf(true)] = lista;
+        var index = vetor.indexOf(true);
+        if (index !== -1) {
+            if (todasListas[index] == null) {
+                todasListas[index] = new Lista(index, 'Lista ' + (index + 1), " ");
+            } else {
+                todasListas[index] = lista;
             }
         }
-    }
-    console.log(todasListas);
+        localStorage.setItem("Listas", JSON.stringify(todasListas));
+        vetor[vetor.indexOf(true)] = false;
+        $('section').append(newCard);
+    });
+    // * Botão de apagar todos os cards
+    $('#removeCard').click(() => {
+        $('.card').parent().remove();
+        vetor.fill(true); // * Todas as posições se tornam disponíveis
+        todasListas = []; // * Agora o vetor é vazio
+        localStorage.setItem("Listas", JSON.stringify(todasListas));
+    });
+    // * No momento #salvaCard está sendo utilizado para esconder o menu lateral
+    $('#salvaCard').click(() => {
+        $('.card').find('.card-container').removeClass('mover');
+    });
 });
-// * Botão de adicionar card
-$('#adicionaCard').on('click', () => {
-    // * Percorre o vetor, se existir algum elemento com o valor true, criará card
-    if (!vetor.includes(true)) {
-        const toastBootstrap = bootstrap.Toast.getOrCreateInstance($('#liveToast'));
-        toastBootstrap.show();
-        return;
-    }
-    // : Sempre que um card é criado, é criado também um objeto que vai guardar as informações daquele card
-    // * Realizar testes para checar se foi corrigido
-    // ! Talvez cards se tornem impossíveis de serem arrastados	
-    var lista = new Lista(vetor.indexOf(true), 'Lista ' + (vetor.indexOf(true) + 1), " ");
-    var newCard = $(criaConteudo(lista, vetor.indexOf(true)));
-    customDrag(newCard);
-    editaCard(newCard);
-    nomeiaCard(newCard);
-    resetaCard(newCard);
-    removeCard(newCard);
-    todasListas[vetor.indexOf(true)] = lista;
-    localStorage.setItem("Listas", JSON.stringify(todasListas));
-    vetor[vetor.indexOf(true)] = false;
-    $('section').append(newCard);
-});
-// * Botão de apagar todos os cards
-$('#removeCard').on('click', () => {
-    $('.card').parent().remove();
-    vetor.fill(true); // * Todas as posições se tornam disponíveis
-    todasListas = []; // * Agora o vetor é vazio
-    localStorage.setItem("Listas", JSON.stringify(todasListas));
-});
-// * No momento #salvaCard está sendo utilizado para esconder o menu lateral
-$('#salvaCard').on('click', () => {
-    $('.card').find('.card-container').removeClass('mover');
-});
+
 // * Botão que edita o título do card
 function nomeiaCard(element) {
-    element.find('.nomeiaCard').on('click', function () {
+    element.find('.nomeiaCard').on('click', function() {
         // * Seleciona o título, permite edição, foca nele, e seleciona todo o texto
         var cardTitle = $(this).closest('.card-container').find('.card-header span:first-child');
         cardTitle.attr('contenteditable', 'true');
         cardTitle.focus();
         selectAll(cardTitle[0]);
-
+   
         // > Provavelemente tem um jeito mais eficiente de fazer isso
         // * Ao perder o foco, o título é alterado
         cardTitle.on('blur', function () {
             atualizaTitulo($(this));
-            console.log('Título salvo no card de ID ' + cardNumber + ' como: ' + novoNome);
         });
         // * Ao pressionar enter, o título é alterado
         cardTitle.on('keydown click', function (e) {
@@ -245,7 +252,7 @@ function editaCard(element) {
         var currentLi = listGroup.find('li:focus');
         var currentLiText = listGroup.find('li:focus').text();
         // * Ao perder o foco, o conteúdo é atualizado
-        listGroup.on('blur', 'li', function() {
+        listGroup.on('blur', 'li', function () {
             atualizaConteudo(listGroup);
         });
         // * Se o usuário pressionar backspace e a linha estiver vazia, e não houver apenas 1 linha, linha atual é apagada, e o focus irá para a linha anterior
@@ -339,11 +346,3 @@ function criaConteudo(lista, gapping) {
         '</div>' +
         '</div>';
 }
-$('.moveStatic').draggable({
-    containment: "main",
-    scroll: false,
-    snap: false,
-    stack: ".draggable",
-    cursor: "grabbing",
-    handle: ".card"
-});
