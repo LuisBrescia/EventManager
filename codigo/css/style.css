@@ -164,8 +164,6 @@ button.funcionalidade:hover {
   position: absolute;
 }
 
-
-
 .funcionalidades {
   z-index: 100;
 }
@@ -202,8 +200,6 @@ button.funcionalidade:hover {
   display: flex;
   justify-content: space-between;
 }
-
-
 
 /** Configurações gerais da página*/
 
@@ -271,6 +267,22 @@ button.funcionalidade:hover {
   }
   .blur {
     filter: blur(0);
+  }
+  .barraLista {
+    position: fixed;
+    width: 95%;
+  }
+}
+/*> Ideal seria $(.barraLista).css('width', 100 - aside.width '%')*/
+@media screen and (max-width: 992px) {
+  .barraLista {
+    position: fixed;
+    width: 92%;
+  }
+}
+@media screen and (min-width: 1400px) {
+  .barraLista {
+    position: fixed;
   }
 }
 

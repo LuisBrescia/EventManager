@@ -32,6 +32,8 @@ $('#salvaCard').on('click', () => {
         });
     }
 
+    $('.barraLista').toggleClass('col-xxl-10 col-xxl-12');
+
     $('aside').toggleClass('active');
     menuAtivo = !menuAtivo;
 });
@@ -43,6 +45,11 @@ $(document).on('keydown', function (e) {
         $('aside').toggleClass('active');
         $('#salvaCard span').toggleClass('rodar');
         allowCtrl = false;
+        menuAtivo = !menuAtivo;
+        // * Caso uma elemento da classe .funcionalides tenha a classe col-xll-10, mudar para col-xll-12
+
+        $('.barraLista').toggleClass('col-xxl-10 col-xxl-12');
+
     }
 });
 
