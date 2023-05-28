@@ -225,8 +225,20 @@ button.funcionalidade:hover {
   font-size: 1rem;
   color: #fff;
   background-image: linear-gradient(to right,var(--gradiente), var(--primaria), var(--gradiente));
-  border: #fff 2px solid;
+  border: #fff 1px solid;
+  border-top: none;
+  border-top-width: 2px;
   overflow-anchor: none;
+}
+.colParticipantes .accordion-button {
+  border-left: none;
+}
+.colServicos .accordion-button {
+  border-right: none;
+}
+.colInsumos .accordion-button {
+  border-left: none;
+  border-right: none;
 }
 .accordion-button:hover {
   color: #fff;
@@ -237,7 +249,6 @@ button.funcionalidade:hover {
 .accordion-button:not(.collapsed) {
   color: #fff;
   background-image: linear-gradient(to right, var(--primaria), var(--gradiente), var(--primaria));
-  border: #ffffff 2px solid;
 }
 .accordion-button:not(.collapsed):hover {
   color: #fff;
@@ -268,18 +279,8 @@ button.funcionalidade:hover {
   .blur {
     filter: blur(0);
   }
-  .barraLista {
-    position: fixed;
-    width: 95%;
-  }
 }
 /*> Ideal seria $(.barraLista).css('width', 100 - aside.width '%')*/
-@media screen and (max-width: 992px) {
-  .barraLista {
-    position: fixed;
-    width: 92%;
-  }
-}
 @media screen and (min-width: 1400px) {
   .barraLista {
     position: fixed;
