@@ -1,12 +1,12 @@
 :root {
   /* Azul */
   --primaria-n1:#00eeff;
-  --gradiente:   #0088ff;
+  --gradiente:  #0088ff;
   --primaria:   #0044ff;
   --primaria-1: #0040f0;
   --primaria-2: #0033ee;
   --primaria-3: #0022dd;
-  --escuro: #0f0f0f;
+  --escuro:     #0f0f0f;
   /* Rosa */
 }
 
@@ -118,7 +118,7 @@ footer a:hover {
 }
 /*> Quando funcionalidades de collection estiver em hover, aplicar blur a outras colunas */
 button.funcionalidade:hover {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   transition: all 0.3s;
   background-color: #212529;
 }

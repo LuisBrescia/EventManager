@@ -4,10 +4,11 @@
 ? estéticamente não teria efeito algum, porém travaria o programa
 */
 // * Objeto que guarda as informações de cada card (Objeto do tipo Lista)
-function Lista(_id, titulo, linhas) {
+function Lista(_id, titulo, linhas, coordanadas) {
     this._id = _id;
     this.titulo = titulo;
     this.linhas = linhas;
+    this.coordenadas = coordanadas;
 }
 var maxWidth = 250;    // * Máximo de pixels permitidos no título
 var maxLength = 100;    // * Máximo de caracteres permitidos no título
@@ -102,6 +103,8 @@ function nomeiaCard(element) {
         cardTitle.attr('contenteditable', 'true');
         cardTitle.focus();
         selectAll(cardTitle[0]);
+        // * Ao editar o título, outros cards se tornam fixos
+        $('.card-container').not($(this).closest('.card-container')).css('position', 'fixed');
    
         // > Provavelemente tem um jeito mais eficiente de fazer isso
         // * Ao perder o foco, o título é alterado
@@ -221,25 +224,32 @@ function customDrag(elemento) {
         stop: function () {
             $(this).closest('.card-container').css('position', 'absolute');
             // > Descobrir como a coordenada é calculada
-            var cardPosition = $(this).position().left + 48 + 300;
-            var canvasWidth = $('section').width();
-            if (!$('aside').hasClass('active')) {
-                larguraPermitida = canvasWidth - 250;
-                if (cardPosition > larguraPermitida && !$(this).hasClass('mover')) {
-                    $(this).addClass('mover');
-                    console.log('Mover adicionado');
-                    $(this).find('.card-header').css('background-color', '#f0f0f0');
-                } else if (cardPosition <= larguraPermitida && $(this).hasClass('mover')) {
-                    $(this).removeClass('mover');
-                    console.log("Mover removido");
-                    $(this).find('.card-header').css('background-color', '#fff');
-                }
-            }
-            // : VOU PEGAR A COORDENADA DESTE CARD E SUBTRAIR PELA LARGURA PERMITIDA
-            // : MOVER = COORDENADA DO CARD - LARGURA PERMITIDA
-            // : E QUANDO O USUÁRIO APERTAR O BOTÃO DE MENU, VOU MOVER O CARD
-            // : TRANSFORM: TRANSLATEX(-MOVER)
-            // : console.log('Coordenada X do card:', cardPosition);
+            // var cardPosition = $(this).position().left + 48 + 300;
+            // var canvasWidth = $('section').width();
+            // if (!$('aside').hasClass('active')) {
+            //     larguraPermitida = canvasWidth - 250;
+            //     if (cardPosition > larguraPermitida && !$(this).hasClass('mover')) {
+            //         $(this).addClass('mover');
+            //         console.log('Mover adicionado');
+            //         $(this).find('.card-header').css('background-color', '#f0f0f0');
+            //     } else if (cardPosition <= larguraPermitida && $(this).hasClass('mover')) {
+            //         $(this).removeClass('mover');
+            //         console.log("Mover removido");
+            //         $(this).find('.card-header').css('background-color', '#fff');
+            //     }
+            // }
+
+            // * Quero pegar as coordanadas do card quando ele for solto
+            // * E salvar no localStorage
+            // * E quando a página for carregada, os cards serão carregados com as coordenadas salvas
+            // * E quando um card for movido, as coordenadas serão atualizadas
+            // * E quando um card for apagado, as coordenadas serão apagadas
+
+            var cardId = $(this).closest('.card-container').attr('id');
+            var cardNumber = parseInt(cardId.split('-')[1]);
+            todasListas[cardNumber].coordenadas = [$(this).position().left, $(this).position().top];
+            localStorage.setItem("Listas", JSON.stringify(todasListas));
+            console.log('Coordenadas salvas no card de ID ' + cardNumber + ' como: ' + todasListas[cardNumber].coordenadas);
         }
     });
 }
@@ -327,6 +337,7 @@ function criaConteudo(lista, gapping) {
     }
     return '<div id="card-' + lista._id + '" class="card-container ms-5" style="top:' +
         (gapping + 1) + '0%">' +
+        // '542px; left: 250px;">'+
         '<div class="cardConvidado draggable card col-3 shadow border-0 rounded-3 overflow-x-hidden">' +
         '<div class="card-header fs-4 fw-bolder text-nowrap d-flex justify-content-between align-items-center">' +
         '<span class="mt-3 mb-1 lh-1 pt-2 fs-md-1">' +
@@ -345,4 +356,18 @@ function criaConteudo(lista, gapping) {
         '</div>' +
         '</div>' +
         '</div>';
+    /*
+    > Será feito algo como:
+    > if lista.coordenadas == null, então seguirá o procedimento de gapping padrão
+    > caso contrário, o left será definido como lista.coordenadas[0] e o top como lista.coordenadas[1]
+    : Primeiramente vamos pegar a posição do card, para isso criarei uma função dentro de customDrag, que irá dar 
+    : um console log com as coordenadas dele, após isso, testarei como salvar no localStorage, e como carregar
+    : concluindo, as coordenadas estarão feitas 
+    ! Problema que não faço ideia como resolver:
+    ! Quando um card é carregado, sua posição é sempre 0, ou seja, as coordenadas salvas são em relação ao card 
+    ! que está sendo carregado, e não em relação ao canvas
+    ! ou seja, só consigo manter o card na mesma posição caso ele tenha sido carregado no extremo topo esquerdo da página
+    * Possível solução: Mudar a forma de salvas as coordenadas, ao invés de salvar as coordenadas do card, 
+    * salvar as coordenadas do card em relação ao canvas
+    */
 }

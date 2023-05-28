@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css" />
   <link rel="stylesheet" href="../CSS/style.css" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand|Kodchasan|Sniglet|Ubuntu">
 </head>
 
 <body class="overflow-hidden">
@@ -155,23 +155,31 @@
 
     <!-- ? Página -->
     <main class="col bg-gradient h-100 d-flex flex-column justify-content-between">
-      <!-- ! Outra gambiarra da qual não me orgulho -->
-      <div class="funcionalidades btn-group shadow-lg d-flex position-fixed top-0 w-100 left-50" role="group"
+      
+      <!-- * Botões -->
+      <div class="funcionalidades btn-group d-flex position-sticky top-0" role="group"
         aria-label="Basic example">
         <button type="button" class="border-0 col-4 funcionalidade btn btn-dark rounded-0 fw-light">
           <i class="bi-journal-plus me-2"></i>
           <span class="d-none d-md-inline">Adicionar</span>
         </button>
+        <button type="button" class="border-0 col-4 funcionalidade btn btn-dark rounded-0 fw-light">
+          <i class="bi-arrow-left-right"></i>
+          <span class="d-none d-md-inline">Switch</span>
+        </button>
+        <button type="button" class="border-0 col-4 funcionalidade btn btn-dark rounded-0 fw-light">
+          <i class="bi-journal-x me-2"></i>
+          <span class="d-none d-md-inline">Limpar</span>
+        </button>
       </div>
-      <!-- * Botões -->
-      <div class="funcionalidades btn-group shadow-lg d-flex position-sticky top-0" role="group"
+      <!-- ! Outra gambiarra da qual não me orgulho -->
+      <div class="funcionalidades btn-group shadow-lg d-flex position-fixed col-xxl-10" role="group" 
         aria-label="Basic example">
         <button type="button" id="adicionaCard" class="border-0 col-4 funcionalidade btn btn-dark rounded-0 fw-light">
           <i class="bi-journal-plus me-2"></i>
           <span class="d-none d-md-inline">Adicionar</span>
         </button>
         <button type="button" id="salvaCard" class="border-0 col-4 funcionalidade btn btn-dark rounded-0 fw-light">
-          <!-- > Animar ícone -->
           <i class="bi-arrow-left-right"></i>
           <span class="d-none d-md-inline">Switch</span>
         </button>
