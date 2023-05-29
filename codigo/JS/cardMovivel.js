@@ -24,7 +24,7 @@ if (todasListas) { // ? Caso não exista nada no localStorage, todasListas será
         if (todasListas[i] != null) {
 
             // * Cria um objeto do tipo Lista com as informações do objeto salvo no localStorage
-            let lista = new Lista(todasListas[i]._id, todasListas[i].titulo, todasListas[i].linhas);
+            let lista = new Lista(todasListas[i]._id, todasListas[i].titulo, todasListas[i].linhas, todasListas[i].coordenadas);
             // * Cria o card com as informações do objeto
             let carregaCard = $(criaConteudo(lista, cont++));
 
@@ -56,7 +56,7 @@ $(document).ready(() => {
         // : Sempre que um card é criado, é criado também um objeto que vai guardar as informações daquele card
         // * Realizar testes para checar se foi corrigido
         // ! Talvez cards se tornem impossíveis de serem arrastados	
-        var lista = new Lista(vetor.indexOf(true), 'Lista ' + (vetor.indexOf(true) + 1), " ");
+        var lista = new Lista(vetor.indexOf(true), 'Lista ' + (vetor.indexOf(true) + 1), " ", null);
         var newCard = $(criaConteudo(lista, vetor.indexOf(true)));
         customDrag(newCard);
         editaCard(newCard);
@@ -67,7 +67,7 @@ $(document).ready(() => {
         var index = vetor.indexOf(true);
         if (index !== -1) {
             if (todasListas[index] == null) {
-                todasListas[index] = new Lista(index, 'Lista ' + (index + 1), " ");
+                todasListas[index] = new Lista(index, 'Lista ' + (index + 1), " ", null);
             } else {
                 todasListas[index] = lista;
             }
@@ -238,7 +238,7 @@ function customDrag(elemento) {
 
             let cardId = $(this).closest('.card-container').attr('id');
             let cardNumber = parseInt(cardId.split('-')[1]);
-            todasListas[cardNumber].coordenadas = [$(this).position().left, $(this).position().top];
+            todasListas[cardNumber].coordenadas = [$(this).offset().left - 48, $(this).offset().top];
             localStorage.setItem("Listas", JSON.stringify(todasListas));
             console.log('Coordenadas salvas no card de ID ' + cardNumber + ' como: ' + todasListas[cardNumber].coordenadas);
         }
@@ -318,16 +318,22 @@ function criaConteudo(lista, gapping) {
     var conteudo = '<li class="list-group-item fw-lighter" contenteditable="true"></li>';
     if (lista.linhas.length !== 0 && lista.linhas[0] !== '') {
         conteudo = '';
-        for (var i = 0; i < lista.linhas.length; i++) {
+        for (let i = 0; i < lista.linhas.length; i++) {
             // * Caso a linha não seja vazia, ela é adicionada ao conteúdo
             if (lista.linhas[i] !== '') {
                 conteudo += '<li class="list-group-item fw-lighter" contenteditable="true">' + lista.linhas[i] + '</li>';
             }
         }
     }
-    return '<div id="card-' + lista._id + '" class="card-container ms-5" style="top:' +
-        (gapping + 1) + '0%">' +
-        // '542px; left: 250px;">'+
+    // Caso lista.coordenadas estiver vazio
+    let conteudoStyle = '';
+    if (lista.coordenadas == null) {
+        conteudoStyle = 'top: ' + (gapping + 1) + '0%;'; 
+    } else {
+        conteudoStyle = 'top: ' + lista.coordenadas[1] + 'px; left: ' + lista.coordenadas[0] + 'px;';
+    }
+    return '<div id="card-' + lista._id + '" class="card-container ms-5" style="' +
+        conteudoStyle + '">' + 
         '<div class="cardConvidado draggable card col-3 shadow border-0 rounded-3 overflow-x-hidden">' +
         '<div class="card-header fs-4 fw-bolder text-nowrap d-flex justify-content-between align-items-center">' +
         '<span class="mt-3 mb-1 lh-1 pt-2 fs-md-1">' +
