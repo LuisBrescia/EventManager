@@ -50,7 +50,6 @@ function carregaCards() {
         }
     } else { todasListas = []; }
 }
-
 // > Preciso que cards com position diferentes tenham a mesma largura
 // > Preciso que todos os cards manteham suas coordenadas após mudança de posição
 // > Clicar em cima do nome do card deixa ele como position absolute, e permite mover ele
@@ -93,7 +92,7 @@ $(document).ready(() => {
         if ($('#tipoLista').find('i').hasClass('bi-people')) {
             $('#tipoLista').find('i').toggleClass('bi-people bi-bucket');
             $('#tipoLista').find('span').text('Insumos');
-            $('#tipoLista').css('background-color', '#f00');
+            $('#tipoLista').css('background', 'linear-gradient(to right, #0044ff, #00eeff)');
             ListaTipo = "ListaInsumos";
             position = 1;
             carregaCards();
@@ -101,7 +100,7 @@ $(document).ready(() => {
         else if ($('#tipoLista').find('i').hasClass('bi-bucket')) {
             $('#tipoLista').find('i').toggleClass('bi-bucket bi-briefcase');
             $('#tipoLista').find('span').text('Serviços');
-            $('#tipoLista').css('background-color', '#0a0');
+            $('#tipoLista').css('background', 'linear-gradient(to right, #0044ff, #00eeff)');
             ListaTipo = "ListaServicos";
             position = 2;
             carregaCards();
@@ -109,14 +108,14 @@ $(document).ready(() => {
         else if ($('#tipoLista').find('i').hasClass('bi-briefcase')) {
             $('#tipoLista').find('i').toggleClass('bi-briefcase bi-people');
             $('#tipoLista').find('span').text('Participantes');
-            $('#tipoLista').css('background-color', '#e90');
+            $('#tipoLista').css('background', 'linear-gradient(to right, #0044ff, #00eeff)');
             ListaTipo = "ListaParticipantes";
             position = 0;
             carregaCards();
         }
     });
 });
-$('#tipoLista').css('background-color', '#e90');
+$('#tipoLista').css('background', 'linear-gradient(to right, #0044ff, #00eeff)');
 // * Botão que edita o título do card
 function nomeiaCard(element) {
     element.find('.nomeiaCard').click(function () {
