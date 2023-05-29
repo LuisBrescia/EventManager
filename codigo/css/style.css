@@ -1,3 +1,10 @@
+@import url("https://fonts.googleapis.com/css?family=Quicksand|Kodchasan|Sniglet|Ubuntu");
+
+/** Configurações gerais da página*/
+
+.blur { filter: blur(2px); transition: filter 1s; }
+/* :: -webkit-scrollbar { width: 0; } */
+:focus { outline: none; }
 :root {
   /* Azul */
   --primaria-n1:#00eeff;
@@ -9,31 +16,15 @@
   --escuro:     #0f0f0f;
   /* Rosa */
 }
-
-:focus {
-  outline: none;
-}
-/* Toda span que conter a classe d-md-block */
-span.d-md-block {
-  font-size: smaller;
-}
-a {
-  text-decoration: none;
-}
-
 body {
   background: #f0f0f0;
   font-family: 'Quicksand', sans-serif;
 }
+a { text-decoration: none; }
 
-main {
-  background: #f0f0f0;
-  min-height: 100vh;
-}
-main h1 {
-  background: #fff;
-}
+/*! Elementos da página */
 
+/** Aside */
 aside {
   background: var(--primaria-1);
   display: none;
@@ -51,18 +42,6 @@ aside li:hover {
   padding-right: 1em;
   transition: all 0.3s;
 }
-@media screen and (max-width: 991px) {
-  aside {
-    margin-left: -100%;
-  }
-  aside li:hover {
-    padding-left: 0;
-    padding-right: 0;
-  }
-}
-.expande {
-  background-color: #00f0f0 !important;
-}
 aside li.active {
   background: var(--primaria-2);
 }
@@ -78,51 +57,35 @@ aside.active {
   transition: all 0.3s;
   display: block;
 }
-
 aside li.active a, aside li.active a:hover, li a:hover {
   color: #fff;
 }
-
-footer {
-  z-index: 9999;
-  background-color: #0f0f0f;
-  color: #f0f0f0;
+/** Main */
+main {
+  background: #f0f0f0;
+  min-height: 100vh;
 }
-footer a {
-  color: #212529;
-  text-decoration: none;
-  font-size: 1px;
-  transition: all 0.5s;
-}
-footer a:hover {
-  color: #fff;
-  transition: all 0.5s;
-  font-size: 1.2rem;
+main h1 {
+  background: #fff;
 }
 
+/*! Items da página */
+
+/** Botões superiores */
+.funcionalidades { z-index: 100; }
 .funcionalidades button {
   font-size: initial;
   transition: all 0.3s;
   background-color: #0f0f0f;
 }
-/*> Por algum motivo &: não roda em alguns computadores */
 .funcionalidades button:hover {
-  transition: all 0.3s;
   background-color: #212529;
-}
-.blur {
-  filter: blur(2px);
-  border: none;
-  box-shadow: none;
-  transition: filter 2s;
-}
-/*> Quando funcionalidades de collection estiver em hover, aplicar blur a outras colunas */
-button.funcionalidade:hover {
   font-size: 1.2rem;
   transition: all 0.3s;
-  background-color: #212529;
 }
 
+/** Cards */
+/*? Usado nas listas */
 .cardConvidado {
   max-height: 300px;
   width: 100%;
@@ -159,21 +122,24 @@ button.funcionalidade:hover {
   font-weight: 500;
   padding: 0.75rem 1.25rem;
 }
-
 .card-container {
   position: absolute;
 }
-
-.funcionalidades {
-  z-index: 100;
+/** Accordion */
+/*? Até o momento utilizado somente na página Collection */
+.accordion {
+  max-height: 95vh;
+  overflow-y: auto;
 }
-.accordion-body ul {
-  gap: 0.5em;
+.accordion-item { border: 0; }
+.accordion-header button{  
+  font-size: x-large;
 }
 .accordion-body{
   background-color: #f0f0f0;
   padding: 10px 0;
 }
+.accordion-body ul { gap: 0.5em; }
 .accordion-body ul li {
   transition: font-size 0.3s;
   width: 95%;
@@ -184,32 +150,6 @@ button.funcionalidade:hover {
   color: #fff;
   font-size: larger;
   transition: font-size 0.3s;
-}
-.accordion-header button{  
-  font-size: x-large;
-}
-
-.accordion-item {
-  border: 0;
-}
-.accordion-button:focus-visible {
-  outline: none;
-}
-
-#accordion-servicos li {
-  display: flex;
-  justify-content: space-between;
-}
-
-/** Configurações gerais da página*/
-
-::-webkit-scrollbar { width: 0; }
-
-/* * ACCORDION */
-/*? Até o momento utilizado somente na página Collection */
-.accordion {
-  max-height: 95vh;
-  overflow-y: auto;
 }
 .accordion-button:focus {
   box-shadow: none;
@@ -254,6 +194,13 @@ button.funcionalidade:hover {
   color: #fff;
   background-image: linear-gradient(to right, var(--primaria), var(--primaria-n1), var(--primaria));
 }
+.accordion-button:focus-visible {
+  outline: none;
+}
+#accordion-servicos li {
+  display: flex;
+  justify-content: space-between;
+}
 /*> Seta para abrir e fechar accordion, precisa ser trocada*/
 .accordion-button:after {
   background-image: url("../node_modules/bootstrap-icons/icons/chevron-double-down.svg") !important;
@@ -271,13 +218,21 @@ button.funcionalidade:hover {
 }
 
 /** Media Queries */
-
 @media screen and (max-width: 767px) {
   .colInsumos, .colParticipantes, .colServicos {
     border: none;
   }
   .blur {
     filter: blur(0);
+  }
+}
+@media screen and (max-width: 991px) {
+  aside {
+    margin-left: -100%;
+  }
+  aside li:hover {
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 /*> Ideal seria $(.barraLista).css('width', 100 - aside.width '%')*/
@@ -288,12 +243,28 @@ button.funcionalidade:hover {
 }
 
 /** Keyframes */
-
 @keyframes hue-rotate-animation {
-  0% {
-    filter: hue-rotate(0deg);
-  }
-  100% {
-    filter: hue-rotate(360deg);
-  }
+  0% {filter: hue-rotate(0deg);}
+  100% {filter: hue-rotate(360deg);}
+}
+
+/*! Não lembro para o que serve */
+span.d-md-block { font-size: smaller;}
+.expande { background-color: #00f0f0 !important;}
+/*// Não utilizado no momento */
+footer {
+  z-index: 9999;
+  background-color: #0f0f0f;
+  color: #f0f0f0;
+}
+footer a {
+  color: #212529;
+  text-decoration: none;
+  font-size: 1px;
+  transition: all 0.5s;
+}
+footer a:hover {
+  color: #fff;
+  transition: all 0.5s;
+  font-size: 1.2rem;
 }
