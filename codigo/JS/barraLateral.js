@@ -6,14 +6,8 @@ var primaria1 = "#0044fe";
 var primaria2 = "#003bfb";
 var primaria3 = "#0033ee";
 
-// $('#azul').on('click', () => {
-// $('aside').css('margin-left', ($('aside').offsetWidth * -1) + 'px');
-
-
-
-
-// * No momento #salvaCard está sendo utilizado para esconder o menu lateral
-$('#salvaCard').on('click', () => {
+// > Não implementado ainda
+$('#menu').on('click', () => {
     if (menuAtivo) {
         console.log('Menu Fechado');
     } else {

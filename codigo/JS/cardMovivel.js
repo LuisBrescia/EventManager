@@ -14,41 +14,51 @@ var maxLength = 100;    // * Máximo de caracteres permitidos no título
 const TAM = 6;      // * Quantidade de cards que será possível adicionar
 
 var vetor = Array(TAM).fill(true); // * True = Disponível, False = Ocupado
-var todasListas = JSON.parse(localStorage.getItem("Listas")); // * Pega todas as listas salvas no localStorage
+var matriz = Array(3).fill(Array(TAM).fill(true));
+var ListaTipo = "ListaParticipantes";
+var position = 0;
+var todasListas = [];
 
 // * Carrega os cards salvos no localStorage quando a página é carregada
-if (todasListas) { // ? Caso não exista nada no localStorage, todasListas será null e não entrará no if
-    let cont = 0; // * Contador para definir a posição dos cards
-    for (let i = 0; i < TAM; i++) {
-        // * Caso não exista nenhuma informação salva naquela posição, não será criado o card
-        if (todasListas[i] != null) {
+function carregaCards() {
+    // * Limpa todos os cards
+    $('.card').parent().remove();
+    todasListas = JSON.parse(localStorage.getItem(ListaTipo)); // * Pega todas as listas salvas no localStorage
+    if (todasListas) { // ? Caso não exista nada no localStorage, todasListas será null e não entrará no if
+        let cont = 0; // * Contador para definir a posição dos cards
+        for (let i = 0; i < TAM; i++) {
+            // * Caso não exista nenhuma informação salva naquela posição, não será criado o card
+            if (todasListas[i] != null) {
 
-            // * Cria um objeto do tipo Lista com as informações do objeto salvo no localStorage
-            let lista = new Lista(todasListas[i]._id, todasListas[i].titulo, todasListas[i].linhas, todasListas[i].coordenadas);
-            // * Cria o card com as informações do objeto
-            let carregaCard = $(criaConteudo(lista, cont++));
+                // * Cria um objeto do tipo Lista com as informações do objeto salvo no localStorage
+                let lista = new Lista(todasListas[i]._id, todasListas[i].titulo, todasListas[i].linhas, todasListas[i].coordenadas);
+                // * Cria o card com as informações do objeto
+                let carregaCard = $(criaConteudo(lista, cont++));
 
-            // ? É como se estivessemos adicionando funcionalidades que um card é capaz de fazer
-            customDrag(carregaCard);
-            editaCard(carregaCard);
-            nomeiaCard(carregaCard);
-            resetaCard(carregaCard);
-            removeCard(carregaCard);
-            $('section').append(carregaCard); // * Adiciona o card na página
-            vetor[i] = false; // * Posição ocupada
+                // ? É como se estivessemos adicionando funcionalidades que um card é capaz de fazer
+                customDrag(carregaCard);
+                editaCard(carregaCard);
+                nomeiaCard(carregaCard);
+                resetaCard(carregaCard);
+                removeCard(carregaCard);
+                $('section').append(carregaCard); // * Adiciona o card na página
+                matriz[position][i] = false; // * Posição ocupada
+            } else { matriz[position][i] = true; } // * Posição disponível
         }
-    }
+    } else { todasListas = []; }
 }
 
 // > Preciso que cards com position diferentes tenham a mesma largura
 // > Preciso que todos os cards manteham suas coordenadas após mudança de posição
+// > Clicar em cima do nome do card deixa ele como position absolute, e permite mover ele
 
 // * Botões só estarão disponíveis após o carregamento da página	
 $(document).ready(() => {
+    carregaCards();
     // * Botão de adicionar card
     $('#adicionaCard').click(() => {
         // * Percorre o vetor, se existir algum elemento com o valor true, criará card
-        if (!vetor.includes(true)) {
+        if (!matriz[position].includes(true)) {
             const toastBootstrap = bootstrap.Toast.getOrCreateInstance($('#liveToast'));
             toastBootstrap.show();
             return;
@@ -56,42 +66,57 @@ $(document).ready(() => {
         // : Sempre que um card é criado, é criado também um objeto que vai guardar as informações daquele card
         // * Realizar testes para checar se foi corrigido
         // ! Talvez cards se tornem impossíveis de serem arrastados	
-        var lista = new Lista(vetor.indexOf(true), 'Lista ' + (vetor.indexOf(true) + 1), " ", null);
-        var newCard = $(criaConteudo(lista, vetor.indexOf(true)));
+        var lista = new Lista(matriz[position].indexOf(true), 'Lista ' + (matriz[position].indexOf(true) + 1), " ", null);
+        var newCard = $(criaConteudo(lista, matriz[position].indexOf(true)));
         customDrag(newCard);
         editaCard(newCard);
         nomeiaCard(newCard);
         resetaCard(newCard);
         removeCard(newCard);
-        // todasListas[vetor.indexOf(true)] = lista;
-        var index = vetor.indexOf(true);
-        if (index !== -1) {
-            if (todasListas[index] == null) {
-                todasListas[index] = new Lista(index, 'Lista ' + (index + 1), " ", null);
-            } else {
-                todasListas[index] = lista;
-            }
-        }
-        localStorage.setItem("Listas", JSON.stringify(todasListas));
-        vetor[vetor.indexOf(true)] = false;
+        todasListas[matriz[position].indexOf(true)] = lista;
+        localStorage.setItem(ListaTipo, JSON.stringify(todasListas));
+        matriz[position][matriz[position].indexOf(true)] = false;
         $('section').append(newCard);
     });
     // * Botão de apagar todos os cards
     $('#removeCard').click(() => {
         $('.card').parent().remove();
-        vetor.fill(true); // * Todas as posições se tornam disponíveis
+        matriz[position].fill(true); // * Todas as posições se tornam disponíveis
         todasListas = []; // * Agora o vetor é vazio
-        localStorage.setItem("Listas", JSON.stringify(todasListas));
+        localStorage.setItem(ListaTipo, JSON.stringify(todasListas));
     });
     // * No momento #salvaCard está sendo utilizado para esconder o menu lateral
-    $('#salvaCard').click(() => {
-        $('.card').find('.card-container').removeClass('mover');
+    $('#tipoLista').click(() => {
+        if ($('#tipoLista').find('i').hasClass('bi-people')) {
+            $('#tipoLista').find('i').toggleClass('bi-people bi-bucket');
+            $('#tipoLista').find('span').text('Insumos');
+            $('#tipoLista').css('background-color', '#f00');
+            ListaTipo = "ListaInsumos";
+            position = 0;
+            carregaCards();
+        }
+        else if ($('#tipoLista').find('i').hasClass('bi-bucket')) {
+            $('#tipoLista').find('i').toggleClass('bi-bucket bi-briefcase');
+            $('#tipoLista').find('span').text('Serviços');
+            $('#tipoLista').css('background-color', '#0a0');
+            ListaTipo = "ListaServicos";
+            position = 1;
+            carregaCards();
+        }
+        else if ($('#tipoLista').find('i').hasClass('bi-briefcase')) {
+            $('#tipoLista').find('i').toggleClass('bi-briefcase bi-people');
+            $('#tipoLista').find('span').text('Participantes');
+            $('#tipoLista').css('background-color', '#e90');
+            ListaTipo = "ListaParticipantes";
+            position = 2;
+            carregaCards();
+        }
     });
 });
-
+$('#tipoLista').css('background-color', '#e90');
 // * Botão que edita o título do card
 function nomeiaCard(element) {
-    element.find('.nomeiaCard').click( function() {
+    element.find('.nomeiaCard').click(function () {
         // * Seleciona o título, permite edição, foca nele, e seleciona todo o texto
         let cardTitle = $(this).closest('.card-container').find('.card-header span:first-child');
         cardTitle.attr('contenteditable', 'true');
@@ -136,18 +161,18 @@ function resetaCard(element) {
         let cardId = $(this).closest('.card-container').attr('id');
         let cardNumber = parseInt(cardId.split('-')[1]);
         todasListas[cardNumber].linhas = [];
-        localStorage.setItem("Listas", JSON.stringify(todasListas));
+        localStorage.setItem(ListaTipo, JSON.stringify(todasListas));
     });
 }
 // * Botão que apaga o card
 function removeCard(element) {
-    element.find('.removeCard').click( function () {
+    element.find('.removeCard').click(function () {
         let cardId = $(this).closest('.card-container').attr('id');
         let cardNumber = parseInt(cardId.split('-')[1]);
         $(this).closest('.card-container').remove();
         todasListas[cardNumber] = null;
-        localStorage.setItem("Listas", JSON.stringify(todasListas));
-        vetor[cardNumber] = true;
+        localStorage.setItem(ListaTipo, JSON.stringify(todasListas));
+        matriz[position][cardNumber] = true;
     });
 }
 // * Cursor no final de cada linha
@@ -178,7 +203,7 @@ function atualizaTitulo(element) {
         let cardId = element.closest('.card-container').attr('id');
         let cardNumber = parseInt(cardId.split('-')[1]);
         todasListas[cardNumber].titulo = novoNome;
-        localStorage.setItem("Listas", JSON.stringify(todasListas));
+        localStorage.setItem(ListaTipo, JSON.stringify(todasListas));
         ////console.log('Título salvo no card de ID ' + cardNumber + ' como: ' + novoNome);
     }
 }
@@ -193,7 +218,7 @@ function atualizaConteudo(element) {
     if (cardId != null) {
         let cardNumber = parseInt(cardId.split('-')[1]);
         todasListas[cardNumber].linhas = novoConteudo;
-        localStorage.setItem("Listas", JSON.stringify(todasListas));
+        localStorage.setItem(ListaTipo, JSON.stringify(todasListas));
         console.log('Conteúdo salvo no card de ID ' + cardNumber + ' como: ' + novoConteudo);
     }
 }
@@ -239,7 +264,7 @@ function customDrag(elemento) {
             let cardId = $(this).closest('.card-container').attr('id');
             let cardNumber = parseInt(cardId.split('-')[1]);
             todasListas[cardNumber].coordenadas = [$(this).offset().left - 48, $(this).offset().top];
-            localStorage.setItem("Listas", JSON.stringify(todasListas));
+            localStorage.setItem(ListaTipo, JSON.stringify(todasListas));
             console.log('Coordenadas salvas no card de ID ' + cardNumber + ' como: ' + todasListas[cardNumber].coordenadas);
         }
     });
@@ -328,12 +353,12 @@ function criaConteudo(lista, gapping) {
     // Caso lista.coordenadas estiver vazio
     let conteudoStyle = '';
     if (lista.coordenadas == null) {
-        conteudoStyle = 'top: ' + (gapping + 1) + '0%;'; 
+        conteudoStyle = 'top: ' + (gapping + 1) + '0%;';
     } else {
         conteudoStyle = 'top: ' + lista.coordenadas[1] + 'px; left: ' + lista.coordenadas[0] + 'px;';
     }
     return '<div id="card-' + lista._id + '" class="card-container ms-5" style="' +
-        conteudoStyle + '">' + 
+        conteudoStyle + '">' +
         '<div class="cardConvidado draggable card col-3 shadow border-0 rounded-3 overflow-x-hidden">' +
         '<div class="card-header fs-4 fw-bolder text-nowrap d-flex justify-content-between align-items-center">' +
         '<span class="mt-3 mb-1 lh-1 pt-2 fs-md-1">' +
