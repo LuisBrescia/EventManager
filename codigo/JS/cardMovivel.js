@@ -15,6 +15,7 @@ const TAM = 6;      // * Quantidade de cards que será possível adicionar
 
 var vetor = Array(TAM).fill(true); // * True = Disponível, False = Ocupado
 var matriz = Array(3).fill(Array(TAM).fill(true));
+console.log(matriz);
 var ListaTipo = "ListaParticipantes";
 var position = 0;
 var todasListas = [];
@@ -24,6 +25,8 @@ function carregaCards() {
     // * Limpa todos os cards
     $('.card').parent().remove();
     todasListas = JSON.parse(localStorage.getItem(ListaTipo)); // * Pega todas as listas salvas no localStorage
+    console.log(ListaTipo);
+    console.log(matriz);
     if (todasListas) { // ? Caso não exista nada no localStorage, todasListas será null e não entrará no if
         let cont = 0; // * Contador para definir a posição dos cards
         for (let i = 0; i < TAM; i++) {
@@ -43,7 +46,7 @@ function carregaCards() {
                 removeCard(carregaCard);
                 $('section').append(carregaCard); // * Adiciona o card na página
                 matriz[position][i] = false; // * Posição ocupada
-            } else { matriz[position][i] = true; } // * Posição disponível
+            } else { matriz[position][i] = true; console.log("entrou") } // * Posição disponível
         }
     } else { todasListas = []; }
 }
@@ -92,7 +95,7 @@ $(document).ready(() => {
             $('#tipoLista').find('span').text('Insumos');
             $('#tipoLista').css('background-color', '#f00');
             ListaTipo = "ListaInsumos";
-            position = 0;
+            position = 1;
             carregaCards();
         }
         else if ($('#tipoLista').find('i').hasClass('bi-bucket')) {
@@ -100,7 +103,7 @@ $(document).ready(() => {
             $('#tipoLista').find('span').text('Serviços');
             $('#tipoLista').css('background-color', '#0a0');
             ListaTipo = "ListaServicos";
-            position = 1;
+            position = 2;
             carregaCards();
         }
         else if ($('#tipoLista').find('i').hasClass('bi-briefcase')) {
@@ -108,7 +111,7 @@ $(document).ready(() => {
             $('#tipoLista').find('span').text('Participantes');
             $('#tipoLista').css('background-color', '#e90');
             ListaTipo = "ListaParticipantes";
-            position = 2;
+            position = 0;
             carregaCards();
         }
     });
