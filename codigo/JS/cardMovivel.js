@@ -16,9 +16,56 @@ const TAM = 6;      // * Quantidade de cards que será possível adicionar
 var vetor = Array(TAM).fill(true); // * True = Disponível, False = Ocupado
 var matriz = Array(3).fill(Array(TAM).fill(true));
 console.log(matriz);
-var ListaTipo = "ListaParticipantes";
-var position = 0;
+// * Pegará do local Storage para deixar salvo quando a página recarregar
+var ListaTipo = localStorage.getItem("ultimaLista");
+if (ListaTipo == null) {
+    ListaTipo = "ListaParticipantes";
+}
+var position = parseInt(localStorage.getItem("ultimaListaPosicao"));
+if (position == null) {
+    position = 0;
+}
 var todasListas = [];
+
+if (ListaTipo === "ListaParticipantes") {
+    $('#tipoLista').find('i').removeClass('bi-cash-stack bi-briefcase');
+    $('#tipoLista').find('i').addClass('bi-people');
+    $('#tipoLista').find('span').text('Participantes');
+    $('.trocaTipo').css('color', '#0ff');
+    $('.listaParticipantes').addClass('active');
+    $('.listaInsumos, .listaServicos').removeClass('active');
+    ListaTipo = "ListaParticipantes";
+    localStorage.setItem("ultimaLista", ListaTipo);
+    position = 0;
+    localStorage.setItem("ultimaListaPosicao", position);
+    carregaCards();
+}
+if (ListaTipo === "ListaInsumos") {
+    $('#tipoLista').find('i').removeClass('bi-people bi-briefcase');
+    $('#tipoLista').find('i').addClass('bi-cash-stack');
+    $('#tipoLista').find('span').text('Insumos');
+    $('.trocaTipo').css('color', '#fd6cfd');
+    $('.listaInsumos').addClass('active');
+    $('.listaParticipantes, .listaServicos').removeClass('active');
+    ListaTipo = "ListaInsumos";
+    localStorage.setItem("ultimaLista", ListaTipo);
+    position = 1;
+    localStorage.setItem("ultimaListaPosicao", position);
+    carregaCards();
+}
+if (ListaTipo === "ListaServicos") {
+    $('#tipoLista').find('i').removeClass('bi-people bi-cash-stack');
+    $('#tipoLista').find('i').addClass('bi-briefcase');
+    $('#tipoLista').find('span').text('Serviços');
+    $('.trocaTipo').css('color', '#ff0');
+    $('.listaServicos').addClass('active');
+    $('.listaParticipantes, .listaInsumos').removeClass('active');
+    ListaTipo = "ListaServicos";
+    localStorage.setItem("ultimaLista", ListaTipo);
+    position = 2;
+    localStorage.setItem("ultimaListaPosicao", position);
+    carregaCards();
+}
 
 // * Carrega os cards salvos no localStorage quando a página é carregada
 function carregaCards() {
@@ -96,7 +143,9 @@ $(document).ready(() => {
             $('.listaInsumos').addClass('active');
             $('.listaParticipantes, .listaServicos').removeClass('active');
             ListaTipo = "ListaInsumos";
+            localStorage.setItem("ultimaLista", ListaTipo);
             position = 1;
+            localStorage.setItem("ultimaListaPosicao", position);
             carregaCards();
         }
         else if ($('#tipoLista').find('i').hasClass('bi-cash-stack')) {
@@ -106,7 +155,9 @@ $(document).ready(() => {
             $('.listaServicos').addClass('active');
             $('.listaParticipantes, .listaInsumos').removeClass('active');
             ListaTipo = "ListaServicos";
+            localStorage.setItem("ultimaLista", ListaTipo);
             position = 2;
+            localStorage.setItem("ultimaListaPosicao", position);
             carregaCards();
         }
         else if ($('#tipoLista').find('i').hasClass('bi-briefcase')) {
@@ -116,7 +167,9 @@ $(document).ready(() => {
             $('.listaParticipantes').addClass('active');
             $('.listaInsumos, .listaServicos').removeClass('active');
             ListaTipo = "ListaParticipantes";
+            localStorage.setItem("ultimaLista", ListaTipo);
             position = 0;
+            localStorage.setItem("ultimaListaPosicao", position);
             carregaCards();
         }
     });
@@ -128,7 +181,9 @@ $(document).ready(() => {
             $('.listaParticipantes').addClass('active');
             $('.listaInsumos, .listaServicos').removeClass('active');
             ListaTipo = "ListaParticipantes";
+            localStorage.setItem("ultimaLista", ListaTipo);
             position = 0;
+            localStorage.setItem("ultimaListaPosicao", position);
             carregaCards();
     });
     $('.listaInsumos').click(() => {
@@ -139,7 +194,9 @@ $(document).ready(() => {
             $('.listaInsumos').addClass('active');
             $('.listaParticipantes, .listaServicos').removeClass('active');
             ListaTipo = "ListaInsumos";
+            localStorage.setItem("ultimaLista", ListaTipo);
             position = 1;
+            localStorage.setItem("ultimaListaPosicao", position);
             carregaCards();
     });
     $('.listaServicos').click(() => {
@@ -150,7 +207,9 @@ $(document).ready(() => {
             $('.listaServicos').addClass('active');
             $('.listaParticipantes, .listaInsumos').removeClass('active');
             ListaTipo = "ListaServicos";
+            localStorage.setItem("ultimaLista", ListaTipo);
             position = 2;
+            localStorage.setItem("ultimaListaPosicao", position);
             carregaCards();
     });
 });
