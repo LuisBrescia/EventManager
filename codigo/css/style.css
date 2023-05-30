@@ -1,14 +1,13 @@
 @import url("https://fonts.googleapis.com/css?family=Quicksand|Kodchasan|Sniglet|Ubuntu");
 
-.trocaTipo {
-  animation: hue-rotate-animation 2s infinite ease-in-out;
-}
+
 /** Configurações gerais da página*/
 
 .blur { filter: blur(2px); transition: filter 1s; }
-/* :: -webkit-scrollbar { width: 0; } */
+::-webkit-scrollbar { width: 0; }
 :focus { outline: none; }
 :root {
+  --neon : currentColor;
   /* Azul */
   --primaria-n1:#00eeff;
   --gradiente:  #0088ff;
@@ -73,7 +72,6 @@ main h1 {
 }
 
 /*! Items da página */
-
 /** Botões superiores */
 .funcionalidades { z-index: 100; }
 .funcionalidades button {
@@ -86,7 +84,41 @@ main h1 {
   font-size: 1.2rem;
   transition: all 0.3s;
 }
-
+.trocaTipo {
+  color: var(--primaria-n1);
+  text-shadow:
+    0 0 7px currentColor,
+    0 0 10px currentColor,
+    0 0 21px currentColor,
+    0 0 42px currentColor,
+    0 0 82px currentColor,
+    0 0 92px currentColor,
+    0 0 102px currentColor,
+    0 0 151px currentColor;
+}
+/** Botões para escolher listas */
+.escolheLista button {
+  background: #fff;
+  color: var(--escuro);
+  padding: 0.75rem 1.25rem;
+  transition: transform 0.3s, filter 0.3s;
+}
+.escolheLista button:hover {
+  background: var(--primaria);
+  filter: drop-shadow(1px 1px 4px #fff);
+  transform: translateX(-20px);
+  transition: transform 0.3s;
+}
+.escolheLista button:focus:hover {
+  background: var(--primaria-1);
+}
+.escolheLista button.active {
+  background: var(--primaria-2);
+  transform: translateX(-20px);
+}
+.escolheLista button.active:hover {
+  background: var(--primaria-3);
+}
 /** Cards */
 /*? Usado nas listas */
 .cardConvidado {
@@ -115,12 +147,12 @@ main h1 {
   font-size: 18px;
   transition: all 0.3s;
 }
-.cardConvidado .card-header, .card-header {
+.card-header {
   background: #FFF;
   border-image: linear-gradient(to right, var(--primaria), var(--primaria-n1));
   border-image-slice: 100% 25% 0 25%;
   border-image-width: 2px;
-  color: #212529;
+  color: var(--escuro);
   font-size: 1.2rem;
   font-weight: 500;
   padding: 0.75rem 1.25rem;
@@ -252,13 +284,18 @@ main h1 {
 
 /** Keyframes */
 @keyframes hue-rotate-animation {
-  0% {filter: hue-rotate(0deg) blur(0) brightness(1);}
-  50% {filter: hue-rotate(180deg) blur(1px) brightness(2);}
-  100% {filter: hue-rotate(360deg) blur(0) brightness(1);}
+  0% {filter: hue-rotate(0deg) drop-shadow(1px 1px 10px #ffe) blur(0) brightness(1);}
+  50% {filter: hue-rotate(180deg) drop-shadow(1px 1px 10px #ffe) blur(0.8px) brightness(1.8);}
+  100% {filter: hue-rotate(360deg) drop-shadow(1px 1px 10px #ffe) blur(0) brightness(1);}
 }
 @keyframes apenasCor {
   0% {filter: hue-rotate(0deg);}
   100% {filter: hue-rotate(360deg);}
+}
+@keyframes listas {
+  0% {filter: drop-shadow(1px 1px 4px #0044ff);}
+  50% {filter: drop-shadow(1px 1px 4px #0044ff);}
+  100% {filter: drop-shadow(1px 1px 4px #0044ff);}
 }
 
 /*! Não lembro para o que serve */

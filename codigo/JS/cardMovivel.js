@@ -90,17 +90,21 @@ $(document).ready(() => {
     // * No momento #salvaCard está sendo utilizado para esconder o menu lateral
     $('#tipoLista').click(() => {
         if ($('#tipoLista').find('i').hasClass('bi-people')) {
-            $('#tipoLista').find('i').toggleClass('bi-people bi-bucket');
+            $('#tipoLista').find('i').toggleClass('bi-people bi-cash-stack');
             $('#tipoLista').find('span').text('Insumos');
-            $('#tipoLista').css('background', 'linear-gradient(to right, #0044ff, #00eeff)');
+            $('.trocaTipo').css('color', '#fd6cfd');
+            $('.listaInsumos').addClass('active');
+            $('.listaParticipantes, .listaServicos').removeClass('active');
             ListaTipo = "ListaInsumos";
             position = 1;
             carregaCards();
         }
-        else if ($('#tipoLista').find('i').hasClass('bi-bucket')) {
-            $('#tipoLista').find('i').toggleClass('bi-bucket bi-briefcase');
+        else if ($('#tipoLista').find('i').hasClass('bi-cash-stack')) {
+            $('#tipoLista').find('i').toggleClass('bi-cash-stack bi-briefcase');
             $('#tipoLista').find('span').text('Serviços');
-            $('#tipoLista').css('background', 'linear-gradient(to right, #0044ff, #00eeff)');
+            $('.trocaTipo').css('color', '#ff0');
+            $('.listaServicos').addClass('active');
+            $('.listaParticipantes, .listaInsumos').removeClass('active');
             ListaTipo = "ListaServicos";
             position = 2;
             carregaCards();
@@ -108,14 +112,48 @@ $(document).ready(() => {
         else if ($('#tipoLista').find('i').hasClass('bi-briefcase')) {
             $('#tipoLista').find('i').toggleClass('bi-briefcase bi-people');
             $('#tipoLista').find('span').text('Participantes');
-            $('#tipoLista').css('background', 'linear-gradient(to right, #0044ff, #00eeff)');
+            $('.trocaTipo').css('color', '#0ff');
+            $('.listaParticipantes').addClass('active');
+            $('.listaInsumos, .listaServicos').removeClass('active');
             ListaTipo = "ListaParticipantes";
             position = 0;
             carregaCards();
         }
     });
+    $('.listaParticipantes').click(() => {
+            $('#tipoLista').find('i').removeClass('bi-cash-stack bi-briefcase');
+            $('#tipoLista').find('i').addClass('bi-people');
+            $('#tipoLista').find('span').text('Participantes');
+            $('.trocaTipo').css('color', '#0ff');
+            $('.listaParticipantes').addClass('active');
+            $('.listaInsumos, .listaServicos').removeClass('active');
+            ListaTipo = "ListaParticipantes";
+            position = 0;
+            carregaCards();
+    });
+    $('.listaInsumos').click(() => {
+            $('#tipoLista').find('i').removeClass('bi-people bi-briefcase');
+            $('#tipoLista').find('i').addClass('bi-cash-stack');
+            $('#tipoLista').find('span').text('Insumos');
+            $('.trocaTipo').css('color', '#fd6cfd');
+            $('.listaInsumos').addClass('active');
+            $('.listaParticipantes, .listaServicos').removeClass('active');
+            ListaTipo = "ListaInsumos";
+            position = 1;
+            carregaCards();
+    });
+    $('.listaServicos').click(() => {
+            $('#tipoLista').find('i').removeClass('bi-people bi-cash-stack');
+            $('#tipoLista').find('i').addClass('bi-briefcase');
+            $('#tipoLista').find('span').text('Serviços');
+            $('.trocaTipo').css('color', '#ff0');
+            $('.listaServicos').addClass('active');
+            $('.listaParticipantes, .listaInsumos').removeClass('active');
+            ListaTipo = "ListaServicos";
+            position = 2;
+            carregaCards();
+    });
 });
-$('#tipoLista').css('background', 'linear-gradient(to right, #0044ff, #00eeff)');
 // * Botão que edita o título do card
 function nomeiaCard(element) {
     element.find('.nomeiaCard').click(function () {
@@ -360,7 +398,7 @@ function criaConteudo(lista, gapping) {
         conteudoStyle = 'top: ' + lista.coordenadas[1] + 'px; left: ' + lista.coordenadas[0] + 'px;';
     }
     return '<div id="card-' + lista._id + '" class="card-container ms-5" style="' +
-        conteudoStyle + '">' +
+        conteudoStyle + 'z-index: 0;">' +
         '<div class="cardConvidado draggable card col-3 shadow border-0 rounded-3 overflow-x-hidden">' +
         '<div class="card-header fs-4 fw-bolder text-nowrap d-flex justify-content-between align-items-center">' +
         '<span class="mt-3 mb-1 lh-1 pt-2 fs-md-1">' +

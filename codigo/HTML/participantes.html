@@ -170,9 +170,9 @@
           <span class="d-none d-md-inline ms-2">Adicionar</span>
         </button>
         <!-- > Sempre que esse for clicado seu ícone mudará-->
-        <button type="button" id="tipoLista" class="trocaTipo border-0 col-4 funcionalidade btn btn-dark rounded-0 fw-light">
-          <i class="bi-people"></i>
-          <span class="d-none d-md-inline ms-2">Tipo da lista</span>
+        <button type="button" id="tipoLista" class=" border-0 col-4 funcionalidade btn btn-dark rounded-0 bolder">
+          <i class="bi-people trocaTipo"></i>
+          <span class="d-none d-md-inline ms-2 trocaTipo">Participantes</span>
         </button>
 
         <button type="button" id="removeCard" class="border-0 col-4 funcionalidade btn btn-dark rounded-0 fw-light">
@@ -201,6 +201,20 @@
       <section class="col position-static">
         <!-- * Cards estãrao aqui -->
       </section>
+      <div class="d-flex flex-column gap-3 position-fixed escolheLista" style="bottom: 1em; right: 1em;">
+        <button class="btn btn-primary bg-gradient rounded-5 shadow-sm border-0 listaParticipantes active">
+          <i class="bi-people d-inline-block"></i>
+          <span class="ms-2">Participantes</span>
+        </button>
+        <button class="btn btn-primary bg-gradient rounded-5 shadow-sm border-0 listaInsumos">
+          <i class="bi-cash d-inline-block"></i>
+          <span class="ms-2">Insumos</span>
+        </button>
+      <button class="btn btn-primary bg-gradient rounded-5 shadow-sm border-0 listaServicos">
+        <i class="bi-briefcase d-inline-block"></i>
+        <span class="ms-2">Serviços</span>
+      </button>
+    </div>
       <!-- <footer class="position-fixed bottom-0 text-center">
         © Event Manager 2023
       </footer> -->
