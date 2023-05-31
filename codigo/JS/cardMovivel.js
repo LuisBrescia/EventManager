@@ -25,8 +25,7 @@ var position = 0;
 var todasListas = [];
 
 if (ListaTipo === "ListaParticipantes") {
-    $('#tipoLista').find('i').removeClass('bi-cash-stack bi-briefcase');
-    $('#tipoLista').find('i').addClass('bi-people');
+    $('#tipoLista').find('i').removeClass('bi-cash-stack bi-briefcase').addClass('bi-people');
     $('#tipoLista').find('span').text('Participantes');
     $('.trocaTipo').css('color', '#0ff');
     $('.listaParticipantes').addClass('active');
@@ -35,8 +34,7 @@ if (ListaTipo === "ListaParticipantes") {
     carregaCards();
 }
 if (ListaTipo === "ListaInsumos") {
-    $('#tipoLista').find('i').removeClass('bi-people bi-briefcase');
-    $('#tipoLista').find('i').addClass('bi-cash-stack');
+    $('#tipoLista').find('i').removeClass('bi-people bi-briefcase').addClass('bi-cash-stack');
     $('#tipoLista').find('span').text('Insumos');
     $('.trocaTipo').css('color', '#fd6cfd');
     $('.listaInsumos').addClass('active');
@@ -45,8 +43,7 @@ if (ListaTipo === "ListaInsumos") {
     carregaCards();
 }
 if (ListaTipo === "ListaServicos") {
-    $('#tipoLista').find('i').removeClass('bi-people bi-cash-stack');
-    $('#tipoLista').find('i').addClass('bi-briefcase');
+    $('#tipoLista').find('i').removeClass('bi-people bi-cash-stack').addClass('bi-briefcase');
     $('#tipoLista').find('span').text('Serviços');
     $('.trocaTipo').css('color', '#ff0');
     $('.listaServicos').addClass('active');
@@ -71,7 +68,7 @@ function carregaCards() {
                 // * Cria um objeto do tipo Lista com as informações do objeto salvo no localStorage
                 let lista = new Lista(todasListas[i]._id, todasListas[i].titulo, todasListas[i].linhas, todasListas[i].coordenadas);
                 // * Cria o card com as informações do objeto
-                let carregaCard = $(criaConteudo(lista, cont++));
+                let carregaCard = criaConteudo(lista, cont++);
 
                 // ? É como se estivessemos adicionando funcionalidades que um card é capaz de fazer
                 customDrag(carregaCard);
@@ -104,7 +101,7 @@ $(document).ready(() => {
         // * Realizar testes para checar se foi corrigido
         // ! Talvez cards se tornem impossíveis de serem arrastados	
         var lista = new Lista(matriz[position].indexOf(true), 'Lista ' + (matriz[position].indexOf(true) + 1), " ", null);
-        var newCard = $(criaConteudo(lista, matriz[position].indexOf(true)));
+        var newCard = criaConteudo(lista, matriz[position].indexOf(true));
         customDrag(newCard);
         editaCard(newCard);
         nomeiaCard(newCard);
@@ -128,8 +125,8 @@ $(document).ready(() => {
             $('#tipoLista').find('i').toggleClass('bi-people bi-cash-stack');
             $('#tipoLista').find('span').text('Insumos');
             $('.trocaTipo').css('color', '#fd6cfd');
+            $('.escolheLista button').removeClass('active');
             $('.listaInsumos').addClass('active');
-            $('.listaParticipantes, .listaServicos').removeClass('active');
             ListaTipo = "ListaInsumos";
             localStorage.setItem("ultimaLista", ListaTipo);
             position = 1;
@@ -162,8 +159,7 @@ $(document).ready(() => {
         }
     });
     $('.listaParticipantes').click(() => {
-            $('#tipoLista').find('i').removeClass('bi-cash-stack bi-briefcase');
-            $('#tipoLista').find('i').addClass('bi-people');
+            $('#tipoLista').find('i').removeClass('bi-cash-stack bi-briefcase').addClass('bi-people');
             $('#tipoLista').find('span').text('Participantes');
             $('.trocaTipo').css('color', '#0ff');
             $('.listaParticipantes').addClass('active');
@@ -175,8 +171,7 @@ $(document).ready(() => {
             carregaCards();
     });
     $('.listaInsumos').click(() => {
-            $('#tipoLista').find('i').removeClass('bi-people bi-briefcase');
-            $('#tipoLista').find('i').addClass('bi-cash-stack');
+            $('#tipoLista').find('i').removeClass('bi-people bi-briefcase').addClass('bi-cash-stack');
             $('#tipoLista').find('span').text('Insumos');
             $('.trocaTipo').css('color', '#fd6cfd');
             $('.listaInsumos').addClass('active');
@@ -188,8 +183,7 @@ $(document).ready(() => {
             carregaCards();
     });
     $('.listaServicos').click(() => {
-            $('#tipoLista').find('i').removeClass('bi-people bi-cash-stack');
-            $('#tipoLista').find('i').addClass('bi-briefcase');
+            $('#tipoLista').find('i').removeClass('bi-people bi-cash-stack').addClass('bi-briefcase');
             $('#tipoLista').find('span').text('Serviços');
             $('.trocaTipo').css('color', '#ff0');
             $('.listaServicos').addClass('active');
@@ -444,7 +438,7 @@ function criaConteudo(lista, gapping) {
     } else {
         conteudoStyle = 'top: ' + lista.coordenadas[1] + 'px; left: ' + lista.coordenadas[0] + 'px;';
     }
-    return '<div id="card-' + lista._id + '" class="card-container ms-5" style="' +
+    return $('<div id="card-' + lista._id + '" class="card-container ms-5" style="' +
         conteudoStyle + 'z-index: 0;">' +
         '<div class="cardConvidado draggable card col-3 shadow border-0 rounded-3 overflow-x-hidden">' +
         '<div class="card-header fs-4 fw-bolder text-nowrap d-flex justify-content-between align-items-center">' +
@@ -463,7 +457,7 @@ function criaConteudo(lista, gapping) {
         '</ul>' +
         '</div>' +
         '</div>' +
-        '</div>';
+        '</div>');
     /*
     > Será feito algo como:
     > if lista.coordenadas == null, então seguirá o procedimento de gapping padrão
@@ -472,9 +466,7 @@ function criaConteudo(lista, gapping) {
     : um console log com as coordenadas dele, após isso, testarei como salvar no localStorage, e como carregar
     : concluindo, as coordenadas estarão feitas 
     ! Problema que não faço ideia como resolver:
-    ! Quando um card é carregado, sua posição é sempre 0, ou seja, as coordenadas salvas são em relação ao card 
-    ! que está sendo carregado, e não em relação ao canvas
-    ! ou seja, só consigo manter o card na mesma posição caso ele tenha sido carregado no extremo topo esquerdo da página
+    ! Quando uma página é redimensionada cards não são movidos para posições fora da tela
     * Possível solução: Mudar a forma de salvas as coordenadas, ao invés de salvar as coordenadas do card, 
     * salvar as coordenadas do card em relação ao canvas
     */

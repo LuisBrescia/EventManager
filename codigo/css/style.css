@@ -76,13 +76,13 @@ main h1 {
 .funcionalidades { z-index: 100; }
 .funcionalidades button {
   font-size: initial;
-  transition: all 0.3s;
+  transition: all 0.2s;
   background-color: #0f0f0f;
 }
 .funcionalidades button:hover {
   background-color: #212529;
   font-size: 1.2rem;
-  transition: all 0.3s;
+  transition: all 0.2s;
 }
 .trocaTipo {
   color: var(--primaria-n1);

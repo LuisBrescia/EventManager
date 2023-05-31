@@ -321,7 +321,7 @@ Dentre as preocupações para a montagem da interface do sistema, estamos estabe
 >
 > **Links Úteis**:
 > - [Tutorial GitHub](https://guides.github.com/activities/hello-world/)
-> - [Git e Github](https://www.youtube.com/playlist?list=PLHz_AreHm4dm7ZULPAmadvNhH6vk9oNZA)
+> - [Git e Github](https://www.youtube.com/Valores.html?list=PLHz_AreHm4dm7ZULPAmadvNhH6vk9oNZA)
 > - [5 Git Workflows & Branching Strategy to deliver better code](https://zepel.io/blog/5-git-workflows-to-improve-development/)
 >
 > **Exemplo - GitHub Feature Branch Workflow**:
