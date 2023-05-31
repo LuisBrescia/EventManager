@@ -21,10 +21,7 @@ var ListaTipo = localStorage.getItem("ultimaLista");
 if (ListaTipo == null) {
     ListaTipo = "ListaParticipantes";
 }
-var position = parseInt(localStorage.getItem("ultimaListaPosicao"));
-if (position == null) {
-    position = 0;
-}
+var position = 0;
 var todasListas = [];
 
 if (ListaTipo === "ListaParticipantes") {
@@ -34,10 +31,7 @@ if (ListaTipo === "ListaParticipantes") {
     $('.trocaTipo').css('color', '#0ff');
     $('.listaParticipantes').addClass('active');
     $('.listaInsumos, .listaServicos').removeClass('active');
-    ListaTipo = "ListaParticipantes";
-    localStorage.setItem("ultimaLista", ListaTipo);
     position = 0;
-    localStorage.setItem("ultimaListaPosicao", position);
     carregaCards();
 }
 if (ListaTipo === "ListaInsumos") {
@@ -47,10 +41,7 @@ if (ListaTipo === "ListaInsumos") {
     $('.trocaTipo').css('color', '#fd6cfd');
     $('.listaInsumos').addClass('active');
     $('.listaParticipantes, .listaServicos').removeClass('active');
-    ListaTipo = "ListaInsumos";
-    localStorage.setItem("ultimaLista", ListaTipo);
     position = 1;
-    localStorage.setItem("ultimaListaPosicao", position);
     carregaCards();
 }
 if (ListaTipo === "ListaServicos") {
@@ -60,10 +51,7 @@ if (ListaTipo === "ListaServicos") {
     $('.trocaTipo').css('color', '#ff0');
     $('.listaServicos').addClass('active');
     $('.listaParticipantes, .listaInsumos').removeClass('active');
-    ListaTipo = "ListaServicos";
-    localStorage.setItem("ultimaLista", ListaTipo);
     position = 2;
-    localStorage.setItem("ultimaListaPosicao", position);
     carregaCards();
 }
 
