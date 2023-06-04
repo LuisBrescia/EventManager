@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Quicksand|Kodchasan|Sniglet|Ubuntu");
+@import url("https://fonts.googleapis.com/css?family=Quicksand|Quicksand:wght@700&display=swap");
 
 
 /** Configurações gerais da página*/
@@ -97,15 +97,38 @@ main h1 {
     0 0 151px currentColor;
 }
 /** Cards-Estáticos */
+.card-resultado small {
+  font-family: 'Quicksand bold 700', sans-serif; 
+  color: var(--escuro);
+  font-weight: 900;
+  font-size: small;
+  text-transform: uppercase;
+}
+.card-resultado span {
+  font-family: 'Quicksand bold 700', sans-serif; 
+  color: var(--escuro);
+  font-weight: 100;
+}
 .valores-header {
   background: #FFF;
-  border-image: linear-gradient(to bottom, var(--primaria-n1), var(--primaria));
+  border-image: linear-gradient(to bottom, var(--gradiente), var(--gradiente));
   border-image-slice: 100% 25% 0 25%;
   border-image-width: 2px;
   color: var(--escuro);
   font-size: 1.2rem;
   font-weight: 500;
-  padding: 0.75rem 1.25rem;
+  padding: 0.5rem;
+}
+.pizza-header {
+  background: var(--primaria);
+  padding: 0.5rem;
+  color: #fff;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+.pizza-header h6 {
+  font-size: 1.2rem;
+  font-weight: 100;
 }
 .header-azul {
   border-image: linear-gradient(to bottom, var(--primaria-n1), var(--primaria));
@@ -116,6 +139,21 @@ main h1 {
   border-image: linear-gradient(to bottom, var(--primaria-n1),#00ff00);
   border-image-slice: 100% 25% 0 25%;
   border-image-width: 2px;
+}
+#exportarDados {
+  background-color: var(--primaria);
+  padding: 0.75rem 1.25rem;
+  transition: all 0.3s;
+  border: none;
+}
+#exportarDados:hover {
+  background: var(--primaria-2);
+  filter: drop-shadow(1px 1px 4px #fff);
+  transform: scale(1.1);
+  transition: all 0.3s;
+}
+.graficoPizza {
+  flex-grow: 1;
 }
 /** Botões para escolher listas */
 .escolheLista button {

@@ -156,25 +156,26 @@
 
     <!-- ? Página -->
     <main class="col d-flex bg-gradient align-items-stretch p-3">
-      <div class="container-fluid mx-auto my-3">
+      <div class="container-fluid">
         <div class="d-flex justify-content-between align-items-center mb-4">
-          <h3 class="text-dark mb-0 fw-bolder">Valores</h3><a class="btn btn-primary btn-sm d-inline-block"
-            role="button" href="#"><i class="bi-download"></i>&nbsp;Generate Report</a>
+          <h3 class="mb-0 fw-bolder">Valores</h3><a id="exportarDados"
+            class="btn btn-primary rounded-5 fw-bolder bg-gradient shadow-sm py-2 px-3 fs-5 d-inline-block"
+            role="button" href="#"><i class="bi-download"></i>&nbsp;Exportar Dados</a>
         </div>
-        <!-- ! Seção informativa -->
+        <!-- > Seção informativa -->
         <div class="row align-items-stretch">
           <!-- * Custo Total -->
-          <div class="col-md-6 col-xl-3 mb-3">
+          <div class="col-md-6 col-xl-3 mb-3 card-resultado">
             <div class="card shadow-sm border-0">
               <div class="valores-header rounded-1">
                 <div class="row align-items-center no-gutters">
                   <!-- ? Texto -->
                   <div class="col">
-                    <div class="fw-bold text-xs mb-1"><small>Custo</small></div>
+                    <div class="fw-bold text-xs"><small class="text-danger">Custo</small></div>
                     <div class="mb-0"><span>R$ 43.375,50</span></div>
                   </div>
                   <!-- ? Ícone -->
-                  <div class="col-auto fs-3">
+                  <div class="col-auto fs-3 bg-danger bg-gradient text-white py-2 px-3 rounded-5 me-2">
                     <i class="bi-cash-stack"></i>
                   </div>
                 </div>
@@ -182,32 +183,34 @@
             </div>
           </div>
           <!-- * Lucro ou Prejuízo-->
-          <div class="col-md-6 col-xl-3 mb-3">
+          <div class="col-md-6 col-xl-3 mb-3 card-resultado">
             <div class="card shadow-sm border-0">
-              <div class="valores-header header-verde rounded-1">
+              <div class="valores-header rounded-1">
                 <div class="row align-items-center no-gutters">
                   <!-- ? Texto -->
                   <div class="col">
-                    <div class="fw-bold text-xs mb-1"><small>Lucro</small></div>
+                    <div class="fw-bolder text-xs"><small class="text-success">Lucro</small></div>
                     <div class="mb-0"><span>R$ 18.600,00</span></div>
                   </div>
                   <!-- ? Ícone -->
-                  <div class="col-auto fs-3"><i class="bi-currency-dollar"></i></div>
+                  <div class="col-auto fs-3 bg-success bg-gradient text-white py-2 px-3 rounded-5 me-2"><i
+                      class="bi-currency-dollar"></i>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
           <!-- * Progresso -->
-          <div class="col-md-6 col-xl-3 mb-3">
+          <div class="col-md-6 col-xl-3 mb-3 card-resultado">
             <div class="card shadow-sm border-0">
               <div class="valores-header rounded-1">
                 <div class="row align-items-center no-gutters">
                   <div class="col">
                     <!-- ? Título -->
-                    <div class="fw-bold text-xs mb-1 text-nowrap">
-                      <small>Progresso</small>
+                    <div class="fw-bold text-xs text-nowrap">
+                      <small class="text-primary">Progresso</small>
                     </div>
-                   <!-- ? Barra de progresso -->
+                    <!-- ? Barra de progresso -->
                     <div class="row g-0 align-items-center">
                       <div class="col-auto">
                         <div class="mb-0 me-3"><span>38%</span></div>
@@ -221,75 +224,113 @@
                     </div>
                   </div>
                   <!-- ? Ícone -->
-                  <div class="col-auto fs-3"><i class="bi-card-checklist"></i></div>
+                  <div class="col-auto fs-3 bg-primary bg-gradient text-white py-2 px-3 rounded-5 me-2"><i
+                      class="bi-card-list"></i></div>
                 </div>
               </div>
             </div>
           </div>
           <!-- * Chamados Ativos -->
-          <div class="col-md-6 col-xl-3 mb-3">
+          <div class="col-md-6 col-xl-3 mb-3 card-resultado">
             <div class="card shadow-sm border-0">
               <div class="valores-header rounded-1">
                 <div class="row align-items-center no-gutters flex-nowrap">
                   <!-- ? Texto -->
                   <div class="col">
-                    <div class="fw-bold text-xs mb-1 text-nowrap"><small>Chamados ativos</small></div>
-                    <div class="mb-0"><span>4</span></div>
+                    <div class="fw-bolder text-xs text-nowrap">
+                      <small class="text-warning">Chamados ativos</small>
+                    </div>
+                    <div class="mb-0">
+                      <span class="fw-lighter text-white px-2 rounded-5" style="background-color: #0f0f0f;">
+                        4
+                      </span>
+                    </div>
                   </div>
                   <!-- ? Ícone -->
-                  <div class="col-auto fs-3"><i class="bi-chat-square-text"></i></div>
+                  <div class="col-auto fs-3 bg-warning bg-gradient text-white py-2 px-3 rounded-5 me-2"><i
+                      class="bi-chat-square-text"></i></div>
                 </div>
               </div>
             </div>
           </div>
         </div>
         <!-- ! Fim da seção informativa -->
+        <!-- > Gráficos pizza-->
         <div class="row">
-          <div class="col-lg-7 col-xl-8">
-            <div class="card shadow mb-4">
-              <div class="card-header d-flex justify-content-between align-items-center">
-                <h6 class="text-primary fw-bold m-0">Earnings Overview</h6>
-                <div class="dropdown no-arrow"><button class="btn btn-link btn-sm dropdown-toggle" aria-expanded="false"
-                    data-bs-toggle="dropdown" type="button"><i class="fas fa-ellipsis-v text-gray-400"></i></button>
-                  <div class="dropdown-menu shadow dropdown-menu-end animated--fade-in">
-                    <p class="text-center dropdown-header">dropdown header:</p><a class="dropdown-item"
-                      href="#">&nbsp;Action</a><a class="dropdown-item" href="#">&nbsp;Another action</a>
-                    <div class="dropdown-divider"></div><a class="dropdown-item" href="#">&nbsp;Something else here</a>
-                  </div>
-                </div>
+          <!-- * Participantes -->
+          <div class="graficoPizza col-lg-5 col-xl-4">
+            <div class="card shadow mb-4 border-0 rounded-1">
+              <div class="pizza-header bg-gradient d-flex justify-content-between align-items-center">
+                <h6 class="m-0">Participantes</h6>
               </div>
               <div class="card-body">
-                <div class="chart-area"><canvas
-                    data-bss-chart="{&quot;type&quot;:&quot;line&quot;,&quot;data&quot;:{&quot;labels&quot;:[&quot;Jan&quot;,&quot;Feb&quot;,&quot;Mar&quot;,&quot;Apr&quot;,&quot;May&quot;,&quot;Jun&quot;,&quot;Jul&quot;,&quot;Aug&quot;],&quot;datasets&quot;:[{&quot;label&quot;:&quot;Earnings&quot;,&quot;fill&quot;:true,&quot;data&quot;:[&quot;0&quot;,&quot;10000&quot;,&quot;5000&quot;,&quot;15000&quot;,&quot;10000&quot;,&quot;20000&quot;,&quot;15000&quot;,&quot;25000&quot;],&quot;backgroundColor&quot;:&quot;rgba(78, 115, 223, 0.05)&quot;,&quot;borderColor&quot;:&quot;rgba(78, 115, 223, 1)&quot;}]},&quot;options&quot;:{&quot;maintainAspectRatio&quot;:false,&quot;legend&quot;:{&quot;display&quot;:false,&quot;labels&quot;:{&quot;fontStyle&quot;:&quot;normal&quot;}},&quot;title&quot;:{&quot;fontStyle&quot;:&quot;normal&quot;},&quot;scales&quot;:{&quot;xAxes&quot;:[{&quot;gridLines&quot;:{&quot;color&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;zeroLineColor&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;drawBorder&quot;:false,&quot;drawTicks&quot;:false,&quot;borderDash&quot;:[&quot;2&quot;],&quot;zeroLineBorderDash&quot;:[&quot;2&quot;],&quot;drawOnChartArea&quot;:false},&quot;ticks&quot;:{&quot;fontColor&quot;:&quot;#858796&quot;,&quot;fontStyle&quot;:&quot;normal&quot;,&quot;padding&quot;:20}}],&quot;yAxes&quot;:[{&quot;gridLines&quot;:{&quot;color&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;zeroLineColor&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;drawBorder&quot;:false,&quot;drawTicks&quot;:false,&quot;borderDash&quot;:[&quot;2&quot;],&quot;zeroLineBorderDash&quot;:[&quot;2&quot;]},&quot;ticks&quot;:{&quot;fontColor&quot;:&quot;#858796&quot;,&quot;fontStyle&quot;:&quot;normal&quot;,&quot;padding&quot;:20}}]}}}"></canvas>
+                <div class="chart-area">
+                  <p class="position-absolute top-75">Aqui ficará uma relação de participantes em gráfico pizza.</p>
+                  <canvas 
+                    data-bss-chart="{&quot;type&quot;:&quot;doughnut&quot;,&quot;data&quot;:{&quot;labels&quot;:[&quot;Direct&quot;,&quot;Social&quot;,&quot;Referral&quot;],&quot;datasets&quot;:[{&quot;label&quot;:&quot;&quot;,&quot;backgroundColor&quot;:[&quot;#4e73df&quot;,&quot;#1cc88a&quot;,&quot;#36b9cc&quot;],&quot;borderColor&quot;:[&quot;#ffffff&quot;,&quot;#ffffff&quot;,&quot;#ffffff&quot;],&quot;data&quot;:[&quot;50&quot;,&quot;30&quot;,&quot;15&quot;]}]},&quot;options&quot;:{&quot;maintainAspectRatio&quot;:false,&quot;legend&quot;:{&quot;display&quot;:false,&quot;labels&quot;:{&quot;fontStyle&quot;:&quot;normal&quot;}},&quot;title&quot;:{&quot;fontStyle&quot;:&quot;normal&quot;}}}">
+                  </canvas>
+                </div>
+                <div class="text-center small mt-4"><span class="me-2">
+                    <i class="bi-circle-fill" style="color: #04f;"></i>&nbsp;Hombres</span><span class="me-2">
+                    <i class="bi-circle-fill" style="color: #f04;"></i>&nbsp;Mujeres</span><span class="me-2">
+                    <i class="bi-circle-fill" style="color: #0d0;"></i>&nbsp;Viado</span>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-lg-5 col-xl-4">
-            <div class="card shadow mb-4">
-              <div class="card-header d-flex justify-content-between align-items-center">
-                <h6 class="text-primary fw-bold m-0">Revenue Sources</h6>
-                <div class="dropdown no-arrow"><button class="btn btn-link btn-sm dropdown-toggle" aria-expanded="false"
+          <!-- * Insumos -->
+          <div class="graficoPizza col-lg-5 col-xl-4">
+            <div class="card shadow mb-4 border-0 rounded-1">
+              <div class="pizza-header d-flex justify-content-between align-items-center">
+                <h6 class="m-0">Insumos</h6>
+              </div>
+              <div class="card-body">
+                <div class="chart-area">
+                  <p class="position-absolute top-75">Cada insumo terá seu próprio gráfico, 
+                    onde exibirá quantidades de pessoas que podem ser atendidas para aquele item. <br> 
+                    EX: Tem chinelo para 30 pessoas ai olha na lista, 40 mulheres, 10 irão ficar sem chinelos.</p>
+                  <canvas
+                    data-bss-chart="{&quot;type&quot;:&quot;doughnut&quot;,&quot;data&quot;:{&quot;labels&quot;:[&quot;Direct&quot;,&quot;Social&quot;,&quot;Referral&quot;],&quot;datasets&quot;:[{&quot;label&quot;:&quot;&quot;,&quot;backgroundColor&quot;:[&quot;#4e73df&quot;,&quot;#1cc88a&quot;,&quot;#36b9cc&quot;],&quot;borderColor&quot;:[&quot;#ffffff&quot;,&quot;#ffffff&quot;,&quot;#ffffff&quot;],&quot;data&quot;:[&quot;50&quot;,&quot;30&quot;,&quot;15&quot;]}]},&quot;options&quot;:{&quot;maintainAspectRatio&quot;:false,&quot;legend&quot;:{&quot;display&quot;:false,&quot;labels&quot;:{&quot;fontStyle&quot;:&quot;normal&quot;}},&quot;title&quot;:{&quot;fontStyle&quot;:&quot;normal&quot;}}}">
+                  </canvas>
+                </div>
+                <div class="text-center small mt-4"><span class="me-2">
+                    <i class="bi-circle-fill" style="color: rgb(255, 102, 0);"></i>&nbsp;Comida</span><span class="me-2">
+                    <i class="bi-circle-fill" style="color: rgb(5, 255, 247);"></i>&nbsp;Bebida</span><span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- * Serviços -->
+          <div class="graficoPizza col-lg-5 col-xl-4">
+            <div class="card shadow mb-4 border-0 rounded-1">
+              <div class="pizza-header d-flex justify-content-between align-items-center">
+                <h6 class="m-0">Serviços</h6>
+                <!-- <div class="dropdown no-arrow"><button class="btn btn-link btn-sm dropdown-toggle" aria-expanded="false"
                     data-bs-toggle="dropdown" type="button"><i class="fas fa-ellipsis-v text-gray-400"></i></button>
                   <div class="dropdown-menu shadow dropdown-menu-end animated--fade-in">
                     <p class="text-center dropdown-header">dropdown header:</p><a class="dropdown-item"
                       href="#">&nbsp;Action</a><a class="dropdown-item" href="#">&nbsp;Another action</a>
                     <div class="dropdown-divider"></div><a class="dropdown-item" href="#">&nbsp;Something else here</a>
                   </div>
-                </div>
+                </div> -->
               </div>
               <div class="card-body">
-                <div class="chart-area"><canvas
-                    data-bss-chart="{&quot;type&quot;:&quot;doughnut&quot;,&quot;data&quot;:{&quot;labels&quot;:[&quot;Direct&quot;,&quot;Social&quot;,&quot;Referral&quot;],&quot;datasets&quot;:[{&quot;label&quot;:&quot;&quot;,&quot;backgroundColor&quot;:[&quot;#4e73df&quot;,&quot;#1cc88a&quot;,&quot;#36b9cc&quot;],&quot;borderColor&quot;:[&quot;#ffffff&quot;,&quot;#ffffff&quot;,&quot;#ffffff&quot;],&quot;data&quot;:[&quot;50&quot;,&quot;30&quot;,&quot;15&quot;]}]},&quot;options&quot;:{&quot;maintainAspectRatio&quot;:false,&quot;legend&quot;:{&quot;display&quot;:false,&quot;labels&quot;:{&quot;fontStyle&quot;:&quot;normal&quot;}},&quot;title&quot;:{&quot;fontStyle&quot;:&quot;normal&quot;}}}"></canvas>
+                <div class="chart-area">
+                  <p class="position-absolute top-75">Aqui ficará uma relação do preço de cada serviço.</p>
+                  <canvas
+                    data-bss-chart="{&quot;type&quot;:&quot;doughnut&quot;,&quot;data&quot;:{&quot;labels&quot;:[&quot;Direct&quot;,&quot;Social&quot;,&quot;Referral&quot;],&quot;datasets&quot;:[{&quot;label&quot;:&quot;&quot;,&quot;backgroundColor&quot;:[&quot;#4e73df&quot;,&quot;#1cc88a&quot;,&quot;#36b9cc&quot;],&quot;borderColor&quot;:[&quot;#ffffff&quot;,&quot;#ffffff&quot;,&quot;#ffffff&quot;],&quot;data&quot;:[&quot;50&quot;,&quot;30&quot;,&quot;15&quot;]}]},&quot;options&quot;:{&quot;maintainAspectRatio&quot;:false,&quot;legend&quot;:{&quot;display&quot;:false,&quot;labels&quot;:{&quot;fontStyle&quot;:&quot;normal&quot;}},&quot;title&quot;:{&quot;fontStyle&quot;:&quot;normal&quot;}}}">
+                  </canvas>
                 </div>
                 <div class="text-center small mt-4"><span class="me-2"><i
-                      class="fas fa-circle text-primary"></i>&nbsp;Direct</span><span class="me-2"><i
-                      class="fas fa-circle text-success"></i>&nbsp;Social</span><span class="me-2"><i
-                      class="fas fa-circle text-info"></i>&nbsp;Refferal</span></div>
+                      class="bi-circle-fill text-primary"></i>&nbsp;Direct</span><span class="me-2"><i
+                      class="bi-circle-fill text-success"></i>&nbsp;Social</span><span class="me-2"><i
+                      class="bi-circle-fill text-info"></i>&nbsp;Refferal</span></div>
               </div>
             </div>
           </div>
         </div>
+
+        <!-- > Outros -->
         <div class="row">
           <div class="col-lg-6 mb-4">
             <div class="card shadow mb-4">
