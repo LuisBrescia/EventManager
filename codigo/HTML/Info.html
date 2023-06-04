@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Event Manager</title>
-    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css"/>
-    <link rel="stylesheet" href="../CSS/style.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
-  </head>
 
-  <body>
-    <div class="d-flex">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Event Manager</title>
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="../CSS/style.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
+</head>
 
-      <!-- ? Ínicio da Barra Lateral -->
-      <!-- > Barra Lateral vai ser a mesma para todas as páginas -->
-      <!-- ! GAMBIARRA EM SEU ESTADO MAIS PURO-->
+<body>
+  <div class="d-flex">
+
+    <!-- ? Ínicio da Barra Lateral -->
+    <!-- > Barra Lateral vai ser a mesma para todas as páginas -->
+    <!-- ! GAMBIARRA EM SEU ESTADO MAIS PURO-->
     <aside class="ultraGambiarra active">
       <div class="px-lg-2 py-3 d-flex">
         <h1 class="fs-4 mx-auto my-0">
@@ -156,34 +157,211 @@
     <!-- ! Fim da Barra Lateral -->
 
     <!-- ? Página -->
-    <main class="col bg-gradient h-100 d-flex flex-column justify-content-between">
-      <!-- * Botões -->
-      <!-- > Ao ser adicionado fixed-top conserta o problema crescer para baixo,
-      > porém outros cards acabam subindo juntos-->
-      <div class="funcionalidades btn-group shadow-lg d-flex position-sticky top-0" role="group" aria-label="Basic example">
-        <button type="button" id="adicionaCard" class="border-0 col-4 funcionalidade btn btn-dark rounded-0 fw-light">
-          <i class="bi-journal-plus me-2"></i>
-          <span class="d-none d-md-inline">Adicionar</span>
-        </button>
-        <button type="button" id="salvaCard" class="border-0 col-4 funcionalidade btn btn-dark rounded-0 fw-light">
-          <!-- > Animar ícone -->
-          <i class="bi-arrow-left-right"></i>
-          <span class="d-none d-md-inline">Switch</span>
-        </button>
-        <button type="button" id="removeCard" class="border-0 col-4 funcionalidade btn btn-dark rounded-0 fw-light">
-          <i class="bi-journal-x me-2"></i>
-          <span class="d-none d-md-inline">Limpar</span>
-        </button>
+    <main class="col bg-gradient bg-gradient h-100 d-flex flex-column justify-content-between">
+      <!-- > Personalizar navbar -->
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Navbar</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  Dropdown
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li>
+                    <hr class="dropdown-divider">
+                  </li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled">Disabled</a>
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+      <div class="container-fluid my-3">
+        <div class="card border-0 shadow">
+          <div class="card-header py-3">
+            <p class="text-primary m-0 fw-bold">Serviços</p>
+          </div>
+          <!-- ? Nossa tabela é basicamente um card gigante -->
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6 text-nowrap">
+                <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
+                  <label class="form-label">Exibir&nbsp;
+                    <select class="d-inline-block form-select form-select-sm">
+                      <option value="10" selected="">10</option>
+                      <option value="25">25</option>
+                      <option value="50">50</option>
+                      <option value="100">100</option>
+                    </select>&nbsp;
+                  </label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="text-md-end dataTables_filter" id="dataTable_filter"><label class="form-label"><input
+                      type="search" class="form-control form-control-sm" aria-controls="dataTable"
+                      placeholder="Search"></label></div>
+              </div>
+            </div>
+            <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+              <table class="table my-0" id="dataTable">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Office</th>
+                    <th>Age</th>
+                    <th>Start date</th>
+                    <th>Salary</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><img class="rounded-circle me-2" width="30" height="30"
+                        src="assets/img/avatars/avatar1.jpeg">Airi Satou</td>
+                    <td>Accountant</td>
+                    <td>Tokyo</td>
+                    <td>33</td>
+                    <td>2008/11/28</td>
+                    <td>$162,700</td>
+                  </tr>
+                  <tr>
+                    <td><img class="rounded-circle me-2" width="30" height="30"
+                        src="assets/img/avatars/avatar2.jpeg">Angelica Ramos</td>
+                    <td>Chief Executive Officer(CEO)</td>
+                    <td>London</td>
+                    <td>47</td>
+                    <td>2009/10/09<br></td>
+                    <td>$1,200,000</td>
+                  </tr>
+                  <tr>
+                    <td><img class="rounded-circle me-2" width="30" height="30"
+                        src="assets/img/avatars/avatar3.jpeg">Ashton Cox</td>
+                    <td>Junior Technical Author</td>
+                    <td>San Francisco</td>
+                    <td>66</td>
+                    <td>2009/01/12<br></td>
+                    <td>$86,000</td>
+                  </tr>
+                  <tr>
+                    <td><img class="rounded-circle me-2" width="30" height="30"
+                        src="assets/img/avatars/avatar4.jpeg">Bradley Greer</td>
+                    <td>Software Engineer</td>
+                    <td>London</td>
+                    <td>41</td>
+                    <td>2012/10/13<br></td>
+                    <td>$132,000</td>
+                  </tr>
+                  <tr>
+                    <td><img class="rounded-circle me-2" width="30" height="30"
+                        src="assets/img/avatars/avatar5.jpeg">Brenden Wagner</td>
+                    <td>Software Engineer</td>
+                    <td>San Francisco</td>
+                    <td>28</td>
+                    <td>2011/06/07<br></td>
+                    <td>$206,850</td>
+                  </tr>
+                  <tr>
+                    <td><img class="rounded-circle me-2" width="30" height="30"
+                        src="assets/img/avatars/avatar1.jpeg">Brielle Williamson</td>
+                    <td>Integration Specialist</td>
+                    <td>New York</td>
+                    <td>61</td>
+                    <td>2012/12/02<br></td>
+                    <td>$372,000</td>
+                  </tr>
+                  <tr>
+                    <td><img class="rounded-circle me-2" width="30" height="30"
+                        src="assets/img/avatars/avatar2.jpeg">Bruno Nash<br></td>
+                    <td>Software Engineer</td>
+                    <td>London</td>
+                    <td>38</td>
+                    <td>2011/05/03<br></td>
+                    <td>$163,500</td>
+                  </tr>
+                  <tr>
+                    <td><img class="rounded-circle me-2" width="30" height="30"
+                        src="assets/img/avatars/avatar3.jpeg">Caesar Vance</td>
+                    <td>Pre-Sales Support</td>
+                    <td>New York</td>
+                    <td>21</td>
+                    <td>2011/12/12<br></td>
+                    <td>$106,450</td>
+                  </tr>
+                  <tr>
+                    <td><img class="rounded-circle me-2" width="30" height="30"
+                        src="assets/img/avatars/avatar4.jpeg">Cara Stevens</td>
+                    <td>Sales Assistant</td>
+                    <td>New York</td>
+                    <td>46</td>
+                    <td>2011/12/06<br></td>
+                    <td>$145,600</td>
+                  </tr>
+                  <tr>
+                    <td><img class="rounded-circle me-2" width="30" height="30"
+                        src="assets/img/avatars/avatar5.jpeg">Cedric Kelly</td>
+                    <td>Senior JavaScript Developer</td>
+                    <td>Edinburgh</td>
+                    <td>22</td>
+                    <td>2012/03/29<br></td>
+                    <td>$433,060</td>
+                  </tr>
+                </tbody>
+                <!-- Também é possível inserir um <tfoot> aqui -->
+              </table>
+            </div>
+            <div class="row">
+              <div class="col-md-6 align-self-center">
+                <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 10 of
+                  27</p>
+              </div>
+              <div class="col-md-6">
+                <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                  <ul class="pagination">
+                    <li class="page-item disabled"><a class="page-link" aria-label="Previous" href="#"><span
+                          aria-hidden="true">«</span></a></li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" aria-label="Next" href="#"><span
+                          aria-hidden="true">»</span></a></li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-        
-        <p class="mx-auto my-auto p-3 bg-white rounded shadow text-center fw-bolder fst-italic fs-1">Serviços</p>
+    </main>
+  </div>
 
-      </main>
-    </div>
+  <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="../JS/barraLateral.js"></script>
+</body>
 
-    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
-    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="../JS/barraLateral.js"></script>
-  </body>
 </html>

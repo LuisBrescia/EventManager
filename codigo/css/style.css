@@ -4,7 +4,7 @@
 /** Configurações gerais da página*/
 
 .blur { filter: blur(2px); transition: filter 1s; }
-::-webkit-scrollbar { width: 0; }
+/* ::-webkit-scrollbar { width: 0; } */
 :focus { outline: none; }
 :root {
   --neon : currentColor;
