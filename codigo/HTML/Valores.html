@@ -16,7 +16,7 @@
   <div class="d-flex">
 
     <!-- ! GAMBIARRA EM SEU ESTADO MAIS PURO-->
-    <aside class="col-xxl-2 ultraGambiarra active">
+    <aside class="col-lg-2 ultraGambiarra active">
       <div class="px-lg-2 py-3 d-flex">
         <h1 class="fs-4 mx-auto my-0 text-nowrap">
           <span class="d-none d-lg-inline-block text-white rounded shadow fs-3 px-2 text-center"><i
@@ -84,7 +84,7 @@
     </aside>
     <!-- ? Ínicio da Barra Lateral -->
     <!-- > Barra Lateral vai ser a mesma para todas as páginas -->
-    <aside class="col-xxl-2 bg-gradient active position-fixed">
+    <aside class="col-lg-2 bg-gradient active position-fixed">
       <!-- * Título da Barra Lateral -->
       <div class="px-lg-2 py-3 d-flex">
         <h1 class="fs-4 mx-auto my-0 text-nowrap">
@@ -157,51 +157,60 @@
     <!-- ? Página -->
     <main class="col d-flex bg-gradient align-items-stretch p-3">
       <div class="container-fluid mx-auto my-3">
-        <div class="d-sm-flex justify-content-between align-items-center mb-4">
-          <h3 class="text-dark mb-0 fw-bolder">Valores</h3><a class="btn btn-primary btn-sm d-none d-sm-inline-block"
-            role="button" href="#"><i class="fas fa-download fa-sm text-white-50"></i>&nbsp;Generate Report</a>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h3 class="text-dark mb-0 fw-bolder">Valores</h3><a class="btn btn-primary btn-sm d-inline-block"
+            role="button" href="#"><i class="bi-download"></i>&nbsp;Generate Report</a>
         </div>
-        <div class="row">
-          <div class="col-md-6 col-xl-3 mb-4">
-            <div class="card shadow border-0 py-2">
-              <div class="card-body">
+        <!-- ! Seção informativa -->
+        <div class="row align-items-stretch">
+          <!-- * Custo Total -->
+          <div class="col-md-6 col-xl-3 mb-3">
+            <div class="card shadow-sm border-0">
+              <div class="valores-header rounded-1">
                 <div class="row align-items-center no-gutters">
-                  <div class="col me-2">
-                    <div class="text-uppercase text-primary fw-bold text-xs mb-1"><small>Custo</small></div>
-                    <div class="text-dark fw-bold h5 mb-0"><span>R$43.375,50</span></div>
+                  <!-- ? Texto -->
+                  <div class="col">
+                    <div class="fw-bold text-xs mb-1"><small>Custo</small></div>
+                    <div class="mb-0"><span>R$ 43.375,50</span></div>
                   </div>
-                  <div class="col-auto"><i class="fas fa-calendar fa-2x text-gray-300"></i></div>
+                  <!-- ? Ícone -->
+                  <div class="col-auto fs-3">
+                    <i class="bi-cash-stack"></i>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-md-6 col-xl-3 mb-4">
-            <div class="card shadow border-0 py-2">
-              <div class="card-body">
+          <!-- * Lucro ou Prejuízo-->
+          <div class="col-md-6 col-xl-3 mb-3">
+            <div class="card shadow-sm border-0">
+              <div class="valores-header header-verde rounded-1">
                 <div class="row align-items-center no-gutters">
-                  <div class="col me-2">
-                    <div class="text-uppercase text-success fw-bold text-xs mb-1"><small>LUCRO</small></div>
-                    <div class="text-dark fw-bold h5 mb-0"><span>R$18.600,00</span></div>
+                  <!-- ? Texto -->
+                  <div class="col">
+                    <div class="fw-bold text-xs mb-1"><small>Lucro</small></div>
+                    <div class="mb-0"><span>R$ 18.600,00</span></div>
                   </div>
-                  <div class="col-auto"><i class="fas fa-dollar-sign fa-2x text-gray-300"></i></div>
+                  <!-- ? Ícone -->
+                  <div class="col-auto fs-3"><i class="bi-currency-dollar"></i></div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-md-6 col-xl-3 mb-4">
-            <div class="card shadow border-0 py-2">
-              <!-- * Card-body -->
-              <div class="card-body">
+          <!-- * Progresso -->
+          <div class="col-md-6 col-xl-3 mb-3">
+            <div class="card shadow-sm border-0">
+              <div class="valores-header rounded-1">
                 <div class="row align-items-center no-gutters">
-                  <div class="col me-2">
-                    <!-- * Título -->
-                    <div class="text-uppercase text-info fw-bold text-xs mb-1 text-nowrap">
+                  <div class="col">
+                    <!-- ? Título -->
+                    <div class="fw-bold text-xs mb-1 text-nowrap">
                       <small>Progresso</small>
                     </div>
-                    <!-- * Barra -->
+                   <!-- ? Barra de progresso -->
                     <div class="row g-0 align-items-center">
                       <div class="col-auto">
-                        <div class="text-dark fw-bold h5 mb-0 me-3"><span>38%</span></div>
+                        <div class="mb-0 me-3"><span>38%</span></div>
                       </div>
                       <div class="col">
                         <div class="progress progress-sm">
@@ -211,26 +220,30 @@
                       </div>
                     </div>
                   </div>
-                  <!-- * Ícone -->
-                  <div class="col-auto fs-3"><i class="bi-clipboard-fill" style="color: gainsboro"></i></div>
+                  <!-- ? Ícone -->
+                  <div class="col-auto fs-3"><i class="bi-card-checklist"></i></div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="col-md-6 col-xl-3 mb-4">
-            <div class="card shadow border-0 py-2">
-              <div class="card-body">
-                <div class="row align-items-center no-gutters">
-                  <div class="col me-2">
-                    <div class="text-uppercase text-warning fw-bold text-xs mb-1"><small>Chamados Ativos</small></div>
-                    <div class="text-dark fw-bold h5 mb-0"><span>4</span></div>
+          <!-- * Chamados Ativos -->
+          <div class="col-md-6 col-xl-3 mb-3">
+            <div class="card shadow-sm border-0">
+              <div class="valores-header rounded-1">
+                <div class="row align-items-center no-gutters flex-nowrap">
+                  <!-- ? Texto -->
+                  <div class="col">
+                    <div class="fw-bold text-xs mb-1 text-nowrap"><small>Chamados ativos</small></div>
+                    <div class="mb-0"><span>4</span></div>
                   </div>
-                  <div class="col-auto fs-3"><i class="bi-chat-fill" style="color: gainsboro"></i></div>
+                  <!-- ? Ícone -->
+                  <div class="col-auto fs-3"><i class="bi-chat-square-text"></i></div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        <!-- ! Fim da seção informativa -->
         <div class="row">
           <div class="col-lg-7 col-xl-8">
             <div class="card shadow mb-4">

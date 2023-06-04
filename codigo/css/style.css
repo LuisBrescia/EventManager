@@ -96,6 +96,27 @@ main h1 {
     0 0 102px currentColor,
     0 0 151px currentColor;
 }
+/** Cards-Estáticos */
+.valores-header {
+  background: #FFF;
+  border-image: linear-gradient(to bottom, var(--primaria-n1), var(--primaria));
+  border-image-slice: 100% 25% 0 25%;
+  border-image-width: 2px;
+  color: var(--escuro);
+  font-size: 1.2rem;
+  font-weight: 500;
+  padding: 0.75rem 1.25rem;
+}
+.header-azul {
+  border-image: linear-gradient(to bottom, var(--primaria-n1), var(--primaria));
+  border-image-slice: 100% 25% 0 25%;
+  border-image-width: 2px;
+}
+.header-verde {
+  border-image: linear-gradient(to bottom, var(--primaria-n1),#00ff00);
+  border-image-slice: 100% 25% 0 25%;
+  border-image-width: 2px;
+}
 /** Botões para escolher listas */
 .escolheLista button {
   background: #fff;
