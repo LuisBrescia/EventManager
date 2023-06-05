@@ -60,7 +60,7 @@ var data = {
     datasets: [{
         data: [],
         // backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"]
-        backgroundColor: ["#04f", "#f04", "#0d0"]
+        backgroundColor: ["#04f", "#f40", "#0f4", "#fd0", "#a0d", "#f04"]
     }]
 };
 for (var i = 0; i < graficoParticipantes.length; i++) {
@@ -75,11 +75,13 @@ $('.graficoPizza h6').text("Participantes (" + totalParticipantes + ")");
 // Renderizar o gráfico
 var ctx = document.getElementById("graficoParticipantes").getContext("2d");
 var myChart = new Chart(ctx, {
-    type: "doughnut",
+    type: "pie",
     data: data,
     options: options
 });
-    /* TIPOS DE GRÁFICOS
+
+/* 
+TIPOS DE GRÁFICOS
 pie
 doughnut
 polarArea
@@ -90,16 +92,40 @@ bubble
 scatter
 */
 
+$(document).ready(function () {
+    $('#adicionaTodo').click(function () {
+        novaTarefa = $(
+        '<li class="list-group-item">'
+        +'<div class="row align-items-center no-gutters">'
+        +'<div class="col me-2">'
+        +'<h6 class="mb-0"><strong>Lunch meeting</strong></h6><span class="text-xs">10:30 AM</span>'
+        +'</div>'
+        +'<div class="col-auto">'
+        +'<div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-1"><label'
+        +'class="form-check-label" for="formCheck-1"></label></div>'
+        +'</div>'
+        +'</div>'
+        +'</li>');
 
-
-
-
-
-
-
-
-
-
+        $('#todoConteudo').append(novaTarefa);
+    });
+    $('#editaTodo').click(function () {
+    });
+});
+/* 
+* HTML de um item da lista
+<li class="list-group-item">
+    <div class="row align-items-center no-gutters">
+        <div class="col me-2">
+            <h6 class="mb-0"><strong>Lunch meeting</strong></h6><span class="text-xs">10:30 AM</span>
+        </div>
+        <div class="col-auto">
+            <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-1"><label
+                class="form-check-label" for="formCheck-1"></label></div>
+        </div>
+    </div>
+</li>
+*/
 /*
 var ListaParticipantesConfirmados = JSON.parse(localStorage.getItem("ListaParticipantesConfirmados"));
 function ListaParticipantesConfirmados() {

@@ -338,11 +338,15 @@
           <!-- ! Coluna Projetos e To-do -->
           <div class="col-lg-6 mb-4">
             <!-- * Lista de Afazeres-->
-            <div class="card shadow mb-4">
-              <div class="card-header py-3">
-                <h6 class="text-primary fw-bold m-0">Todo List</h6>
+            <div class="todoLista card border-0 shadow mb-4">
+              <div class="card-header py-3 px-0">
+                <button class="buttonDinamico bi-plus-lg btn shadow-sm py-1 px-2 rounded-3 position-absolute top-0 end-0 m-2 mx-5 bg-gradient"
+                id="adicionaTodo"></button>
+                <button class="buttonDinamico bi-pen btn shadow-sm py-1 px-2 rounded-3 position-absolute top-0 end-0 m-2 bg-gradient"
+                id="editaTodo"></button>
+                <h6 class="fw-bolder fs-5 ps-2 m-0 ms-2">Lista de Progresso</h6>
               </div>
-              <ul class="list-group list-group-flush">
+              <ul id="todoConteudo" class="list-group list-group-flush overflow-auto">
                 <li class="list-group-item">
                   <div class="row align-items-center no-gutters">
                     <div class="col me-2">

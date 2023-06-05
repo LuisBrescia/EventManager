@@ -20,7 +20,7 @@
   /* Rosa */
 }
 body {
-  background: #f0f0f0;
+  background: var(--fundo);
   font-family: 'Quicksand', sans-serif;
 }
 a { text-decoration: none; }
@@ -73,12 +73,30 @@ main h1 {
 }
 
 /*! Items da página */
+/** TodoLis */
+.todoLista h6 {
+  color: var(--escuro);
+}
+#todoConteudo {
+  max-height: 50vh;
+  margin-bottom: 1rem;
+}
 /** Botões superiores */
+.buttonDinamico {
+  color: var(--escuro);
+  transition: transform 0.3s;
+}
+.buttonDinamico:hover {
+  color: aliceblue;
+  background-color: var(--primaria);
+  transform: scale(1.1);
+  transition: transform 0.3s;
+}
 .funcionalidades { z-index: 100; }
 .funcionalidades button {
   font-size: initial;
   transition: all 0.2s;
-  background-color: #0f0f0f;
+  background-color: var(--escuro);
 }
 .funcionalidades button:hover {
   background-color: #212529;
