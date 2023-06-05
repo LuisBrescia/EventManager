@@ -18,6 +18,7 @@ function whooshMid() {
         currentAudio = null;
     }
     var audio = new Audio('../MP3/whooshMid.mp3');
+    audio.volume = 0.3;
     audio.play();
     currentAudio = audio;
 }
@@ -29,6 +30,7 @@ function whooshLow(e) {
         currentAudio = null;
     }
     var audio = new Audio('../MP3/whooshLow.mp3');
+    audio.volume = 0.3;
     audio.play();
     currentAudio = audio;
 } 
