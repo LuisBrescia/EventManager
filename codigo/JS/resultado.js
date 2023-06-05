@@ -17,38 +17,34 @@ var ListasParticipantes = JSON.parse(localStorage.getItem("ListaParticipantes"))
 // : graficoPizza será nosso vetor onde conterá as listas de participantes devidamente formatadas
 var graficoParticipantes = [];
 
-var k = 0;
+var k = -1;
+var totalParticipantes = 0; 
+
 for (let i = 0; i < 6; i++) {
     if (ListasParticipantes[i] != null) {
         if (ListasParticipantes[i].linhas[0] != "") {
-            graficoParticipantes[k] = new ListaParticipantes(ListasParticipantes[i].titulo, ListasParticipantes[i].linhas.length, 0);
+            graficoParticipantes[++k] = new ListaParticipantes(ListasParticipantes[i].titulo, ListasParticipantes[i].linhas.length, 0);
+            // > Se o código de cardMovivel.js for revisado, será possível remover esse if
+            // > Novas atualizações suportam, [-1] para pegar ultimo elemento do vetor
             if (ListasParticipantes[i].linhas[ListasParticipantes[i].linhas.length - 1] == "") {
                 graficoParticipantes[k].elementos--;
             }
+            totalParticipantes += graficoParticipantes[k].elementos;
             graficoParticipantes[k].titulo += " (" + graficoParticipantes[k].elementos + ")";
-            k++;
         }
     }
 }
-
-var totalParticipantes = 0; 
-for (let i = 0; i < graficoParticipantes.length; i++) {
-    totalParticipantes += graficoParticipantes[i].elementos;
-}
-
-// Se pegar o número de participantes de cada lista e dividir pelo total de participantes
-// Teremos o percentual de cada lista
-
-for (let i = 0; i < graficoParticipantes.length; i++) {
+// ? O número de participantes dividido pelo total de participantes nos da o percentual
+for (let i = 0; i < k + 1; i++) {
     graficoParticipantes[i].percentual = (graficoParticipantes[i].elementos / totalParticipantes) * 100;
-    console.log(graficoParticipantes[i].titulo, graficoParticipantes[i].percentual);
 }
 
+// * Aqui começa o código do gráfico
+$('.graficoPizza h6').text("Participantes (" + totalParticipantes + ")");
 var data = {
     labels: [],
     datasets: [{
         data: [],
-        // backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"]
         backgroundColor: ["#04f", "#f40", "#0f4", "#fd0", "#a0d", "#f04"]
     }]
 };
@@ -56,21 +52,16 @@ for (var i = 0; i < graficoParticipantes.length; i++) {
     data.labels.push(graficoParticipantes[i].titulo);
     data.datasets[0].data.push(graficoParticipantes[i].percentual);
 }
-// Opções do gráfico
 var options = {
     responsive: true
 };
-$('.graficoPizza h6').text("Participantes (" + totalParticipantes + ")");
-// Renderizar o gráfico
 var ctx = document.getElementById("graficoParticipantes").getContext("2d");
 var myChart = new Chart(ctx, {
     type: "pie",
     data: data,
     options: options
 });
-
-/* 
-TIPOS DE GRÁFICOS
+/* TIPOS DE GRÁFICOS
 pie
 doughnut
 polarArea
@@ -78,10 +69,10 @@ bar
 line
 radar
 bubble
-scatter
-*/
-var editaTodo = false;
+scatter */
 
+// * Começa o código da checklist
+var editaTodo = false;
 $(document).ready(function () {
     $('#adicionaTodo').click(function () {
         $('#todoConteudo li h6').prop('contenteditable', 'false');
@@ -106,10 +97,6 @@ $(document).ready(function () {
 
         selectAll($('#todoConteudo li:first-child h6')[0]);
         todoTitulo($('#todoConteudo li:first-child'));
-        // Caso aperte a tecla ENTER, o foco vai para o próximo item
-        // Caso saia do titulo 
-
-
     });
     $('#editaTodo').click(function () {
         if (editaTodo == false) {
