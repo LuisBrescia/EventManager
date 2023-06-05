@@ -8,6 +8,7 @@
 :focus { outline: none; }
 :root {
   --neon : currentColor;
+  --fundo: aliceblue;
   /* Azul */
   --primaria-n1:#00eeff;
   --gradiente:  #0088ff;
@@ -64,7 +65,7 @@ aside li.active a, aside li.active a:hover, li a:hover {
 }
 /** Main */
 main {
-  background: #f0f0f0;
+  background: var(--fundo);
   min-height: 100vh;
 }
 main h1 {
@@ -230,7 +231,7 @@ main h1 {
   font-size: x-large;
 }
 .accordion-body{
-  background-color: #f0f0f0;
+  background-color: var(--fundo);
   padding: 10px 0;
 }
 .accordion-body ul { gap: 0.5em; }
