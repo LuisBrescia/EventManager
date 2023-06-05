@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Quicksand|Quicksand:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Quicksand|Quicksand:wght@600&display=swap");
 
 
 /** Configurações gerais da página*/
@@ -98,14 +98,14 @@ main h1 {
 }
 /** Cards-Estáticos */
 .card-resultado small {
-  font-family: 'Quicksand bold 700', sans-serif; 
+  font-family: 'Quicksand bold 600', sans-serif; 
   color: var(--escuro);
-  font-weight: 900;
+  font-weight: 600;
   font-size: small;
   text-transform: uppercase;
 }
 .card-resultado span {
-  font-family: 'Quicksand bold 700', sans-serif; 
+  font-family: 'Quicksand bold 600', sans-serif; 
   color: var(--escuro);
   font-weight: 100;
 }
