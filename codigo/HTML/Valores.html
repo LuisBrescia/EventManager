@@ -17,16 +17,18 @@
 
     <!-- ! GAMBIARRA EM SEU ESTADO MAIS PURO-->
     <aside class="col-xxl-2 ultraGambiarra active">
+      <!-- * Título da Barra Lateral -->
       <div class="px-lg-2 py-3 d-flex">
         <h1 class="fs-4 mx-auto my-0 text-nowrap">
           <span class="d-none d-lg-inline-block text-white rounded shadow fs-3 px-2 text-center"><i
               class="bi-flower1"></i></span>
           <span class="d-lg-none text-white rounded fs-3 px-2 text-center"><i class="bi-flower1"></i></span>
-          <span class="text-white me-3 fw-bolder d-none d-lg-inline-block fs-5">Event Manager</span>
+          <span class="text-white me-3 fw-bolder d-none d-lg-inline-block">Event Manager</span>
         </h1>
       </div>
+      <!-- * 4 primeiras páginas da barra lateral -->
       <ul class="list-unstyled">
-        <li class="active text-center text-lg-start">
+        <li class="text-center text-lg-start">
           <a href="Collection.html" class="px-3 py-2 d-block">
             <i class="me-lg-2 bi-collection"></i>
             <span class="d-none d-lg-inline-block">Coleção</span>
@@ -47,7 +49,7 @@
             <span class="d-none d-md-block d-lg-none">Serviços</span>
           </a>
         </li>
-        <li class="text-center text-lg-start">
+        <li class="active text-center text-lg-start">
           <a href="Valores.html" class="px-3 py-2 d-block">
             <i class="me-lg-2 bi-receipt"></i>
             <span class="d-none d-lg-inline-block">Valores</span>
@@ -155,7 +157,7 @@
     <!-- ! Fim da Barra Lateral -->
 
     <!-- ? Página -->
-    <main class="col d-flex bg-gradient align-items-stretch p-3 ps-3 ps-lg-4 ps-xxl-3">
+    <main class="col d-flex bg-gradient align-items-stretch p-3">
       <div class="container-fluid">
         <div class="d-flex justify-content-between align-items-end mb-3">
           <h3 class="mb-0 fw-bolder">Valores</h3><a id="exportarDados"
@@ -268,7 +270,7 @@
               <div class="card-body">
                 <div class="chart-area">
                   <p class="position-absolute top-75">Aqui ficará uma relação de participantes em gráfico pizza.</p>
-                  <canvas 
+                  <canvas
                     data-bss-chart="{&quot;type&quot;:&quot;doughnut&quot;,&quot;data&quot;:{&quot;labels&quot;:[&quot;Direct&quot;,&quot;Social&quot;,&quot;Referral&quot;],&quot;datasets&quot;:[{&quot;label&quot;:&quot;&quot;,&quot;backgroundColor&quot;:[&quot;#4e73df&quot;,&quot;#1cc88a&quot;,&quot;#36b9cc&quot;],&quot;borderColor&quot;:[&quot;#ffffff&quot;,&quot;#ffffff&quot;,&quot;#ffffff&quot;],&quot;data&quot;:[&quot;50&quot;,&quot;30&quot;,&quot;15&quot;]}]},&quot;options&quot;:{&quot;maintainAspectRatio&quot;:false,&quot;legend&quot;:{&quot;display&quot;:false,&quot;labels&quot;:{&quot;fontStyle&quot;:&quot;normal&quot;}},&quot;title&quot;:{&quot;fontStyle&quot;:&quot;normal&quot;}}}">
                   </canvas>
                 </div>
@@ -288,15 +290,16 @@
               </div>
               <div class="card-body">
                 <div class="chart-area">
-                  <p class="position-absolute top-75">Cada insumo terá seu próprio gráfico, 
-                    onde exibirá quantidades de pessoas que podem ser atendidas para aquele item. <br> 
+                  <p class="position-absolute top-75">Cada insumo terá seu próprio gráfico,
+                    onde exibirá quantidades de pessoas que podem ser atendidas para aquele item. <br>
                     EX: Tem chinelo para 30 pessoas ai olha na lista, 40 mulheres, 10 irão ficar sem chinelos.</p>
                   <canvas
                     data-bss-chart="{&quot;type&quot;:&quot;doughnut&quot;,&quot;data&quot;:{&quot;labels&quot;:[&quot;Direct&quot;,&quot;Social&quot;,&quot;Referral&quot;],&quot;datasets&quot;:[{&quot;label&quot;:&quot;&quot;,&quot;backgroundColor&quot;:[&quot;#4e73df&quot;,&quot;#1cc88a&quot;,&quot;#36b9cc&quot;],&quot;borderColor&quot;:[&quot;#ffffff&quot;,&quot;#ffffff&quot;,&quot;#ffffff&quot;],&quot;data&quot;:[&quot;50&quot;,&quot;30&quot;,&quot;15&quot;]}]},&quot;options&quot;:{&quot;maintainAspectRatio&quot;:false,&quot;legend&quot;:{&quot;display&quot;:false,&quot;labels&quot;:{&quot;fontStyle&quot;:&quot;normal&quot;}},&quot;title&quot;:{&quot;fontStyle&quot;:&quot;normal&quot;}}}">
                   </canvas>
                 </div>
                 <div class="text-center small mt-4"><span class="me-2">
-                    <i class="bi-circle-fill" style="color: rgb(255, 102, 0);"></i>&nbsp;Comida</span><span class="me-2">
+                    <i class="bi-circle-fill" style="color: rgb(255, 102, 0);"></i>&nbsp;Comida</span><span
+                    class="me-2">
                     <i class="bi-circle-fill" style="color: rgb(5, 255, 247);"></i>&nbsp;Bebida</span><span>
                 </div>
               </div>
