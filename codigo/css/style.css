@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Quicksand|Quicksand:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat|Quicksand|Quicksand:wght@600&display=swap");
 
 
 /** Configurações gerais da página*/
@@ -73,22 +73,57 @@ main h1 {
 }
 
 /*! Items da página */
-/** TodoLis */
+/** todoLista */
 .todoLista h6 {
   color: var(--escuro);
+}
+/*> contenteditable="true"*/
+#todoConteudo li h6 {
+  /* text-decoration: underline #04f; */
+  transition: all 0.3s;
+  padding-left: 0;
+  display: inline;
+}
+#todoConteudo li h6[contenteditable="true"] {
+  /* text-decoration: underline #04f; */
+  background-color: #f0f0f0;
+  padding: 2.5px 10px;
+  transition: all 0.3s;
+  animation: piscando 1.4s infinite;
+  animation-delay: 0.3s;
+  border-radius: 5px;
+}
+#todoConteudo li h6[contenteditable="true"]:focus {
+  /* text-decoration: underline #04f; */
+  animation: noned;
 }
 #todoConteudo {
   max-height: 50vh;
   margin-bottom: 1rem;
 }
+#todoConteudo li {
+  transition: all 0.3s;
+}
 /** Botões superiores */
 .buttonDinamico {
   color: var(--escuro);
-  transition: transform 0.3s;
+  background-color: #fff;
+  transition: all 0.3s;
 }
 .buttonDinamico:hover {
-  color: aliceblue;
+  color: #fff;
   background-color: var(--primaria);
+  transform: scale(1.1);
+  transition: transform 0.3s;
+}
+.buttonDinamico.active {
+  color: #fff;
+  background-color: var(--primaria-2);
+  transition: all 0.3s;
+}
+.buttonDinamico.active:hover {
+  color: #fff;
+  background-color: var(--primaria-3);
   transform: scale(1.1);
   transition: transform 0.3s;
 }
@@ -374,6 +409,11 @@ main h1 {
   0% {filter: drop-shadow(1px 1px 4px #0044ff);}
   50% {filter: drop-shadow(1px 1px 4px #0044ff);}
   100% {filter: drop-shadow(1px 1px 4px #0044ff);}
+}
+@keyframes piscando {
+  0% {color: #666;}
+  24% {color: #666;}
+  25% {color: #0f0f0f;}
 }
 
 /*! Não lembro para o que serve */
