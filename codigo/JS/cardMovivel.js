@@ -27,7 +27,7 @@ var todasListas = [];
 if (ListaTipo === "ListaParticipantes") {
     $('#tipoLista').find('i').removeClass('bi-cash-stack bi-briefcase').addClass('bi-people');
     $('#tipoLista').find('span').text('Participantes');
-    $('.trocaTipo').css('color', '#0ff');
+    // $('.trocaTipo').css('color', '#0ff');
     $('.listaParticipantes').addClass('active');
     $('.listaInsumos, .listaServicos').removeClass('active');
     position = 0;
@@ -36,7 +36,7 @@ if (ListaTipo === "ListaParticipantes") {
 if (ListaTipo === "ListaInsumos") {
     $('#tipoLista').find('i').removeClass('bi-people bi-briefcase').addClass('bi-cash-stack');
     $('#tipoLista').find('span').text('Insumos');
-    $('.trocaTipo').css('color', '#fd6cfd');
+    // $('.trocaTipo').css('color', '#fd6cfd');
     $('.listaInsumos').addClass('active');
     $('.listaParticipantes, .listaServicos').removeClass('active');
     position = 1;
@@ -45,7 +45,7 @@ if (ListaTipo === "ListaInsumos") {
 if (ListaTipo === "ListaServicos") {
     $('#tipoLista').find('i').removeClass('bi-people bi-cash-stack').addClass('bi-briefcase');
     $('#tipoLista').find('span').text('Serviços');
-    $('.trocaTipo').css('color', '#ff0');
+    // $('.trocaTipo').css('color', '#ff0');
     $('.listaServicos').addClass('active');
     $('.listaParticipantes, .listaInsumos').removeClass('active');
     position = 2;
@@ -124,7 +124,6 @@ $(document).ready(() => {
         if ($('#tipoLista').find('i').hasClass('bi-people')) {
             $('#tipoLista').find('i').toggleClass('bi-people bi-cash-stack');
             $('#tipoLista').find('span').text('Insumos');
-            $('.trocaTipo').css('color', '#fd6cfd');
             $('.escolheLista button').removeClass('active');
             $('.listaInsumos').addClass('active');
             ListaTipo = "ListaInsumos";
@@ -136,7 +135,6 @@ $(document).ready(() => {
         else if ($('#tipoLista').find('i').hasClass('bi-cash-stack')) {
             $('#tipoLista').find('i').toggleClass('bi-cash-stack bi-briefcase');
             $('#tipoLista').find('span').text('Serviços');
-            $('.trocaTipo').css('color', '#ff0');
             $('.listaServicos').addClass('active');
             $('.listaParticipantes, .listaInsumos').removeClass('active');
             ListaTipo = "ListaServicos";
@@ -148,7 +146,6 @@ $(document).ready(() => {
         else if ($('#tipoLista').find('i').hasClass('bi-briefcase')) {
             $('#tipoLista').find('i').toggleClass('bi-briefcase bi-people');
             $('#tipoLista').find('span').text('Participantes');
-            $('.trocaTipo').css('color', '#0ff');
             $('.listaParticipantes').addClass('active');
             $('.listaInsumos, .listaServicos').removeClass('active');
             ListaTipo = "ListaParticipantes";
@@ -161,7 +158,6 @@ $(document).ready(() => {
     $('.listaParticipantes').click(() => {
             $('#tipoLista').find('i').removeClass('bi-cash-stack bi-briefcase').addClass('bi-people');
             $('#tipoLista').find('span').text('Participantes');
-            $('.trocaTipo').css('color', '#0ff');
             $('.listaParticipantes').addClass('active');
             $('.listaInsumos, .listaServicos').removeClass('active');
             ListaTipo = "ListaParticipantes";
@@ -173,7 +169,6 @@ $(document).ready(() => {
     $('.listaInsumos').click(() => {
             $('#tipoLista').find('i').removeClass('bi-people bi-briefcase').addClass('bi-cash-stack');
             $('#tipoLista').find('span').text('Insumos');
-            $('.trocaTipo').css('color', '#fd6cfd');
             $('.listaInsumos').addClass('active');
             $('.listaParticipantes, .listaServicos').removeClass('active');
             ListaTipo = "ListaInsumos";
@@ -185,7 +180,6 @@ $(document).ready(() => {
     $('.listaServicos').click(() => {
             $('#tipoLista').find('i').removeClass('bi-people bi-cash-stack').addClass('bi-briefcase');
             $('#tipoLista').find('span').text('Serviços');
-            $('.trocaTipo').css('color', '#ff0');
             $('.listaServicos').addClass('active');
             $('.listaParticipantes, .listaInsumos').removeClass('active');
             ListaTipo = "ListaServicos";
@@ -440,7 +434,7 @@ function criaConteudo(lista, gapping) {
     }
     return $('<div id="card-' + lista._id + '" class="card-container ms-5" style="' +
         conteudoStyle + 'z-index: 0;">' +
-        '<div class="cardConvidado draggable card col-3 shadow border-0 rounded-3 overflow-x-hidden">' +
+        '<div class="cardConvidado draggable card col-3 shadow border-0 rounded-1 overflow-x-hidden">' +
         '<div class="card-header fs-4 fw-bolder text-nowrap d-flex justify-content-between align-items-center">' +
         '<span class="mt-3 mb-1 lh-1 pt-2 fs-md-1">' +
         lista.titulo +
