@@ -99,28 +99,28 @@
       </div>
       <!-- * 4 primeiras páginas da barra lateral -->
       <ul class="list-unstyled">
-        <li class="text-center text-lg-start">
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
           <a href="Collection.html" class="px-3 py-2 d-block">
             <i class="me-lg-2 bi-collection"></i>
             <span class="d-none d-lg-inline-block">Coleção</span>
             <span class="d-none d-md-block d-lg-none">Coleção</span>
           </a>
         </li>
-        <li class="text-center text-lg-start">
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
           <a href="Listas.html" class="px-3 py-2 d-block">
             <i class="me-lg-2 bi-journal"></i>
             <span class="d-none d-lg-inline-block">Listas</span>
             <span class="d-none d-md-block d-lg-none">Listas</span>
           </a>
         </li>
-        <li class="text-center text-lg-start">
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
           <a href="Info.html" class="px-3 py-2 d-block">
             <i class="me-lg-2 bi-stickies"></i>
             <span class="d-none d-lg-inline-block">Serviços</span>
             <span class="d-none d-md-block d-lg-none">Serviços</span>
           </a>
         </li>
-        <li class="active text-center text-lg-start">
+        <li onmouseenter="whooshMid()" class="active text-center text-lg-start">
           <a href="Valores.html" class="px-3 py-2 d-block">
             <i class="me-lg-2 bi-receipt"></i>
             <span class="d-none d-lg-inline-block">Valores</span>
@@ -128,25 +128,25 @@
           </a>
         </li>
       </ul>
-      <hr class="text-black fw-bolder mx-3" />
+      <hr class="text-dark mx-3" />
       <!-- * 4 últimas -->
       <!-- > Usar componente MODAL do Bootstrap -->
       <ul class="list-unstyled">
-        <li class="text-center text-lg-start">
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
           <a href="perfil.html" class="px-3 py-2 d-block">
             <i class="me-lg-2 bi-person"></i>
             <span class="d-none d-lg-inline-block">Perfil</span>
             <span class="d-none d-md-block d-lg-none">Perfil</span>
           </a>
         </li>
-        <li class="text-center text-lg-start">
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
           <a href="#" class="px-3 py-2 d-block">
             <i class="me-lg-2 bi-sliders"></i>
             <span class="d-none d-lg-inline-block">Temas</span>
             <span class="d-none d-md-block d-lg-none">Temas</span>
           </a>
         </li>
-        <li class="text-center text-lg-start">
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
           <a href="settings.html" class="px-3 py-2 d-block">
             <i class="me-lg-2 bi-gear"></i>
             <span class="d-none d-lg-inline-block">Configurações</span>
@@ -162,100 +162,78 @@
       <div class="container-fluid">
         <div class="d-flex justify-content-between align-items-center mb-3">
           <h3 class="mb-0 fw-bolder fs-1 ms-1">Valores</h3><a id="exportarDados"
-            class="btn btn-primary rounded-5 fw-bolder shadow-sm py-2 px-3 fs-5 d-inline-block"
-            role="button" href="#"><i class="bi-download"></i>&nbsp;Exportar Dados</a>
+            class="btn btn-primary rounded-5 fw-bolder shadow-sm py-2 px-3 fs-5 d-inline-block" role="button"
+            href="#"><i class="bi-download"></i>&nbsp;Exportar Dados</a>
         </div>
         <!-- > Seção informativa -->
         <div class="row align-items-stretch">
           <!-- * Custo Total -->
           <div class="col-md-6 col-xl-3 mb-3 card-resultado">
-            <div class="card shadow-sm border-0">
-              <div class="valores-header rounded-1">
-                <div class="row align-items-center no-gutters">
-                  <!-- ? Texto -->
-                  <div class="col">
-                    <div class="fw-bold text-xs"><small class="text-danger">Custo</small></div>
-                    <div class="mb-0"><span>R$ 43.375,50</span></div>
-                  </div>
-                  <!-- ? Ícone -->
-                  <div class="col-auto fs-3 bg-danger bg-gradient text-white py-2 px-3 rounded-5 me-2">
-                    <i class="bi-cash-stack"></i>
-                  </div>
-                </div>
+            <div class="valores-header rounded-1 d-flex align-items-center gap-3 shadow-sm">
+              <!-- ? Texto -->
+              <div class="col">
+                <div class="fw-bold text-xs"><small class="text-danger">Custo</small></div>
+                <div class="mb-0"><span>R$ 43.375,50</span></div>
               </div>
+              <!-- ? Ícone -->
+              <i class="col-auto fs-3 text-white py-2 px-3 rounded-5 me-2 bi-cash-stack"></i>
             </div>
           </div>
           <!-- * Lucro ou Prejuízo-->
           <div class="col-md-6 col-xl-3 mb-3 card-resultado">
-            <div class="card shadow-sm border-0">
-              <div class="valores-header rounded-1">
-                <div class="row align-items-center no-gutters">
-                  <!-- ? Texto -->
-                  <div class="col">
-                    <div class="fw-bolder text-xs"><small class="text-success">Lucro</small></div>
-                    <div class="mb-0"><span>R$ 18.600,00</span></div>
-                  </div>
-                  <!-- ? Ícone -->
-                  <div class="col-auto fs-3 bg-success bg-gradient text-white py-2 px-3 rounded-5 me-2"><i
-                      class="bi-currency-dollar"></i>
-                  </div>
-                </div>
+            <div class="valores-header rounded-1 d-flex align-items-center gap-3 shadow-sm">
+              <!-- ? Texto -->
+              <div class="col">
+                <div class="fw-bolder text-xs"><small class="text-success">Lucro</small></div>
+                <div class="mb-0"><span>R$ 18.600,00</span></div>
               </div>
+              <!-- ? Ícone -->
+              <i class="col-auto fs-3 bi-currency-dollar text-white py-2 px-3 rounded-5 me-2"></i>
             </div>
           </div>
           <!-- * Progresso -->
           <div class="col-md-6 col-xl-3 mb-3 card-resultado">
-            <div class="card shadow-sm border-0">
-              <div class="valores-header rounded-1">
-                <div class="row align-items-center no-gutters">
+            <div class="valores-header rounded-1 d-flex align-items-center gap-3 shadow-sm">
+              <div class="col">
+                <!-- ? Título -->
+                <div class="fw-bold text-xs text-nowrap">
+                  <small class="text-primary">Progresso</small>
+                </div>
+                <!-- ? Barra de progresso -->
+                <div class="row g-0 align-items-center">
+                  <div class="col-auto">
+                    <div class="mb-0 me-3"><span>38%</span></div>
+                  </div>
                   <div class="col">
-                    <!-- ? Título -->
-                    <div class="fw-bold text-xs text-nowrap">
-                      <small class="text-primary">Progresso</small>
-                    </div>
-                    <!-- ? Barra de progresso -->
-                    <div class="row g-0 align-items-center">
-                      <div class="col-auto">
-                        <div class="mb-0 me-3"><span>38%</span></div>
-                      </div>
-                      <div class="col">
-                        <div class="progress progress-sm">
-                          <div class="progress-bar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"
-                            style="width: 38%; background-color: #0e2;">
-                            <span class="visually-hidden">38%</span>
-                          </div>
-                        </div>
+                    <div class="progress progress-sm">
+                      <div class="progress-bar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"
+                        style="width: 38%; background-color: #0e2;">
+                        <span class="visually-hidden">38%</span>
                       </div>
                     </div>
                   </div>
-                  <!-- ? Ícone -->
-                  <div class="col-auto fs-3 bg-primary bg-gradient text-white py-2 px-3 rounded-5 me-2"><i
-                      class="bi-card-list"></i></div>
                 </div>
               </div>
+              <!-- ? Ícone -->
+              <i class="col-auto fs-3 bi-card-list text-white py-2 px-3 rounded-5 me-2"></i>
             </div>
           </div>
           <!-- * Chamados Ativos -->
           <div class="col-md-6 col-xl-3 mb-3 card-resultado">
-            <div class="card shadow-sm border-0">
-              <div class="valores-header rounded-1">
-                <div class="row align-items-center no-gutters flex-nowrap">
-                  <!-- ? Texto -->
-                  <div class="col">
-                    <div class="fw-bolder text-xs text-nowrap">
-                      <small class="text-warning">Chamados ativos</small>
-                    </div>
-                    <div class="mb-0">
-                      <span class="fw-lighter text-white px-2 rounded-5" style="background-color: #0f0f0f;">
-                        4
-                      </span>
-                    </div>
-                  </div>
-                  <!-- ? Ícone -->
-                  <div class="col-auto fs-3 bg-warning bg-gradient text-white py-2 px-3 rounded-5 me-2"><i
-                      class="bi-chat-square-text"></i></div>
+            <div class="valores-header rounded-1 d-flex align-items-center gap-3 shadow-sm">
+              <!-- ? Texto -->
+              <div class="col">
+                <div class="fw-bolder text-xs text-nowrap">
+                  <small class="text-warning">Chamados ativos</small>
+                </div>
+                <div class="mb-0">
+                  <span class="fw-lighter text-white px-2 rounded-5" style="background-color: #0f0f0f;">
+                    4
+                  </span>
                 </div>
               </div>
+              <!-- ? Ícone -->
+              <i class="col-auto fs-3 bi-chat-square-text text-white py-2 px-3 rounded-5 me-2"></i>
             </div>
           </div>
         </div>
@@ -265,7 +243,7 @@
           <!-- * Participantes -->
           <div class="graficoPizza col-lg-5 col-xl-4">
             <div class="card shadow mb-4 border-0 rounded-1">
-              <div class="pizza-header bg-gradient d-flex justify-content-between align-items-center">
+              <div class="pizza-header d-flex justify-content-between align-items-center">
                 <h6 class="m-0">Participantes</h6>
               </div>
               <div class="card-body">
@@ -341,17 +319,19 @@
             <!-- * Lista de Afazeres-->
             <div class="todoLista card border-0 shadow mb-4 pb-1">
               <div class="card-header py-3 px-0">
-                <button class="buttonDinamico bi-plus-lg btn shadow-sm py-1 px-2 rounded-3 position-absolute top-0 end-0 m-2 mx-5 bg-gradient"
-                id="adicionaTodo"></button>
-                <button class="buttonDinamico bi-pen btn shadow-sm py-1 px-2 rounded-3 position-absolute top-0 end-0 m-2 bg-gradient"
-                id="editaTodo"></button>
+                <button
+                  class="buttonDinamico bi-plus-lg btn shadow-sm py-1 px-2 rounded-3 position-absolute top-0 end-0 m-2 mx-5"
+                  id="adicionaTodo"></button>
+                <button
+                  class="buttonDinamico bi-pen btn shadow-sm py-1 px-2 rounded-3 position-absolute top-0 end-0 m-2"
+                  id="editaTodo"></button>
                 <p class="fw-bolder fs-4 m-0 ms-3">Lista de Progresso</p>
               </div>
               <ul id="todoConteudo" class="list-group list-group-flush overflow-auto m-0 mx-2">
                 <li class="list-group-item py-2">
                   <div class="row align-items-center no-gutters">
                     <div class="col me-2">
-                      <h6 class="fw-bolder bg-gradient"><strong>Ensaio fotográfico</strong></h6>
+                      <h6 class="fw-bolder bg-gradient">Ensaio fotográfico</h6>
                     </div>
                     <div class="col-auto">
                       <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-1"><label
@@ -458,6 +438,7 @@
   <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="../JS/barraLateral.js"></script>
   <script src="../JS/resultado.js"></script>
+  <script src="../JS/back-end.js"></script>
 </body>
 
 </html>

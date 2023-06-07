@@ -115,6 +115,10 @@ $(document).ready(function () {
             todoTitulo($(this));
         }
     });
+
+    $('#formCheck-1').click(function () {
+        $('h6').toggleClass('concluido');
+    });
 });
 
 // * Função ativa enquanto o usuário estiver editando o título de uma tarefa
@@ -178,6 +182,7 @@ function ListaParticipantesConfirmados() {
     return ListaParticipantesConfirmados;
 }
 */
+
 // * Permite selecionar todo o texto de um elemento
 function selectAll(element) {
     if (document.body.createTextRange) { // Suporte para Internet Explorer
