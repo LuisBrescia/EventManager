@@ -30,7 +30,7 @@ function whooshLow(e) {
         currentAudio = null;
     }
     var audio = new Audio('../MP3/whooshLow.mp3');
-    audio.volume = 0.3;
+    audio.volume = 0.5;
     audio.play();
     currentAudio = audio;
 } 
