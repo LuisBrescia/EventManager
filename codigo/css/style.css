@@ -595,3 +595,7 @@ footer a:hover {
   transition: all 0.5s;
   font-size: 1.2rem;
 }
+
+.bg-1 {
+  background: var(--primaria);
+}
