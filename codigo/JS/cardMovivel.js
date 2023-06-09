@@ -25,27 +25,18 @@ var position = 0;
 var todasListas = [];
 
 if (ListaTipo === "ListaParticipantes") {
-    $('#tipoLista').find('i').removeClass('bi-cash-stack bi-briefcase').addClass('bi-people');
-    $('#tipoLista').find('span').text('Participantes');
-    // $('.trocaTipo').css('color', '#0ff');
     $('.listaParticipantes').addClass('active');
     $('.listaInsumos, .listaServicos').removeClass('active');
     position = 0;
     carregaCards();
 }
 if (ListaTipo === "ListaInsumos") {
-    $('#tipoLista').find('i').removeClass('bi-people bi-briefcase').addClass('bi-cash-stack');
-    $('#tipoLista').find('span').text('Insumos');
-    // $('.trocaTipo').css('color', '#fd6cfd');
     $('.listaInsumos').addClass('active');
     $('.listaParticipantes, .listaServicos').removeClass('active');
     position = 1;
     carregaCards();
 }
 if (ListaTipo === "ListaServicos") {
-    $('#tipoLista').find('i').removeClass('bi-people bi-cash-stack').addClass('bi-briefcase');
-    $('#tipoLista').find('span').text('Serviços');
-    // $('.trocaTipo').css('color', '#ff0');
     $('.listaServicos').addClass('active');
     $('.listaParticipantes, .listaInsumos').removeClass('active');
     position = 2;
@@ -119,41 +110,17 @@ $(document).ready(() => {
         todasListas = []; // * Agora o vetor é vazio
         localStorage.setItem(ListaTipo, JSON.stringify(todasListas));
     });
-    // * No momento #salvaCard está sendo utilizado para esconder o menu lateral
-    $('#tipoLista').click(() => {
-        if ($('#tipoLista').find('i').hasClass('bi-people')) {
-            $('#tipoLista').find('i').toggleClass('bi-people bi-cash-stack');
-            $('#tipoLista').find('span').text('Insumos');
-            $('.escolheLista button').removeClass('active');
-            $('.listaInsumos').addClass('active');
-            ListaTipo = "ListaInsumos";
-            localStorage.setItem("ultimaLista", ListaTipo);
-            position = 1;
-            localStorage.setItem("ultimaListaPosicao", position);
-            carregaCards();
+    // > Aqui virá botão para reorganizar os cards
+    $('#organizaCard').click(() => {
+        // > Não acho que precisa mas bora deixar aqui
+        todasListas = JSON.parse(localStorage.getItem(ListaTipo));
+        for (let i = 0; i < todasListas.length; i++) {
+            if (todasListas[i] != null) {
+                todasListas[i].coordenadas = null;
+            }
         }
-        else if ($('#tipoLista').find('i').hasClass('bi-cash-stack')) {
-            $('#tipoLista').find('i').toggleClass('bi-cash-stack bi-briefcase');
-            $('#tipoLista').find('span').text('Serviços');
-            $('.listaServicos').addClass('active');
-            $('.listaParticipantes, .listaInsumos').removeClass('active');
-            ListaTipo = "ListaServicos";
-            localStorage.setItem("ultimaLista", ListaTipo);
-            position = 2;
-            localStorage.setItem("ultimaListaPosicao", position);
-            carregaCards();
-        }
-        else if ($('#tipoLista').find('i').hasClass('bi-briefcase')) {
-            $('#tipoLista').find('i').toggleClass('bi-briefcase bi-people');
-            $('#tipoLista').find('span').text('Participantes');
-            $('.listaParticipantes').addClass('active');
-            $('.listaInsumos, .listaServicos').removeClass('active');
-            ListaTipo = "ListaParticipantes";
-            localStorage.setItem("ultimaLista", ListaTipo);
-            position = 0;
-            localStorage.setItem("ultimaListaPosicao", position);
-            carregaCards();
-        }
+        localStorage.setItem(ListaTipo, JSON.stringify(todasListas));
+        carregaCards();
     });
     $('.listaParticipantes').click(() => {
             $('#tipoLista').find('i').removeClass('bi-cash-stack bi-briefcase').addClass('bi-people');

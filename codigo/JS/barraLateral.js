@@ -27,7 +27,7 @@ $('#menu').on('click', () => {
     }
 
     $('.barraLista').toggleClass('col-xxl-10 col-xxl-12');
-
+    $('.ultraGambiarra').toggleClass('d-none');
     $('aside').toggleClass('active');
     menuAtivo = !menuAtivo;
 });
@@ -36,13 +36,13 @@ $('#menu').on('click', () => {
 $(document).on('keydown', function (e) {
     if (e.ctrlKey && e.keyCode === 66 && allowCtrl) {
         console.log('ctrl');
-        $('aside').toggleClass('active');
-        $('#salvaCard span').toggleClass('rodar');
         allowCtrl = false;
         menuAtivo = !menuAtivo;
         // * Caso uma elemento da classe .funcionalides tenha a classe col-xll-10, mudar para col-xll-12
 
         $('.barraLista').toggleClass('col-xxl-10 col-xxl-12');
+        $('.ultraGambiarra').toggleClass('d-none');
+        $('aside').toggleClass('active');
 
     }
 });

@@ -49,6 +49,11 @@ aside {
   min-height: 100vh;
   z-index: 9999;
 }
+aside.active {
+  transition: all 0.3s;
+  display: block;
+  left: 0%;
+}
 
 aside li {
   transition: all 0.3s;
@@ -71,12 +76,6 @@ aside li.active:hover {
 
 aside li a {
   color: #fff;
-}
-
-aside.active {
-  margin-left: 0;
-  transition: all 0.3s;
-  display: block;
 }
 
 aside li.active a,
