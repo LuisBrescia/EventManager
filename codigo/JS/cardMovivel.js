@@ -123,37 +123,37 @@ $(document).ready(() => {
         carregaCards();
     });
     $('.listaParticipantes').click(() => {
-            $('#tipoLista').find('i').removeClass('bi-cash-stack bi-briefcase').addClass('bi-people');
-            $('#tipoLista').find('span').text('Participantes');
-            $('.listaParticipantes').addClass('active');
-            $('.listaInsumos, .listaServicos').removeClass('active');
-            ListaTipo = "ListaParticipantes";
-            localStorage.setItem("ultimaLista", ListaTipo);
-            position = 0;
-            localStorage.setItem("ultimaListaPosicao", position);
-            carregaCards();
+        $('#tipoLista').find('i').removeClass('bi-cash-stack bi-briefcase').addClass('bi-people');
+        $('#tipoLista').find('span').text('Participantes');
+        $('.listaParticipantes').addClass('active');
+        $('.listaInsumos, .listaServicos').removeClass('active');
+        ListaTipo = "ListaParticipantes";
+        localStorage.setItem("ultimaLista", ListaTipo);
+        position = 0;
+        localStorage.setItem("ultimaListaPosicao", position);
+        carregaCards();
     });
     $('.listaInsumos').click(() => {
-            $('#tipoLista').find('i').removeClass('bi-people bi-briefcase').addClass('bi-cash-stack');
-            $('#tipoLista').find('span').text('Insumos');
-            $('.listaInsumos').addClass('active');
-            $('.listaParticipantes, .listaServicos').removeClass('active');
-            ListaTipo = "ListaInsumos";
-            localStorage.setItem("ultimaLista", ListaTipo);
-            position = 1;
-            localStorage.setItem("ultimaListaPosicao", position);
-            carregaCards();
+        $('#tipoLista').find('i').removeClass('bi-people bi-briefcase').addClass('bi-cash-stack');
+        $('#tipoLista').find('span').text('Insumos');
+        $('.listaInsumos').addClass('active');
+        $('.listaParticipantes, .listaServicos').removeClass('active');
+        ListaTipo = "ListaInsumos";
+        localStorage.setItem("ultimaLista", ListaTipo);
+        position = 1;
+        localStorage.setItem("ultimaListaPosicao", position);
+        carregaCards();
     });
     $('.listaServicos').click(() => {
-            $('#tipoLista').find('i').removeClass('bi-people bi-cash-stack').addClass('bi-briefcase');
-            $('#tipoLista').find('span').text('Serviços');
-            $('.listaServicos').addClass('active');
-            $('.listaParticipantes, .listaInsumos').removeClass('active');
-            ListaTipo = "ListaServicos";
-            localStorage.setItem("ultimaLista", ListaTipo);
-            position = 2;
-            localStorage.setItem("ultimaListaPosicao", position);
-            carregaCards();
+        $('#tipoLista').find('i').removeClass('bi-people bi-cash-stack').addClass('bi-briefcase');
+        $('#tipoLista').find('span').text('Serviços');
+        $('.listaServicos').addClass('active');
+        $('.listaParticipantes, .listaInsumos').removeClass('active');
+        ListaTipo = "ListaServicos";
+        localStorage.setItem("ultimaLista", ListaTipo);
+        position = 2;
+        localStorage.setItem("ultimaListaPosicao", position);
+        carregaCards();
     });
 });
 // * Botão que edita o título do card
@@ -399,26 +399,24 @@ function criaConteudo(lista, gapping) {
     } else {
         conteudoStyle = 'top: ' + lista.coordenadas[1] + 'px; left: ' + lista.coordenadas[0] + 'px;';
     }
-    return $('<div id="card-' + lista._id + '" class="card-container ms-5" style="' +
-        conteudoStyle + 'z-index: 0;">' +
-        '<div class="cardConvidado draggable card col-3 shadow border-0 rounded-1 overflow-x-hidden">' +
-        '<div class="card-header fs-4 fw-bolder text-nowrap d-flex justify-content-between align-items-center">' +
-        '<span class="mt-3 mb-1 lh-1 pt-2 fs-md-1">' +
-        lista.titulo +
-        '</span>' +
-        '<span class="position-absolute end-0 top-0 m-0 p-0">' +
-        '<button type="button" class="btn bi-arrow-clockwise resetaCard btn-sm"></button>' +
-        '<button type="button" class="btn bi-pen nomeiaCard btn-sm"></button>' +
-        '<button type="button" class="btn bi-x-lg removeCard btn-sm" aria-label="Close"></button>' +
-        '</span>' +
-        '</div>' +
-        '<div class="card-body overflow-auto mx-1 p-0" style="max-height: 500px">' +
-        '<ul class="list-group list-group-flush mx-0 px-0">' +
-        conteudo +
-        '</ul>' +
-        '</div>' +
-        '</div>' +
-        '</div>');
+    return $(
+        `<div id="card-${lista._id}" class="card-container ms-5" style="${conteudoStyle}; z-index: 0;">
+        <div class="cardConvidado draggable card col-3 shadow border-0 rounded-1 overflow-x-hidden">
+        <div class="card-header fs-4 fw-bolder text-nowrap d-flex justify-content-between align-items-center">
+        <span class="mt-3 mb-1 lh-1 pt-2 fs-md-1">${lista.titulo}</span>
+        <span class="position-absolute end-0 top-0 m-0 p-0">
+            <button type="button" class="btn bi-arrow-clockwise resetaCard btn-sm"></button>
+            <button type="button" class="btn bi-pen nomeiaCard btn-sm"></button>
+            <button type="button" class="btn bi-x-lg removeCard btn-sm" aria-label="Close"></button>
+        </span>
+        </div>
+        <div class="card-body overflow-auto mx-1 p-0" style="max-height: 500px">
+        <ul class="list-group list-group-flush mx-0 px-0"> 
+            ${conteudo}
+        </ul>
+        </div>
+        </div>
+        </div>`);
     /*
     > Será feito algo como:
     > if lista.coordenadas == null, então seguirá o procedimento de gapping padrão
