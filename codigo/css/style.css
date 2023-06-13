@@ -3,10 +3,10 @@
 
 /** Configurações gerais da página*/
 
-.blur {
+/* .blur {
   filter: blur(2px);
   transition: filter 1s;
-}
+} */
 
 /* ::-webkit-scrollbar { width: 0; } */
 :focus {
@@ -317,7 +317,7 @@ main h1 {
 .cardConvidado {
   max-height: 300px;
   width: 100%;
-  min-width: 250px;
+  min-width: 200px;
 }
 
 .cardConvidado ul {
@@ -490,15 +490,16 @@ main h1 {
 }
 
 @media screen and (max-width: 991px) {
+  /*
   aside {
     margin-left: -100%;
-  }
+  }*/
 
   aside li:hover {
     padding-left: 0;
     padding-right: 0;
   }
-}
+} 
 
 /*> Ideal seria $(.barraLista).css('width', 100 - aside.width '%')*/
 @media screen and (max-width: 1399px) {
