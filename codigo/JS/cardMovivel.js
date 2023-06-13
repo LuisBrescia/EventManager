@@ -400,7 +400,7 @@ function criaConteudo(lista, gapping) {
         conteudoStyle = 'top: ' + lista.coordenadas[1] + 'px; left: ' + lista.coordenadas[0] + 'px;';
     }
     return $(
-        `<div id="card-${lista._id}" class="card-container ms-5" style="${conteudoStyle}; z-index: 0;">
+        `<div id="card-${lista._id}" class="bg-dark card-container ms-5" style="${conteudoStyle}; z-index: 0; width: 0%;">
         <div class="cardConvidado draggable card col-3 shadow border-0 rounded-1 overflow-x-hidden">
         <div class="card-header fs-4 fw-bolder text-nowrap d-flex justify-content-between align-items-center">
         <span class="mt-3 mb-1 lh-1 pt-2 fs-md-1">${lista.titulo}</span>
