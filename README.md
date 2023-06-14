@@ -9,7 +9,6 @@ Um site desenvolvido para ajudar para ajudar pessoas a realizarem um planejament
 
 * Luís Felipe Teixeira Dias Brescia
 * Bernardo Carvalho Denucci Mercado
-* João Victor Borges de Oliveira
 * Thiago Cury Freire
 * Vitor Rebula Nogueira
 
