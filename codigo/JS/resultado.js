@@ -75,6 +75,13 @@ scatter */
 var editaTodo = false;
 $(document).ready(function () {
     $('#adicionaTodo').click(function () {
+
+        // * Caso #todoConteudo tenha mais de 20 tarefas, um toast é ativado    
+        if ($('#todoConteudo li').length >= 12) {
+            $('.toast').toast('show');
+            return;
+        }
+
         $('#todoConteudo li h6').prop('contenteditable', 'false');
         editaTodo = false;
         novaTarefa = $(
@@ -120,6 +127,10 @@ $(document).ready(function () {
         $('h6').toggleClass('concluido');
     });
 });
+
+// > Preciso que quando um item da lista for criado, seja criado juto uma checkbox que quando clicada adiciona a classe concluido somente na h6 clicada
+// > Porém antes, vou fazer um botão para excluir items da checklist
+// > Antes ainda, vou fazer um toast que é ativado caso seja criado mais de 20 tarefas 
 
 // * Função ativa enquanto o usuário estiver editando o título de uma tarefa
 function todoTitulo(elemento) {

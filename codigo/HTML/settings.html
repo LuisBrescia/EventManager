@@ -6,206 +6,52 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Event Manager</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-  <style>
-    *:focus {
-      outline: none;
-    }
-
-    a {
-      text-decoration: none;
-    }
-
-    body {
-      background: #f0f0f0;
-    }
-
-    main {
-      background: #f0f0f0;
-      min-height: 100vh;
-    }
-
-    main h1 {
-      background: #fff;
-    }
-
-    aside {
-      background: #ff4400;
-    }
-
-    aside li {
-      transition: all 0.3s;
-    }
-
-    aside li:hover {
-      color: #fff;
-      background: #fe4400;
-      padding-left: 1em;
-      padding-right: 1em;
-      transition: all 0.3s;
-    }
-
-    aside li.active {
-      background: #fa3a00;
-    }
-
-    aside li.active:hover {
-      color: #fff;
-      background: #ee3300;
-      padding-left: 1em;
-      padding-right: 1em;
-      transition: all 0.3s;
-    }
-
-    aside li.active a,
-    aside li.active a:hover,
-    li a:hover {
-      color: #fff;
-    }
-
-    aside li a {
-      color: #fff;
-    }
-
-    footer a {
-      color: #212529;
-      text-decoration: none;
-      font-size: 1px;
-      transition: all 0.5s;
-    }
-
-    footer a:hover {
-      color: #fff;
-      transition: all 0.5s;
-      font-size: 1.2rem;
-    }
-
-    button.funcionalidade {
-      font-size: initial;
-      transition: all 0.3s;
-    }
-
-    button.funcionalidade:hover {
-      font-size: 1.2rem;
-      transition: all 0.3s;
-    }
-
-    .cardConvidado button {
-      color: #9FA6B2;
-      transition: all 0.3s;
-    }
-
-    .cardConvidado button:hover {
-      color: #212529;
-      font-size: 18px;
-      transition: all 0.3s;
-    }
-
-    footer {
-      z-index: 9999;
-    }
-
-    aside {
-      margin-left: -250px;
-      transition: all 0.3s;
-      z-index: 1;
-      min-height: 100vh;
-    }
-
-    aside.active {
-      margin-left: 0;
-      transition: all 0.3s;
-    }
-
-    /* .card-container {
-  transition: all 0.3s;
-  transform: translateY(0);
-}
-.card-container.minimizado {
-  transform: translateX(-250px) translateY(0);
-  transition: all 0.3s;
-} */
-
-    .mover {
-      padding: 1em;
-    }
-
-    .cardConvidado .card-header {
-      background: #FFF;
-      border-image: linear-gradient(to right, #ff4400, #ffa07d);
-      border-image-slice: 100% 25% 0 25%;
-      border-image-width: 2px;
-      color: #212529;
-      font-size: 1.2rem;
-      font-weight: 500;
-      padding: 0.75rem 1.25rem;
-    }
-
-    .cardConvidado {
-      max-height: 300px;
-      width: 300px
-    }
-
-    .card-container {
-      position: absolute;
-    }
-
-    .toast-header {
-      border-image: linear-gradient(to right, #ff4400, #ffa07d);
-      border-image-slice: 100% 25% 100% 25%;
-      border-image-width: 2px;
-    }
-
-    .funcionalidades {
-      z-index: 100;
-    }
-
-    /*# sourceMappingURL=style.css.map */
-  </style>
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="../CSS/style.css" />
 </head>
 
-<body class="overflow-hidden">
+<body>
   <div class="telaInteira d-flex">
     <!-- ! GAMBIARRA EM SEU ESTADO MAIS PURO-->
-    <aside class="ultraGambiarra active">
-      <div class="px-2 py-3 d-flex justify-content-between">
-        <h1 class="fs-4">
-          <span class="bg-white text-dark rounded shadow px-2"><i class="bi-amd"></i></span>
-          <span class="text-white me-3">Event Manager</span>
-        </h1>
-      </div>
-    </aside>
-    <!-- ? Ínicio da Barra Lateral -->
-    <!-- > Barra Lateral vai ser a mesma para todas as páginas -->
-    <aside class="bg-gradient active position-fixed">
+    <aside class="col-xxl-2 ultraGambiarra active opacity-0">
       <!-- * Título da Barra Lateral -->
-      <div class="px-2 py-3 d-flex justify-content-between">
-        <h1 class="fs-4">
-          <span class="bg-white text-dark rounded shadow px-2"><i class="bi-amd"></i></span>
-          <span class="text-white me-3">Event Manager</span>
+      <div class="px-lg-2 py-3 d-flex">
+        <h1 class="fs-4 mx-auto my-0 text-nowrap">
+          <span class="d-none d-lg-inline-block text-white rounded shadow bg-1 fs-3 px-2 text-center"><i
+              class="bi-flower1"></i></span>
+          <span class="d-lg-none text-white rounded fs-3 px-2 text-center"><i class="bi-flower1"></i></span>
+          <span class="text-white me-3 fw-bolder d-none d-lg-inline-block">Event Manager</span>
         </h1>
       </div>
       <!-- * 4 primeiras páginas da barra lateral -->
       <ul class="list-unstyled">
-        <li>
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
           <a href="Collection.html" class="px-3 py-2 d-block">
-            <i class="me-2 bi-braces-asterisk"></i>Dashboard
+            <i class="me-lg-2 bi-collection"></i>
+            <span class="d-none d-lg-inline-block">Coleção</span>
+            <span class="d-none d-md-block d-lg-none">Coleção</span>
           </a>
         </li>
-        <li class="active">
+        <li onmouseenter="whooshMid()" class="active text-center text-lg-start">
           <a href="Listas.html" class="px-3 py-2 d-block">
-            <i class="me-2 bi-people-fill"></i>Participantes</a>
-        </li>
-        <li>
-          <a href="Info.html" class="px-3 py-2 d-block">
-            <i class="me-2 bi-cash"></i>Custo
+            <i class="me-lg-2 bi-journal"></i>
+            <span class="d-none d-lg-inline-block">Listas</span>
+            <span class="d-none d-md-block d-lg-none">Listas</span>
           </a>
         </li>
-        <li>
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
+          <a href="Info.html" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-stickies"></i>
+            <span class="d-none d-lg-inline-block">Serviços</span>
+            <span class="d-none d-md-block d-lg-none">Serviços</span>
+          </a>
+        </li>
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
           <a href="Valores.html" class="px-3 py-2 d-block">
-            <i class="me-2 bi-music-note-list"></i>Valores.html
+            <i class="me-lg-2 bi-receipt"></i>
+            <span class="d-none d-lg-inline-block">Valores</span>
+            <span class="d-none d-md-block d-lg-none">Valores</span>
           </a>
         </li>
       </ul>
@@ -213,20 +59,95 @@
       <!-- * 4 últimas -->
       <!-- > Usar componente MODAL do Bootstrap -->
       <ul class="list-unstyled">
-        <li class="">
-          <a href="settings.html" class="px-3 py-2 d-block">
-            <i class="me-2 bi-gear-fill"></i>Configurações
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
+          <a href="perfil.html" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-person"></i>
+            <span class="d-none d-lg-inline-block">Perfil</span>
+            <span class="d-none d-md-block d-lg-none">Perfil</span>
           </a>
         </li>
-        <li class="">
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
           <a href="#" class="px-3 py-2 d-block">
-            <i class="me-2 bi-sliders"></i>Temas
+            <i class="me-lg-2 bi-sliders"></i>
+            <span class="d-none d-lg-inline-block">Temas</span>
+            <span class="d-none d-md-block d-lg-none">Temas</span>
           </a>
         </li>
-        <li class="">
-          <a href="perfil.html" class="px-3 py-2 d-inline-block d-flex justify-content-between">
-            <span><i class="me-2 bi-person-fill"></i>Perfil</span>
-            <!-- // <span class="bg-dark rounded-pill text-white py-0 px-2">02</span> -->
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
+          <a href="settings.html" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-gear"></i>
+            <span class="d-none d-lg-inline-block">Configurações</span>
+            <span class="d-none d-md-block d-lg-none">Settings</span>
+          </a>
+        </li>
+      </ul>
+    </aside>
+    <!-- ? Ínicio da Barra Lateral -->
+    <!-- > Barra Lateral vai ser a mesma para todas as páginas -->
+    <aside class="col-xxl-2 active position-fixed">
+      <!-- * Título da Barra Lateral -->
+      <div class="px-lg-2 py-3 d-flex">
+        <h1 class="fs-4 mx-auto my-0 text-nowrap">
+          <span class="d-none d-lg-inline-block text-white rounded shadow bg-1 fs-3 px-2 text-center"><i
+              class="bi-flower1"></i></span>
+          <span class="d-lg-none text-white rounded fs-3 px-2 text-center"><i class="bi-flower1"></i></span>
+          <span class="text-white me-3 fw-bolder d-none d-lg-inline-block">Event Manager</span>
+        </h1>
+      </div>
+      <!-- * 4 primeiras páginas da barra lateral -->
+      <ul class="list-unstyled">
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
+          <a href="Collection.html" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-collection"></i>
+            <span class="d-none d-lg-inline-block">Coleção</span>
+            <span class="d-none d-md-block d-lg-none">Coleção</span>
+          </a>
+        </li>
+        <li onmouseenter="whooshMid()" class="active text-center text-lg-start">
+          <a href="Listas.html" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-journal"></i>
+            <span class="d-none d-lg-inline-block">Listas</span>
+            <span class="d-none d-md-block d-lg-none">Listas</span>
+          </a>
+        </li>
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
+          <a href="Info.html" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-stickies"></i>
+            <span class="d-none d-lg-inline-block">Serviços</span>
+            <span class="d-none d-md-block d-lg-none">Serviços</span>
+          </a>
+        </li>
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
+          <a href="Valores.html" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-receipt"></i>
+            <span class="d-none d-lg-inline-block">Valores</span>
+            <span class="d-none d-md-block d-lg-none">Valores</span>
+          </a>
+        </li>
+      </ul>
+      <hr class="text-dark mx-3" />
+      <!-- * 4 últimas -->
+      <!-- > Usar componente MODAL do Bootstrap -->
+      <ul class="list-unstyled">
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
+          <a href="perfil.html" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-person"></i>
+            <span class="d-none d-lg-inline-block">Perfil</span>
+            <span class="d-none d-md-block d-lg-none">Perfil</span>
+          </a>
+        </li>
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
+          <a href="#" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-sliders"></i>
+            <span class="d-none d-lg-inline-block">Temas</span>
+            <span class="d-none d-md-block d-lg-none">Temas</span>
+          </a>
+        </li>
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
+          <a href="settings.html" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-gear"></i>
+            <span class="d-none d-lg-inline-block">Configurações</span>
+            <span class="d-none d-md-block d-lg-none">Settings</span>
           </a>
         </li>
       </ul>
@@ -234,340 +155,85 @@
     <!-- ! Fim da Barra Lateral -->
 
     <!-- ? Página -->
-    <main class="col bg-gradient h-100 d-flex flex-column justify-content-between">
-      <!-- * Botões -->
-      <!-- > Ao ser adicionado fixed-top conserta o problema crescer para baixo,
-      > porém outros cards acabam subindo juntos-->
-      <div class="funcionalidades btn-group shadow-lg d-flex" role="group" aria-label="Basic example">
-        <button type="button" id="adicionaCard" class="col funcionalidade btn btn-dark rounded-0 fw-light">
-          <i class="bi-person-add me-2"></i>Adicionar
-        </button>
-        <button type="button" id="salvaCard" class="col funcionalidade btn btn-dark rounded-0 fw-light">
-          <i class="bi-arrow-down-circle"></i>
-          Deploy
-        </button>
-        <button type="button" id="removeCard" class="col funcionalidade btn btn-dark rounded-0 fw-light">
-          <i class="bi-person-x me-2"></i>Limpar
-        </button>
-      </div>
+    <main class="col p-3 px-4">
+      <!-- * Nessa coluna estará contido: Categoria do evento
+      * Título | Descrição | Número de pessoas | Orçamento -->
+      <div class="d-flex justify-content-center">
+        <div class="col-7 me-3">
 
-      <!-- * Nosso "Canvas" onde os cards serão adicionados -->
-      <section class="col position-static">
-      </section>
+          <select name="Categorias" id="" class="form-select form-select-lg mb-3 shadow-sm border-0 ">
+            <option selected>Categoria do evento</option>
+            <option value="Casamento">Casamento</option>
+            <option value="Aniversario">Aniversário</option>
+            <option value="Formatura">Formatura</option>
+            <option value="Churrasco">Churrasco</option>
+            <option value="Sitio">Sítio</option>
+            <option value="Outros">Outros</option>
+          </select>
+
+          <h1 class="mb-3 rounded-3 shadow-sm text-center p-3">Casamento Lucas e Ana</h1>
+
+          <p class="fs-4">
+            Casamento na região de São Paulo, com 200 convidados
+            <strong class="text-warning">{Descrição}</strong>
+          </p>
+
+          <div class="input-group flex-nowrap shadow-sm rounded-3 mb-3">
+            <span class="input-group-text bi-people border-0 bg-dark text-white" id="addon-wrapping"></span>
+            <input type="number" class="form-control border-0 shadow-none" placeholder="Número de pessoas" aria-label="Username"
+              aria-describedby="addon-wrapping">
+          </div>
+
+          <div class="d-flex gap-3">
+            <div class="input-group flex-nowrap shadow-sm rounded-3">
+              <span class="input-group-text border-0 bg-dark text-white" id="addon-wrapping">DE</span>
+              <input type="number" class="form-control border-0 shadow-none" placeholder="Mínimo" aria-label="Username"
+              aria-describedby="addon-wrapping">
+              <span class="input-group-text bi-currency-dollar border-0 bg-dark text-white" id="addon-wrapping"></span>
+            </div>
+            
+            <div class="input-group flex-nowrap shadow-sm rounded-3">
+              <span class="input-group-text border-0 bg-dark text-white" id="addon-wrapping">ATÉ</span>
+              <input type="number" class="form-control border-0 shadow-none" placeholder="Máximo" aria-label="Username"
+              aria-describedby="addon-wrapping">
+              <span class="input-group-text bi-currency-dollar border-0 bg-dark text-white" id="addon-wrapping"></span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- * Nessa coluna estará contido um card com lugar onde o evento ocorrerá -->
+        <div class="col-5">
+          <div class="border-0 bg-white rounded-3 p-3 shadow">
+            <div>
+              <span class="fs-2">Local do Evento</span>
+              <img class="rounded-3 shadow mt-2" src="../HTML/assets/img/dogs/image1.jpeg"
+                style="max-height: 50vh; width: 100%; object-fit: cover;">
+            </div>
+            <div class="text-center mt-3">
+              <button class="btn btn-1 btn-primary rounded-5 shadow-sm border-0 bi-geo">&nbsp;Encontrar local</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex flex-column gap-3 position-fixed escolheLista" style="bottom: 1em; right: 1em;">
+          <button onmouseenter="whooshLow(this)" class="btn btn-primary rounded-5 shadow-sm border-0">
+            <i class="bi-person-fill-lock d-inline-block"></i>
+            <span class="ms-2">Evento Privado</span>
+          </button>
+        </div>
+        <!-- <footer class="position-fixed bottom-0 text-center">
+        © Event Manager 2023
+      </footer> -->
     </main>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/jquery-ui-dist@1.12.1/jquery-ui.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    var menuAtivo = true;
-    var allowCtrl = true;
-
-    // * No momento #salvaCard está sendo utilizado para esconder o menu lateral
-    $('#salvaCard').on('click', () => {
-      console.log('salvaCard');
-      $('aside').toggleClass('active');
-      $('.card-container').removeClass('mover');
-      menuAtivo = !menuAtivo;
-    });
-
-    // * Atalho: Ctrl + B
-    $(document).on('keydown', function (e) {
-      if (e.ctrlKey && e.keyCode === 66 && allowCtrl) {
-        console.log('ctrl');
-        $('aside').toggleClass('active');
-        $('#salvaCard span').toggleClass('rodar');
-        allowCtrl = false;
-      }
-    });
-
-    $(document).on('keyup', function (e) {
-      if (e.ctrlKey || e.keyCode === 66) {
-        allowCtrl = true;
-      }
-    });
-  </script>
-  <script>
-    var canvas = $('section');  // Os botões também contam como filhos
-    var maxWidth = 250;         // Máximo de pixels permitidos no título
-    var maxLength = 15;         // Máximo de caracteres permitidos no título
-    const TAM = 6; // ? Quantidade de cards que será possível adicionar
-    // : TRUE == DISPONÍVEL
-    // ! FALSE == OCUPADO
-    const vetor = Array(TAM).fill(true);
-
-    // > Preciso que cards com position diferentes tenham a mesma largura
-    // > Preciso que todos os cards manteham suas coordenadas após mudança de posição
-
-    // ? Botão de adicionar card
-    $('#adicionaCard').on('click', () => {
-      // * Percorre o vetor, se existir algum elemento com o valor true, criará card
-      if (!vetor.includes(true)) {
-        const toastBootstrap = bootstrap.Toast.getOrCreateInstance($('#liveToast'))
-        toastBootstrap.show();
-        setTimeout(() => { toastBootstrap.hide(); }, 3000);
-        return;
-      }
-      // * Conteúdo HTML do card
-      var newCard = $(
-        // ! Periódicamente cards se tornam impossíveis de serem arrastados	
-        // ! Realizar testes para checar se foi corrigido
-        // > Adicionar e remover propriedade position absolute quando necessário
-        // ? Possível solução:          (Farei quando tiver tempo)
-        // > Cards que não estão sendo utilizados, terão position fixed       
-        // ? Acredito que a solução envolva mudar algo desta linha de baixo
-        '<div id="card-' + vetor.indexOf(true) + '" class="card-container ms-5" style="top:' + (vetor.indexOf(true) + 1) + '0%">' +
-        '<div class="cardConvidado draggable card col-3 shadow border-0 rounded-3 overflow-x-hidden"' +
-        'style="max-height:300px; width:300px">' +
-        '<div class="card-header fs-4 fw-bolder text-nowrap d-flex justify-content-between align-items-center">' +
-        '<span class="mt-3 mb-1 lh-1 pt-2">' +
-        'Lista ' + (vetor.indexOf(true) + 1) +
-        '</span>' +
-        '<span class="position-absolute end-0 top-0 m-0 p-0">' +
-        '<button type="button" class="btn bi-arrow-clockwise resetaCard btn-sm"></button>' +
-        '<button type="button" class="btn bi-pen nomeiaCard btn-sm"></button>' +
-        '<button type="button" class="btn bi-x-lg removeCard btn-sm" aria-label="Close"></button>' +
-        '</span>' +
-        '</div>' +
-        '<div class="card-body overflow-auto mx-1 p-0" style="max-height: 500px">' +
-        '<ul class="list-group list-group-flush mx-0 px-0">' +
-        '<li class="list-group-item fw-lighter" contenteditable="true"></li>' +
-        '</ul>' +
-        '</div>' +
-        '</div>' +
-        '</div>'
-      );
-      // * Função para configurar regras para movimentação do card
-      newCard.find(".draggable").draggable({
-        containment: "section",
-        scroll: false,
-        snap: false,
-        stack: ".draggable",
-        cursor: "grabbing",
-        handle: ".card-header",
-        // * Funão chamada quando o card é solto
-        stop: function () {
-          $(this).closest('.card-container').css('position', 'absolute');
-          // > Descobrir como a coordenada é calculada
-          // * Adicionando 300 estará me falando onde o card acaba
-          // var cardPosition = $(this).position().left + 48 + 300;
-          // var canvasWidth = canvas.width();
-
-          // // : ASIDE IS ACTIVE?
-          // // : IF YES NÃO FAZER NADA
-          // if (!$('aside').hasClass('active')) {
-          //     // : PEGAR A LARGURA DO CANVAS SUBTRAIR POR 250
-          //     larguraPermitida = canvasWidth - 250;
-          //     // : SE ALGUM CARD ESTIVER COM A COORDENADA MAIOR QUE A LARGURA PERMITIDA
-          //     if (cardPosition > larguraPermitida) {
-          //         // : VAI SER ADICIONADA A ELE A CLASSE MOVER
-          //         $(this).addClass('mover');
-          //         $(this).find('.card-container').addClass('mover');
-          //         $(this).find('.card-header').css('background-color', '#ff4400');
-          //         // $(this).css('transform', 'translateX(-' + (cardPosition - larguraPermitida) + 'px)');
-          //         // console.log('Será movido ' + (cardPosition - larguraPermitida) + 'px para esquerda');
-          //     } else {
-          //         $(this).removeClass('mover');
-          //         $(this).find('.card-container').removeClass('mover');
-          //         $(this).find('.card-header').css('background-color', '#fff');
-          //         // $(this).css('transform', 'translateX(0px)');
-          //     }
-          // } else {
-          //     $(this).removeClass('mover');
-          //     $(this).find('.card-container').removeClass('mover');
-          //     $(this).find('.card-header').css('background-color', '#fff');
-          // }
-          // : VOU PEGAR A COORDENADA DESTE CARD E SUBTRAIR PELA LARGURA PERMITIDA
-          // : MOVER = COORDENADA DO CARD - LARGURA PERMITIDA
-          // : E QUANDO O USUÁRIO APERTAR O BOTÃO DE MENU, VOU MOVER O CARD
-          // : TRANSFORM: TRANSLATEX(-MOVER)
-
-          // * Verifica se o card está do lado direito
-          // console.log('Coordenada X do card:', cardPosition);
-          // console.log('Largura do canvas:', canvasWidth);
-          // console.log('mouseup');
-        }
-      });
-
-      // * Editar o conteúdo do card
-      newCard.find('.list-group').on('keydown', function (e) {
-        // ? Apenas para simplificar o código
-        var listGroup = $(this).closest('.card-container').find('.list-group');
-        var otherCards = $('.card-container').not($(this).closest('.card-container'));
-        var currentLi = listGroup.find('li:focus');
-        var currentLiText = listGroup.find('li:focus').text();
-
-        // * Se o usuário pressionar backspace e a linha estiver vazia, e não houver apenas 1 linha, linha atual é apagada, e o focus irá para a linha anterior
-        if ((e.keyCode === 8 || e.keyCode === 38 || e.keyCode === 40) && currentLiText === '' && listGroup.children().length > 1) {
-          e.preventDefault();
-          currentLi.remove();
-          var lastLi = listGroup.find('li:last-child').focus();
-          finalDaLinha(lastLi[0]);
-        }
-        // * Usuário não pode criar nova linha se atual está em branco
-        if (e.keyCode === 13 && currentLiText === '') {
-          e.preventDefault();
-          return;
-        }
-        // * Enter
-        if (e.keyCode === 13) {
-          e.preventDefault();
-          // $('.card-container').css('position', 'static'); // ! Desenvolvimento
-          // > Por algum motivo, todos os cards são afetados pelas mudanças
-          // > Talvez seja necessário criar uma classe específica para cada card
-          var liVazia = $('<li class="list-group-item fw-lighter" contenteditable="true"></li>').text("");
-          otherCards.css('position', 'fixed');
-          $(this).closest('.card-container').find('.list-group').append(liVazia);
-          liVazia.focus();
-        }
-        // * Seta para cima
-        if (e.keyCode === 38) {
-          e.preventDefault();
-          currentLi.prev().focus();
-          finalDaLinha(currentLi.prev()[0]);
-        }
-        // * Seta para baixo
-        if (e.keyCode === 40) {
-          e.preventDefault();
-          currentLi.next().focus();
-          finalDaLinha(currentLi.next()[0]);
-        }
-        // * Remove li vazias quando um click é realizado
-        $(document).on('click', function () {
-          // > Aqui possívelmente está gastando mais processamento que o necessário
-          $('.card-container').each(function () {
-            removerLiVazias($(this));
-          });
-        });
-        // ! Não sei para o que serve mas estou com medo de remover
-        // $(document).on('click', function (e) {
-        //     var currentLi = $('.list-group li:focus');
-        //     var currentLiText = currentLi.text();
-        //     var listGroup = currentLi.closest('.list-group');
-        //     if ((!$(e.target).closest('.card-container').length) && currentLiText === '' && listGroup.children().length > 1) {
-        //         e.preventDefault();
-        //         currentLi.remove();
-        //         var lastLi = listGroup.find('li:last-child').focus();
-        //         finalDaLinha(lastLi[0]);
-        //     }
-        // });
-      });
-      // * Botão que edita o título do card
-      newCard.find('.nomeiaCard').on('click', function () {
-        var cardContainer = $(this).closest('.card-container');
-        var cardTitle = cardContainer.find('.card-header span:first-child');
-        cardTitle.attr('contenteditable', 'true');
-        cardTitle.focus();
-        selectAll(cardTitle[0]);
-
-        // ! Não entendi o que isso faz
-        function selectAll(element) {
-          if (document.body.createTextRange) { // Suporte para Internet Explorer
-            var range = document.body.createTextRange();
-            range.moveToElementText(element);
-            range.select();
-          } else if (window.getSelection) { // Suporte para navegadores modernos
-            var range = document.createRange();
-            range.selectNodeContents(element);
-            var selection = window.getSelection();
-            selection.removeAllRanges();
-            selection.addRange(range);
-          }
-        }
-
-        // * Ao pressionar enter, o título é alterado
-        cardTitle.on('keydown', function (e) {
-          if (e.keyCode === 13) {
-            e.preventDefault();
-            var novoNome = $(this).text().trim();
-            if (novoNome !== '') {
-              cardTitle.text(novoNome);
-              var cardId = $(this).closest('.card-container').attr('id');
-              var cardNumber = parseInt(cardId.split('-')[1]);
-              localStorage.setItem('titulo-' + cardNumber, novoNome);
-            }
-            cardTitle.attr('contenteditable', 'false');
-            var listGroup = cardContainer.find('.list-group');
-            var lastLi = listGroup.find('li:last-child').focus();
-            finalDaLinha(lastLi[0]);
-          } else {
-            var currentWidth = $(this).width();
-            var currentLength = $(this).text().length;
-
-            var isContentSelected = isTextSelected(cardTitle[0]);
-
-            if ((currentWidth >= maxWidth || currentLength >= maxLength) && !isContentSelected && e.keyCode !== 8 && e.keyCode !== 46 && !e.ctrlKey) {
-              e.preventDefault();
-            }
-          }
-          if (currentLength > maxLength) {
-            var trimmedText = $(this).text().substring(0, maxLength);
-            cardTitle.text(trimmedText);
-          }
-
-        });
-        // * Permite alterar o título caso conteúdo esteja inteiramente selecionado
-        function isTextSelected(element) {
-          var selection = window.getSelection();
-          var selectedText = selection.toString();
-          var elementText = element.textContent;
-
-          return selectedText === elementText;
-        }
-      });
-      // * Botão que reseta o conteúdo do card
-      newCard.find('.resetaCard').on('click', function () {
-        $(this).closest('.card-container').find('.list-group li').remove();
-        var liVazia = $('<li class="list-group-item fw-lighter" contenteditable="true"></li>').text("");
-        $(this).closest('.card-container').find('.list-group').append(liVazia);
-        // > Adiciona Position Absolute ao card
-      });
-      // * Botão que apaga o card
-      newCard.find('.removeCard').on('click', function () {
-        var cardId = $(this).closest('.card-container').attr('id');
-        var cardNumber = parseInt(cardId.split('-')[1]);
-        vetor[cardNumber] = true;
-        $(this).closest('.card-container').remove();
-      });
-      console.log('Primeiro LOG ' + vetor.indexOf(true));
-      localStorage.setItem('titulo-' + vetor.indexOf(true), 'Lista ' + vetor.indexOf(true));
-      $('.info').addClass('d-none');
-      vetor[vetor.indexOf(true)] = false; // ! Desenvolvimento
-      canvas.append(newCard);
-    });
-
-    // * Apaga todos os cards
-    // ? ID só é reiniciado quando todos cards são apagados 
-    $('#removeCard').on('click', () => {
-      $('.card').parent().remove();
-      vetor.fill(true);
-      $('.info').removeClass('d-none');
-    });
-    // * No momento #salvaCard está sendo utilizado para esconder o menu lateral
-    $('#salvaCard').on('click', () => {
-      $('.card').find('.card-container').removeClass('mover');
-    });
-    // * Cursor no final de cada linha
-    function finalDaLinha(element) {
-      var range = document.createRange();
-      var sel = window.getSelection();
-      range.setStart(element.childNodes[0], element.childNodes[0].length);
-      range.collapse(true);
-      sel.removeAllRanges();
-      sel.addRange(range);
-    }
-    // * Remove li vazias
-    function removerLiVazias(cardContainer) {
-      cardContainer.find('.list-group-item').each(function () {
-        // * Vai remover todos os espaços em branco, e checar se ainda resta alguma coisa
-        if ($(this).text().trim() === '' && cardContainer.find('.list-group-item').length > 1) {
-          $(this).remove();
-        }
-      });
-    }
-  </script>
+  <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="../node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
+  <script src="../node_modules/@popperjs/core/dist/umd/popper.js"></script>
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../JS/barraLateral.js"></script>
+  <script src="../JS/back-end.js"></script>
 </body>
 
 </html>
