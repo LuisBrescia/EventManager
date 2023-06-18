@@ -162,8 +162,8 @@
       <div class="container-fluid">
         <div class="d-flex justify-content-between align-items-center mb-3">
           <h3 class="mb-0 fw-bolder fs-1 ms-1">Valores</h3><a id="exportarDados"
-            class="btn btn-primary rounded-5 fw-bolder shadow-sm py-2 px-3 fs-5 d-inline-block" role="button"
-            href="#"><i class="bi-download"></i>&nbsp;Exportar Dados</a>
+            class="btn btn-1 btn-primary rounded-5 fw-bolder shadow-sm py-2 px-3 fs-5 d-inline-block border-0"
+            role="button" href="#"><i class="bi-download"></i>&nbsp;Exportar Dados</a>
         </div>
         <!-- > Seção informativa -->
         <div class="row align-items-stretch">
@@ -176,7 +176,7 @@
                 <div class="mb-0"><span class="text-nowrap">R$ 43.375,50</span></div>
               </div>
               <!-- ? Ícone -->
-              <i class="Textura col-auto fs-3 text-white py-2 px-3 rounded-5 me-2 bi-cash-stack"></i>
+              <i class="Papel col-auto fs-3 text-white py-2 px-3 rounded-5 me-2 bi-cash-stack"></i>
             </div>
           </div>
           <!-- * Lucro ou Prejuízo-->
@@ -188,7 +188,7 @@
                 <div class="mb-0"><span class="text-nowrap">R$18.600,00</span></div>
               </div>
               <!-- ? Ícone -->
-              <i class="Textura col-auto fs-3 bi-currency-dollar text-white py-2 px-3 rounded-5 me-2"></i>
+              <i class="Papel col-auto fs-3 bi-currency-dollar text-white py-2 px-3 rounded-5 me-2"></i>
             </div>
           </div>
           <!-- * Progresso -->
@@ -215,7 +215,7 @@
                 </div>
               </div>
               <!-- ? Ícone -->
-              <i class="Textura col-auto fs-3 bi-card-list text-white py-2 px-3 rounded-5 me-2"></i>
+              <i class="Papel col-auto fs-3 bi-card-list text-white py-2 px-3 rounded-5 me-2"></i>
             </div>
           </div>
           <!-- * Chamados Ativos -->
@@ -233,7 +233,7 @@
                 </div>
               </div>
               <!-- ? Ícone -->
-              <i class="Textura col-auto fs-3 bi-chat-square-text text-white py-2 px-3 rounded-5 me-2"></i>
+              <i class="Papel col-auto fs-3 bi-chat-square-text text-white py-2 px-3 rounded-5 me-2"></i>
             </div>
           </div>
         </div>
@@ -249,7 +249,7 @@
               <div class="card-body">
                 <div class="chart-area">
                   <!-- <p class="position-absolute top-75">Aqui ficará uma relação de participantes em gráfico pizza.</p> -->
-                  <canvas id="graficoParticipantes" class="mx-auto w-100"></canvas>
+                  <canvas id="graficoParticipantes" class="mx-auto w-100 "></canvas>
                 </div>
                 <!-- <div class="text-center small mt-4"><span class="me-2">
                     <i class="bi-circle-fill" style="color: #04f;"></i>&nbsp;Hombres</span><span class="me-2">
@@ -315,7 +315,7 @@
         <!-- > Outros -->
         <div class="row">
           <!-- ! Coluna Projetos e To-do -->
-          <div class="mb-4">
+          <div class="mb-4 col-xl-8">
             <!-- * Lista de Afazeres-->
             <div class="todoLista card border-0 shadow pb-1">
               <div class="card-header py-3 px-0">
@@ -325,13 +325,14 @@
                 <button
                   class="buttonDinamico bi-pen btn shadow-sm py-1 px-2 rounded-3 position-absolute top-0 end-0 m-2"
                   id="editaTodo"></button>
-                <p class="fw-bolder fs-4 m-0 ms-3">Lista de Progresso</p>
+                <p class="fw-bolder fs-4 m-0 ms-2 ps-1">Lista de Progresso</p>
               </div>
               <ul id="todoConteudo" class="list-group list-group-flush m-0 mx-2">
                 <li class="list-group-item py-2">
                   <div class="row align-items-center no-gutters">
-                    <div class="col me-2">
-                      <h6 class="fw-bolder bg-gradient">Ensaio fotográfico</h6>
+                    <div class="col me-2 dadosTarefa px-0">
+                      <i class="bi-x text-danger position-absolute excluirTarefa d-none"></i>
+                      <h6 class="dadoTarefa mb-0 fw-bolder" style="z-index: 1" contenteditable="false">Ensaio fotográfico</h6>
                     </div>
                     <div class="col-auto">
                       <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-1"><label
