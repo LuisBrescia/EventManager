@@ -15,7 +15,7 @@ const TAM = 6;      // * Quantidade de cards que será possível adicionar
 
 var vetor = Array(TAM).fill(true); // * True = Disponível, False = Ocupado
 var matriz = Array(3).fill(Array(TAM).fill(true));
-console.log(matriz);
+
 // * Pegará do local Storage para deixar salvo quando a página recarregar
 var ListaTipo = localStorage.getItem("ultimaLista");
 if (ListaTipo == null) {
@@ -67,11 +67,12 @@ function carregaCards() {
                 nomeiaCard(carregaCard);
                 resetaCard(carregaCard);
                 removeCard(carregaCard);
+
                 $('section').append(carregaCard); // * Adiciona o card na página
                 matriz[position][i] = false; // * Posição ocupada
             } else { matriz[position][i] = true; console.log("entrou") } // * Posição disponível
         }
-    } else { todasListas = []; }
+    } else {todasListas = [];}
 }
 // > Preciso que cards com position diferentes tenham a mesma largura
 // > Preciso que todos os cards manteham suas coordenadas após mudança de posição
@@ -80,7 +81,6 @@ function carregaCards() {
 // * Botões só estarão disponíveis após o carregamento da página	
 $(document).ready(() => {
     carregaCards();
-    // * Botão de adicionar card
     $('#adicionaCard').click(() => {
         // * Percorre o vetor, se existir algum elemento com o valor true, criará card
         if (!matriz[position].includes(true)) {
@@ -103,14 +103,13 @@ $(document).ready(() => {
         matriz[position][matriz[position].indexOf(true)] = false;
         $('section').append(newCard);
     });
-    // * Botão de apagar todos os cards
+    // > Nome poderia ser removeTodosCards
     $('#removeCard').click(() => {
         $('.card').parent().remove();
         matriz[position].fill(true); // * Todas as posições se tornam disponíveis
         todasListas = []; // * Agora o vetor é vazio
         localStorage.setItem(ListaTipo, JSON.stringify(todasListas));
     });
-    // > Aqui virá botão para reorganizar os cards
     $('#organizaCard').click(() => {
         // > Não acho que precisa mas bora deixar aqui
         todasListas = JSON.parse(localStorage.getItem(ListaTipo));
