@@ -103,11 +103,18 @@
                         <span class="d-none d-md-block d-lg-none">Coleção</span>
                     </a>
                 </li>
-                <li onmouseenter="whooshMid()" class="active text-center text-lg-start">
+                <li onmouseenter="whooshMid()" class="text-center text-lg-start">
                     <a href="Listas.html" class="px-3 py-2 d-block">
                         <i class="me-lg-2 bi-journal"></i>
                         <span class="d-none d-lg-inline-block">Listas</span>
                         <span class="d-none d-md-block d-lg-none">Listas</span>
+                    </a>
+                </li>
+                <li onmouseenter="whooshMid()" class="active text-center text-lg-start">
+                    <a href="Listas.html" class="px-3 py-2 d-block">
+                        <i class="me-lg-2 bi-bezier"></i>
+                        <span class="d-none d-lg-inline-block">Fluxo</span>
+                        <span class="d-none d-md-block d-lg-none">Fluxo</span>
                     </a>
                 </li>
                 <li onmouseenter="whooshMid()" class="text-center text-lg-start">
@@ -161,20 +168,20 @@
                 aria-label="Basic example">
                 <button type="button" id="adicionaCard"
                     class="border-0 col-4 funcionalidade btn btn-dark rounded-0 fw-light">
-                    <i class="bi-journal-plus"></i>
-                    <span class="d-none d-md-inline ms-2">Adicionar</span>
+                    <i class="bi-bezier"></i>
+                    <span class="d-none d-md-inline ms-2">Desconectar</span>
                 </button>
                 <!-- > Sempre que esse for clicado seu ícone mudará-->
                 <button type="button" id="organizaCard"
                     class=" border-0 col-4 funcionalidade btn btn-dark rounded-0 bolder">
-                    <i class="bi-journals"></i>
-                    <span class="d-none d-md-inline ms-2">Organizar</span>
+                    <i class="bi-columns-gap"></i>
+                    <span class="d-none d-md-inline ms-2">Dividir</span>
                 </button>
 
-                <button type="button" id="removeCard"
+                <button type="button" id="informacoesFluxo"
                     class="border-0 col-4 funcionalidade btn btn-dark rounded-0 fw-light">
-                    <i class="bi-journal-x"></i>
-                    <span class="d-none d-md-inline ms-2">Limpar</span>
+                    <i class="bi-question-lg"></i>
+                    <span class="d-none d-md-inline ms-2">Ajuda</span>
                 </button>
             </div>
 
@@ -196,7 +203,7 @@
             <!-- * Nosso "Canvas" onde os cards serão adicionados -->
             <section class="col position-static">
                 <!-- * Cards estãrao aqui -->
-                <div id="card-${lista._id}" class="bg-dark card-container ms-5"
+                <!-- <div id="card-${lista._id}" class="bg-dark card-container ms-5"
                     style="top: 10%; z-index: 0; width: 0%;">
                     <div class="cardConvidado draggable card col-3 shadow border-0 rounded-1 overflow-x-hidden">
                         <div
@@ -214,8 +221,8 @@
                             </ul>
                         </div>
                     </div>
-                </div>
-                <div class="bg-dark card-container ms-5"
+                </div> -->
+                <!-- <div class="bg-dark card-container ms-5"
                     style="top: 40%; z-index: 0; width: 0%;">
                     <div class="elementoMovivel draggable card col-3 border-0 overflow-x-hidden shadow">
                         <div class="fs-4 fw-bold text-nowrap d-flex justify-content-between align-items-center">
@@ -226,7 +233,19 @@
                             <button class="py-2 bi-chevron-double-right d-inline-block text-white btn-3 Papel rounded-1"></button>
                         </div>
                     </div>
-                </div>
+                </div> -->
+                <!-- <div class="bg-dark card-container ms-5"
+                    style="top: 40%; z-index: 0; width: 0%;">
+                    <div class="elementoMovivel draggable card col-3 border-0 overflow-x-hidden shadow">
+                        <div class="fs-4 fw-bold text-nowrap d-flex justify-content-between align-items-center">
+                            <button class="py-2 bi-diamond d-inline-block text-white btn-3 Papel rounded-1"></button>
+                            <span class="py-2 d-flex moverElemento px-3 gap-2 border-0">
+                                <i class="bi-wallet-fill"></i>
+                                <span class="">Comida</span>
+                            </span>
+                        </div>
+                    </div>
+                </div> -->
             </section>
             <!-- <footer class="position-fixed bottom-0 text-center">
         © Event Manager 2023
@@ -240,7 +259,7 @@
     <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../JS/barraLateral.js"></script>
     <!-- <script src="../JS/cardMovivel.js"></script> -->
-    <script src="../JS/connection.js"></script>
+    <script src="../JS/fluxo.js"></script>
     <script src="../JS/back-end.js"></script>
 </body>
 

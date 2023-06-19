@@ -79,6 +79,8 @@ $(document).ready(() => {
 
         ListaTarefas.unshift(tarefinha);
         localStorage.setItem("ListaTarefas", JSON.stringify(ListaTarefas));
+
+        atualizaBarraProgresso();
     });
     $('#editaTarefa').click(() => {
         if (editaTodo == false) {
@@ -131,6 +133,7 @@ function estadoTarefa(element) {
         $(this).closest('li').toggleClass('concluido');
         ListaTarefas[$(this).closest('li').index()].concluida = !ListaTarefas[$(this).closest('li').index()].concluida;
         localStorage.setItem("ListaTarefas", JSON.stringify(ListaTarefas));
+        atualizaBarraProgresso(); 
     });
 }
 // * Função que exclui uma tarefa
@@ -145,6 +148,7 @@ function excluirTarefa(element) {
         ListaTarefas.splice($(this).closest('li').index(), 1);
         localStorage.setItem("ListaTarefas", JSON.stringify(ListaTarefas));
         $(this).closest('li').remove();
+        atualizaBarraProgresso();
     });
 }
 // * HTML de uma tarefa
@@ -164,6 +168,19 @@ function criaHtmlTarefa(tarefa, editavel) {
                 </div>
             </div>
         </li>`);
+}
+function atualizaBarraProgresso() {
+    var tarefasConcluidas = 0;
+    for (let i = 0; i < ListaTarefas.length; i++) {
+        if (ListaTarefas[i].concluida == true) {
+            tarefasConcluidas++;
+        }
+    }
+    var porcentagem = (tarefasConcluidas / ListaTarefas.length) * 100;
+    porcentagem = Math.floor(porcentagem); // * Descartar casas decimais 
+    console.log("Porcentagem de tarefas concluidas: ", porcentagem, "%");
+    $('.progress-bar').css('width', porcentagem + '%');
+    $('.porcentagemConcluida').text(porcentagem + '%');
 }
 
 // * Permite selecionar todo o texto de um element

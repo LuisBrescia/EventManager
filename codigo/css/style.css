@@ -187,6 +187,12 @@ main h1 {
   transition: all 0.3s;
 }
 
+.line {
+  position: absolute;
+  background-color: gray;
+  z-index: -1;
+}
+
 .elementoMovivel {
   max-height: 300px;
   width: 100%;
@@ -449,7 +455,7 @@ li.concluido h6 {
   padding: 0.75rem 1.25rem;
 }
 
-.card-container {
+.card-container, insumos-container {
   position: absolute;
 }
 
@@ -568,6 +574,9 @@ li.concluido h6 {
   background-color: #0f0f0f;
   color: #f0f0f0;
 }
+#graficoParticipantes {
+  width: 100%;
+}
 
 /** Media Queries */
 @media screen and (max-width: 767px) {
@@ -605,6 +614,14 @@ li.concluido h6 {
 @media screen and (min-width: 1400px) {
   .barraLista {
     position: fixed;
+  }
+  #graficoParticipantes {
+    width: 75%;
+  }
+}
+@media screen and (min-width: 2000px) {
+  #graficoParticipantes {
+    width: 50%;
   }
 }
 

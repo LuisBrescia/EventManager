@@ -5,33 +5,33 @@
 */
 var currentAudio = null;
 function stopSound() {
-    if (currentAudio) {
-        currentAudio.pause();
-        currentAudio.currentTime = 0;
-        currentAudio = null;
-    }
+    // if (currentAudio) {
+    //     currentAudio.pause();
+    //     currentAudio.currentTime = 0;
+    //     currentAudio = null;
+    // }
 }
 function whooshMid() {
-    if (currentAudio) {
-        currentAudio.pause();
-        currentAudio.currentTime = 0;
-        currentAudio = null;
-    }
-    var audio = new Audio('../MP3/whooshMid.mp3');
-    audio.volume = 0.3;
-    audio.play();
-    currentAudio = audio;
+    // if (currentAudio) {
+    //     currentAudio.pause();
+    //     currentAudio.currentTime = 0;
+    //     currentAudio = null;
+    // }
+    // var audio = new Audio('../MP3/whooshMid.mp3');
+    // audio.volume = 0.3;
+    // audio.play();
+    // currentAudio = audio;
 }
 function whooshLow(e) {
-    if ($(e).hasClass('active')) return;
-    if (currentAudio) {
-        currentAudio.pause();
-        currentAudio.currentTime = 0;
-        currentAudio = null;
-    }
-    var audio = new Audio('../MP3/whooshLow.mp3');
-    audio.volume = 0.5;
-    audio.play();
-    currentAudio = audio;
+    // if ($(e).hasClass('active')) return;
+    // if (currentAudio) {
+    //     currentAudio.pause();
+    //     currentAudio.currentTime = 0;
+    //     currentAudio = null;
+    // }
+    // var audio = new Audio('../MP3/whooshLow.mp3');
+    // audio.volume = 0.5;
+    // audio.play();
+    // currentAudio = audio;
 } 
 

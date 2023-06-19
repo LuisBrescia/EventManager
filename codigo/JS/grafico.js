@@ -21,7 +21,6 @@ var k = -1;
 var totalParticipantes = 0;
 
 for (let i = 0; i < 6; i++) {
-    
     if (ListasParticipantes[i] != null) {
         if (ListasParticipantes[i].linhas[0] != "") {
             graficoParticipantes[++k] = new ListaParticipantes(ListasParticipantes[i].titulo, ListasParticipantes[i].linhas.length, 0);
