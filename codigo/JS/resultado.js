@@ -10,6 +10,8 @@ var ListaTarefas = []; // * Será um vetor de objetos do tipo Tarefa
 
 function carregaTarefas() {
 
+    var tarefasConcluidas = 0;
+
     $('#todoConteudo li').remove();
     ListaTarefas = JSON.parse(localStorage.getItem("ListaTarefas"));
 
@@ -19,7 +21,7 @@ function carregaTarefas() {
         
         tarefaCarregada = criaHtmlTarefa(ListaTarefas[i], false);
 
-        // selectAll($('#todoConteudo li:first-child h6')[0]);
+        selectAll(tarefaCarregada.find('h6')[0]);
         nomeTarefa(tarefaCarregada);
         excluirTarefa(tarefaCarregada);
         estadoTarefa(tarefaCarregada);
@@ -27,9 +29,19 @@ function carregaTarefas() {
         if (ListaTarefas[i].concluida == true) {
             tarefaCarregada.find('[type="checkbox"]').prop('checked', true);
             tarefaCarregada.addClass('concluido');
+            tarefasConcluidas++;
         }
         $('#todoConteudo').append(tarefaCarregada);
     }
+
+    console.log("Tarefas concluidas: ", tarefasConcluidas, " de ", ListaTarefas.length);
+    var porcentagem = (tarefasConcluidas / ListaTarefas.length) * 100;
+    // Desejo descartar as casas decimais
+    porcentagem = Math.floor(porcentagem);
+    console.log("Porcentagem de tarefas concluidas: ", porcentagem, "%");
+    // .progress-bar
+    $('.progress-bar').css('width', porcentagem + '%');
+    $('.porcentagemConcluida').text(porcentagem + '%');
 }
 
 $(document).ready(() => {
@@ -60,7 +72,7 @@ $(document).ready(() => {
 
         console.log("Número de tarefas existentes é", index);
 
-        // selectAll($('#todoConteudo li:first-child h6')[0]);
+        selectAll(novaTarefa.find('h6')[0]);
         nomeTarefa(novaTarefa);
         excluirTarefa(novaTarefa);
         estadoTarefa(novaTarefa);
@@ -99,8 +111,8 @@ function nomeTarefa(element) {
     //$('#todoConteudo li:first-child')
     element.find('h6').on('blur', function () {
         if (!editaTodo) {element.find('h6').prop('contenteditable', 'false');}
-        // ListaTarefas[element.index()].titulo = element.find('h6').text();
-        // localStorage.setItem("ListaTarefas", JSON.stringify(ListaTarefas));
+        ListaTarefas[element.index()].titulo = element.find('h6').text();
+        localStorage.setItem("ListaTarefas", JSON.stringify(ListaTarefas));
     });
     element.find('h6').keydown(function (e) {
         if ((element.find('h6').width() > 400 && (e.keyCode != 8 && !isTextSelected(element.find('h6')[0]))) 
