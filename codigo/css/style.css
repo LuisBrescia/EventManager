@@ -94,6 +94,10 @@ main h1 {
   background: #fff;
 }
 
+.bg-fundo {
+  background: var(--fundo);
+}
+
 .bg-escuro {
   background: var(--escuro);
 }
@@ -187,6 +191,14 @@ main h1 {
   transition: all 0.3s;
 }
 
+.no-shadow {
+  filter: none !important;
+}
+
+.bg-hidden {
+  background: transparent;
+}
+
 .line {
   position: absolute;
   background-color: gray;
@@ -194,9 +206,7 @@ main h1 {
 }
 
 .elementoMovivel {
-  max-height: 300px;
-  width: 100%;
-  min-width: fit-content;
+  min-width: max-content;
 }
 
 /*! Items da página */
@@ -459,6 +469,13 @@ li.concluido h6 {
   position: absolute;
 }
 
+#linha {
+  position: absolute;
+  background-color: black;
+  height: 2px;
+  transform-origin: 0% 50%;
+}
+
 /** Accordion */
 /*? Até o momento utilizado somente na página Collection */
 .accordion {
@@ -579,6 +596,25 @@ li.concluido h6 {
 }
 
 /** Media Queries */
+/*> Ideal seria $(.barraLista).css('width', 100 - aside.width '%')*/
+@media screen and (max-width: 1399px) {
+  .barraLista {
+    position: sticky;
+  }
+}
+@media screen and (max-width: 991px) {
+  /*
+  aside {
+    margin-left: -100%;
+  }*/
+  #graficoParticipantes {
+    width: 50%;
+  }
+  aside li:hover {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
 @media screen and (max-width: 767px) {
 
   .colInsumos,
@@ -590,27 +626,10 @@ li.concluido h6 {
   .blur {
     filter: blur(0);
   }
-}
-
-@media screen and (max-width: 991px) {
-  /*
-  aside {
-    margin-left: -100%;
-  }*/
-
-  aside li:hover {
-    padding-left: 0;
-    padding-right: 0;
+  #graficoParticipantes {
+    width: 100%;
   }
 }
-
-/*> Ideal seria $(.barraLista).css('width', 100 - aside.width '%')*/
-@media screen and (max-width: 1399px) {
-  .barraLista {
-    position: sticky;
-  }
-}
-
 @media screen and (min-width: 1400px) {
   .barraLista {
     position: fixed;
@@ -735,6 +754,10 @@ footer a:hover {
 
 .Curtain {
   background-image: url("data:image/svg+xml,%3Csvg width='44' height='12' viewBox='0 0 44 12' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 12v-2L0 0v10l4 2h16zm18 0l4-2V0L22 10v2h16zM20 0v8L4 0h16zm18 0L22 8V0h16z' fill='%230088ff' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E");
+}
+
+.Cork{
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='44' viewBox='0 0 34 44'%3E%3Cg fill='%23ffffff' fill-opacity='0.49'%3E%3Cpath fill-rule='evenodd' d='M1 6.2C.72 5.55.38 4.94 0 4.36v13.28c.38-.58.72-1.2 1-1.84A12.04 12.04 0 0 0 7.2 22 12.04 12.04 0 0 0 1 28.2c-.28-.65-.62-1.26-1-1.84v13.28c.38-.58.72-1.2 1-1.84A12.04 12.04 0 0 0 7.2 44h21.6a12.05 12.05 0 0 0 5.2-4.36V26.36A12.05 12.05 0 0 0 28.8 22a12.05 12.05 0 0 0 5.2-4.36V4.36A12.05 12.05 0 0 0 28.8 0H7.2A12.04 12.04 0 0 0 1 6.2zM17.36 23H12a10 10 0 1 0 0 20h5.36a11.99 11.99 0 0 1 0-20zm1.28-2H24a10 10 0 1 0 0-20h-5.36a11.99 11.99 0 0 1 0 20zM12 1a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 14a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-3.46-2a2 2 0 1 0-3.47 2 2 2 0 0 0 3.47-2zm0-4a2 2 0 1 0-3.47-2 2 2 0 0 0 3.47 2zM12 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3.46 2a2 2 0 1 0 3.47-2 2 2 0 0 0-3.47 2zm0 4a2 2 0 1 0 3.47 2 2 2 0 0 0-3.47-2zM24 43a10 10 0 1 0 0-20 10 10 0 0 0 0 20zm0-14a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3.46 2a2 2 0 1 0 3.47-2 2 2 0 0 0-3.47 2zm0 4a2 2 0 1 0 3.47 2 2 2 0 0 0-3.47-2zM24 37a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-3.46-2a2 2 0 1 0-3.47 2 2 2 0 0 0 3.47-2zm0-4a2 2 0 1 0-3.47-2 2 2 0 0 0 3.47 2z'/%3E%3C/g%3E%3C/svg%3E");
 }
 
 .Papel {

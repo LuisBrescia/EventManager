@@ -17,7 +17,7 @@
   <div class="d-flex">
 
     <!-- ! GAMBIARRA EM SEU ESTADO MAIS PURO-->
-    <aside class="col-xxl-2 ultraGambiarra active">
+    <aside class="col-xxl-2 ultraGambiarra active opacity-0">
       <!-- * Título da Barra Lateral -->
       <div class="px-lg-2 py-3 d-flex">
         <h1 class="fs-4 mx-auto my-0 text-nowrap">
@@ -87,7 +87,7 @@
     </aside>
     <!-- ? Ínicio da Barra Lateral -->
     <!-- > Barra Lateral vai ser a mesma para todas as páginas -->
-    <aside class="Topography col-xxl-2 active position-fixed">
+    <aside class="col-xxl-2 active position-fixed Topography">
       <!-- * Título da Barra Lateral -->
       <div class="px-lg-2 py-3 d-flex">
         <h1 class="fs-4 mx-auto my-0 text-nowrap">
@@ -106,11 +106,18 @@
             <span class="d-none d-md-block d-lg-none">Coleção</span>
           </a>
         </li>
-        <li onmouseenter="whooshMid()" class="active text-center text-lg-start">
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
           <a href="Listas.html" class="px-3 py-2 d-block">
             <i class="me-lg-2 bi-journal"></i>
             <span class="d-none d-lg-inline-block">Listas</span>
             <span class="d-none d-md-block d-lg-none">Listas</span>
+          </a>
+        </li>
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
+          <a href="Fluxo.html" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-bezier"></i>
+            <span class="d-none d-lg-inline-block">Fluxo</span>
+            <span class="d-none d-md-block d-lg-none">Fluxo</span>
           </a>
         </li>
         <li onmouseenter="whooshMid()" class="text-center text-lg-start">
@@ -120,7 +127,7 @@
             <span class="d-none d-md-block d-lg-none">Serviços</span>
           </a>
         </li>
-        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
+        <li onmouseenter="whooshMid()" class="active text-center text-lg-start">
           <a href="Valores.html" class="px-3 py-2 d-block">
             <i class="me-lg-2 bi-receipt"></i>
             <span class="d-none d-lg-inline-block">Valores</span>
@@ -140,7 +147,7 @@
           </a>
         </li>
         <li onmouseenter="whooshMid()" class="text-center text-lg-start">
-          <a href="Fluxo.html" class="px-3 py-2 d-block">
+          <a href="Connect.html" class="px-3 py-2 d-block">
             <i class="me-lg-2 bi-sliders"></i>
             <span class="d-none d-lg-inline-block">Temas</span>
             <span class="d-none d-md-block d-lg-none">Temas</span>
@@ -334,7 +341,8 @@
                   <div class="row align-items-center no-gutters">
                     <div class="col me-2 dadosTarefa px-0">
                       <i class="bi-x text-danger position-absolute excluirTarefa d-none"></i>
-                      <h6 class="dadoTarefa mb-0 fw-bolder" style="z-index: 1" contenteditable="false">Ensaio fotográfico</h6>
+                      <h6 class="dadoTarefa mb-0 fw-bolder" style="z-index: 1" contenteditable="false">Ensaio
+                        fotográfico</h6>
                     </div>
                     <div class="col-auto">
                       <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-1"><label
@@ -344,7 +352,7 @@
                 </li>
               </ul>
             </div>
-            
+
             <!-- * Card projetos
             <div class="card shadow mb-4">
               <div class="card-header py-3">

@@ -6,15 +6,14 @@ function Tarefa(_id, titulo, concluida) {
 
 var TAM = 12; // * Quantidade máxima de tarefas
 var editaTodo = false; // * Salva se a lista está em modo de edição
-var ListaTarefas = []; // * Será um vetor de objetos do tipo Tarefa
+var ListaTarefas = JSON.parse(localStorage.getItem("ListaTarefas")) || []; // * Será um vetor de objetos do tipo Tarefa
 
 function carregaTarefas() {
 
     var tarefasConcluidas = 0;
 
     $('#todoConteudo li').remove();
-    ListaTarefas = JSON.parse(localStorage.getItem("ListaTarefas"));
-
+    
     if (ListaTarefas == null) {return;}
 
     for (let i = 0; i < ListaTarefas.length; i++) {

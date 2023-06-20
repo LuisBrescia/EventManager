@@ -13,14 +13,14 @@ var maxWidth = 200;    // * Máximo de pixels permitidos no título
 var maxLength = 100;    // * Máximo de caracteres permitidos no título
 const TAM = 6;      // * Quantidade de cards que será possível adicionar
 
+var elemento = "elementosParticipantes";
+
 var vetor = Array(TAM).fill(true); // * True = Disponível, False = Ocupado
 var matriz = Array(3).fill(Array(TAM).fill(true));
 
 // * Pegará do local Storage para deixar salvo quando a página recarregar
-var ListaTipo = localStorage.getItem("ultimaLista");
-if (ListaTipo == null) {
-    ListaTipo = "ListaParticipantes";
-}
+var ListaTipo = localStorage.getItem("ultimaLista") || "ListaParticipantes";
+
 var position = 0;
 var todasListas = [];
 
@@ -28,18 +28,21 @@ if (ListaTipo === "ListaParticipantes") {
     $('.listaParticipantes').addClass('active');
     $('.listaInsumos, .listaServicos').removeClass('active');
     position = 0;
+    elemento = "elementosParticipantes";
     carregaCards();
 }
 if (ListaTipo === "ListaInsumos") {
     $('.listaInsumos').addClass('active');
     $('.listaParticipantes, .listaServicos').removeClass('active');
     position = 1;
+    elemento = "elementosInsumos";
     carregaCards();
 }
 if (ListaTipo === "ListaServicos") {
     $('.listaServicos').addClass('active');
     $('.listaParticipantes, .listaInsumos').removeClass('active');
     position = 2;
+    elemento = "elementosServicos"; // > Provavelmente não será necessário
     carregaCards();
 }
 
@@ -109,6 +112,10 @@ $(document).ready(() => {
         matriz[position].fill(true); // * Todas as posições se tornam disponíveis
         todasListas = []; // * Agora o vetor é vazio
         localStorage.setItem(ListaTipo, JSON.stringify(todasListas));
+
+        let elementoApagados = JSON.parse(localStorage.getItem(elemento)) || [];
+        elementoApagados.fill(null);
+        localStorage.setItem(elemento, JSON.stringify(elementoApagados));
     });
     $('#organizaCard').click(() => {
         // > Não acho que precisa mas bora deixar aqui
@@ -127,6 +134,7 @@ $(document).ready(() => {
         $('.listaParticipantes').addClass('active');
         $('.listaInsumos, .listaServicos').removeClass('active');
         ListaTipo = "ListaParticipantes";
+        elemento = "elementosServicos";
         localStorage.setItem("ultimaLista", ListaTipo);
         position = 0;
         localStorage.setItem("ultimaListaPosicao", position);
@@ -138,6 +146,7 @@ $(document).ready(() => {
         $('.listaInsumos').addClass('active');
         $('.listaParticipantes, .listaServicos').removeClass('active');
         ListaTipo = "ListaInsumos";
+        elemento = "elementosInsumos";
         localStorage.setItem("ultimaLista", ListaTipo);
         position = 1;
         localStorage.setItem("ultimaListaPosicao", position);
@@ -150,6 +159,7 @@ $(document).ready(() => {
         $('.listaParticipantes, .listaInsumos').removeClass('active');
         ListaTipo = "ListaServicos";
         localStorage.setItem("ultimaLista", ListaTipo);
+        elemento = "elementosServicos"; // > Provavelmente não será necessário
         position = 2;
         localStorage.setItem("ultimaListaPosicao", position);
         carregaCards();
@@ -165,6 +175,11 @@ function nomeiaCard(element) {
         selectAll(cardTitle[0]);
         // * Ao editar o título, outros cards se tornam fixos
         $('.card-container').not($(this).closest('.card-container')).css('position', 'fixed');
+        
+        // * Cards em edição tem z-index maior que os outros 
+        $(this).closest('.card-container').css('z-index', '1');
+        $('.card-container').not($(this).closest('.card-container')).css('z-index', '0');
+
         // * Ao perder o foco, o título é alterado
         cardTitle.blur(function () {
             atualizaTitulo($(this));
@@ -214,6 +229,10 @@ function removeCard(element) {
         todasListas[cardNumber] = null;
         localStorage.setItem(ListaTipo, JSON.stringify(todasListas));
         matriz[position][cardNumber] = true;
+
+        let elementoApagado = JSON.parse(localStorage.getItem(elemento)) || [];
+        elementoApagado[cardNumber].coordenadas = null;
+        localStorage.setItem(elemento, JSON.stringify(elementoApagado));
     });
 }
 // * Cursor no final de cada linha
@@ -399,7 +418,7 @@ function criaConteudo(lista, gapping) {
         conteudoStyle = 'top: ' + lista.coordenadas[1] + 'px; left: ' + lista.coordenadas[0] + 'px;';
     }
     return $(
-        `<div id="card-${lista._id}" class="bg-dark card-container ms-5" style="${conteudoStyle}; z-index: 0; width: 0%;">
+        `<div id="card-${lista._id}" class="bg-dark card-container ms-5" style="${conteudoStyle}; width: 0%;">
         <div class="cardConvidado draggable card col-3 shadow border-0 rounded-1 overflow-x-hidden">
         <div class="card-header fs-4 fw-bolder text-nowrap d-flex justify-content-between align-items-center">
         <span class="mt-3 mb-1 lh-1 pt-2 fs-md-1">${lista.titulo}</span>
