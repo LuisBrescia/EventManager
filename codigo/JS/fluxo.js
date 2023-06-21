@@ -193,7 +193,7 @@ function dragInsumos(elemento) {
 }
 function fluxoConecta(element) {
     element.find(".fluxoConecta").mousedown(function () {
-        
+
         let id = $(this).attr('id');
         let idNumber = parseInt(id.split('-')[1]);
         let elemento = elementosParticipantes[idNumber];
@@ -250,6 +250,11 @@ function fluxoConecta(element) {
 
                 let startEl = document.getElementById(`fluxoConecta-${idNumber}`);
                 let endEl = document.getElementById(`fluxoDestino-${idDestinoNumber}`);
+                if (conexoes[idNumber][idDestinoNumber] != null) {
+                    $('.toast-body').text('Este elemento já está conectado a este insumo! Burro!');
+                    $('.toast').toast('show');
+                    return;
+                }
                 conexoes[idNumber][idDestinoNumber] = new LeaderLine(
                     LeaderLine.pointAnchor(startEl, {
                         x: 36,
