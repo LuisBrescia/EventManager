@@ -193,12 +193,15 @@ function dragInsumos(elemento) {
 }
 function fluxoConecta(element) {
     element.find(".fluxoConecta").mousedown(function () {
+        
         let id = $(this).attr('id');
         let idNumber = parseInt(id.split('-')[1]);
         let elemento = elementosParticipantes[idNumber];
-        console.log(elemento);
+
+        const mouseX = event.clientX + pageXOffset;
+        const mouseY = event.clientY + pageYOffset;
         // Irei criar um elemento chamado elmpoint, na posição do mouse, que será o destino da linha
-        let elmpoint = $(`<div id="elmpoint" style="top: ${elemento.coordenadas[1]}px; left: ${elemento.coordenadas[0]}px;"></div>`);
+        let elmpoint = $(`<div id="elmpoint" style="top: ${mouseY}px; left: ${mouseX}px;"></div>`);
         $('section').append(elmpoint);
 
         let elmPoint = document.getElementById('elmpoint');
