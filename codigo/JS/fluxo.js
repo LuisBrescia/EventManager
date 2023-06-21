@@ -18,15 +18,17 @@ var conexoes = JSON.parse(localStorage.getItem("conexoes")) || [];
 // Verifica se conexoes está vazia ou tem tamanho diferente de 6x6
 // ! Não sei se funciona
 if (conexoes.length === 0 || conexoes.length !== 6 || conexoes[0].length !== 6) {
-  conexoes = [];
-  // Preenche conexoes com valores nulos
-  for (let i = 0; i < 6; i++) {
-    conexoes[i] = [];
-    for (let j = 0; j < 6; j++) {
-      conexoes[i][j] = null;
+    conexoes = [];
+    // Preenche conexoes com valores nulos
+    for (let i = 0; i < 6; i++) {
+        conexoes[i] = [];
+        for (let j = 0; j < 6; j++) {
+            conexoes[i][j] = null;
+        }
     }
-  }
 }
+
+let linhaMouse
 
 // * Estilização da linha
 var options = {
@@ -71,9 +73,9 @@ function carregaElementos() {
     }
 }
 
-function carregaConexoes() {   
+function carregaConexoes() {
     for (let i = 0; i < 6; i++) {
-        for (let j = 0; j < 6; j++){
+        for (let j = 0; j < 6; j++) {
             if (conexoes[i][j] != null) {
                 // Criar uma leaderline para cada conexão não nula
                 let startEl = document.getElementById(`fluxoConecta-${i}`);
@@ -111,7 +113,7 @@ $(document).ready(() => {
     // > Apenas para desenvolvimento
     $('#removerConexoes').click(() => {
         for (let i = 0; i < 6; i++) {
-            for (let j = 0; j < 6; j++){
+            for (let j = 0; j < 6; j++) {
                 if (conexoes[i][j] != null) {
                     conexoes[i][j].remove();
                     conexoes[i][j] = null;
@@ -143,7 +145,7 @@ function customDrag(elemento) {
         // Código a ser executado sempre que a posição do card é alterada
         var newPosition = $(this).position();
         console.log("Nova posição: left = " + newPosition.left + ", top = " + newPosition.top);
-     
+
         // Pegara a id daquele elemento
         let id = $(this).closest('.card-container').attr('id');
         let idNumber = parseInt(id.split('-')[1]);
@@ -186,7 +188,7 @@ function dragInsumos(elemento) {
                 conexoes[i][idNumber].position();
             }
         }
-        
+
     });
 }
 function fluxoConecta(element) {
@@ -194,17 +196,35 @@ function fluxoConecta(element) {
         let id = $(this).attr('id');
         let idNumber = parseInt(id.split('-')[1]);
         let elemento = elementosParticipantes[idNumber];
-        let coordenadas = elemento.coordenadas;
+        console.log(elemento);
+        // Irei criar um elemento chamado elmpoint, na posição do mouse, que será o destino da linha
+        let elmpoint = $(`<div id="elmpoint" style="top: ${elemento.coordenadas[1]}px; left: ${elemento.coordenadas[0]}px;"></div>`);
+        $('section').append(elmpoint);
+
+        let elmPoint = document.getElementById('elmpoint');
+
+        // Criará uma linha daquele elemento até o mouse
+        let mouseEl = document.getElementById(`fluxoConecta-${idNumber}`);
+
+        // * Ao clicar no botão, a linha deve ser criada
+        linhaMouse = new LeaderLine(mouseEl, elmPoint, {
+            color: '#04f',
+            size: 5,
+            endPlug: 'disc',
+            startSocket: 'right',
+            endSocket: 'left',
+            startPlugColor: '#04f',
+            endPlugColor: '#08f',
+            gradient: true
+        });
 
         console.log(`Mousedown no elemento ${elemento.titulo} de ID ${idNumber}`);
 
-        // let linha = $(`<div id="linha" style="top: ${coordenadas[1]}px; left: ${coordenadas[0]}px; z-index: 9999;">_</div>`);
-        // $('section').append(linha);
-
         // * Ao mover o mouse, a linha deve acompanhar o mouse
         $(document).mousemove((e) => {
-            // linha.css('left', e.pageX - 48);
-            // linha.css('top', e.pageY);
+            elmPoint.style.left = `${e.clientX + pageXOffset}px`;
+            elmPoint.style.top = `${e.clientY + pageYOffset}px`;
+            linhaMouse.position();
         });
 
         // * Ao soltar o botão, a linha deve ser removida
@@ -237,8 +257,10 @@ function fluxoConecta(element) {
                 console.log(conexoes[idNumber][idDestinoNumber]);
                 // * Salvar a conexão no LocalStorage
                 localStorage.setItem("conexoes", JSON.stringify(conexoes));
+                linhaMouse.remove();
             } else {
                 console.log('Elemento solto');
+                linhaMouse.remove();
             }
             // linha.remove();
             $(document).off('mousemove');
