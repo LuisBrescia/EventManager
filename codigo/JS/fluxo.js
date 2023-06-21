@@ -13,8 +13,32 @@ var elementosParticipantes = JSON.parse(localStorage.getItem("elementosParticipa
 var ListasInsumos = JSON.parse(localStorage.getItem("ListaInsumos")) || [];
 var elementosInsumos = JSON.parse(localStorage.getItem("elementosInsumos")) || [];
 
-// > A variável titulo será de uma página, e a variavel coordenada, de outra
-console.log("Fluxo");
+// var conexoes = JSON.parse(localStorage.getItem("conexoes")) || [];
+var conexoes = JSON.parse(localStorage.getItem("conexoes")) || [];
+// Verifica se conexoes está vazia ou tem tamanho diferente de 6x6
+// ! Não sei se funciona
+if (conexoes.length === 0 || conexoes.length !== 6 || conexoes[0].length !== 6) {
+  conexoes = [];
+  // Preenche conexoes com valores nulos
+  for (let i = 0; i < 6; i++) {
+    conexoes[i] = [];
+    for (let j = 0; j < 6; j++) {
+      conexoes[i][j] = null;
+    }
+  }
+}
+
+// * Estilização da linha
+var options = {
+    color: '#04f',
+    size: 5,
+    endPlug: 'behind',
+    startSocket: 'right',
+    endSocket: 'left',
+    startPlugColor: '#04f',
+    endPlugColor: '#08f',
+    gradient: true,
+};
 
 function carregaElementos() {
 
@@ -25,11 +49,13 @@ function carregaElementos() {
     for (let i = 0; i < 6; i++) {
         if (ListasParticipantes[i] != null) {
             if (elementosParticipantes[i] == null) {
-                elementosParticipantes[i] = new Elemento(i, ListasParticipantes[i].titulo, null, null);
+                elementosParticipantes[i] = new Elemento(ListasParticipantes[i]._id, ListasParticipantes[i].titulo, null, null);
             } else {
-                elementosParticipantes[i] = new Elemento(i, ListasParticipantes[i].titulo, elementosParticipantes[i].coordenadas, null);
+                elementosParticipantes[i] = new Elemento(ListasParticipantes[i]._id, ListasParticipantes[i].titulo, elementosParticipantes[i].coordenadas, null);
             }
             var elementoParticipanteCarregado = criaElementoParticipante(elementosParticipantes[i], contP++);
+            customDrag($(elementoParticipanteCarregado));
+            fluxoConecta($(elementoParticipanteCarregado));
             $('section').append(elementoParticipanteCarregado);
         }
         if (ListasInsumos[i] != null) {
@@ -39,16 +65,35 @@ function carregaElementos() {
                 elementosInsumos[i] = new Elemento(i, ListasInsumos[i].titulo, elementosInsumos[i].coordenadas, ListasInsumos[i].linhas);
             }
             var elementoInsumoCarregado = criaElementoInsumo(elementosInsumos[i], contI++);
+            dragInsumos($(elementoInsumoCarregado));
             $('section').append(elementoInsumoCarregado);
         }
     }
-    customDrag($('.card-container'));
-    dragInsumos($('.insumos-container'));
+}
+
+function carregaConexoes() {   
+    for (let i = 0; i < 6; i++) {
+        for (let j = 0; j < 6; j++){
+            if (conexoes[i][j] != null) {
+                // Criar uma leaderline para cada conexão não nula
+                let startEl = document.getElementById(`fluxoConecta-${i}`);
+                let endEl = document.getElementById(`fluxoDestino-${j}`);
+                conexoes[i][j] = new LeaderLine(
+                    LeaderLine.pointAnchor(startEl, {
+                        x: 36,
+                    }),
+                    endEl,
+                    options
+                );
+            }
+        }
+    }
 }
 
 $(document).ready(() => {
     carregaElementos();
-    console.log("ola");
+    carregaConexoes();
+
     $('#dividirFluxo').click(() => {
         for (let i = 0; i < 6; i++) {
             if (elementosParticipantes[i] != null) {
@@ -63,9 +108,18 @@ $(document).ready(() => {
         location.reload(); // ? Se fosse utilizar a função de carregar elementos, teria que apagar os elementos já existentes
     });
 
-    // ! Código da linha
-   
-    // ! Termina código da linha
+    // > Apenas para desenvolvimento
+    $('#removerConexoes').click(() => {
+        for (let i = 0; i < 6; i++) {
+            for (let j = 0; j < 6; j++){
+                if (conexoes[i][j] != null) {
+                    conexoes[i][j].remove();
+                    conexoes[i][j] = null;
+                }
+            }
+        }
+        localStorage.setItem("conexoes", JSON.stringify(conexoes));
+    });
 });
 
 // * Função para configurar regras para movimentação do card
@@ -83,6 +137,21 @@ function customDrag(elemento) {
             elementosParticipantes[cardNumber].coordenadas = [$(this).offset().left - 48, $(this).offset().top];
             localStorage.setItem("elementosParticipantes", JSON.stringify(elementosParticipantes));
             console.log('Coordenadas salvas no elemento PARTICIPANTE de ID ' + cardNumber + ' como: ' + elementosParticipantes[cardNumber].coordenadas);
+        },
+    });
+    elemento.find(".draggable").on("drag", function (event, ui) {
+        // Código a ser executado sempre que a posição do card é alterada
+        var newPosition = $(this).position();
+        console.log("Nova posição: left = " + newPosition.left + ", top = " + newPosition.top);
+     
+        // Pegara a id daquele elemento
+        let id = $(this).closest('.card-container').attr('id');
+        let idNumber = parseInt(id.split('-')[1]);
+        // Atualizar cada uma das conexoes
+        for (let i = 0; i < 6; i++) {
+            if (conexoes[idNumber][i] != null) {
+                conexoes[idNumber][i].position();
+            }
         }
     });
 }
@@ -102,6 +171,80 @@ function dragInsumos(elemento) {
             console.log('Coordenadas salvas no elemento INSUMO de ID ' + cardNumber + ' como: ' + elementosInsumos[cardNumber].coordenadas);
         }
     });
+    elemento.find(".draggable").on("drag", function (event, ui) {
+        // Código a ser executado sempre que a posição do card é alterada
+        var newPosition = $(this).position();
+        console.log("Nova posição: left = " + newPosition.left + ", top = " + newPosition.top);
+
+        // Pegara a id daquele elemento
+        let id = $(this).closest('.insumos-container').attr('id');
+        let idNumber = parseInt(id.split('-')[1]);
+
+        // Atualizar cada uma das conexoes
+        for (let i = 0; i < 6; i++) {
+            if (conexoes[i][idNumber] != null) {
+                conexoes[i][idNumber].position();
+            }
+        }
+        
+    });
+}
+function fluxoConecta(element) {
+    element.find(".fluxoConecta").mousedown(function () {
+        let id = $(this).attr('id');
+        let idNumber = parseInt(id.split('-')[1]);
+        let elemento = elementosParticipantes[idNumber];
+        let coordenadas = elemento.coordenadas;
+
+        console.log(`Mousedown no elemento ${elemento.titulo} de ID ${idNumber}`);
+
+        // let linha = $(`<div id="linha" style="top: ${coordenadas[1]}px; left: ${coordenadas[0]}px; z-index: 9999;">_</div>`);
+        // $('section').append(linha);
+
+        // * Ao mover o mouse, a linha deve acompanhar o mouse
+        $(document).mousemove((e) => {
+            // linha.css('left', e.pageX - 48);
+            // linha.css('top', e.pageY);
+        });
+
+        // * Ao soltar o botão, a linha deve ser removida
+        $(document).mouseup(function (event) {
+            // Preciso achar qual fluxoDestino foi clicado
+            if ($(event.target).is(".fluxoDestinoGenerico")) {
+                // Ação quando o mouseup ocorrer em cima do elemento #fluxoDestino
+                // Pegarei o id do elemento destino
+                let idDestino = $(event.target).closest('.insumos-container').attr('id');
+                let idDestinoNumber = parseInt(idDestino.split('-')[1]);
+
+                console.log(`Mouseup em cima de #fluxoDestino ${idDestinoNumber}`);
+                console.log(`Linha conectada do elemento ${elementosParticipantes[idNumber].titulo} para o elemento ${elementosInsumos[idDestinoNumber].titulo}`);
+
+                let elementoDestino = elementosInsumos[idDestinoNumber];
+                let coordenadasDestino = elementoDestino.coordenadas;
+
+                // let linhaDestino = $(`<div id="linha" style="top: ${coordenadasDestino[1]}px; left: ${coordenadasDestino[0]}px; z-index: 9999;">_</div>`);
+                // $('section').append(linhaDestino);
+
+                let startEl = document.getElementById(`fluxoConecta-${idNumber}`);
+                let endEl = document.getElementById(`fluxoDestino-${idDestinoNumber}`);
+                conexoes[idNumber][idDestinoNumber] = new LeaderLine(
+                    LeaderLine.pointAnchor(startEl, {
+                        x: 36,
+                    }),
+                    endEl,
+                    options
+                );
+                console.log(conexoes[idNumber][idDestinoNumber]);
+                // * Salvar a conexão no LocalStorage
+                localStorage.setItem("conexoes", JSON.stringify(conexoes));
+            } else {
+                console.log('Elemento solto');
+            }
+            // linha.remove();
+            $(document).off('mousemove');
+            $(document).off('mouseup');
+        });
+    });
 }
 
 function criaElementoParticipante(element, gapping) {
@@ -113,7 +256,7 @@ function criaElementoParticipante(element, gapping) {
     } else {
         posicao = 'top: ' + element.coordenadas[1] + 'px; left: ' + element.coordenadas[0] + 'px';
     }
-
+    ;
     return $(`
     <div id="listaP-${element._id}" class="bg-dark card-container ms-5" style="${posicao}; z-index: 0; width: 0%;">
         <div class="elementoMovivel draggable card col-3 border-0 overflow-x-hidden shadow-sm">
@@ -122,7 +265,7 @@ function criaElementoParticipante(element, gapping) {
                     <i class="bi-people-fill"></i>
                     <span class="">${element.titulo}</span>
                 </span>
-                <button id="fluxoConecta" class="fluxoConecta py-2 bi-chevron-double-right d-inline-block text-white btn-3 Papel"
+                <button id="fluxoConecta-${element._id}" class="fluxoConecta py-2 bi-chevron-double-right d-inline-block text-white btn-3 Papel"
                 style="border-top-right-radius: 5px; border-bottom-right-radius: 5px;"></button>
                 <div id="linha"></div>
             </div>
@@ -133,23 +276,19 @@ function criaElementoParticipante(element, gapping) {
 function criaElementoInsumo(element, gapping) {
 
     let posicao = '';
-
     // > Quando um elemento é removido em card movível tenho também que remover as coordenadas dele aqui
-
     if (element.coordenadas == null) {
         posicao = 'top: ' + (gapping + 1) + '0%; right: 50%';
     } else {
         posicao = 'top: ' + element.coordenadas[1] + 'px; left: ' + element.coordenadas[0] + 'px';
     }
-
     let linha = '';
-
     // Se o elemento tiver apenas 1 linha, retirar todos os caracteres de espaço e verificar se sobrou alguma coisa
     if (element.linhas.length > 1) {
         for (let i = 0; i < element.linhas.length - 1; i++) {
 
-        // Vou pegar só os 30 primeiros caracteres de cada linha
-        let linhaAtual = element.linhas[i].substring(0, 30);
+            // Vou pegar só os 30 primeiros caracteres de cada linha
+            let linhaAtual = element.linhas[i].substring(0, 30);
 
             linha += `
             <span class="shadow-sm bg-white mt-1">
@@ -165,18 +304,17 @@ function criaElementoInsumo(element, gapping) {
                 <span class="text-nowrap px-2">${linhaAtual}</span>
             </span>`;
     } else {
-        linha = 
-        `<span class="text-center py-2 px-3 shadow-sm bg-white" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+        linha =
+            `<span class="text-center py-2 px-3 shadow-sm bg-white" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
             <span class="text-nowrap fs-5">Absoluto</span>
         </span>`;
     }
-
     return $(`
         <div id="listaI-${element._id}" class="bg-dark insumos-container ms-5" style="${posicao}; z-index: 0; width: 0%;">
             <div class="elementoMovivel draggable card col-3 border-0 overflow-x-hidden shadow rounded-5">
                 <div class="moverElemento Papel bg-escuro fs-4 fw-bold text-nowrap d-flex justify-content-between align-items-center"
                 style="border-top-left-radius: 20px; border-top-right-radius: 10px;">
-                    <button class="py-2 bi-diamond d-inline-block text-white btn-3 Papel  no-shadow"
+                    <button id="fluxoDestino-${element._id}" class="fluxoDestinoGenerico py-2 bi-diamond d-inline-block text-white btn-3 Papel no-shadow"
                     style="border-top-left-radius: 10px;"></button>
                     <span class="py-2 d-flex px-3 gap-2 border-0 w-100">
                         <span class="text-white">${element.titulo}</span>
