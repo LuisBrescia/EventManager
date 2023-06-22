@@ -23,7 +23,9 @@ var elementosParticipantes = JSON.parse(localStorage.getItem("elementosParticipa
 var ListasInsumos = JSON.parse(localStorage.getItem("ListaInsumos")) || [];
 var elementosInsumos = JSON.parse(localStorage.getItem("elementosInsumos")) || [];
 
+// > É possível fazer os 2 apenas com conexão, porém sem tempo para isso agora
 var conexoes = JSON.parse(localStorage.getItem("conexoes")) || [];
+var valoresConexoes = JSON.parse(localStorage.getItem("valoresConexoes")) || [];
 
 // ! Não sei como funciona
 if (conexoes.length === 0 || conexoes.length !== 6 || conexoes[0].length !== 6) {
@@ -32,6 +34,15 @@ if (conexoes.length === 0 || conexoes.length !== 6 || conexoes[0].length !== 6) 
         conexoes[i] = [];
         for (let j = 0; j < 6; j++) {
             conexoes[i][j] = null;
+        }
+    }
+}
+if (valoresConexoes.length === 0 || valoresConexoes.length !== 6 || valoresConexoes[0].length !== 6) {
+    valoresConexoes = [];
+    for (let i = 0; i < 6; i++) {
+        valoresConexoes[i] = [];
+        for (let j = 0; j < 6; j++) {
+            valoresConexoes[i][j] = null;
         }
     }
 }
@@ -86,6 +97,7 @@ function carregaElementos() {
             customDrag($(elementoParticipanteCarregado));
             fluxoConecta($(elementoParticipanteCarregado));
             excluiConexao($(elementoParticipanteCarregado));
+            guardaValor($(elementoParticipanteCarregado));
 
             $('section').append(elementoParticipanteCarregado);
         }
@@ -118,6 +130,7 @@ function carregaConexoes() {
                 );
                 // Também criar o HTML da conexão
                 var novaConexao = criaConexao(elementosInsumos[j]);
+                $(novaConexao).find('input').val(valoresConexoes[i][j]);
                 $(`#listaP-${i}`).find('.card-body').append(novaConexao);
             }
         }
@@ -277,15 +290,32 @@ function excluiConexao(element) {
         let id = $(this).closest('.card-container').attr('id');
         let idNumber = parseInt(id.split('-')[1]);
 
-        let idConexao = $(this).closest('.bi-trash').attr('id');
+        let idConexao = $(this).closest('.conexaoParticipante').attr('id');
         let idDestinoNumber = parseInt(idConexao.split('-')[1]);
 
         conexoes[idNumber][idDestinoNumber].remove();
         conexoes[idNumber][idDestinoNumber] = null;
         localStorage.setItem("conexoes", JSON.stringify(conexoes));
-        $(this).closest('.row').remove();
+        $(this).closest('.conexaoParticipante').remove();
     });
 }
+// * Função que guarda o valor aramzenado no input de cada row
+function guardaValor(element) {
+    element.find('.card-body').on('change', 'input', function () {
+        let id = $(this).closest('.card-container').attr('id');
+        let idNumber = parseInt(id.split('-')[1]);
+
+        let idConexao = $(this).closest('.row').attr('id');
+        let idDestinoNumber = parseInt(idConexao.split('-')[1]);
+
+        console.log('Valor salvo no elemento ' + idNumber + ' para o insumo ' + idDestinoNumber + ' como: ' + $(this).val());
+
+        valoresConexoes[idNumber][idDestinoNumber] = $(this).val();	
+
+        localStorage.setItem("valoresConexoes", JSON.stringify(valoresConexoes));
+    });
+}
+
 // * HTML de um elemento participante
 function criaElementoParticipante(element, gapping) {
     let posicao = '';
@@ -307,7 +337,7 @@ function criaElementoParticipante(element, gapping) {
                 <button id="fluxoConecta-${element._id}" class="fluxoConecta py-2 bi-chevron-double-right d-inline-block text-white btn-3 Papel"
                 style="border-top-right-radius: 5px;"></button>
             </div>
-            <div class="card-body py-1 d-flex flex-column gap-1">
+            <div class="card-body p-0 pt-1 d-flex flex-column gap-1">
             </div>
         </div>
     </div>`);
@@ -331,7 +361,7 @@ function criaElementoInsumo(element, gapping) {
 
             linha += `
             <span class="shadow-sm bg-white mt-1">
-                <button class="py-2 bi-record-circle d-inline-block text-white btn-3 Diagonal no-shadow"></button>
+                <button class="py-2 d-inline-block bg-1 border-0 bg-gradient text-white no-shadow">15</button>
                 <span class="text-nowrap px-2">${linhaAtual}</span>
             </span>`;
         }
@@ -339,7 +369,7 @@ function criaElementoInsumo(element, gapping) {
         let linhaAtual = element.linhas[element.linhas.length - 1].substring(0, 30);
         linha += `
             <span class="shadow-sm bg-white mt-1" style="border-bottom-left-radius: 10px; border-bottom-right-radius: 5px;">
-                <button class="py-2 bi-record-circle d-inline-block text-white btn-3 Diagonal no-shadow" style="border-bottom-left-radius: 5px;"></button>
+                <button class="py-2 d-inline-block border-0 bg-1 bg-gradient text-white no-shadow" style="border-bottom-left-radius: 5px;">10</button>
                 <span class="text-nowrap px-2">${linhaAtual}</span>
             </span>`;
     } else {
@@ -379,14 +409,12 @@ function criaConexao(element) {
     }
 
     return $(`
-    <div class="row">
-        <span class="bg-1 Papel text-white d-flex justify-content-between"><span>${element.titulo}</span><i id="excluiConexao-${element._id}" class="excluiConexao bi-trash"></i></span>
+    <div id="conexaoCom-${element._id}" class="d-flex flex-column conexaoParticipante">
+        <span class="px-2 bg-1 Papel text-white d-flex justify-content-between"><span>${element.titulo}</span><i class="excluiConexao bi-trash"></i></span>
         <span class="d-flex bg-dark p-0 ">
             <input class="col-8" type="number">
             <select class="col-4" name="" id="">
-                <option value="">Selecione</option>
                 <option selected value="">Unidade</option>
-                <option value="">Cm</option>
             </select>
         </span>
         <select name="" id="">
