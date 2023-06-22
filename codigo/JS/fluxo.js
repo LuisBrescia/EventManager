@@ -256,6 +256,7 @@ function fluxoConecta(element) {
                 console.log('Elemento solto');
                 linhaMouse.remove();
             }
+            elmpoint.remove();
             $(document).off('mousemove');
             $(document).off('mouseup');
         });
