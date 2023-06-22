@@ -1,39 +1,14 @@
-// > No momento criarei um objeto que conterá apenas coordenadas
+// ? Objeto que salvará conexões de cada elemento
 function Elemento(_id, titulo, coordenadas, linhas) {
     this._id = _id;
     this.titulo = titulo;
     this.coordenadas = coordenadas;
     this.linhas = linhas;
 }
-// Primeiramente, pegarei os elementos do LocalStorage
-var ListasParticipantes = JSON.parse(localStorage.getItem("ListaParticipantes")) || [];
-var elementosParticipantes = JSON.parse(localStorage.getItem("elementosParticipantes")) || [];
-
-// Fazer o mesmo para insumos 
-var ListasInsumos = JSON.parse(localStorage.getItem("ListaInsumos")) || [];
-var elementosInsumos = JSON.parse(localStorage.getItem("elementosInsumos")) || [];
-
-// var conexoes = JSON.parse(localStorage.getItem("conexoes")) || [];
-var conexoes = JSON.parse(localStorage.getItem("conexoes")) || [];
-// Verifica se conexoes está vazia ou tem tamanho diferente de 6x6
-// ! Não sei se funciona
-if (conexoes.length === 0 || conexoes.length !== 6 || conexoes[0].length !== 6) {
-    conexoes = [];
-    // Preenche conexoes com valores nulos
-    for (let i = 0; i < 6; i++) {
-        conexoes[i] = [];
-        for (let j = 0; j < 6; j++) {
-            conexoes[i][j] = null;
-        }
-    }
-}
-
-let linhaMouse
-
-// * Estilização da linha
+// ? Estilização da linha
 var options = {
-    color: '#04f',
     size: 5,
+    layer: 0,
     endPlug: 'behind',
     startSocket: 'right',
     endSocket: 'left',
@@ -42,6 +17,58 @@ var options = {
     gradient: true,
 };
 
+var ListasParticipantes = JSON.parse(localStorage.getItem("ListaParticipantes")) || [];
+var elementosParticipantes = JSON.parse(localStorage.getItem("elementosParticipantes")) || [];
+
+var ListasInsumos = JSON.parse(localStorage.getItem("ListaInsumos")) || [];
+var elementosInsumos = JSON.parse(localStorage.getItem("elementosInsumos")) || [];
+
+var conexoes = JSON.parse(localStorage.getItem("conexoes")) || [];
+
+// ! Não sei como funciona
+if (conexoes.length === 0 || conexoes.length !== 6 || conexoes[0].length !== 6) {
+    conexoes = [];
+    for (let i = 0; i < 6; i++) {
+        conexoes[i] = [];
+        for (let j = 0; j < 6; j++) {
+            conexoes[i][j] = null;
+        }
+    }
+}
+
+// * Botões só estarão disponíveis após o carregamento da página	
+$(document).ready(() => {
+    carregaElementos();
+    carregaConexoes();
+    
+    $('#dividirFluxo').click(() => {
+        for (let i = 0; i < 6; i++) {
+            if (elementosParticipantes[i] != null) {
+                elementosParticipantes[i].coordenadas = null;
+            }
+            if (elementosInsumos[i] != null) {
+                elementosInsumos[i].coordenadas = null;
+            }
+        }
+        localStorage.setItem("elementosParticipantes", JSON.stringify(elementosParticipantes));
+        localStorage.setItem("elementosInsumos", JSON.stringify(elementosInsumos));
+        location.reload(); // ? Se fosse utilizar a função de carregar elementos, teria que apagar os elementos já existentes
+    });
+
+    // > Apenas para desenvolvimento
+    $('#removerConexoes').click(() => {
+        for (let i = 0; i < 6; i++) {
+            for (let j = 0; j < 6; j++) {
+                if (conexoes[i][j] != null) {
+                    conexoes[i][j].remove();
+                    conexoes[i][j] = null;
+                }
+            }
+        }
+        localStorage.setItem("conexoes", JSON.stringify(conexoes));
+    });
+});
+// * Função para carregar os elementos
 function carregaElementos() {
 
     let contP = 0;
@@ -72,7 +99,7 @@ function carregaElementos() {
         }
     }
 }
-
+// * Função para carregar as conexões
 function carregaConexoes() {
     for (let i = 0; i < 6; i++) {
         for (let j = 0; j < 6; j++) {
@@ -91,40 +118,7 @@ function carregaConexoes() {
         }
     }
 }
-
-$(document).ready(() => {
-    carregaElementos();
-    carregaConexoes();
-
-    $('#dividirFluxo').click(() => {
-        for (let i = 0; i < 6; i++) {
-            if (elementosParticipantes[i] != null) {
-                elementosParticipantes[i].coordenadas = null;
-            }
-            if (elementosInsumos[i] != null) {
-                elementosInsumos[i].coordenadas = null;
-            }
-        }
-        localStorage.setItem("elementosParticipantes", JSON.stringify(elementosParticipantes));
-        localStorage.setItem("elementosInsumos", JSON.stringify(elementosInsumos));
-        location.reload(); // ? Se fosse utilizar a função de carregar elementos, teria que apagar os elementos já existentes
-    });
-
-    // > Apenas para desenvolvimento
-    $('#removerConexoes').click(() => {
-        for (let i = 0; i < 6; i++) {
-            for (let j = 0; j < 6; j++) {
-                if (conexoes[i][j] != null) {
-                    conexoes[i][j].remove();
-                    conexoes[i][j] = null;
-                }
-            }
-        }
-        localStorage.setItem("conexoes", JSON.stringify(conexoes));
-    });
-});
-
-// * Função para configurar regras para movimentação do card
+// * Função para configurar regras para movimentação do card participante
 function customDrag(elemento) {
     elemento.find(".draggable").draggable({
         containment: "section",
@@ -157,6 +151,7 @@ function customDrag(elemento) {
         }
     });
 }
+// * Função para configurar regras para movimentação do card insumo
 function dragInsumos(elemento) {
     elemento.find(".draggable").draggable({
         containment: "section",
@@ -174,15 +169,15 @@ function dragInsumos(elemento) {
         }
     });
     elemento.find(".draggable").on("drag", function (event, ui) {
-        // Código a ser executado sempre que a posição do card é alterada
+        
         var newPosition = $(this).position();
         console.log("Nova posição: left = " + newPosition.left + ", top = " + newPosition.top);
 
-        // Pegara a id daquele elemento
+        // * Pegar a id daquele elemento
         let id = $(this).closest('.insumos-container').attr('id');
         let idNumber = parseInt(id.split('-')[1]);
 
-        // Atualizar cada uma das conexoes
+        // * Atualizar cada uma das conexoes
         for (let i = 0; i < 6; i++) {
             if (conexoes[i][idNumber] != null) {
                 conexoes[i][idNumber].position();
@@ -191,6 +186,7 @@ function dragInsumos(elemento) {
 
     });
 }
+// * Função para configurar regras para conexão
 function fluxoConecta(element) {
     element.find(".fluxoConecta").mousedown(function () {
 
@@ -200,17 +196,15 @@ function fluxoConecta(element) {
 
         const mouseX = event.clientX + pageXOffset;
         const mouseY = event.clientY + pageYOffset;
-        // Irei criar um elemento chamado elmpoint, na posição do mouse, que será o destino da linha
-        let elmpoint = $(`<div id="elmpoint" style="top: ${mouseY}px; left: ${mouseX}px;"></div>`);
+
+        let elmpoint = $(`<div id="elmpoint" style="top: ${mouseY}px; left: ${mouseX}px;"></div>`); 
         $('section').append(elmpoint);
 
-        let elmPoint = document.getElementById('elmpoint');
-
-        // Criará uma linha daquele elemento até o mouse
-        let mouseEl = document.getElementById(`fluxoConecta-${idNumber}`);
+        let elmPoint = document.getElementById('elmpoint'); // * Elemento invisisel que acompanha o mouse
+        let mouseEl = document.getElementById(`fluxoConecta-${idNumber}`); // * Elemento que foi clicado
 
         // * Ao clicar no botão, a linha deve ser criada
-        linhaMouse = new LeaderLine(mouseEl, elmPoint, {
+        let linhaMouse = new LeaderLine(mouseEl, elmPoint, {
             color: '#04f',
             size: 5,
             endPlug: 'disc',
@@ -232,27 +226,19 @@ function fluxoConecta(element) {
 
         // * Ao soltar o botão, a linha deve ser removida
         $(document).mouseup(function (event) {
-            // Preciso achar qual fluxoDestino foi clicado
             if ($(event.target).is(".fluxoDestinoGenerico")) {
-                // Ação quando o mouseup ocorrer em cima do elemento #fluxoDestino
-                // Pegarei o id do elemento destino
                 let idDestino = $(event.target).closest('.insumos-container').attr('id');
                 let idDestinoNumber = parseInt(idDestino.split('-')[1]);
 
                 console.log(`Mouseup em cima de #fluxoDestino ${idDestinoNumber}`);
                 console.log(`Linha conectada do elemento ${elementosParticipantes[idNumber].titulo} para o elemento ${elementosInsumos[idDestinoNumber].titulo}`);
 
-                let elementoDestino = elementosInsumos[idDestinoNumber];
-                let coordenadasDestino = elementoDestino.coordenadas;
-
-                // let linhaDestino = $(`<div id="linha" style="top: ${coordenadasDestino[1]}px; left: ${coordenadasDestino[0]}px; z-index: 9999;">_</div>`);
-                // $('section').append(linhaDestino);
-
                 let startEl = document.getElementById(`fluxoConecta-${idNumber}`);
                 let endEl = document.getElementById(`fluxoDestino-${idDestinoNumber}`);
                 if (conexoes[idNumber][idDestinoNumber] != null) {
                     $('.toast-body').text('Este elemento já está conectado a este insumo! Burro!');
                     $('.toast').toast('show');
+                    linhaMouse.remove();
                     return;
                 }
                 conexoes[idNumber][idDestinoNumber] = new LeaderLine(
@@ -270,13 +256,12 @@ function fluxoConecta(element) {
                 console.log('Elemento solto');
                 linhaMouse.remove();
             }
-            // linha.remove();
             $(document).off('mousemove');
             $(document).off('mouseup');
         });
     });
 }
-
+// * HTML de um elemento participante
 function criaElementoParticipante(element, gapping) {
 
     let posicao = '';
@@ -288,12 +273,12 @@ function criaElementoParticipante(element, gapping) {
     }
     ;
     return $(`
-    <div id="listaP-${element._id}" class="bg-dark card-container ms-5" style="${posicao}; z-index: 0; width: 0%;">
-        <div class="elementoMovivel draggable card col-3 border-0 overflow-x-hidden shadow-sm">
+    <div id="listaP-${element._id}" class="bg-dark card-container ms-5" style="${posicao}; z-index: 1; width: 0%;">
+        <div class="elementoMovivel draggable card col-3 border-0 overflow-x-hidden shadow-sm" style="min-width:150px;">
             <div class="fs-4 fw-bold text-nowrap d-flex justify-content-between align-items-center">
-                <span class="py-2 d-flex moverElemento px-3 gap-2 border-0">
+                <span class="w-100 py-2 d-flex moverElemento px-3 gap-2 border-0">
                     <i class="bi-people-fill"></i>
-                    <span class="">${element.titulo}</span>
+                    <span class="w-100 text-center">${element.titulo}</span>
                 </span>
                 <button id="fluxoConecta-${element._id}" class="fluxoConecta py-2 bi-chevron-double-right d-inline-block text-white btn-3 Papel"
                 style="border-top-right-radius: 5px; border-bottom-right-radius: 5px;"></button>
@@ -302,7 +287,7 @@ function criaElementoParticipante(element, gapping) {
         </div>
     </div>`);
 }
-
+// * HTML de um elemento insumo
 function criaElementoInsumo(element, gapping) {
 
     let posicao = '';
@@ -340,23 +325,22 @@ function criaElementoInsumo(element, gapping) {
         </span>`;
     }
     return $(`
-        <div id="listaI-${element._id}" class="bg-dark insumos-container ms-5" style="${posicao}; z-index: 0; width: 0%;">
+        <div id="listaI-${element._id}" class="bg-dark insumos-container ms-5" style="${posicao}; z-index: 1; width: 0%;">
             <div class="elementoMovivel draggable card col-3 border-0 overflow-x-hidden shadow rounded-5">
                 <div class="moverElemento Papel bg-escuro fs-4 fw-bold text-nowrap d-flex justify-content-between align-items-center"
                 style="border-top-left-radius: 20px; border-top-right-radius: 10px;">
                     <button id="fluxoDestino-${element._id}" class="fluxoDestinoGenerico py-2 bi-diamond d-inline-block text-white btn-3 Papel no-shadow"
                     style="border-top-left-radius: 10px;"></button>
-                    <span class="py-2 d-flex px-3 gap-2 border-0 w-100">
-                        <span class="text-white">${element.titulo}</span>
+                    <span class="py-2 d-flex px-3 gap-2 ps-4 border-0 w-100">
+                        <span class="text-white ms-auto w-100">${element.titulo}</span>
                     </span>
                 </div>
-                <div class="bg-fundo Cork overflow-auto mx-0 p-0 d-flex flex-column" style="max-height: 500px">
+                <div class="bg-fundo Cork overflow-auto mx-0 p-0 d-flex flex-column" style="max-height: 400px; min-width:200px;">
                     ${linha}
                 </div>
             </div>
         </div>`);
 }
-//  <i class="bi-wallet-fill"></i>
-//<ul class="list-group list-group-flush mx-0 px-0">
-//    ${linha}
-//</ul>
+
+// > Para amanhâ, toda conexão de um elemento deverá ser exibido no próprio elemento, podendo ser personalizado
+// > NOME CONEXÃO | INPUT NÚMERICO | UNIDADE - LITROS - QUILOS - PESO - ETC

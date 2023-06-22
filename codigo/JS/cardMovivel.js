@@ -13,7 +13,7 @@ var maxWidth = 200;    // * Máximo de pixels permitidos no título
 var maxLength = 100;    // * Máximo de caracteres permitidos no título
 const TAM = 6;      // * Quantidade de cards que será possível adicionar
 
-var elemento = "elementosParticipantes";
+var elemento = "elementosParticipantes"; // * Para manipular listas de uma determinada careogoria
 
 var vetor = Array(TAM).fill(true); // * True = Disponível, False = Ocupado
 var matriz = Array(3).fill(Array(TAM).fill(true));
@@ -77,10 +77,6 @@ function carregaCards() {
         }
     } else {todasListas = [];}
 }
-// > Preciso que cards com position diferentes tenham a mesma largura
-// > Preciso que todos os cards manteham suas coordenadas após mudança de posição
-// > Clicar em cima do nome do card deixa ele como position absolute, e permite mover ele
-
 // * Botões só estarão disponíveis após o carregamento da página	
 $(document).ready(() => {
     carregaCards();
