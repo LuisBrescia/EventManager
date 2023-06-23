@@ -62,6 +62,7 @@ if (conexoes.length === 0 || conexoes.length !== 6 || conexoes[0].length !== 6) 
 $(document).ready(() => {
     carregaElementos();
     carregaConexoes();
+    
     $('#dividirFluxo').click(() => {
         for (let i = 0; i < 6; i++) {
             if (elementosParticipantes[i] != null) {
@@ -157,6 +158,7 @@ function carregaConexoes() {
                 $(novaConexao).find('[name="insumo"]').val(conexoes[i][j][1].insumo);
                 // > Chamar função para carregar cada valor da conexão, ou já carregar os valores ao criar a cobexão
                 $(`#listaP-${i}`).find('.card-body').append(novaConexao);
+                recalculaValor(j, conexoes[i][j][1].insumo);
             }
         }
     }
@@ -339,6 +341,8 @@ function guardaValor(element) {
         conexoes[idNumber][idDestinoNumber][1].quantidade = $(this).val();
 
         localStorage.setItem("conexoes", JSON.stringify(conexoes));
+        
+        recalculaValor(idDestinoNumber, conexoes[idNumber][idDestinoNumber][1].insumo);
     });
     // * Salva o insumo selecionado
     element.find('.card-body').on('change', '[name="insumo"]', function () {
@@ -349,19 +353,12 @@ function guardaValor(element) {
         let idDestinoNumber = parseInt(idConexao.split('-')[1]);
 
         console.log('Valor salvo no elemento ' + idNumber + ' para o insumo ' + idDestinoNumber + ' como: ' + $(this).val());
-
+        let antigo = conexoes[idNumber][idDestinoNumber][1].insumo;
         conexoes[idNumber][idDestinoNumber][1].insumo = $(this).val(); 
         localStorage.setItem("conexoes", JSON.stringify(conexoes));
+        recalculaValor(idDestinoNumber, conexoes[idNumber][idDestinoNumber][1].insumo);
+        recalculaValor(idDestinoNumber, antigo);
     });
-
-    // Achar qual insumo está selecionado, neste insumo tenho que pegar a quantidade uma conexão, multiplicar pelo quantidade de participantes, fazer isso com todas as conexões e somar tudo
-
-    // Tenho que pegar o número de participantes e multiplicar ele pela quantidade de cada insumo
-    conexoes[idNumber][idDestinoNumber][1].insumoToal = elementosParticipantes[idNumber].linhas.length * conexoes[idNumber][idDestinoNumber][1].quantidade;
-    // > Mas caso o número de cima já existir daria completamente errado, teria que calcular de todas as conexões ao mesmo tempo
-    let quantidadeAtual = parseInt($(`#listaI-${idDestinoNumber}`).find(`#${conexoes[idNumber][idDestinoNumber][1].insumo}`).find('.quantidadeInsumo').text());
-
-
 }
 // * HTML de um elemento participante
 function criaElementoParticipante(element, gapping) {
@@ -403,23 +400,22 @@ function criaElementoInsumo(element, gapping) {
         posicao = 'top: ' + element.coordenadas[1] + 'px; left: ' + element.coordenadas[0] + 'px';
     }
     let linha = '';
-    // > Se o elemento tiver apenas 1 linha, retirar todos os caracteres de espaço e verificar se sobrou alguma coisa
     if (element.linhas.length > 1) {
         for (let i = 0; i < element.linhas.length - 1; i++) {
             // Vou pegar só os 30 primeiros caracteres de cada linha
             let linhaAtual = element.linhas[i].substring(0, 30);
 
             linha += `
-            <span class="shadow-sm bg-white mt-1">
-                <button class="py-2 d-inline-block bg-1 border-0 bg-gradient text-white no-shadow">15</button>
+            <span id="${element._id}-${i}" class="shadow-sm bg-white mt-1">
+                <button class="py-2 d-inline-block bg-1 border-0 bg-gradient text-white no-shadow quantidadeInsumo">0</button>
                 <span class="text-nowrap px-2">${linhaAtual}</span>
             </span>`;
         }
         // ? Úlitma linha
         let linhaAtual = element.linhas[element.linhas.length - 1].substring(0, 30);
         linha += `
-            <span id="${element.id}-${linhaAtual}" class="shadow-sm bg-white mt-1">
-                <button class="py-2 d-inline-block border-0 bg-1 bg-gradient text-white no-shadow quantidadeInsumo"></button>
+            <span id="${element._id}-${element.linhas.length - 1}" class="shadow-sm bg-white mt-1">
+                <button class="py-2 d-inline-block border-0 bg-1 bg-gradient text-white no-shadow quantidadeInsumo">0</button>
                 <span class="text-nowrap px-2">${linhaAtual}</span>
             </span>`;
     } else {
@@ -473,6 +469,27 @@ function criaConexao(element) {
     `);
 }
 // * Função para setar os valores da conexão 
+function recalculaValor(idDestino, insumoAlterado){
+    // > Acredito que tenha formas mais simples de fazer isso, revisarei o código caso tenha tempo 
+    let quantidadeAtual = 0; // Quantidade que irá para o insumo
+
+    // * Percorre todos os insumos de um elementoInsumo
+    elementosInsumos[idDestino].linhas.forEach((linha, index) => { 
+        console.log("Linha: ", linha," Insumo:", insumoAlterado);
+        if (linha == insumoAlterado) { // * Se o insumo for == a linha, então ele está conectado a esse insumo
+            console.log("Opa é o mesmo")
+            for (let i = 0; i < 6; i++) { // * Pegarei todas as conexões á aquele insumo específico
+                if (conexoes[i][idDestino][0] != null){ // Existe uma conexão entre o elemento i e o elementoInsumo
+                    if (conexoes[i][idDestino][1].insumo == linha) { // * Se essa conexão estiver apontando para o determinado insumo
+                        quantidadeAtual += conexoes[i][idDestino][1].quantidade * elementosParticipantes[i].linhas.length;
+                    }
+                } 
+            }
+            $(`#${idDestino}-${index}`).find('.quantidadeInsumo').text(quantidadeAtual);
+            console.log(`Procurado:  #${idDestino}-${index}`);
+        }
+    });
+}
 
 // > Para amanhâ, toda conexão de um elemento deverá ser exibido no próprio elemento, podendo ser personalizado
 // > NOME CONEXÃO | INPUT NÚMERICO | UNIDADE - LITROS - QUILOS - PESO - ETC
