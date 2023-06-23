@@ -319,11 +319,14 @@ function excluiConexao(element) {
         let idDestinoNumber = parseInt(idConexao.split('-')[1]);
 
         conexoes[idNumber][idDestinoNumber][0].remove();
-        conexoes[idNumber][idDestinoNumber] = [null, null];
-
+        conexoes[idNumber][idDestinoNumber][0] = null;
+        recalculaValor(idDestinoNumber, conexoes[idNumber][idDestinoNumber][1].insumo);
+        conexoes[idNumber][idDestinoNumber][1] = null;
+        
         localStorage.setItem("conexoes", JSON.stringify(conexoes));
         
         $(this).closest('.conexaoParticipante').remove();
+        
     });
 }
 // * Função que guarda os valores de cada conexão
