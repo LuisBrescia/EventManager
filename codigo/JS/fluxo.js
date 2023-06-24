@@ -9,8 +9,9 @@ guardaValor(element) - Função que guarda os valores de cada conexão
 criaElementoParticipante(element, gapping) - HTML de um elemento participante
 criaElementoInsumo(element, gapping) - HTML de um elemento insumo
 criaConexao(element) - Criará as conexões que ficam em baixo de um elemento do tipo participante
+recalculaValor(idDestino, insumoAlterado) - Função para setar os valores da conexão
 */
-// * Objeto que salvará conexões de cada elemento
+// * Pegará as informações da página anterior e salvará as coordenadas dos elementos
 function Elemento(_id, titulo, coordenadas, linhas) {
     this._id = _id;
     this.titulo = titulo;
@@ -32,11 +33,12 @@ var options = {
     endPlug: 'behind',
     startSocket: 'right',
     endSocket: 'left',
-    // startPlugColor: '#04f',
-    // endPlugColor: '#08f',
-    // gradient: true,
-    color: '#04f',
+    startPlugColor: '#04f',
+    endPlugColor: '#08f',
+    gradient: true,
+    // color: '#04f',
 };
+var TAM = 6; // * Número de cards que são possíveis de serem criados no momento
 
 var ListasParticipantes = JSON.parse(localStorage.getItem("ListaParticipantes")) || [];
 var elementosParticipantes = JSON.parse(localStorage.getItem("elementosParticipantes")) || [];
@@ -44,48 +46,48 @@ var elementosParticipantes = JSON.parse(localStorage.getItem("elementosParticipa
 var ListasInsumos = JSON.parse(localStorage.getItem("ListaInsumos")) || [];
 var elementosInsumos = JSON.parse(localStorage.getItem("elementosInsumos")) || [];
 
-// > Posso também representar com um vetor 3D onde 0 é a linha e 1 os valores dela
-// : Conexões vai ser um vetor de 3 dimensões onde a primeira dimensão é a linha que liga os 2 elementos, e a segunda é o valor das 3 conexões
+var conexoesVisiveis = JSON.parse(localStorage.getItem("conexoesVisiveis"));
 var conexoes = JSON.parse(localStorage.getItem("conexoes")) || [];
-// ! Não sei como funciona | Possível origem do problema
-if (conexoes.length === 0 || conexoes.length !== 6 || conexoes[0].length !== 6) {
+if (conexoes.length === 0 || conexoes.length !== TAM || conexoes[0].length !== TAM) {
     conexoes = [];
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < TAM; i++) {
         conexoes[i] = [];
-        for (let j = 0; j < 6; j++) {
+        for (let j = 0; j < TAM; j++) {
             conexoes[i][j] = [null, null];
         }
     }
 }
-var conexoesVisiveis = JSON.parse(localStorage.getItem("conexoesVisiveis"));
 
 // * Botões só estarão disponíveis após o carregamento da página
 $(document).ready(() => {
+
     carregaElementos();
     carregaConexoes();
 
-    if (conexoesVisiveis == null) {
-        conexoesVisiveis = true;
-    }  
-    
-    console.log(conexoesVisiveis);
-    
-    for (let i = 0; i < 6; i++) {
-        for (let j = 0; j < 6; j++) {
+    if (conexoesVisiveis == null) { conexoesVisiveis = true; }
+    for (let i = 0; i < TAM; i++) {
+        for (let j = 0; j < TAM; j++) {
             if (conexoes[i][j][0] != null) {
-                conexoes[i][j][0].color = conexoesVisiveis ? '#04f' : 'aliceblue';
+                conexoes[i][j][0].startPlugColor = conexoesVisiveis ? '#04f' : 'aliceblue';
+                conexoes[i][j][0].endPlugColor = conexoesVisiveis ? '#08f' : 'aliceblue';
             }
         }
     }
-    if(conexoesVisiveis){
+    if (conexoesVisiveis) { // ? Quando página é criada i não tem nenhuma das 2 classes, portanto não é possivel utilizar toggleClass
         $('#visibilidadeFluxo').find('i').addClass('bi-eye-slash').removeClass('bi-eye');
     } else {
         $('#visibilidadeFluxo').find('i').addClass('bi-eye').removeClass('bi-eye-slash');
     }
     $('#visibilidadeFluxo').find('span').text(conexoesVisiveis ? 'Ocultar' : 'Exibir');
 
+    // > Para funcionar tem que ser passado por dentro do card
+    $('.select-icon').click(function () {
+        $(this).siblings('select').trigger('click');
+    });
+
+    // * Organiza a área de trabalho
     $('#dividirFluxo').click(() => {
-        for (let i = 0; i < 6; i++) {
+        for (let i = 0; i < TAM; i++) {
             if (elementosParticipantes[i] != null) {
                 elementosParticipantes[i].coordenadas = null;
             }
@@ -97,12 +99,13 @@ $(document).ready(() => {
         localStorage.setItem("elementosInsumos", JSON.stringify(elementosInsumos));
         location.reload(); // ? Se fosse utilizar a função de carregar elementos, teria que apagar os elementos já existentes
     });
-    // > Apenas para desenvolvimento, remove todas as conexões, + para frente vou trocar por um botão de calcular
+    // * Oculta/Exibe LeaderLines
     $('#visibilidadeFluxo').click(() => {
-        for (let i = 0; i < 6; i++) {
-            for (let j = 0; j < 6; j++) {
+        for (let i = 0; i < TAM; i++) {
+            for (let j = 0; j < TAM; j++) {
                 if (conexoes[i][j][0] != null) {
-                    conexoes[i][j][0].color = conexoesVisiveis ? 'aliceblue' : '#04f';
+                    conexoes[i][j][0].startPlugColor = conexoesVisiveis ? 'aliceblue' : '#04f';
+                    conexoes[i][j][0].endPlugColor = conexoesVisiveis ? 'aliceblue' : '#08f';
                 }
             }
         }
@@ -114,14 +117,12 @@ $(document).ready(() => {
 });
 // * Função para carregar os elementos
 function carregaElementos() {
-    let contP = 0;
-    let contI = 0;
+    let contP = 0; // ? Para calcular posição onde os elementos serão gerados
+    let contI = 0; // ? Para calcular posição onde os elementos serão gerados
 
-    // * Carrega os participantes
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < TAM; i++) {
         if (ListasParticipantes[i] != null) {
-            if (elementosParticipantes[i] != null && elementosParticipantes[i].coordenadas != null) {
-                // > Pode ser que o elemento já exista, mas não tenha coordenadas
+            if (elementosParticipantes[i] != null && elementosParticipantes[i].coordenadas != null) { // ? Caso o elemento exista e tenha coordenadas salvas
                 elementosParticipantes[i] = new Elemento(ListasParticipantes[i]._id, ListasParticipantes[i].titulo, elementosParticipantes[i].coordenadas, ListasParticipantes[i].linhas);
             } else {
                 elementosParticipantes[i] = new Elemento(ListasParticipantes[i]._id, ListasParticipantes[i].titulo, null, ListasParticipantes[i].linhas);
@@ -133,15 +134,14 @@ function carregaElementos() {
             excluiConexao($(elementoParticipanteCarregado));
             adicionaConexao($(elementoParticipanteCarregado));
             guardaValor($(elementoParticipanteCarregado));
-
             $('section').append(elementoParticipanteCarregado);
-        } else { // * Se a conexão já existir, mas o elemento não, apagar a conexão
-            for (let j = 0; j < 6; j++) {
+
+        } else { // * Se a conexão já existir, mas o elemento não, apagar conexões onde está envolvido
+            for (let j = 0; j < TAM; j++) {
                 if (conexoes[i][j][0] != null) {
                     conexoes[i][j] = [null, null];
                 }
             }
-            localStorage.setItem("conexoes", JSON.stringify(conexoes));
         }
         if (ListasInsumos[i] != null) {
             if (elementosInsumos[i] != null && elementosInsumos[i].coordenadas != null) {
@@ -150,23 +150,25 @@ function carregaElementos() {
                 elementosInsumos[i] = new Elemento(i, ListasInsumos[i].titulo, null, ListasInsumos[i].linhas);
             }
             var elementoInsumoCarregado = criaElementoInsumo(elementosInsumos[i], contI++);
+
             dragInsumos($(elementoInsumoCarregado));
             $('section').append(elementoInsumoCarregado);
-        } else { // * Se a conexão já existir, mas o elemento não, apagar a conexão
-            for (let j = 0; j < 6; j++) {
+
+        } else { // * Se a conexão já existir, mas o elemento não, apagar conexões onde está envolvido
+            for (let j = 0; j < TAM; j++) {
                 if (conexoes[j][i][0] != null) {
                     conexoes[j][i] = [null, null];
                 }
             }
-            localStorage.setItem("conexoes", JSON.stringify(conexoes));
         }
     }
+    localStorage.setItem("conexoes", JSON.stringify(conexoes));
 }
 // * Função para carregar as conexões
 function carregaConexoes() {
-    for (let i = 0; i < 6; i++) {
-        for (let j = 0; j < 6; j++) {
-            if (conexoes[i][j][0] != null) {
+    for (let i = 0; i < TAM; i++) {
+        for (let j = 0; j < TAM; j++) {
+            if (conexoes[i][j][0] != null) { // * Se a conexão existir, cria uma LeaderLine e um objeto do tipo Conexão
                 let startEl = document.getElementById(`fluxoConecta-${i}`);
                 let endEl = document.getElementById(`fluxoDestino-${j}`);
                 conexoes[i][j][0] = new LeaderLine(
@@ -174,11 +176,19 @@ function carregaConexoes() {
                     endEl,
                     options
                 );
-                var novaConexao = criaConexao(elementosInsumos[j]);
+
+                let novaConexao = criaConexao(elementosInsumos[j]); // ? criaConexão() retorna o HTML da janelinha azul que fica no elemento participante
+                $(`#listaP-${i}`).find('.card-body').append(novaConexao);
+
+                // : Jeito novo
+                /* for (let k = 0; k < conexoes[i][j][1].length; k++) {
+                    $(novaConexao).find('input').val(conexoes[i][j][1][k].quantidade);
+                    $(novaConexao).find('[name="insumo"]').val(conexoes[i][j][1][k].insumo);
+                    recalculaValor(j, conexoes[i][j][1][k].insumo);
+                } */
+                // > Aqui em baixo, teria que achar os valores dos inputs de todos os elementos de uma conexao
                 $(novaConexao).find('input').val(conexoes[i][j][1].quantidade);
                 $(novaConexao).find('[name="insumo"]').val(conexoes[i][j][1].insumo);
-                // > Chamar função para carregar cada valor da conexão, ou já carregar os valores ao criar a cobexão
-                $(`#listaP-${i}`).find('.card-body').append(novaConexao);
                 recalculaValor(j, conexoes[i][j][1].insumo);
             }
         }
@@ -208,7 +218,7 @@ function customDrag(elemento) {
     //     let idNumber = parseInt(id.split('-')[1]);
     //     let conexoesElements = []; // Array para armazenar os elementos de conexão
     //     // Preencha o array conexoesElements com os elementos de conexão uma vez
-    //     for (let i = 0; i < 6; i++) {
+    //     for (let i = 0; i < TAM; i++) {
     //         if (conexoes[idNumber][i][0] != null) {
     //             conexoesElements.push(conexoes[idNumber][i][0]);
     //         }
@@ -224,7 +234,7 @@ function customDrag(elemento) {
         let id = $(this).closest('.card-container').attr('id');
         let idNumber = parseInt(id.split('-')[1]);
 
-        for (let i = 0; i < 6; i++) {
+        for (let i = 0; i < TAM; i++) {
             if (conexoes[idNumber][i][0] != null) {
                 conexoes[idNumber][i][0].position();
             }
@@ -255,7 +265,7 @@ function dragInsumos(elemento) {
         let idNumber = parseInt(id.split('-')[1]);
 
         // * Atualizar cada uma das conexoes
-        for (let i = 0; i < 6; i++) {
+        for (let i = 0; i < TAM; i++) {
             if (conexoes[i][idNumber][0] != null) {
                 conexoes[i][idNumber][0].position();
             }
@@ -497,6 +507,10 @@ function criaElementoInsumo(element, gapping) {
 }
 // * Elemento será uma lista do tipo Insumo
 function criaConexao(element) {
+    // : Teria que fazer o código abaixo para cada linha da conexao
+    // Para cada linha da conexao
+    // for (conexao in conexoes[i][j][1]) {
+
     let opcoes = '';
     if (element.linhas.length > 1) {
         element.linhas.forEach((linha) => {
@@ -504,26 +518,47 @@ function criaConexao(element) {
             opcoes += `<option value="${linha}">${linha}</option>`;
         });
     }
-    // > Seria interessante poder adicionar esse tipo de item
+
+    // Quantidade de conexão ser adicionada
+    var dadoConexao = $(`
+        <div id="naoAlteraNada" class="row m-0 p-0 mt-1 border border-dark border-2">
+            <span class="d-flex bg-dark p-0">
+                <input class="col-8" type="number" placeholder="Para cada participante...">
+                <select class="col-4" name="medida">
+                    <option selected>Unidade</option>
+                </select>
+            </span>
+            <select name="insumo" class="p-0">
+                <option value="">Todos</option>
+                ${opcoes}
+            </select>
+        </div>
+    `);
+    // element é o insumo que iremos utilizar de template, é criada uma conexão para ele em determinado elemento
+    // Caso a conexão não exxista
     return $(`
     <div id="conexaoCom-${element._id}" class="d-flex flex-column conexaoParticipante">
-        <span class="px-2 bg-1 Papel text-white d-flex justify-content-between">
-            <i class="adicionaConexao bi-plus-circle position-absolute"></i>
-            <span class="mx-auto opacity-0">${element.titulo}</span>
-            <span class="position-absolute text-center" style="transform: translateX(-50%); left: 50%;">${element.titulo}</span>
-            <i class="excluiConexao bi-trash"></i>
-        </span>
-        <span class="d-flex bg-dark p-0 ">
-            <input class="col-8" type="number" placeholder="Para cada participante...">
-            <select class="col-4" name="medida">
-                <option selected>Unidade</option>
+            <span class="px-2 bg-1 Papel text-white d-flex justify-content-between">
+                <i class="adicionaConexao bi-plus-circle position-absolute"></i>
+                <span class="mx-auto opacity-0">${element.titulo}</span>
+                <span class="position-absolute text-center" style="transform: translateX(-50%); left: 50%;">${element.titulo}</span>
+                <i class="excluiConexao bi-trash"></i>
+            </span>
+        
+        <div id="0" class="row m-0 p-0 mt-1 border border-dark border-2">
+            <span class="d-flex bg-dark p-0">
+                <input class="col-8" type="number" placeholder="Para cada participante...">
+                <select class="col-4" name="medida">
+                    <option selected>Unidade</option>
+                </select>
+            </span>
+            <select name="insumo" class="p-0">
+                <option value="">Todos</option>
+                ${opcoes}
             </select>
-        </span>
-        <select name="insumo">
-            <option value="">Todos</option>
-            ${opcoes}
-        </select>
-    </div>
+        </div>
+        
+    </div >
     `);
 }
 // * Função para setar os valores da conexão
@@ -541,7 +576,7 @@ function recalculaValor(idDestino, insumoAlterado) {
         console.log("Linha: ", linha, " Insumo:", insumoAlterado);
         if (linha == insumoAlterado) { // * Se o insumo for == a linha, então ele está conectado a esse insumo
             console.log("Opa é o mesmo")
-            for (let i = 0; i < 6; i++) { // * Pegarei todas as conexões á aquele insumo específico
+            for (let i = 0; i < TAM; i++) { // * Pegarei todas as conexões á aquele insumo específico
                 if (conexoes[i][idDestino][0] != null) { // Existe uma conexão entre o elemento i e o elementoInsumo
                     if (conexoes[i][idDestino][1].insumo == linha) { // * Se essa conexão estiver apontando para o determinado insumo
                         quantidadeAtual += conexoes[i][idDestino][1].quantidade * elementosParticipantes[i].linhas.length;
@@ -555,3 +590,24 @@ function recalculaValor(idDestino, insumoAlterado) {
         }
     });
 }
+
+// > Selection estilizado (não finalizado ainda)
+/*
+
+<div id="naoAlteraNada" class="row m-0 p-0 mt-1 border border-dark border-2">
+    <span class="select-wrapper d-flex bg-dark p-0">
+        <input class="col-8" type="number" placeholder="Para cada participante...">
+        <select class="col-4" name="medida">
+            <option selected>Unidade</option>
+        </select>
+    </span>
+    <div class="select-wrapper px-0 d-flex justify-content-between">
+        <select name="insumo" class="ps-3" style="z-index: 1">
+            <option value="">Todos</option>
+            ${opcoes}
+        </select>
+        <i class="select-icon bi-chevron-down m-0 bg-1 text-white Papel px-2" style="z-index: 0"></i>
+    </div>
+</div>
+
+*/
