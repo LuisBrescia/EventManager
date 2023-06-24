@@ -11,7 +11,6 @@ criaElementoInsumo(element, gapping) - HTML de um elemento insumo
 criaConexao(element) - Criará as conexões que ficam em baixo de um elemento do tipo participante
 recalculaValor(idDestino, insumoAlterado) - Função para setar os valores da conexão
 */
-
 // * Pegará as informações da página anterior e salvará as coordenadas dos elementos
 function Elemento(_id, titulo, coordenadas, linhas) {
     this._id = _id;
@@ -54,7 +53,7 @@ if (conexoes.length === 0 || conexoes.length !== TAM || conexoes[0].length !== T
     for (let i = 0; i < TAM; i++) {
         conexoes[i] = [];
         for (let j = 0; j < TAM; j++) {
-            conexoes[i][j] = [null, null];
+            conexoes[i][j] = [null, []];
         }
     }
 }
@@ -140,7 +139,7 @@ function carregaElementos() {
         } else { // * Se a conexão já existir, mas o elemento não, apagar conexões onde está envolvido
             for (let j = 0; j < TAM; j++) {
                 if (conexoes[i][j][0] != null) {
-                    conexoes[i][j] = [null, null];
+                    conexoes[i][j] = [null, []];
                 }
             }
         }
@@ -158,7 +157,7 @@ function carregaElementos() {
         } else { // * Se a conexão já existir, mas o elemento não, apagar conexões onde está envolvido
             for (let j = 0; j < TAM; j++) {
                 if (conexoes[j][i][0] != null) {
-                    conexoes[j][i] = [null, null];
+                    conexoes[j][i] = [null, []];
                 }
             }
         }
@@ -177,20 +176,17 @@ function carregaConexoes() {
                     endEl,
                     options
                 );
-
-                let novaConexao = criaConexao(elementosInsumos[j]); // ? criaConexão() retorna o HTML da janelinha azul que fica no elemento participante
+                // : Quando a conexão for criada, os parametros dela já deverão existir
+                let novaConexao = criaConexao(i, elementosInsumos[j]); // ? criaConexão() retorna o HTML da janelinha azul que fica no elemento participante
                 $(`#listaP-${i}`).find('.card-body').append(novaConexao);
 
                 // : Jeito novo
-                /* for (let k = 0; k < conexoes[i][j][1].length; k++) {
-                    $(novaConexao).find('input').val(conexoes[i][j][1][k].quantidade);
-                    $(novaConexao).find('[name="insumo"]').val(conexoes[i][j][1][k].insumo);
-                    recalculaValor(j, conexoes[i][j][1][k].insumo);
-                } */
-                // > Aqui em baixo, teria que achar os valores dos inputs de todos os elementos de uma conexao
-                $(novaConexao).find('input').val(conexoes[i][j][1].quantidade);
-                $(novaConexao).find('[name="insumo"]').val(conexoes[i][j][1].insumo);
-                recalculaValor(j, conexoes[i][j][1].insumo);
+                // : Aqui estarei colocando os inputs do localStorage dentro dos inputs da conexão
+                for (let k = 0; k < conexoes[i][j][1].length; k++) {
+                    $(novaConexao).find(`#param-${k} input`).val(conexoes[i][j][1][k].quantidade);
+                    $(novaConexao).find(`#param-${k} [name="insumo"]`).val(conexoes[i][j][1][k].insumo);
+                    recalculaValor(j, conexoes[i][j][1][k]);
+                }
             }
         }
     }
@@ -279,9 +275,7 @@ function fluxoConecta(element) {
     element.find(".fluxoConecta").mousedown(function () {
         let id = $(this).attr('id');
         let idNumber = parseInt(id.split('-')[1]);
-        let elemento = elementosParticipantes[idNumber];
 
-        // ! Revisar isso aqui
         const mouseX = event.clientX + pageXOffset;
         const mouseY = event.clientY + pageYOffset;
 
@@ -302,23 +296,19 @@ function fluxoConecta(element) {
             endPlugColor: '#08f',
             gradient: true
         });
-
-        console.log(`Mousedown no elemento ${elemento.titulo} de ID ${idNumber}`);
-
-        // * Ao mover o mouse, a linha deve acompanhar o mouse
+        // * Ao mover o mouse, a linha deve acompanhá-lo
         $(document).mousemove((e) => {
             elmPoint.style.left = `${e.clientX + pageXOffset}px`;
             elmPoint.style.top = `${e.clientY + pageYOffset}px`;
             linhaMouse.position();
         });
-
         // * Ao soltar o botão, a linha deve ser removida
         $(document).mouseup(function (event) {
             if ($(event.target).is(".fluxoDestinoGenerico")) {
                 let idDestino = $(event.target).closest('.insumos-container').attr('id');
                 let idDestinoNumber = parseInt(idDestino.split('-')[1]);
 
-                if (conexoes[idNumber][idDestinoNumber][0] != null) {
+                if (conexoes[idNumber][idDestinoNumber][0] != null) { // * Toaster
                     $('.toast-body').text('Este elemento já está conectado a este insumo. Burro!');
                     $('.toast').toast('show');
                     linhaMouse.remove();
@@ -327,31 +317,26 @@ function fluxoConecta(element) {
                     return;
                 }
 
-                console.log(`Mouseup em cima de #fluxoDestino ${idDestinoNumber}`);
-                console.log(`Linha conectada do elemento ${elementosParticipantes[idNumber].titulo} para o elemento ${elementosInsumos[idDestinoNumber].titulo}`);
-
                 let startEl = document.getElementById(`fluxoConecta-${idNumber}`);
                 let endEl = document.getElementById(`fluxoDestino-${idDestinoNumber}`);
 
+                // * Após a conexão ser criada, é criada também um objeto do tipo Conexão 
                 conexoes[idNumber][idDestinoNumber][0] = new LeaderLine(
                     startEl,
                     endEl,
                     options
                 );
-                // * Após a conexão ser criada, é criada também um objeto do tipo Conexão
-                conexoes[idNumber][idDestinoNumber][1] = new Conexao(idNumber, idDestinoNumber, null, null, null);
+                // ? Já que a conexão foi criada agora, não existirá outros parametros  
+                conexoes[idNumber][idDestinoNumber][1][0] = new Conexao(idNumber, idDestinoNumber, null, null, null);
 
-                var novaConexao = criaConexao(elementosInsumos[idDestinoNumber]);
+                var novaConexao = criaConexao(idNumber, elementosInsumos[idDestinoNumber]);
                 $(`#listaP-${idNumber}`).find('.card-body').append(novaConexao);
 
-                console.log(conexoes[idNumber][idDestinoNumber]);
                 // * Salvar a conexão no LocalStorage
                 localStorage.setItem("conexoes", JSON.stringify(conexoes));
-                linhaMouse.remove();
-            } else {
-                console.log('Elemento solto');
-                linhaMouse.remove();
             }
+            console.log('COMO ASSIM????');
+            linhaMouse.remove();
             elmpoint.remove();
             $(document).off('mousemove');
             $(document).off('mouseup');
@@ -369,7 +354,7 @@ function adicionaConexao(element) {
         let idDestinoNumber = parseInt(idConexao.split('-')[1]);
 
         let novaConexao = novoParametro(idNumber, elementosInsumos[idDestinoNumber]);
-        
+
         $(`#listaP-${idNumber}`).find('#conexaoCom-' + idDestinoNumber).append(novaConexao);
 
         // Criarei um novo objeto do tipo Conexao e colocarei no array conexoes
@@ -382,7 +367,6 @@ function adicionaConexao(element) {
 // * Exclui uma conexão em específico
 function excluiConexao(element) {
     element.find('.card-body').on('click', '.excluiConexao', function () {
-
         let id = $(this).closest('.card-container').attr('id');
         let idNumber = parseInt(id.split('-')[1]);
 
@@ -391,8 +375,8 @@ function excluiConexao(element) {
 
         conexoes[idNumber][idDestinoNumber][0].remove();
         conexoes[idNumber][idDestinoNumber][0] = null;
-        recalculaValor(idDestinoNumber, conexoes[idNumber][idDestinoNumber][1].insumo);
-        conexoes[idNumber][idDestinoNumber][1] = null;
+        recalculaValor(idDestinoNumber, conexoes[idNumber][idDestinoNumber][1]); // Estou passando um vetor
+        conexoes[idNumber][idDestinoNumber][1] = [];
 
         localStorage.setItem("conexoes", JSON.stringify(conexoes));
 
@@ -409,13 +393,16 @@ function guardaValor(element) {
         let idConexao = $(this).closest('.conexaoParticipante').attr('id');
         let idDestinoNumber = parseInt(idConexao.split('-')[1]);
 
-        console.log('Valor salvo no elemento ' + idNumber + ' para o insumo ' + idDestinoNumber + ' como: ' + $(this).val());
+        // * Tenho que achar de qual parametro se trata
+        let k = $(this).closest('.row').attr('id');
+        let idParam = parseInt(k.split('-')[1]);
 
-        conexoes[idNumber][idDestinoNumber][1].quantidade = $(this).val();
+        console.log(`Valor salvo no parametro ${idParam} da ${id} para o insumo ${idDestinoNumber} como: ${$(this).val()}}`);
+        conexoes[idNumber][idDestinoNumber][1][idParam].quantidade = $(this).val();
 
         localStorage.setItem("conexoes", JSON.stringify(conexoes));
 
-        recalculaValor(idDestinoNumber, conexoes[idNumber][idDestinoNumber][1].insumo);
+        recalculaValor(idDestinoNumber, conexoes[idNumber][idDestinoNumber][1]);
     });
     // * Salva o insumo selecionado
     element.find('.card-body').on('change', '[name="insumo"]', function () {
@@ -425,11 +412,14 @@ function guardaValor(element) {
         let idConexao = $(this).closest('.conexaoParticipante').attr('id');
         let idDestinoNumber = parseInt(idConexao.split('-')[1]);
 
-        console.log('Valor salvo no elemento ' + idNumber + ' para o insumo ' + idDestinoNumber + ' como: ' + $(this).val());
-        let antigo = conexoes[idNumber][idDestinoNumber][1].insumo;
-        conexoes[idNumber][idDestinoNumber][1].insumo = $(this).val();
+        let k = $(this).closest('.row').attr('id');
+        let idParam = parseInt(k.split('-')[1]);
+
+        console.log(`Valor salvo no parametro ${idParam} da ${id} para o insumo ${idDestinoNumber} como: ${$(this).val()}}`);
+        let antigo = conexoes[idNumber][idDestinoNumber][1];
+        conexoes[idNumber][idDestinoNumber][1][idParam].insumo = $(this).val();
         localStorage.setItem("conexoes", JSON.stringify(conexoes));
-        recalculaValor(idDestinoNumber, conexoes[idNumber][idDestinoNumber][1].insumo);
+        recalculaValor(idDestinoNumber, conexoes[idNumber][idDestinoNumber][1]);
         recalculaValor(idDestinoNumber, antigo);
     });
 }
@@ -514,8 +504,7 @@ function criaElementoInsumo(element, gapping) {
         </div>`);
 }
 // * Elemento será uma lista do tipo Insumo
-function criaConexao(element) {
-    
+function criaConexao(idP, element) {
     // : Teria que fazer o código abaixo para cada linha da conexao
     let opcoes = '';
     if (element.linhas.length > 1) {
@@ -523,6 +512,12 @@ function criaConexao(element) {
             linha = linha.substring(0, 30);
             opcoes += `<option value="${linha}">${linha}</option>`;
         });
+    }
+
+    let parametros = '';
+    for (let i = 0; i < conexoes[idP][element._id][1].length; i++) {
+        // > Os valores serão passados em outra função, não é a pratica mais correta
+        parametros += criaParametro(i, opcoes);
     }
 
     return $(`
@@ -533,109 +528,69 @@ function criaConexao(element) {
             <span class="position-absolute text-center" style="transform: translateX(-50%); left: 50%;">${element.titulo}</span>
             <i class="excluiConexao bi-trash"></i>
         </span>
-
-        <div id="0" class="row m-0 p-0 mt-1 border border-dark border-2">
-            <span class="d-flex bg-dark p-0">
-                <input class="col-8" type="number" placeholder="Para cada participante...">
-                <select class="col-4" name="medida">
-                    <option selected>Unidade</option>
-                </select>
-            </span>
-            <select name="insumo" class="p-0">
-                <option value="">Todos</option>
-                ${opcoes}
-            </select>
-        </div>
+        ${parametros}    
     </div>
     `);
 }
-// * Função que retorna uma nova conexão
-function novoParametro(idP, element) {
-    // : Teria que fazer o código abaixo para cada linha da conexao
-    // Não precisarei de salvar em lugar algum o tamanho, porque já tenho uma função que calcula isso
-    // Para cada linha da conexao
-    // for (conexao in conexoes[i][j][1]) {
-    // se lista idP card-body conexaoCom-element._id tiver + de 5 filhos, retorne
-    // Tenho que saber em qual posição aquela conexão está
-    if ($(`#listaP-${idP}`).find('.card-body').children().length > 8) {
-        $('.toast-body').text('Você já adicionou o máximo de parâmetros para este elemento, crie outra ramificação');
-        $('.toast').toast('show');
-        return;
-    }
-
-    let opcoes = '';
-    if (element.linhas.length > 1) {
-        element.linhas.forEach((linha) => {
-            linha = linha.substring(0, 30);
-            opcoes += `<option value="${linha}">${linha}</option>`;
-        });
-    }
-
-    // Preciso pegar o tamanho de conexoes[idP][idDestinoNumber][1].length
-    // ! IDs precisarão ser trocados ao exlcuir elemento 
-    // : Uma solução pode ser simplesmente percorrer o array de conexões e ver qual é o maior ID
-
-    return $(`
-        <div id="conexoes[idP][idDestinoNumber][1].length" class="row m-0 p-0 mt-1 border border-dark border-2">
-            <span class="d-flex bg-dark p-0">
-                <input class="col-8" type="number" placeholder="Para cada participante...">
-                <select class="col-4" name="medida">
-                    <option selected>Unidade</option>
-                </select>
-            </span>
-            <select name="insumo" class="p-0">
-                <option value="">Todos</option>
-                ${opcoes}
+// * Função que cria o conteúdo HTML do parametro de uma conexão
+function criaParametro(i, opcoes) {
+    return `
+    <div id="param-${i}" class="row m-0 p-0 mt-1 border border-dark border-2">
+        <span class="d-flex bg-dark p-0">
+            <input class="col-8" type="number" placeholder="Para cada participante...">
+            <select class="col-4" name="medida">
+                <option selected>Unidade</option>
             </select>
-        </div>
-    `);
-}
-// * Função para setar os valores da conexão
-function recalculaValor(idDestino, insumoAlterado) {
-    // > Acredito que tenha formas mais simples de fazer isso, revisarei o código caso tenha tempo
-    let quantidadeAtual = 0; // Quantidade que irá para o insumo
-
-    // Se o elemento não tiver linhas função é retornada 
-    if (elementosInsumos[idDestino].linhas.length == 1) {
-        return;
-    }
-
-    // * Percorre todos os insumos de um elementoInsumo
-    elementosInsumos[idDestino].linhas.forEach((linha, index) => {
-        console.log("Linha: ", linha, " Insumo:", insumoAlterado);
-        if (linha == insumoAlterado) { // * Se o insumo for == a linha, então ele está conectado a esse insumo
-            console.log("Opa é o mesmo")
-            for (let i = 0; i < TAM; i++) { // * Pegarei todas as conexões á aquele insumo específico
-                if (conexoes[i][idDestino][0] != null) { // Existe uma conexão entre o elemento i e o elementoInsumo
-                    if (conexoes[i][idDestino][1].insumo == linha) { // * Se essa conexão estiver apontando para o determinado insumo
-                        quantidadeAtual += conexoes[i][idDestino][1].quantidade * elementosParticipantes[i].linhas.length;
-                    }
-                }
-            }
-            // retira as casas adicionais e arredonda para cima
-            quantidadeAtual = Math.ceil(quantidadeAtual);
-            $(`#${idDestino}-${index}`).find('.quantidadeInsumo').text(quantidadeAtual);
-            console.log(`Procurado:  #${idDestino}-${index}`);
-        }
-    });
-}
-// > Selection estilizado (não finalizado ainda)
-/*
-
-<div id="naoAlteraNada" class="row m-0 p-0 mt-1 border border-dark border-2">
-    <span class="select-wrapper d-flex bg-dark p-0">
-        <input class="col-8" type="number" placeholder="Para cada participante...">
-        <select class="col-4" name="medida">
-            <option selected>Unidade</option>
-        </select>
-    </span>
-    <div class="select-wrapper px-0 d-flex justify-content-between">
-        <select name="insumo" class="ps-3" style="z-index: 1">
+        </span>
+        <select name="insumo" class="p-0">
             <option value="">Todos</option>
             ${opcoes}
         </select>
-        <i class="select-icon bi-chevron-down m-0 bg-1 text-white Papel px-2" style="z-index: 0"></i>
-    </div>
-</div>
+    </div>`;
+}
+// * Função para setar os valores da conexão
+function recalculaValor(idDestino, insumosAlterado) {
+    if (elementosInsumos[idDestino].linhas.length == 1) { return; }
+    // > Acredito que tenha formas mais simples de fazer isso, revisarei o código caso tenha tempo
+    let quantidadeAtual = 0;
 
-*/
+    // * Agora, como tenho um vetor de insumos alterados terei que realizar isso para cada um deles
+    for (let i = 0; i < insumosAlterado.length; i++) {
+        // * Percorre todos as linhas de uma lista Insumos
+        elementosInsumos[idDestino].linhas.forEach((linha, index) => {
+            console.log("Linha: ", linha, " Insumo:", insumosAlterado[i].insumo);
+            if (linha == insumosAlterado[i].insumo) { // * Se o insumo for == a linha, então ele está conectado a esse insumo
+                console.log("Opa é o mesmo")
+                for (let i = 0; i < TAM; i++) { // * Pegarei todas as conexões á aquele insumo específico
+                    if (conexoes[i][idDestino][0] != null) { // * Existe uma conexão entre o elemento i e o elementoInsumo
+                        for (let j = 0; j < conexoes[i][idDestino][1].length; j++) { // * Verificarei todos os parametros de determinado elemento
+                            if (conexoes[i][idDestino][1][j].insumo == linha) { // * Se este parametro estiver apontando para o determinado insumo
+                                quantidadeAtual += conexoes[i][idDestino][1][j].quantidade * elementosParticipantes[i].linhas.length;
+                            }
+                        }
+                    }
+                }
+                quantidadeAtual = Math.ceil(quantidadeAtual);
+                $(`#${idDestino}-${index}`).find('.quantidadeInsumo').text(quantidadeAtual);
+                console.log(`Procurado:  #${idDestino}-${index}`);
+            }
+        });
+    }
+}
+// > Selection estilizado (não finalizado ainda)
+
+// <div id="naoAlteraNada" class="row m-0 p-0 mt-1 border border-dark border-2">
+//     <span class="select-wrapper d-flex bg-dark p-0">
+//         <input class="col-8" type="number" placeholder="Para cada participante...">
+//         <select class="col-4" name="medida">
+//             <option selected>Unidade</option>
+//         </select>
+//     </span>
+//     <div class="select-wrapper px-0 d-flex justify-content-between">
+//         <select name="insumo" class="ps-3" style="z-index: 1">
+//             <option value="">Todos</option>
+//             ${opcoes}
+//         </select>
+//         <i class="select-icon bi-chevron-down m-0 bg-1 text-white Papel px-2" style="z-index: 0"></i>
+//     </div>
+// </div>
