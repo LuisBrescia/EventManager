@@ -1,3 +1,20 @@
+/*
+? Documentação:
+carregaCards() - Carrega os cards salvos no localStorage quando a página é carregada
+nomeiaCard(element) - Botão que edita o título do card
+resetaCard(element) - Botão que reseta o conteúdo do card
+removeCard(element) - Botão que apaga o card
+finalDaLinha(element) - Cursor no final de cada linha
+removerLiVazias(cardContainer) - Remove li vazias
+atualizaTitulo(element) - Atualiza o título do card
+atualizaConteudo(element) - Atualiza conteudo do card
+isTextSelected(element) - Permite alterar o título caso conteúdo esteja inteiramente selecionados
+customDrag(elemento) - Função para configurar regras para movimentação do card
+editaCard(element) - Editar o conteúdo do card quando clicar em alguma linha
+selectAll(element) - Permite selecionar todo o texto de um elemento
+criaConteudo(lista, gapping) - HTML de um card
+*/
+
 // ? Mesmo não havendo caracteres menores que 2.5 pixels, é bom definir uma margem de segurança
 // ? Seria possível colocar infinitos caracteres de largura 0
 // ? estéticamente não teria efeito algum, porém travaria o programa

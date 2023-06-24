@@ -11,6 +11,7 @@ criaElementoInsumo(element, gapping) - HTML de um elemento insumo
 criaConexao(element) - Criará as conexões que ficam em baixo de um elemento do tipo participante
 recalculaValor(idDestino, insumoAlterado) - Função para setar os valores da conexão
 */
+
 // * Pegará as informações da página anterior e salvará as coordenadas dos elementos
 function Elemento(_id, titulo, coordenadas, linhas) {
     this._id = _id;
@@ -367,7 +368,7 @@ function adicionaConexao(element) {
         let idConexao = $(this).closest('.conexaoParticipante').attr('id');
         let idDestinoNumber = parseInt(idConexao.split('-')[1]);
 
-        let novaConexao = criaConexao(elementosInsumos[idDestinoNumber]);
+        let novaConexao = novoParametro(idNumber, elementosInsumos[idDestinoNumber]);
         $(this).closest('.conexaoParticipante').after(novaConexao);
     });
 }
@@ -451,7 +452,7 @@ function criaElementoParticipante(element, gapping) {
                 <button id="fluxoConecta-${element._id}" class="fluxoConecta py-2 bi-chevron-double-right d-inline-block text-white btn-3 Papel"
                 style="border-top-right-radius: 3px;"></button>
             </div>
-            <div class="card-body p-0 pt-1 d-flex flex-column gap-1" style="max-height: 80vh; overflow-y: auto;">
+            <div class="card-body p-0 pt-1 d-flex flex-column gap-1" style="overflow-y: auto;">
             </div>
         </div>
     </div>`);
@@ -507,9 +508,52 @@ function criaElementoInsumo(element, gapping) {
 }
 // * Elemento será uma lista do tipo Insumo
 function criaConexao(element) {
+    
     // : Teria que fazer o código abaixo para cada linha da conexao
+    let opcoes = '';
+    if (element.linhas.length > 1) {
+        element.linhas.forEach((linha) => {
+            linha = linha.substring(0, 30);
+            opcoes += `<option value="${linha}">${linha}</option>`;
+        });
+    }
+
+    return $(`
+    <div id="conexaoCom-${element._id}" class="d-flex flex-column conexaoParticipante">
+        <span class="px-2 bg-1 Papel text-white d-flex justify-content-between">
+            <i class="adicionaConexao bi-plus-circle position-absolute"></i>
+            <span class="mx-auto opacity-0">${element.titulo}</span>
+            <span class="position-absolute text-center" style="transform: translateX(-50%); left: 50%;">${element.titulo}</span>
+            <i class="excluiConexao bi-trash"></i>
+        </span>
+        
+        <div id="0" class="row m-0 p-0 mt-1 border border-dark border-2">
+            <span class="d-flex bg-dark p-0">
+                <input class="col-8" type="number" placeholder="Para cada participante...">
+                <select class="col-4" name="medida">
+                    <option selected>Unidade</option>
+                </select>
+            </span>
+            <select name="insumo" class="p-0">
+                <option value="">Todos</option>
+                ${opcoes}
+            </select>
+        </div>
+    </div>
+    `);
+}
+// * Função que retorna uma nova conexão
+function novoParametro(idP, element) {
+    // : Teria que fazer o código abaixo para cada linha da conexao
+    // Não precisarei de salvar em lugar algum o tamanho, porque já tenho uma função que calcula isso
     // Para cada linha da conexao
     // for (conexao in conexoes[i][j][1]) {
+    // se lista idP card-body conexaoCom-element._id tiver + de 5 filhos, retorne
+
+    // Tenho que saber em qual posição aquela conexão está
+    if ($(`#listaP-${idP}`).find('.card-body').children().length > 5) {
+        return;
+    }
 
     let opcoes = '';
     if (element.linhas.length > 1) {
@@ -519,9 +563,12 @@ function criaConexao(element) {
         });
     }
 
-    // Quantidade de conexão ser adicionada
-    var dadoConexao = $(`
-        <div id="naoAlteraNada" class="row m-0 p-0 mt-1 border border-dark border-2">
+    // Preciso pegar o tamanho de conexoes[idP][idDestinoNumber][1].length
+    // ! IDs precisarão ser trocados ao exlcuir elemento 
+    // : Uma solução pode ser simplesmente percorrer o array de conexões e ver qual é o maior ID
+
+    return $(`
+        <div id="conexoes[idP][idDestinoNumber][1].length" class="row m-0 p-0 mt-1 border border-dark border-2">
             <span class="d-flex bg-dark p-0">
                 <input class="col-8" type="number" placeholder="Para cada participante...">
                 <select class="col-4" name="medida">
@@ -536,30 +583,6 @@ function criaConexao(element) {
     `);
     // element é o insumo que iremos utilizar de template, é criada uma conexão para ele em determinado elemento
     // Caso a conexão não exxista
-    return $(`
-    <div id="conexaoCom-${element._id}" class="d-flex flex-column conexaoParticipante">
-            <span class="px-2 bg-1 Papel text-white d-flex justify-content-between">
-                <i class="adicionaConexao bi-plus-circle position-absolute"></i>
-                <span class="mx-auto opacity-0">${element.titulo}</span>
-                <span class="position-absolute text-center" style="transform: translateX(-50%); left: 50%;">${element.titulo}</span>
-                <i class="excluiConexao bi-trash"></i>
-            </span>
-        
-        <div id="0" class="row m-0 p-0 mt-1 border border-dark border-2">
-            <span class="d-flex bg-dark p-0">
-                <input class="col-8" type="number" placeholder="Para cada participante...">
-                <select class="col-4" name="medida">
-                    <option selected>Unidade</option>
-                </select>
-            </span>
-            <select name="insumo" class="p-0">
-                <option value="">Todos</option>
-                ${opcoes}
-            </select>
-        </div>
-        
-    </div >
-    `);
 }
 // * Função para setar os valores da conexão
 function recalculaValor(idDestino, insumoAlterado) {
@@ -590,7 +613,6 @@ function recalculaValor(idDestino, insumoAlterado) {
         }
     });
 }
-
 // > Selection estilizado (não finalizado ainda)
 /*
 
