@@ -1,4 +1,4 @@
-/* 
+/*
 ? Documentação
 carregaElementos() - Função que carrega os elementos na tela
 customDrag(elemento) - Função que configura as regras para movimentação do card participante
@@ -32,9 +32,10 @@ var options = {
     endPlug: 'behind',
     startSocket: 'right',
     endSocket: 'left',
-    startPlugColor: '#04f',
-    endPlugColor: '#08f',
-    gradient: true,
+    // startPlugColor: '#04f',
+    // endPlugColor: '#08f',
+    // gradient: true,
+    color: '#04f',
 };
 
 var ListasParticipantes = JSON.parse(localStorage.getItem("ListaParticipantes")) || [];
@@ -58,11 +59,11 @@ if (conexoes.length === 0 || conexoes.length !== 6 || conexoes[0].length !== 6) 
     }
 }
 
-// * Botões só estarão disponíveis após o carregamento da página	
+// * Botões só estarão disponíveis após o carregamento da página
 $(document).ready(() => {
     carregaElementos();
     carregaConexoes();
-    
+
     $('#dividirFluxo').click(() => {
         for (let i = 0; i < 6; i++) {
             if (elementosParticipantes[i] != null) {
@@ -99,7 +100,7 @@ function carregaElementos() {
     for (let i = 0; i < 6; i++) {
         if (ListasParticipantes[i] != null) {
             if (elementosParticipantes[i] != null && elementosParticipantes[i].coordenadas != null) {
-                // > Pode ser que o elemento já exista, mas não tenha coordenadas 
+                // > Pode ser que o elemento já exista, mas não tenha coordenadas
                 elementosParticipantes[i] = new Elemento(ListasParticipantes[i]._id, ListasParticipantes[i].titulo, elementosParticipantes[i].coordenadas, ListasParticipantes[i].linhas);
             } else {
                 elementosParticipantes[i] = new Elemento(ListasParticipantes[i]._id, ListasParticipantes[i].titulo, null, ListasParticipantes[i].linhas);
@@ -109,6 +110,7 @@ function carregaElementos() {
             customDrag($(elementoParticipanteCarregado));
             fluxoConecta($(elementoParticipanteCarregado));
             excluiConexao($(elementoParticipanteCarregado));
+            adicionaConexao($(elementoParticipanteCarregado));
             guardaValor($(elementoParticipanteCarregado));
 
             $('section').append(elementoParticipanteCarregado);
@@ -147,9 +149,7 @@ function carregaConexoes() {
                 let startEl = document.getElementById(`fluxoConecta-${i}`);
                 let endEl = document.getElementById(`fluxoDestino-${j}`);
                 conexoes[i][j][0] = new LeaderLine(
-                    LeaderLine.pointAnchor(startEl, {
-                        x: 36,
-                    }),
+                    startEl,
                     endEl,
                     options
                 );
@@ -180,9 +180,29 @@ function customDrag(elemento) {
             console.log('Coordenadas salvas no elemento PARTICIPANTE de ID ' + cardNumber + ' como: ' + elementosParticipantes[cardNumber].coordenadas);
         },
     });
+
+    // > Aumenta a performance porem está apresentando problemas
+    // elemento.find('.draggable').on('mousedown', function () {
+    //     let id = $(this).closest('.card-container').attr('id');
+    //     let idNumber = parseInt(id.split('-')[1]);
+    //     let conexoesElements = []; // Array para armazenar os elementos de conexão
+    //     // Preencha o array conexoesElements com os elementos de conexão uma vez
+    //     for (let i = 0; i < 6; i++) {
+    //         if (conexoes[idNumber][i][0] != null) {
+    //             conexoesElements.push(conexoes[idNumber][i][0]);
+    //         }
+    //     }
+    //     elemento.find(".draggable").on("drag", function () {
+    //         for (let i = 0; i < conexoesElements.length; i++) {
+    //             conexoesElements[i].position();
+    //         }
+    //     });
+    // });
+
     elemento.find(".draggable").on("drag", function () {
         let id = $(this).closest('.card-container').attr('id');
         let idNumber = parseInt(id.split('-')[1]);
+
         for (let i = 0; i < 6; i++) {
             if (conexoes[idNumber][i][0] != null) {
                 conexoes[idNumber][i][0].position();
@@ -282,13 +302,11 @@ function fluxoConecta(element) {
                 let endEl = document.getElementById(`fluxoDestino-${idDestinoNumber}`);
 
                 conexoes[idNumber][idDestinoNumber][0] = new LeaderLine(
-                    LeaderLine.pointAnchor(startEl, {
-                        x: 36,
-                    }),
+                    startEl,
                     endEl,
                     options
                 );
-                // * Após a conexão ser criada, é criada também um objeto do tipo Conexão 
+                // * Após a conexão ser criada, é criada também um objeto do tipo Conexão
                 conexoes[idNumber][idDestinoNumber][1] = new Conexao(idNumber, idDestinoNumber, null, null, null);
 
                 var novaConexao = criaConexao(elementosInsumos[idDestinoNumber]);
@@ -308,9 +326,23 @@ function fluxoConecta(element) {
         });
     });
 }
+// * Cria uma nova funcionalidade em conexão já existente
+function adicionaConexao(element) {
+    element.find('.card-body').on('click', '.adicionaConexao', function () {
+        console.log('Adicionando nova conexão');
+        let id = $(this).closest('.card-container').attr('id');
+        let idNumber = parseInt(id.split('-')[1]);
+
+        let idConexao = $(this).closest('.conexaoParticipante').attr('id');
+        let idDestinoNumber = parseInt(idConexao.split('-')[1]);
+
+        let novaConexao = criaConexao(elementosInsumos[idDestinoNumber]);
+        $(this).closest('.conexaoParticipante').after(novaConexao);
+    });
+}
 // * Exclui uma conexão em específico
 function excluiConexao(element) {
-    element.find('.card-body').on('click', '.bi-trash', function () {
+    element.find('.card-body').on('click', '.excluiConexao', function () {
 
         let id = $(this).closest('.card-container').attr('id');
         let idNumber = parseInt(id.split('-')[1]);
@@ -322,11 +354,10 @@ function excluiConexao(element) {
         conexoes[idNumber][idDestinoNumber][0] = null;
         recalculaValor(idDestinoNumber, conexoes[idNumber][idDestinoNumber][1].insumo);
         conexoes[idNumber][idDestinoNumber][1] = null;
-        
+
         localStorage.setItem("conexoes", JSON.stringify(conexoes));
-        
+
         $(this).closest('.conexaoParticipante').remove();
-        
     });
 }
 // * Função que guarda os valores de cada conexão
@@ -344,7 +375,7 @@ function guardaValor(element) {
         conexoes[idNumber][idDestinoNumber][1].quantidade = $(this).val();
 
         localStorage.setItem("conexoes", JSON.stringify(conexoes));
-        
+
         recalculaValor(idDestinoNumber, conexoes[idNumber][idDestinoNumber][1].insumo);
     });
     // * Salva o insumo selecionado
@@ -357,7 +388,7 @@ function guardaValor(element) {
 
         console.log('Valor salvo no elemento ' + idNumber + ' para o insumo ' + idDestinoNumber + ' como: ' + $(this).val());
         let antigo = conexoes[idNumber][idDestinoNumber][1].insumo;
-        conexoes[idNumber][idDestinoNumber][1].insumo = $(this).val(); 
+        conexoes[idNumber][idDestinoNumber][1].insumo = $(this).val();
         localStorage.setItem("conexoes", JSON.stringify(conexoes));
         recalculaValor(idDestinoNumber, conexoes[idNumber][idDestinoNumber][1].insumo);
         recalculaValor(idDestinoNumber, antigo);
@@ -372,12 +403,12 @@ function criaElementoParticipante(element, gapping) {
     } else {
         posicao = 'top: ' + element.coordenadas[1] + 'px; left: ' + element.coordenadas[0] + 'px';
     }
-    ;
+
     return $(`
-    <div id="listaP-${element._id}" class="bg-dark card-container ms-5" style="${posicao}; z-index: 1; width: 0%;">
+    <div id="listaP-${element._id}" class="card-container ms-5" style="${posicao}; z-index: 1; width: 0%;">
         <div class="elementoMovivel draggable card col-3 border-0 overflow-x-hidden shadow-sm" style="min-width: 300px; width: fit-content;">
             <div class="w-100 fs-4 fw-bold text-nowrap d-flex justify-content-between align-items-center" style="width: fit-content;">
-                <span class="w-100 py-2 d-flex moverElemento px-3 gap-2 border-0 bg-escuro Papel text-white" style="border-top-left-radius: 3px;">
+                <span class="w-100 py-2 d-flex moverElemento px-3 gap-2 border-0 Papel bg-escuro text-white" style="border-top-left-radius: 3px;">
                     <i class="bi-people-fill">
                         <span class="position-absolute translate-middle badge rounded-pill bg-1 bg-gradient"
                         style="font-size: 9px; top: 10px; left: 10px; font-family: Arial, Helvetica, sans-serif;">
@@ -389,7 +420,7 @@ function criaElementoParticipante(element, gapping) {
                 <button id="fluxoConecta-${element._id}" class="fluxoConecta py-2 bi-chevron-double-right d-inline-block text-white btn-3 Papel"
                 style="border-top-right-radius: 3px;"></button>
             </div>
-            <div class="card-body p-0 pt-1 d-flex flex-column gap-1">
+            <div class="card-body p-0 pt-1 d-flex flex-column gap-1" style="max-height: 80vh; overflow-y: auto;">
             </div>
         </div>
     </div>`);
@@ -407,7 +438,6 @@ function criaElementoInsumo(element, gapping) {
         for (let i = 0; i < element.linhas.length - 1; i++) {
             // Vou pegar só os 30 primeiros caracteres de cada linha
             let linhaAtual = element.linhas[i].substring(0, 30);
-
             linha += `
             <span id="${element._id}-${i}" class="shadow-sm bg-white mt-1">
                 <button class="py-2 d-inline-block bg-1 border-0 bg-gradient text-white no-shadow quantidadeInsumo">0</button>
@@ -423,7 +453,7 @@ function criaElementoInsumo(element, gapping) {
             </span>`;
     } else {
         linha =
-        `<span class="text-center py-2 px-3 shadow-sm bg-white" style="border-bottom-left-radius: 3px; border-bottom-right-radius: 3px;">
+            `<span class="text-center py-2 px-3 shadow-sm bg-white" style="border-bottom-left-radius: 3px; border-bottom-right-radius: 3px;">
             <span class="text-nowrap fs-5">Absoluto</span>
         </span>`;
     }
@@ -447,17 +477,21 @@ function criaElementoInsumo(element, gapping) {
 // * Elemento será uma lista do tipo Insumo
 function criaConexao(element) {
     let opcoes = '';
-
     if (element.linhas.length > 1) {
         element.linhas.forEach((linha) => {
             linha = linha.substring(0, 30);
             opcoes += `<option value="${linha}">${linha}</option>`;
         });
-    } 
-
+    }
+    // > Seria interessante poder adicionar esse tipo de item
     return $(`
     <div id="conexaoCom-${element._id}" class="d-flex flex-column conexaoParticipante">
-        <span class="px-2 bg-1 Papel text-white d-flex justify-content-between"><span>${element.titulo}</span><i class="excluiConexao bi-trash"></i></span>
+        <span class="px-2 bg-1 Papel text-white d-flex justify-content-between">
+            <i class="adicionaConexao bi-plus-circle position-absolute"></i>
+            <span class="mx-auto opacity-0">${element.titulo}</span>
+            <span class="position-absolute text-center" style="transform: translateX(-50%); left: 50%;">${element.titulo}</span>
+            <i class="excluiConexao bi-trash"></i>
+        </span>
         <span class="d-flex bg-dark p-0 ">
             <input class="col-8" type="number" placeholder="Para cada participante...">
             <select class="col-4" name="medida">
@@ -471,28 +505,32 @@ function criaConexao(element) {
     </div>
     `);
 }
-// * Função para setar os valores da conexão 
-function recalculaValor(idDestino, insumoAlterado){
-    // > Acredito que tenha formas mais simples de fazer isso, revisarei o código caso tenha tempo 
+// * Função para setar os valores da conexão
+function recalculaValor(idDestino, insumoAlterado) {
+    // > Acredito que tenha formas mais simples de fazer isso, revisarei o código caso tenha tempo
     let quantidadeAtual = 0; // Quantidade que irá para o insumo
 
+    // Se o elemento não tiver linhas função é retornada 
+    if (elementosInsumos[idDestino].linhas.length == 1) {
+        return;
+    }
+
     // * Percorre todos os insumos de um elementoInsumo
-    elementosInsumos[idDestino].linhas.forEach((linha, index) => { 
-        console.log("Linha: ", linha," Insumo:", insumoAlterado);
+    elementosInsumos[idDestino].linhas.forEach((linha, index) => {
+        console.log("Linha: ", linha, " Insumo:", insumoAlterado);
         if (linha == insumoAlterado) { // * Se o insumo for == a linha, então ele está conectado a esse insumo
             console.log("Opa é o mesmo")
             for (let i = 0; i < 6; i++) { // * Pegarei todas as conexões á aquele insumo específico
-                if (conexoes[i][idDestino][0] != null){ // Existe uma conexão entre o elemento i e o elementoInsumo
+                if (conexoes[i][idDestino][0] != null) { // Existe uma conexão entre o elemento i e o elementoInsumo
                     if (conexoes[i][idDestino][1].insumo == linha) { // * Se essa conexão estiver apontando para o determinado insumo
                         quantidadeAtual += conexoes[i][idDestino][1].quantidade * elementosParticipantes[i].linhas.length;
                     }
-                } 
+                }
             }
+            // retira as casas adicionais e arredonda para cima
+            quantidadeAtual = Math.ceil(quantidadeAtual);
             $(`#${idDestino}-${index}`).find('.quantidadeInsumo').text(quantidadeAtual);
             console.log(`Procurado:  #${idDestino}-${index}`);
         }
     });
 }
-
-// > Para amanhâ, toda conexão de um elemento deverá ser exibido no próprio elemento, podendo ser personalizado
-// > NOME CONEXÃO | INPUT NÚMERICO | UNIDADE - LITROS - QUILOS - PESO - ETC

@@ -761,17 +761,19 @@ footer a:hover {
   font-size: 1.2rem;
 }
 
-.excluiConexao {
+.adicionaConexao, .excluiConexao {
   transition: all 0.3s;
 }
-.excluiConexao:hover {
+.adicionaConexao:hover, .excluiConexao:hover {
   background-color: #08f;
   border-radius: 10em;
   padding: 0px 5px;
   cursor: pointer;
-  transform: translateX(5px);
 }
-.excluiConexao:active {
+.conexaoParticipante { transition: all 0.3s;}
+.excluiConexao:hover {transform: translateX(5px);}
+.adicionaConexao:hover {transform: translateX(-5px);}
+.adicionaConexao:active, .excluiConexao:active {
   background-color: #06f;
   transition: all 0.5s;
 }
