@@ -47,7 +47,6 @@ var elementosInsumos = JSON.parse(localStorage.getItem("elementosInsumos")) || [
 // > Posso também representar com um vetor 3D onde 0 é a linha e 1 os valores dela
 // : Conexões vai ser um vetor de 3 dimensões onde a primeira dimensão é a linha que liga os 2 elementos, e a segunda é o valor das 3 conexões
 var conexoes = JSON.parse(localStorage.getItem("conexoes")) || [];
-
 // ! Não sei como funciona | Possível origem do problema
 if (conexoes.length === 0 || conexoes.length !== 6 || conexoes[0].length !== 6) {
     conexoes = [];
@@ -58,11 +57,32 @@ if (conexoes.length === 0 || conexoes.length !== 6 || conexoes[0].length !== 6) 
         }
     }
 }
+var conexoesVisiveis = JSON.parse(localStorage.getItem("conexoesVisiveis"));
 
 // * Botões só estarão disponíveis após o carregamento da página
 $(document).ready(() => {
     carregaElementos();
     carregaConexoes();
+
+    if (conexoesVisiveis == null) {
+        conexoesVisiveis = true;
+    }  
+    
+    console.log(conexoesVisiveis);
+    
+    for (let i = 0; i < 6; i++) {
+        for (let j = 0; j < 6; j++) {
+            if (conexoes[i][j][0] != null) {
+                conexoes[i][j][0].color = conexoesVisiveis ? '#04f' : 'aliceblue';
+            }
+        }
+    }
+    if(conexoesVisiveis){
+        $('#visibilidadeFluxo').find('i').addClass('bi-eye-slash').removeClass('bi-eye');
+    } else {
+        $('#visibilidadeFluxo').find('i').addClass('bi-eye').removeClass('bi-eye-slash');
+    }
+    $('#visibilidadeFluxo').find('span').text(conexoesVisiveis ? 'Ocultar' : 'Exibir');
 
     $('#dividirFluxo').click(() => {
         for (let i = 0; i < 6; i++) {
@@ -78,17 +98,18 @@ $(document).ready(() => {
         location.reload(); // ? Se fosse utilizar a função de carregar elementos, teria que apagar os elementos já existentes
     });
     // > Apenas para desenvolvimento, remove todas as conexões, + para frente vou trocar por um botão de calcular
-    $('#removerConexoes').click(() => {
+    $('#visibilidadeFluxo').click(() => {
         for (let i = 0; i < 6; i++) {
             for (let j = 0; j < 6; j++) {
                 if (conexoes[i][j][0] != null) {
-                    conexoes[i][j][0].remove();
-                    conexoes[i][j] = [null, null];
-                    $('#conexaoCom-' + j).remove();
+                    conexoes[i][j][0].color = conexoesVisiveis ? 'aliceblue' : '#04f';
                 }
             }
         }
-        localStorage.setItem("conexoes", JSON.stringify(conexoes));
+        $('#visibilidadeFluxo').find('i').toggleClass('bi-eye bi-eye-slash');
+        $('#visibilidadeFluxo').find('span').text(conexoesVisiveis ? 'Exibir' : 'Ocultar');
+        conexoesVisiveis = !conexoesVisiveis; // Alterna o valor da variável conexoesVisiveis
+        localStorage.setItem("conexoesVisiveis", JSON.stringify(conexoesVisiveis));
     });
 });
 // * Função para carregar os elementos
@@ -459,7 +480,7 @@ function criaElementoInsumo(element, gapping) {
     }
     return $(`
         <div id="listaI-${element._id}" class="bg-dark insumos-container ms-5" style="${posicao}; z-index: 1; width: 0%;">
-            <div class="elementoMovivel draggable card col-3 border-0 overflow-x-hidden shadow rounded-5">
+            <div class="elementoMovivel draggable card col-3 border-0 overflow-x-hidden shadow bg-escuro">
                 <div class="moverElemento Papel bg-escuro fs-4 fw-bold text-nowrap d-flex justify-content-between align-items-center"
                 style="border-top-left-radius: 20px; border-top-right-radius: 5px;">
                     <button id="fluxoDestino-${element._id}" class="fluxoDestinoGenerico py-2 bi-diamond d-inline-block text-white btn-3 Papel no-shadow"
