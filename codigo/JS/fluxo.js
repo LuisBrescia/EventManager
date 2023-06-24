@@ -369,7 +369,14 @@ function adicionaConexao(element) {
         let idDestinoNumber = parseInt(idConexao.split('-')[1]);
 
         let novaConexao = novoParametro(idNumber, elementosInsumos[idDestinoNumber]);
-        $(this).closest('.conexaoParticipante').after(novaConexao);
+        
+        $(`#listaP-${idNumber}`).find('#conexaoCom-' + idDestinoNumber).append(novaConexao);
+
+        // Criarei um novo objeto do tipo Conexao e colocarei no array conexoes
+        let novaConexaoObjeto = new Conexao(idNumber, idDestinoNumber, null, null, null);
+        conexoes[idNumber][idDestinoNumber][1].push(novaConexaoObjeto);
+
+        localStorage.setItem("conexoes", JSON.stringify(conexoes));
     });
 }
 // * Exclui uma conexão em específico
@@ -526,7 +533,7 @@ function criaConexao(element) {
             <span class="position-absolute text-center" style="transform: translateX(-50%); left: 50%;">${element.titulo}</span>
             <i class="excluiConexao bi-trash"></i>
         </span>
-        
+
         <div id="0" class="row m-0 p-0 mt-1 border border-dark border-2">
             <span class="d-flex bg-dark p-0">
                 <input class="col-8" type="number" placeholder="Para cada participante...">
@@ -549,9 +556,10 @@ function novoParametro(idP, element) {
     // Para cada linha da conexao
     // for (conexao in conexoes[i][j][1]) {
     // se lista idP card-body conexaoCom-element._id tiver + de 5 filhos, retorne
-
     // Tenho que saber em qual posição aquela conexão está
-    if ($(`#listaP-${idP}`).find('.card-body').children().length > 5) {
+    if ($(`#listaP-${idP}`).find('.card-body').children().length > 8) {
+        $('.toast-body').text('Você já adicionou o máximo de parâmetros para este elemento, crie outra ramificação');
+        $('.toast').toast('show');
         return;
     }
 
@@ -581,8 +589,6 @@ function novoParametro(idP, element) {
             </select>
         </div>
     `);
-    // element é o insumo que iremos utilizar de template, é criada uma conexão para ele em determinado elemento
-    // Caso a conexão não exxista
 }
 // * Função para setar os valores da conexão
 function recalculaValor(idDestino, insumoAlterado) {
