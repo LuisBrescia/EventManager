@@ -33,7 +33,7 @@ var options = {
     endPlug: 'behind',
     startSocket: 'right',
     endSocket: 'left',
-    startPlugColor: '#04f',
+    startPlugColor: '#0cf',
     endPlugColor: '#08f',
     gradient: true,
     // color: '#04f',
@@ -65,7 +65,7 @@ $(document).ready(() => {
     for (let i = 0; i < TAM; i++) {
         for (let j = 0; j < TAM; j++) {
             if (conexoes[i][j][0] != null) {
-                conexoes[i][j][0].startPlugColor = conexoesVisiveis ? '#04f' : 'aliceblue';
+                conexoes[i][j][0].startPlugColor = conexoesVisiveis ? '#0cf' : 'aliceblue';
                 conexoes[i][j][0].endPlugColor = conexoesVisiveis ? '#08f' : 'aliceblue';
             }
         }
@@ -90,7 +90,7 @@ $(document).ready(() => {
         for (let i = 0; i < TAM; i++) {
             for (let j = 0; j < TAM; j++) {
                 if (conexoes[i][j][0] != null) {
-                    conexoes[i][j][0].startPlugColor = conexoesVisiveis ? 'aliceblue' : '#04f';
+                    conexoes[i][j][0].startPlugColor = conexoesVisiveis ? 'aliceblue' : '#0cf';
                     conexoes[i][j][0].endPlugColor = conexoesVisiveis ? 'aliceblue' : '#08f';
                 }
             }
@@ -438,17 +438,16 @@ function criaElementoParticipante(element, gapping) {
     <div id="listaP-${element._id}" class="card-container ms-5" style="${posicao}; z-index: 1; width: 0%;">
         <div class="elementoMovivel draggable card col-3 border-0 overflow-x-hidden shadow-sm" style="min-width: 300px; width: fit-content;">
             <div class="w-100 fs-4 fw-bold text-nowrap d-flex justify-content-between align-items-center" style="width: fit-content;">
-                <span class="w-100 py-2 d-flex moverElemento px-3 gap-2 border-0 Papel bg-escuro text-white" style="border-top-left-radius: 3px;">
-                    <i class="bi-people-fill">
-                        <span class="position-absolute translate-middle badge rounded-pill bg-1 bg-gradient"
-                        style="font-size: 9px; top: 10px; left: 10px; font-family: Arial, Helvetica, sans-serif;">
+                <span class="w-100 py-2 d-flex moverElemento px-3 gap-2 elP-header" style="border-top-left-radius: 3px;">
+                    <i class="bi-people-fill d-flex align-items-center text-light">
+                        <span class="position-absolute text-white fw-bold fs-6"
+                        style="top: 1px; left: 3px;">
                         ${element.linhas.length}
                         </span>
                     </i>
                     <span class="w-100 text-center">${element.titulo}</span>
                 </span>
-                <button id="fluxoConecta-${element._id}" class="fluxoConecta py-2 bi-chevron-double-right d-inline-block text-white btn-3 Papel"
-                style="border-top-right-radius: 3px;"></button>
+                <button id="fluxoConecta-${element._id}" class="fluxoConecta elP-button py-2 bi-chevron-double-right d-inline-block text-white btn-connection"></button>
             </div>
             <div class="card-body p-0 pt-1 d-flex flex-column gap-1" style="overflow-y: auto; max-height: 80vh;">
             </div>
@@ -524,7 +523,7 @@ function criaConexao(idP, element) {
                 </select>
             </span>
             <select name="insumo" class="p-0">
-                <option value="">Todos</option>
+                <option value="">Selecionar</option>
                 ${opcoes}
             </select>
         </div>`;
@@ -559,7 +558,7 @@ function criaParametro(i, element) {
             </select>
         </span>
         <select name="insumo" class="p-0">
-            <option value="">Todos</option>
+            <option value="">Selecionar</option>
             ${opcoes}
         </select>
     </div>`;
