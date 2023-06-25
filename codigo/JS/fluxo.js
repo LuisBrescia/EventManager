@@ -534,24 +534,30 @@ function criaParametro(i, opcoes) {
 function recalculaValor(idDestino, insumosAlterado) { // Vai recber o id dos insumos e qual elemento da lista foi alterado
     if (elementosInsumos[idDestino].linhas.length == 1) {return;}
     // > Acredito que tenha formas mais simples de fazer isso, revisarei o código caso tenha tempo
-    let quantidadeAtual = 0;
-    console.log(insumosAlterado.length);
+    console.log("Quantidade de parametros da conexao",insumosAlterado.length);
 
-    // Vou pegar as conexoes do elemento
-    for (let i = 0; i < TAM; i++){
-        if(conexoes[i][idDestino][0] != null){
+    let dicionario = {};
+    for (let i = 0; i < elementosInsumos[idDestino].linhas.length; i++) {
+        let linha = elementosInsumos[idDestino].linhas[i];
+        dicionario[linha] = 0;
+    }
 
-            for (let k = 0; k < insumosAlterado.length; k++){ // Rodarei todos os insumos do vetor passado, caso o elemento seja igual a algum 
-                for (let j = 0; j < conexoes[i][idDestino][1].length; j++){ // Estou pegando todos os parametros de J
-                    if(insumosAlterado[k].insumo == conexoes[i][idDestino][1][j].insumo) {
-                        quantidadeAtual += conexoes[i][idDestino][j].quantidade * ListasParticipantes[i].linhas.length;
-                    }
-                }
+    for(let i = 0; i < TAM; i++) { 
+        if (conexoes[i][idDestino][0] != null) { 
+            for (let j = 0; j < conexoes[i][idDestino][1].length; j++) { // Para parametro da conexao
+                let insumo = conexoes[i][idDestino][1][j].insumo;
+                let quantidade = conexoes[i][idDestino][1][j].quantidade * elementosParticipantes[i].linhas.length;
+                dicionario[insumo] += quantidade;
             }
-            // Aqui já irei precisar jogar la no texto
         }
     }
 
+    // > Agora que tenho o dicionario, irei atualizar os valores
+    for (let i = 0; i < elementosInsumos[idDestino].linhas.length; i++) {
+        let linha = elementosInsumos[idDestino].linhas[i];
+        let quantidade = Math.ceil(dicionario[linha]);
+        $(`#${idDestino}-${i}`).find('.quantidadeInsumo').text(quantidade);
+    }
 }
 // > Selection estilizado (não finalizado ainda)
 // > Para funcionar tem que ser passado por dentro do card
