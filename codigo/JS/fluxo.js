@@ -364,9 +364,6 @@ function excluiConexao(element) {
 
         localStorage.setItem("conexoes", JSON.stringify(conexoes));
         $(this).closest('.conexaoParticipante').remove();
-
-        // location.reload para ids serem recalculadas
-        location.reload(); // ! Sem tempo 
     });
 }
 // * Função que guarda os valores de cada conexão
