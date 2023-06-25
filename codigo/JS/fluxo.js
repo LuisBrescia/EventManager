@@ -342,8 +342,10 @@ function adicionaConexao(element) {
         let novaConexaoObjeto = new Conexao(idNumber, idDestinoNumber, null, null, null);
         conexoes[idNumber][idDestinoNumber][1].push(novaConexaoObjeto);
         localStorage.setItem("conexoes", JSON.stringify(conexoes));
-
-        location.reload(); // ! Sem tempo
+        // Quero dar um append
+        let novaConexao = criaParametro(conexoes[idNumber][idDestinoNumber][1].length - 1, elementosInsumos[idDestinoNumber]);
+        $(`#listaP-${idNumber}`).find('.conexaoParticipante').last().append(novaConexao);
+        // location.reload(); // ! Sem tempo
     });
 }
 // * Exclui uma conexão em específico
@@ -500,7 +502,19 @@ function criaConexao(idP, element) {
     }
     let parametros = '';
     for (let i = 0; i < conexoes[idP][element._id][1].length; i++) { // * Preciso da quantidade de parametros e ID de cada um deles
-        parametros += criaParametro(i, opcoes);
+        parametros += `
+        <div id="param-${i}" class="row m-0 p-0 mt-1 border border-dark border-2">
+            <span class="d-flex bg-dark p-0">
+                <input class="col-8" type="number" placeholder="Para cada participante...">
+                <select class="col-4" name="medida">
+                    <option selected>Unidade</option>
+                </select>
+            </span>
+            <select name="insumo" class="p-0">
+                <option value="">Todos</option>
+                ${opcoes}
+            </select>
+        </div>`;
     }
     return $(`
     <div id="conexaoCom-${element._id}" class="d-flex flex-column conexaoParticipante">
@@ -515,7 +529,14 @@ function criaConexao(idP, element) {
     `);
 }
 // * Função que cria o conteúdo HTML do parametro de uma conexão
-function criaParametro(i, opcoes) {
+function criaParametro(i, element) {
+    let opcoes = '';
+    if (element.linhas.length > 1) {
+        element.linhas.forEach((linha) => {
+            linha = linha.substring(0, 30);
+            opcoes += `<option value="${linha}">${linha}</option>`;
+        });
+    }
     return `
     <div id="param-${i}" class="row m-0 p-0 mt-1 border border-dark border-2">
         <span class="d-flex bg-dark p-0">
