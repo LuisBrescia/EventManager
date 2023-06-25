@@ -344,7 +344,7 @@ function adicionaConexao(element) {
         localStorage.setItem("conexoes", JSON.stringify(conexoes));
         // Quero dar um append
         let novaConexao = criaParametro(conexoes[idNumber][idDestinoNumber][1].length - 1, elementosInsumos[idDestinoNumber]);
-        $(`#listaP-${idNumber}`).find('.conexaoParticipante').last().append(novaConexao);
+        $(`#listaP-${idNumber}`).find(`#conexaoCom-${idDestinoNumber}`).append(novaConexao);
         // location.reload(); // ! Sem tempo
     });
 }
