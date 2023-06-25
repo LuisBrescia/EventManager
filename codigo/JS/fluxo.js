@@ -61,7 +61,7 @@ if (conexoes.length === 0 || conexoes.length !== TAM || conexoes[0].length !== T
 $(document).ready(() => {
     carregaElementos();
     carregaConexoes();
-    if (conexoesVisiveis == null) {conexoesVisiveis = true;}
+    if (conexoesVisiveis == null) { conexoesVisiveis = true; }
     for (let i = 0; i < TAM; i++) {
         for (let j = 0; j < TAM; j++) {
             if (conexoes[i][j][0] != null) {
@@ -70,15 +70,16 @@ $(document).ready(() => {
             }
         }
     }
-    if (conexoesVisiveis) {$('#visibilidadeFluxo').find('i').addClass('bi-eye-slash').removeClass('bi-eye');
-    } else {$('#visibilidadeFluxo').find('i').addClass('bi-eye').removeClass('bi-eye-slash');}
+    if (conexoesVisiveis) {
+        $('#visibilidadeFluxo').find('i').addClass('bi-eye-slash').removeClass('bi-eye');
+    } else { $('#visibilidadeFluxo').find('i').addClass('bi-eye').removeClass('bi-eye-slash'); }
     $('#visibilidadeFluxo').find('span').text(conexoesVisiveis ? 'Ocultar' : 'Exibir');
 
     // * Organiza a área de trabalho
     $('#dividirFluxo').click(() => {
         for (let i = 0; i < TAM; i++) {
-            if (elementosParticipantes[i] != null) {elementosParticipantes[i].coordenadas = null;}
-            if (elementosInsumos[i] != null) {elementosInsumos[i].coordenadas = null;}
+            if (elementosParticipantes[i] != null) { elementosParticipantes[i].coordenadas = null; }
+            if (elementosInsumos[i] != null) { elementosInsumos[i].coordenadas = null; }
         }
         localStorage.setItem("elementosParticipantes", JSON.stringify(elementosParticipantes));
         localStorage.setItem("elementosInsumos", JSON.stringify(elementosInsumos));
@@ -96,7 +97,7 @@ $(document).ready(() => {
         }
         $('#visibilidadeFluxo').find('i').toggleClass('bi-eye bi-eye-slash');
         $('#visibilidadeFluxo').find('span').text(conexoesVisiveis ? 'Exibir' : 'Ocultar');
-        conexoesVisiveis = !conexoesVisiveis; 
+        conexoesVisiveis = !conexoesVisiveis;
         localStorage.setItem("conexoesVisiveis", JSON.stringify(conexoesVisiveis));
     });
 });
@@ -335,6 +336,12 @@ function adicionaConexao(element) {
         let idConexao = $(this).closest('.conexaoParticipante').attr('id');
         let idDestinoNumber = parseInt(idConexao.split('-')[1]);
 
+        if ($(`#listaP-${idNumber}`).find(`#conexaoCom-${idDestinoNumber}`).children().length >= elementosInsumos[idDestinoNumber].linhas.length + 1) {
+            $('.toast-body').text('Não faz sentido criar mais conexões seu animal.');
+            $('.toast').toast('show');
+            return;
+        }
+
         // let novaConexao = criaParametro(idNumber, elementosInsumos[idDestinoNumber]);
         // $(`#listaP-${idNumber}`).find('#conexaoCom-' + idDestinoNumber).append(novaConexao);
 
@@ -357,13 +364,22 @@ function excluiConexao(element) {
         let idConexao = $(this).closest('.conexaoParticipante').attr('id');
         let idDestinoNumber = parseInt(idConexao.split('-')[1]);
 
-        conexoes[idNumber][idDestinoNumber][0].remove();
-        conexoes[idNumber][idDestinoNumber][0] = null;
+
+
+        if ($(`#listaP-${idNumber}`).find(`#conexaoCom-${idDestinoNumber}`).children().length <= 2) {
+            $(this).closest('.conexaoParticipante').remove();
+            conexoes[idNumber][idDestinoNumber][0].remove();
+            conexoes[idNumber][idDestinoNumber][0] = null;
+            conexoes[idNumber][idDestinoNumber][1] = [];
+
+        } else { // * Nesse caso a conexão não será excluída, apenas o parametro
+            $(this).closest('.conexaoParticipante').find('.row:last').remove();
+            conexoes[idNumber][idDestinoNumber][1].pop();
+        }
+
         recalculaValor(idDestinoNumber, conexoes[idNumber][idDestinoNumber][1]); // Estou passando um vetor
-        conexoes[idNumber][idDestinoNumber][1] = [];
 
         localStorage.setItem("conexoes", JSON.stringify(conexoes));
-        $(this).closest('.conexaoParticipante').remove();
     });
 }
 // * Função que guarda os valores de cada conexão
@@ -434,7 +450,7 @@ function criaElementoParticipante(element, gapping) {
                 <button id="fluxoConecta-${element._id}" class="fluxoConecta py-2 bi-chevron-double-right d-inline-block text-white btn-3 Papel"
                 style="border-top-right-radius: 3px;"></button>
             </div>
-            <div class="card-body p-0 pt-1 d-flex flex-column gap-1" style="overflow-y: auto;">
+            <div class="card-body p-0 pt-1 d-flex flex-column gap-1" style="overflow-y: auto; max-height: 80vh;">
             </div>
         </div>
     </div>`);
@@ -550,18 +566,19 @@ function criaParametro(i, element) {
 }
 // * Função para setar os valores da conexão
 function recalculaValor(idDestino, insumosAlterado) { // Vai recber o id dos insumos e qual elemento da lista foi alterado
-    if (elementosInsumos[idDestino].linhas.length == 1) {return;}
+    if (elementosInsumos[idDestino].linhas.length == 1) { return; }
     // > Acredito que tenha formas mais simples de fazer isso, revisarei o código caso tenha tempo
-    console.log("Quantidade de parametros da conexao",insumosAlterado.length);
+    console.log("Quantidade de parametros da conexao", insumosAlterado.length);
 
     let dicionario = {};
     for (let i = 0; i < elementosInsumos[idDestino].linhas.length; i++) {
         let linha = elementosInsumos[idDestino].linhas[i];
+        linha = linha.substring(0, 30);
         dicionario[linha] = 0;
     }
 
-    for(let i = 0; i < TAM; i++) { 
-        if (conexoes[i][idDestino][0] != null) { 
+    for (let i = 0; i < TAM; i++) {
+        if (conexoes[i][idDestino][0] != null) {
             for (let j = 0; j < conexoes[i][idDestino][1].length; j++) { // Para parametro da conexao
                 let insumo = conexoes[i][idDestino][1][j].insumo;
                 let quantidade = conexoes[i][idDestino][1][j].quantidade * elementosParticipantes[i].linhas.length;
