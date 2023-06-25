@@ -11,34 +11,47 @@ var ListaTarefas = JSON.parse(localStorage.getItem("ListaTarefas")) || []; // * 
 function carregaTarefas() {
 
     var tarefasConcluidas = 0;
-
     $('#todoConteudo li').remove();
-    
-    if (ListaTarefas == null) {return;}
 
-    for (let i = 0; i < ListaTarefas.length; i++) {
-        
-        tarefaCarregada = criaHtmlTarefa(ListaTarefas[i], false);
+    if (ListaTarefas.length == 0) {
+        let objGenerico = new Tarefa(0, "Abrir Chamado para insumos e servicos", false);
+        let tarefaGenerica = criaHtmlTarefa(objGenerico, false);
 
-        selectAll(tarefaCarregada.find('h6')[0]);
-        nomeTarefa(tarefaCarregada);
-        excluirTarefa(tarefaCarregada);
-        estadoTarefa(tarefaCarregada);
-        
-        if (ListaTarefas[i].concluida == true) {
-            tarefaCarregada.find('[type="checkbox"]').prop('checked', true);
-            tarefaCarregada.addClass('concluido');
-            tarefasConcluidas++;
+        ListaTarefas.unshift(objGenerico);
+        localStorage.setItem("ListaTarefas", JSON.stringify(ListaTarefas));
+
+        selectAll(tarefaGenerica.find('h6')[0]);
+        nomeTarefa(tarefaGenerica);
+        excluirTarefa(tarefaGenerica);
+        estadoTarefa(tarefaGenerica);
+
+        $('#todoConteudo').append(tarefaGenerica);
+    } else {
+        console.log(ListaTarefas);
+        console.log("Carregando tarefas...");
+
+        for (let i = 0; i < ListaTarefas.length; i++) {
+
+            tarefaCarregada = criaHtmlTarefa(ListaTarefas[i], false);
+
+            selectAll(tarefaCarregada.find('h6')[0]);
+            nomeTarefa(tarefaCarregada);
+            excluirTarefa(tarefaCarregada);
+            estadoTarefa(tarefaCarregada);
+
+            if (ListaTarefas[i].concluida == true) {
+                tarefaCarregada.find('[type="checkbox"]').prop('checked', true);
+                tarefaCarregada.addClass('concluido');
+                tarefasConcluidas++;
+            }
+            $('#todoConteudo').append(tarefaCarregada);
         }
-        $('#todoConteudo').append(tarefaCarregada);
     }
 
     console.log("Tarefas concluidas: ", tarefasConcluidas, " de ", ListaTarefas.length);
     var porcentagem = (tarefasConcluidas / ListaTarefas.length) * 100;
-    // Desejo descartar as casas decimais
     porcentagem = Math.floor(porcentagem);
     console.log("Porcentagem de tarefas concluidas: ", porcentagem, "%");
-    // .progress-bar
     $('.progress-bar').css('width', porcentagem + '%');
     $('.porcentagemConcluida').text(porcentagem + '%');
 }
@@ -46,7 +59,6 @@ function carregaTarefas() {
 $(document).ready(() => {
     carregaTarefas();
     $('#adicionaTarefa').click(() => {
-
         if ($('#todoConteudo li').length >= TAM) { // * Máximo de 12 tarefas
             $('.toast-body').text('Você atingiu o limite de tarefas');
             $('.toast').toast('show');
@@ -62,8 +74,8 @@ $(document).ready(() => {
         }
 
         var index = $('#todoConteudo li').length;
-        
-        var tarefinha= new Tarefa(0, "Random", false);
+
+        var tarefinha = new Tarefa(0, "Random", false);
         novaTarefa = criaHtmlTarefa(tarefinha, true);
 
         $('#todoConteudo').prepend(novaTarefa);
@@ -111,13 +123,13 @@ $(document).ready(() => {
 function nomeTarefa(element) {
     //$('#todoConteudo li:first-child')
     element.find('h6').on('blur', function () {
-        if (!editaTodo) {element.find('h6').prop('contenteditable', 'false');}
+        if (!editaTodo) { element.find('h6').prop('contenteditable', 'false'); }
         ListaTarefas[element.index()].titulo = element.find('h6').text();
         localStorage.setItem("ListaTarefas", JSON.stringify(ListaTarefas));
     });
     element.find('h6').keydown(function (e) {
-        if ((element.find('h6').width() > 400 && (e.keyCode != 8 && !isTextSelected(element.find('h6')[0]))) 
-        || e.keyCode === 13) {
+        if ((element.find('h6').width() > 400 && (e.keyCode != 8 && !isTextSelected(element.find('h6')[0])))
+            || e.keyCode === 13) {
             e.preventDefault();
         }
     });
@@ -132,7 +144,7 @@ function estadoTarefa(element) {
         $(this).closest('li').toggleClass('concluido');
         ListaTarefas[$(this).closest('li').index()].concluida = !ListaTarefas[$(this).closest('li').index()].concluida;
         localStorage.setItem("ListaTarefas", JSON.stringify(ListaTarefas));
-        atualizaBarraProgresso(); 
+        atualizaBarraProgresso();
     });
 }
 // * Função que exclui uma tarefa
@@ -168,6 +180,7 @@ function criaHtmlTarefa(tarefa, editavel) {
             </div>
         </li>`);
 }
+// * Atualizar barra de progresso
 function atualizaBarraProgresso() {
     var tarefasConcluidas = 0;
     for (let i = 0; i < ListaTarefas.length; i++) {
@@ -181,7 +194,6 @@ function atualizaBarraProgresso() {
     $('.progress-bar').css('width', porcentagem + '%');
     $('.porcentagemConcluida').text(porcentagem + '%');
 }
-
 // * Permite selecionar todo o texto de um element
 function selectAll(element) {
     if (document.body.createTextRange) { // Suporte para Internet Explorer

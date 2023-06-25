@@ -211,11 +211,13 @@ main h1 {
 .btn-connection:hover {
   background-color: var(--escuro);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23212529' fill-opacity='1' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+  color: var(--primaria-n1) !important;
 }
 
 .btn-connection:active {
   background-color: var(--escuro);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23212529' fill-opacity='1' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+  color: var(--gradiente) !important;
   animation: brilho 0.8s infinite;
 }
 
@@ -796,20 +798,20 @@ footer a:hover {
 }
 
 .adicionaConexao, .excluiConexao {
-  transition: all 0.3s;
+  transition: padding 0.3s, transform 0.3s, background-color 0.3s;
+  padding: 0px 5px;
 }
 .adicionaConexao:hover, .excluiConexao:hover {
-  background-color: #08f;
-  border-radius: 10em;
-  padding: 0px 5px;
+  color: #fff;
+  background-color: var(--primaria-2);
+  padding: 0px 10px;
   cursor: pointer;
 }
 .conexaoParticipante { transition: all 0.3s;}
 .excluiConexao:hover {transform: translateX(5px);}
 .adicionaConexao:hover {transform: translateX(-5px);}
 .adicionaConexao:active, .excluiConexao:active {
-  background-color: #06f;
-  transition: all 0.5s;
+  background-color: var(--primaria-3);
 }
 
 .Textura {

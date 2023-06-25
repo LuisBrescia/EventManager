@@ -294,7 +294,7 @@ function fluxoConecta(element) {
                 let idDestinoNumber = parseInt(idDestino.split('-')[1]);
 
                 if (conexoes[idNumber][idDestinoNumber][0] != null) { // * Toaster
-                    $('.toast-body').text('Este elemento já está conectado a este insumo. Burro!');
+                    $('.toast-body').text('Este elemento já está conectado a este insumo.');
                     $('.toast').toast('show');
                     linhaMouse.remove();
                     $(document).off('mousemove');
@@ -337,7 +337,7 @@ function adicionaConexao(element) {
         let idDestinoNumber = parseInt(idConexao.split('-')[1]);
 
         if ($(`#listaP-${idNumber}`).find(`#conexaoCom-${idDestinoNumber}`).children().length >= elementosInsumos[idDestinoNumber].linhas.length + 1) {
-            $('.toast-body').text('Não faz sentido criar mais conexões seu animal.');
+            $('.toast-body').text('O número máximo de parametros é igual ao número de linhas do insumo.');
             $('.toast').toast('show');
             return;
         }
@@ -449,7 +449,7 @@ function criaElementoParticipante(element, gapping) {
                 </span>
                 <button id="fluxoConecta-${element._id}" class="fluxoConecta elP-button py-2 bi-chevron-double-right d-inline-block text-white btn-connection"></button>
             </div>
-            <div class="card-body p-0 pt-1 d-flex flex-column gap-1" style="overflow-y: auto; max-height: 80vh;">
+            <div class="card-body p-0 mt-1 d-flex flex-column gap-1" style="overflow-y: auto; max-height: 80vh;">
             </div>
         </div>
     </div>`);
@@ -530,11 +530,11 @@ function criaConexao(idP, element) {
     }
     return $(`
     <div id="conexaoCom-${element._id}" class="d-flex flex-column conexaoParticipante">
-        <span class="px-2 bg-1 Papel text-white d-flex justify-content-between">
-            <i class="adicionaConexao bi-plus-circle position-absolute"></i>
+        <span class="py-1 px-3 bg-1 Papel text-white d-flex justify-content-between">
+            <i class="rounded-3 adicionaConexao bi-plus-circle position-absolute shadow-sm Papel border border-white"></i>
             <span class="mx-auto opacity-0">${element.titulo}</span>
-            <span class="position-absolute text-center" style="transform: translateX(-50%); left: 50%;">${element.titulo}</span>
-            <i class="excluiConexao bi-trash"></i>
+            <span class="position-absolute text-center Papel border border-white rounded-3 bg-1 shadow-sm px-3" style="transform: translateX(-50%); left: 50%;">${element.titulo}</span>
+            <i class="rounded-3 excluiConexao bi-trash shadow-sm Papel border border-white"></i>
         </span>
         ${parametros}    
     </div>
@@ -592,6 +592,12 @@ function recalculaValor(idDestino, insumosAlterado) { // Vai recber o id dos ins
         let quantidade = Math.ceil(dicionario[linha]);
         $(`#${idDestino}-${i}`).find('.quantidadeInsumo').text(quantidade);
     }
+
+    // Pegar o nome da lista insumo destino
+    let dados = "dicionario-" + elementosInsumos[idDestino].titulo;
+
+    // * Preciso salvar no localStorage o dicionario
+    localStorage.setItem(dados, JSON.stringify(dicionario));
 }
 // > Selection estilizado (não finalizado ainda)
 // > Para funcionar tem que ser passado por dentro do card
@@ -613,24 +619,3 @@ $('.select-icon').click(function () {
 //         <i class="select-icon bi-chevron-down m-0 bg-1 text-white Papel px-2" style="z-index: 0"></i>
 //     </div>
 // </div>
-// for (let i = 0; i < insumosAlterado.length; i++) { // ? Para cada parametro, nesse caso, duas vezes
-//     elementosInsumos[idDestino].linhas.forEach((linha, index) => { // * Para aquele insumo conectado, iremos analisar todas as linhas dele
-//         console.log("Procuro: ", insumosAlterado[i].insumo, " Linha atual:", linha);
-//         if (linha == insumosAlterado[i].insumo) { // * Se o insumo for == a linha, então ele está conectado a esse insumo
-//             for (let j = 0; j < TAM; j++) { // * Pegarei todas as conexões á aquele insumo específico | São no máximo 6 elementos
-//                 if (conexoes[j][idDestino][0] != null) { // * Existe uma conexão entre o elemento i e o elementoInsumo
-//                     // ! Isso aqui tá esquisito
-//                     for (let j = 0; j < conexoes[i][idDestino][1].length; j++) { // * Verificarei todos os parametros de determinado elemento
-//                         if (conexoes[i][idDestino][1][j].insumo == linha) { // * Se este parametro estiver apontando para o determinado insumo
-//                             quantidadeAtual += conexoes[i][idDestino][1][j].quantidade * elementosParticipantes[i].linhas.length;
-//                             console.log(`Estarei multiplicando ${conexoes[i][idDestino][1][j].quantidade} por ${elementosParticipantes[i].linhas.length}`)
-//                         }
-//                     }
-//                 }
-//             }
-//             quantidadeAtual = Math.ceil(quantidadeAtual);
-//             $(`#${idDestino}-${index}`).find('.quantidadeInsumo').text(quantidadeAtual);
-//             console.log(`FINALIZADO:  #${idDestino}-${index}`);
-//         }
-//     });
-// }

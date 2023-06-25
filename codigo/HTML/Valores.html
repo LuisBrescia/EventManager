@@ -337,19 +337,22 @@
                 <p class="fw-bolder fs-4 m-0 ms-2 ps-1">Lista de Progresso</p>
               </div>
               <ul id="todoConteudo" class="list-group list-group-flush m-0 mx-2">
+
                 <li class="list-group-item py-2">
                   <div class="row align-items-center no-gutters">
-                    <div class="col me-2 dadosTarefa px-0">
-                      <i class="bi-x text-danger position-absolute excluirTarefa d-none"></i>
-                      <h6 class="dadoTarefa mb-0 fw-bolder" style="z-index: 1" contenteditable="false">Ensaio
-                        fotográfico</h6>
-                    </div>
-                    <div class="col-auto">
-                      <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-1"><label
-                          class="form-check-label" for="formCheck-1"></label></div>
-                    </div>
+                      <div class="col me-2 dadosTarefa p-0">
+                          <i class="bi-trash text-secondary position-absolute excluirTarefa d-none" ms-3></i>
+                          <h6 class="dadoTarefa mb-0 fw-bolder" style="z-index: 1" contenteditable="${editavel}">Abrir chamado para Insumos e Serviços</h6>
+                      </div>
+                      <div class="col-auto">
+                          <div class="form-check">
+                              <input class="form-check-input" type="checkbox" id="formCheck-1">
+                              <label class="form-check-label" for="formCheck-1"></label>
+                          </div>
+                      </div>
                   </div>
-                </li>
+              </li>
+
               </ul>
             </div>
 
