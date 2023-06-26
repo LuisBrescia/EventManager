@@ -217,7 +217,7 @@ main h1 {
 .btn-connection:active {
   background-color: var(--escuro);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23212529' fill-opacity='1' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
-  color: var(--gradiente) !important;
+  color: var(--primaria-n1) !important;
   animation: brilho 0.8s infinite;
 }
 
@@ -640,9 +640,49 @@ li.concluido h6 {
   color: #f0f0f0;
 }
 
+/** Botões Fluxo */
+.adicionaConexao, .excluiConexao {
+  transition: padding 0.3s, transform 0.3s, background-color 0.3s;
+  padding: 0px 5px;
+}
+.adicionaConexao:hover, .excluiConexao:hover {
+  color: #fff;
+  background-color: var(--primaria-2);
+  padding: 0px 10px;
+  cursor: pointer;
+}
+.conexaoParticipante { transition: all 0.3s;}
+.excluiConexao:hover {transform: translateX(5px);}
+.adicionaConexao:hover {transform: translateX(-5px);}
+.adicionaConexao:active, .excluiConexao:active {
+  background-color: var(--primaria-3);
+}
+
 #graficoParticipantes {
   width: 100%;
 }
+
+/** Parte de chamados */
+
+#items-chamado {
+  height: fit-content;
+  width: 100%;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.bloco-chamado {
+  /* background: linear-gradient(to bottom, var(--primaria), var(--gradiente)); */
+  background-color: var(--primaria);
+  width: 30%;
+}
+
+.bloco-chamado-body ul {
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+.bloco-chamado-body ul::-webkit-scrollbar {width: 0;}
 
 /** Media Queries */
 /*> Ideal seria $(.barraLista).css('width', 100 - aside.width '%')*/
@@ -653,15 +693,9 @@ li.concluido h6 {
 }
 
 @media screen and (max-width: 991px) {
-
-  /*
-  aside {
-    margin-left: -100%;
-  }*/
   #graficoParticipantes {
     width: 50%;
   }
-
   aside li:hover {
     padding-left: 0;
     padding-right: 0;
@@ -772,7 +806,6 @@ li.concluido h6 {
 span.d-md-block {
   font-size: smaller;
 }
-
 .expande {
   background-color: #00f0f0 !important;
 }
@@ -797,22 +830,7 @@ footer a:hover {
   font-size: 1.2rem;
 }
 
-.adicionaConexao, .excluiConexao {
-  transition: padding 0.3s, transform 0.3s, background-color 0.3s;
-  padding: 0px 5px;
-}
-.adicionaConexao:hover, .excluiConexao:hover {
-  color: #fff;
-  background-color: var(--primaria-2);
-  padding: 0px 10px;
-  cursor: pointer;
-}
-.conexaoParticipante { transition: all 0.3s;}
-.excluiConexao:hover {transform: translateX(5px);}
-.adicionaConexao:hover {transform: translateX(-5px);}
-.adicionaConexao:active, .excluiConexao:active {
-  background-color: var(--primaria-3);
-}
+/** Tetxturas HeroPattern*/
 
 .Textura {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%230f0f0f' fill-opacity='0.4' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");

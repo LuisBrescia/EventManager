@@ -272,12 +272,11 @@ function fluxoConecta(element) {
 
         // * Ao clicar no botão, a linha deve ser criada
         let linhaMouse = new LeaderLine(mouseEl, elmPoint, {
-            color: '#04f',
             size: 5,
             endPlug: 'disc',
             startSocket: 'right',
             endSocket: 'left',
-            startPlugColor: '#04f',
+            startPlugColor: '#0bf',
             endPlugColor: '#08f',
             gradient: true
         });
@@ -592,8 +591,7 @@ function recalculaValor(idDestino, insumosAlterado) { // Vai recber o id dos ins
         let quantidade = Math.ceil(dicionario[linha]);
         $(`#${idDestino}-${i}`).find('.quantidadeInsumo').text(quantidade);
     }
-
-    // Pegar o nome da lista insumo destino
+    
     let dados = "dicionario-" + elementosInsumos[idDestino].titulo;
 
     // * Preciso salvar no localStorage o dicionario
