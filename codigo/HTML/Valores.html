@@ -251,7 +251,7 @@
         <!-- > Gráficos pizza-->
         <div class="row">
           <!-- * Participantes -->
-          <div class="graficoPizza col-lg-5 col-xl-4">
+          <div class="graficoPizza valor-P col-lg-5 col-xl-4">
             <div class="card shadow mb-4 border-0 rounded-1">
               <div class="pizza-header Topography d-flex justify-content-between align-items-center">
                 <h6 class="m-0">Participantes</h6>
@@ -293,7 +293,7 @@
             </div>
           </div>
           <!-- * Serviços -->
-          <div class="col-lg-5 col-xl-4">
+          <div class="graficoPizza valor-S col-lg-5 col-xl-4">
             <div class="card shadow mb-4 border-0 rounded-1">
               <div class="pizza-header d-flex justify-content-between align-items-center Topography">
                 <h6 class="m-0">Serviços</h6>
@@ -308,16 +308,8 @@
               </div>
               <div class="card-body">
                 <div class="chart-area">
-                  <p class="position-absolute top-75">Aqui ficará uma relação do preço de cada serviço.</p>
-                  <canvas
-                    data-bss-chart="{&quot;type&quot;:&quot;doughnut&quot;,&quot;data&quot;:{&quot;labels&quot;:[&quot;Direct&quot;,&quot;Social&quot;,&quot;Referral&quot;],&quot;datasets&quot;:[{&quot;label&quot;:&quot;&quot;,&quot;backgroundColor&quot;:[&quot;#4e73df&quot;,&quot;#1cc88a&quot;,&quot;#36b9cc&quot;],&quot;borderColor&quot;:[&quot;#ffffff&quot;,&quot;#ffffff&quot;,&quot;#ffffff&quot;],&quot;data&quot;:[&quot;50&quot;,&quot;30&quot;,&quot;15&quot;]}]},&quot;options&quot;:{&quot;maintainAspectRatio&quot;:false,&quot;legend&quot;:{&quot;display&quot;:false,&quot;labels&quot;:{&quot;fontStyle&quot;:&quot;normal&quot;}},&quot;title&quot;:{&quot;fontStyle&quot;:&quot;normal&quot;}}}">
-                  </canvas>
+                  <canvas id="graficoServicos" class="mx-auto"></canvas>
                 </div>
-                <div class="text-center small mt-4"><span class="me-2"><i
-                      class="bi-circle-fill text-primary"></i>&nbsp;Direct</span><span class="me-2"><i
-                      class="bi-circle-fill text-success"></i>&nbsp;Social</span><span class="me-2"><i
-                      class="bi-circle-fill text-info"></i>&nbsp;Refferal</span></div>
-              </div>
             </div>
           </div>
         </div>
