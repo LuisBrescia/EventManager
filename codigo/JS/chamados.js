@@ -40,6 +40,10 @@ function carregaBlocos() {
       $('#items-chamado-I').append(bloco);
 
       $(bloco).find(`#valorChamado`).val(chamados[i].valor);
+      if (chamados[i].status == true) {
+        $(bloco).find('#realizaChamado').text(" Fechar chamado");
+        $(bloco).find('#realizaChamado').addClass("bi-wifi-off aberto").removeClass("bi-wifi");
+      }
     }
     if (ListaServicos[i] != null) {
       bloco = blocoChamadoHTML_S(ListaServicos[i]);
@@ -49,27 +53,42 @@ function carregaBlocos() {
 
       $(bloco).find(`#valorChamado`).val(chamados[i + 6].valor);
 
+      // Também vou checar o status
+      if (chamados[i + 6].status == true) {
+        $(bloco).find('#realizaChamado').text(" Fechar chamado");
+        $(bloco).find('#realizaChamado').addClass("bi-wifi-off aberto").removeClass("bi-wifi");
+      }
       // $(bloco).find(`[name="categoria"]`).val(chamados[i + 6].categoria);
     }
   }
   
-  let qtd = $('#items-chamado-I').children().length;
+  let qtd = $('#items-chamado-I').children().length - 1;
   let resto = qtd % 3;
   let htmlCaixaTracejada = '';
 
-  for (let i = 0; i < resto + 1; i++) {
+  if (qtd == 0) {resto = 3;}
+  if (qtd == 1) {resto = 2;}
+  if (qtd == 2) {resto = 1;}
+  if (qtd == 3) {resto = 0;}
+
+  for (let i = 0; i < resto; i++) {
     htmlCaixaTracejada += '<div class="caixa-tracejada rounded-3"></div>';
   }
   $('#items-chamado-I').append(htmlCaixaTracejada)
 
-  qtd = $('#items-chamado-S').children().length;
+  qtd = $('#items-chamado-S').children().length - 1;
   resto = qtd % 3;
   htmlCaixaTracejada = '';
 
-  for (let i = 0; i < resto + 1; i++) {
+  if (qtd == 0) {resto = 3;}
+  if (qtd == 1) {resto = 2;}
+  if (qtd == 2) {resto = 1;}
+  if (qtd == 3) {resto = 0;}
+  
+  for (let i = 0; i < resto; i++) {
     htmlCaixaTracejada += '<div class="caixa-tracejada rounded-3"></div>';
   }
-  $('#items-chamado-S').append(htmlCaixaTracejada)
+  $('#items-chamado-S').append(htmlCaixaTracejada);
 }
 // > Futuramente quero que essa funcionalidade seja drag & drop
 // * Botão para abrir fechar chamado

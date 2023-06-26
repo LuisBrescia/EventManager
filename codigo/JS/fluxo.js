@@ -532,7 +532,7 @@ function criaConexao(idP, element) {
         <span class="py-1 px-3 bg-1 Papel text-white d-flex justify-content-between">
             <i class="rounded-3 adicionaConexao bi-plus-circle position-absolute shadow-sm Papel border border-white"></i>
             <span class="mx-auto opacity-0">${element.titulo}</span>
-            <span class="position-absolute text-center Papel border border-white rounded-3 bg-1 shadow-sm px-3" style="transform: translateX(-50%); left: 50%;">${element.titulo}</span>
+            <span class="position-absolute text-nowrap text-center Papel border border-white rounded-3 bg-1 shadow-sm px-3" style="transform: translateX(-50%); left: 50%;">${element.titulo}</span>
             <i class="rounded-3 excluiConexao bi-trash shadow-sm Papel border border-white"></i>
         </span>
         ${parametros}    
