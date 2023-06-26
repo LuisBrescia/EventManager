@@ -84,13 +84,13 @@ scatter */
 
 var Chamados = JSON.parse(localStorage.getItem("Chamados"));
 let totalServicos = 0;
-let custoToal = 0;
+let custoTotal = 0;
 // roda todos chamados, e todos que tiverem valor > 0 adiciona 1
 
 for (let i = 0; i < Chamados.length; i++) {
     if (Chamados[i].valor > 0) {
         totalServicos++;
-        custoToal += Chamados[i].valor;
+        custoTotal += Chamados[i].valor;
     }
 }
 
@@ -103,7 +103,7 @@ var k = -1;
 for (let i = 0; i < Chamados.length; i++) {
     if (Chamados[i].valor > 0) {
         graficoServicos[++k] = new ListaParticipantes(Chamados[i].titulo, Chamados[i].valor, 0);
-        graficoServicos[k].percentual = (graficoServicos[k].elementos / custoToal) * 100;
+        graficoServicos[k].percentual = (graficoServicos[k].elementos / custoTotal) * 100;
     }
 }
 
