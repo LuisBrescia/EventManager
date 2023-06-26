@@ -34,7 +34,7 @@ var options = {
     startSocket: 'right',
     endSocket: 'left',
     startPlugColor: '#0cf',
-    endPlugColor: '#08f',
+    endPlugColor: '#04f',
     gradient: true,
     // color: '#04f',
 };
@@ -66,7 +66,7 @@ $(document).ready(() => {
         for (let j = 0; j < TAM; j++) {
             if (conexoes[i][j][0] != null) {
                 conexoes[i][j][0].startPlugColor = conexoesVisiveis ? '#0cf' : 'aliceblue';
-                conexoes[i][j][0].endPlugColor = conexoesVisiveis ? '#08f' : 'aliceblue';
+                conexoes[i][j][0].endPlugColor = conexoesVisiveis ? '#04f' : 'aliceblue';
             }
         }
     }
@@ -91,7 +91,7 @@ $(document).ready(() => {
             for (let j = 0; j < TAM; j++) {
                 if (conexoes[i][j][0] != null) {
                     conexoes[i][j][0].startPlugColor = conexoesVisiveis ? 'aliceblue' : '#0cf';
-                    conexoes[i][j][0].endPlugColor = conexoesVisiveis ? 'aliceblue' : '#08f';
+                    conexoes[i][j][0].endPlugColor = conexoesVisiveis ? 'aliceblue' : '#04f';
                 }
             }
         }
@@ -277,7 +277,7 @@ function fluxoConecta(element) {
             startSocket: 'right',
             endSocket: 'left',
             startPlugColor: '#0bf',
-            endPlugColor: '#08f',
+            endPlugColor: '#04f',
             gradient: true
         });
         // * Ao mover o mouse, a linha deve acompanhá-lo
