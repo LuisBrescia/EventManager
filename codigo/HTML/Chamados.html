@@ -13,7 +13,7 @@
 
 <body>
   <div class="d-flex">
-    <!-- ! GAMBIpy-2 px-3A EM SEU ESTADO MAIS PURO-->
+    <!-- ! GAMBIARRA  -->
     <aside class="col-xxl-2 active">
       <!-- * Título da Barra Lateral -->
       <div class="px-lg-2 py-3 d-flex">
@@ -89,8 +89,7 @@
         </li>
       </ul>
     </aside>
-    <!-- ? Ínicio da Barra Lateral -->
-    <!-- > Barra Lateral vai ser a mesma para todas as páginas -->
+    <!-- ? Barra Lateral -->
     <aside class="col-xxl-2 active position-fixed Topography">
       <!-- * Título da Barra Lateral -->
       <div class="px-lg-2 py-3 d-flex">
@@ -104,31 +103,31 @@
       <!-- * 4 primeiras páginas da barra lateral -->
       <ul class="list-unstyled">
         <li onmouseenter="whooshMid()" class="text-center text-lg-start">
-          <a href="Collection.html" class="px-3 py-2 d-block">
-            <i class="me-lg-2 bi-collection"></i>
-            <span class="d-none d-lg-inline-block">Coleção</span>
-            <span class="d-none d-md-block d-lg-none">Coleção</span>
-          </a>
-        </li>
-        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
           <a href="Listas.html" class="px-3 py-2 d-block">
             <i class="me-lg-2 bi-journal"></i>
             <span class="d-none d-lg-inline-block">Listas</span>
             <span class="d-none d-md-block d-lg-none">Listas</span>
           </a>
         </li>
-        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
+        <li onmouseenter="whooshMid()" class="text-lg-start">
           <a href="Fluxo.html" class="px-3 py-2 d-block">
             <i class="me-lg-2 bi-bezier"></i>
             <span class="d-none d-lg-inline-block">Fluxo</span>
             <span class="d-none d-md-block d-lg-none">Fluxo</span>
           </a>
         </li>
-        <li onmouseenter="whooshMid()" class="active text-center text-lg-start">
+        <li onmouseenter="whooshMid()" class="active text-lg-start">
           <a href="Chamados.html" class="px-3 py-2 d-block">
             <i class="me-lg-2 bi-stickies"></i>
             <span class="d-none d-lg-inline-block">Chamados</span>
             <span class="d-none d-md-block d-lg-none">Chamados</span>
+          </a>
+        </li>
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
+          <a href="Collection.html" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-collection"></i>
+            <span class="d-none d-lg-inline-block">Coleção</span>
+            <span class="d-none d-md-block d-lg-none">Coleção</span>
           </a>
         </li>
         <li onmouseenter="whooshMid()" class=" text-center text-lg-start">
@@ -166,11 +165,24 @@
         </li>
       </ul>
     </aside>
-    <!-- ! Fim da Barra Lateral -->
 
     <!-- ? Página -->
-    <main class="col d-flex align py-2 px-3">
-      <div id="items-chamado" class="items-chamado d-flex gap-3"></div>
+    <main class="col align p-3">
+
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3 class="mb-0 fw-bolder fs-1 ms-1">Chamados</h3><a id="exportarDados"
+          class="btn btn-1 btn-primary rounded-5 fw-bolder shadow-sm py-2 px-3 fs-5 d-inline-block" role="button"
+          href="#"><i class="bi-pencil-square"></i>&nbsp;Sobre Evento</a>
+      </div>
+
+      <div id="items-chamado-I"
+        class="mb-3 shadow bg-white py-3 rounded-1 card-header items-chamado d-flex flex-wrap gap-3">
+        <div class="fs-4 w-100 fw-bold text-1">Insumos</div>
+      </div>
+
+      <div id="items-chamado-S" class="shadow bg-white py-3 rounded-1 card-header items-chamado d-flex flex-wrap gap-3">
+        <div class="fs-4 w-100 fw-bold text-1">Serviços</div>
+      </div>
     </main>
   </div>
 
