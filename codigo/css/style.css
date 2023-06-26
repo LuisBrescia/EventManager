@@ -167,28 +167,35 @@ main h1 {
 .btn-chamado {
   color: white;
   background-color: var(--escuro);
+  filter: drop-shadow(1px 1px 2px #fff);
   animation: reluzente 0.8s infinite;
+  transition: all 0.3s;
 }
 
 .btn-chamado:hover {
-  background-color: #212529 !important;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%230f0f0f' fill-opacity='1' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+  background-color: var(--escuro);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23212529' fill-opacity='1' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
 }
 
 .btn-chamado:active {
-  color: #212529 !important;
-  background-color: #212529 !important;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%230f0f0f' fill-opacity='1' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+  background-color: var(--escuro) !important;
   transform: scale(0.975);
 }
 
 .btn-chamado.aberto {
+  background-color: inherit;
   animation: none;
+  filter: drop-shadow(1px 1px 4px #fff);
 }
-
 .btn-chamado.aberto:hover {
-  color: #DC3545;
-  transition: all 0.3s;
+  background-image: none;
+  filter: drop-shadow(1px 1px 4px #fff);
+}
+.btn-chamado.aberto:active {
+  color: #fff !important;
+  background-color: inherit !important;
+  background-image: none !important;  
+  filter: drop-shadow(1px 1px 4px #fff);
 }
 
 .btn-2 {
@@ -690,14 +697,6 @@ li.concluido h6 {
 }
 
 /** Parte de chamados */
-
-.caixa-tracejada {
-  border: 2px dashed #aaa;
-  padding: 10px;
-  width: 30%;
-  min-width: 200px;
-}
-
 .items-chamado {
   height: fit-content;
   width: 100%;
@@ -708,8 +707,17 @@ li.concluido h6 {
 .bloco-chamado {
   /* background: linear-gradient(to bottom, var(--primaria), var(--gradiente)); */
   background-color: var(--primaria);
-  width: 30%;
+  width: 32%;
   min-width: 200px;
+  min-height: 350px;
+}
+
+.caixa-tracejada {
+  border: 2px dashed #aaa;
+  padding: 10px;
+  width: 32%;
+  min-width: 200px;
+  min-height: 350px;
 }
 
 .bloco-chamado-body ul {

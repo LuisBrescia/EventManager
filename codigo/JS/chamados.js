@@ -15,6 +15,15 @@ var ListaServicos = JSON.parse(localStorage.getItem("ListaServicos")) || [];
 
 var chamados = JSON.parse(localStorage.getItem("Chamados")) || [];
 
+// Caso chamados não exista no localStorage, criarei um vetor com 12 objetos do tipo Chamado
+if (chamados.length == 0) {
+  for (let i = 0; i < 12; i++) {
+    chamados.push(new Chamado(i, i < 6 ? "Insumo" : "Servico", "Vazio", 0, "1", false));
+  }
+  console.log(typeof chamados[0].categoria);
+  localStorage.setItem("Chamados", JSON.stringify(chamados));
+}
+
 var TAM = 6;
 
 $(document).ready(function () {
@@ -29,6 +38,8 @@ function carregaBlocos() {
       valorChamado(bloco);
       realizaChamado(bloco);
       $('#items-chamado-I').append(bloco);
+
+      $(bloco).find(`#valorChamado`).val(chamados[i].valor);
     }
     if (ListaServicos[i] != null) {
       bloco = blocoChamadoHTML_S(ListaServicos[i]);
@@ -36,34 +47,35 @@ function carregaBlocos() {
       realizaChamado(bloco);
       $('#items-chamado-S').append(bloco);
 
-      // Após mandar o bloco para a página tenho que mudar os valores para os salvos no localStorage
-      // $(bloco).find(`#valorChamado`).val(chamados[i].valor);
-      // $(bloco).find(`[name="categoria"]`).val(conexoes[i][j][1][k].insumo);
+      $(bloco).find(`#valorChamado`).val(chamados[i + 6].valor);
+
+      // $(bloco).find(`[name="categoria"]`).val(chamados[i + 6].categoria);
     }
   }
-
+  
   let qtd = $('#items-chamado-I').children().length;
+  let resto = qtd % 3;
   let htmlCaixaTracejada = '';
 
-  for (let i = 0; i < 4 - qtd; i++) {
+  for (let i = 0; i < resto + 1; i++) {
     htmlCaixaTracejada += '<div class="caixa-tracejada rounded-3"></div>';
   }
   $('#items-chamado-I').append(htmlCaixaTracejada)
 
   qtd = $('#items-chamado-S').children().length;
+  resto = qtd % 3;
   htmlCaixaTracejada = '';
 
-  for (let i = 0; i < 4 - qtd; i++) {
+  for (let i = 0; i < resto + 1; i++) {
     htmlCaixaTracejada += '<div class="caixa-tracejada rounded-3"></div>';
   }
-
   $('#items-chamado-S').append(htmlCaixaTracejada)
 }
 // > Futuramente quero que essa funcionalidade seja drag & drop
 // * Botão para abrir fechar chamado
 function realizaChamado(element) {
-
-  if (element == null) { return; }
+  
+  if (element == null) {return;}
 
   element.find('#realizaChamado').click(function () {
 
@@ -72,26 +84,41 @@ function realizaChamado(element) {
 
     console.log($(this).parent().parent().attr('id') + " Mudou seus status");
 
+    // Tenho que pegar o id e setar aquele chamado com true
+    let id = $(this).parent().parent().attr('id').split('-')[1];
+    chamados[id].status = !chamados[id].status;
+    localStorage.setItem("Chamados", JSON.stringify(chamados));
   });
 }
-// * Valor do chamado
+// * Sempre que algum atributo é alterado, essa função é chamada
 function valorChamado(element) {
+  // console.log(typeof chamados[0].categoria);
+  if (element == null) {return;}
 
-  if (element == null) { return; }
-
+  // * Valor em dinheiro
   element.find('#valorChamado').change(function () {
     // > Colocar uma máscara e adicionar R$ ao começo
-    // Printar o valor que mudou
     console.log($(this).parent().parent().parent().attr('id') + " valor: " + $(this).val());
+    let id = $(this).parent().parent().parent().attr('id').split('-')[1];
+    console.log(typeof chamados[id].valor);
+    chamados[id].valor = $(this).val();
+    localStorage.setItem("Chamados", JSON.stringify(chamados));
+  });
+  // * Categoria
+  element.find('[name="categoria"]').change(function () {
+    // ! Provavelmente está pegando a id errada
+    console.log(typeof chamados[0].categoria);
+    console.log($(this).parent().parent().parent().attr('id') + " categoria: " + $(this).val());
+    let id = $(this).parent().parent().parent().attr('id').split('-')[1];
+    console.log(typeof chamados[id].categoria);
+    chamados[id].categoria = $(this).val();
+    localStorage.setItem("Chamados", JSON.stringify(chamados));
   });
 }
 // * Carrega os blocos referentes a insumos
 function blocoChamadoHTML_I(ListaInsumo) {
   let dicionario = JSON.parse(localStorage.getItem("dicionario-" + ListaInsumo.titulo));
-  if (dicionario == null) {
-    console.log("dicionario não encontrado");
-    return;
-  }
+  if (dicionario == null) {return;}
   let conteudo = "";
 
   Object.keys(dicionario).forEach(chave => {
@@ -100,10 +127,8 @@ function blocoChamadoHTML_I(ListaInsumo) {
     }
   });
 
-  if (conteudo == "") {
-    // conteudo = `<li class="d-flex list-group-item justify-content-between"><span>Crie conexões entre Insumos e Participantes na tela de fluxo.</span></li>`;
-    return;
-  }
+  if (conteudo == "") {return;}
+  // conteudo = `<li class="d-flex list-group-item justify-content-between"><span>Crie conexões entre Insumos e Participantes na tela de fluxo.</span></li>`;
 
   return $(`
     <div id="chamado-${ListaInsumo._id}" class="bloco-chamado text-white p-3 rounded Papel shadow-sm d-flex flex-column">
@@ -122,7 +147,7 @@ function blocoChamadoHTML_I(ListaInsumo) {
         </span>
 
         <select class="form-select shadow-sm" aria-label="Default select example">
-            <option selected>Selecione a categoria</option>
+            <option value="0">Selecione a categoria</option>
             <option value="1">Alimento</option>
             <option value="2">Bebidas</option>
             <option value="3">Ingressos</option>
@@ -143,10 +168,7 @@ function blocoChamadoHTML_I(ListaInsumo) {
 // * Carrega os blocos referentes a serviços
 function blocoChamadoHTML_S(ListaServicos) { // 309 x 340
 
-  if (ListaServicos.linhas == null) {
-    console.log("Não encontrado");
-    return;
-  }
+  if (ListaServicos.linhas == null) {return;}
 
   let conteudo = "";
 
@@ -175,7 +197,7 @@ function blocoChamadoHTML_S(ListaServicos) { // 309 x 340
         </span>
 
         <select name="categoria" class="form-select shadow-sm" aria-label="Default select example">
-            <option selected>Selecione a categoria</option>
+            <option value="0">Selecione a categoria</option>
             <option value="1">Fotógrado</option>
             <option value="2">Designer</option>
             <option value="3">Garçom</option>

@@ -178,21 +178,21 @@
             role="button" href="#"><i class="bi-download"></i>&nbsp;Exportar Dados</a>
         </div>
         <!-- > Seção informativa -->
-        <div class="row align-items-stretch">
+        <div class="row align-items-stretch mb-3">
           <!-- * Custo Total -->
-          <div class="col-md-6 col-xl-3 mb-3 card-resultado">
+          <div class="col-md-6 col-xl-3 card-resultado">
             <div class="valores-header rounded-1 d-flex align-items-center gap-3 shadow-sm">
               <!-- ? Texto -->
               <div class="col">
                 <div class="fw-bold text-xs"><small class="text-danger">Custo</small></div>
-                <div class="mb-0"><span class="text-nowrap">R$ 43.375,50</span></div>
+                <div class="mb-0"><span class="text-nowrap" id="custoTotal"></span></div>
               </div>
               <!-- ? Ícone -->
               <i class="Papel col-auto fs-3 text-white py-2 px-3 rounded-5 me-2 bi-cash-stack"></i>
             </div>
           </div>
           <!-- * Lucro ou Prejuízo-->
-          <div class="col-md-6 col-xl-3 mb-3 card-resultado">
+          <div class="col-md-6 col-xl-3 card-resultado">
             <div class="valores-header rounded-1 d-flex align-items-center gap-3 shadow-sm">
               <!-- ? Texto -->
               <div class="col">
@@ -204,7 +204,7 @@
             </div>
           </div>
           <!-- * Progresso -->
-          <div class="col-md-6 col-xl-3 mb-3 card-resultado">
+          <div class="col-md-6 col-xl-3 card-resultado">
             <div class="valores-header rounded-1 d-flex align-items-center gap-3 shadow-sm">
               <div class="col">
                 <!-- ? Título -->
@@ -231,7 +231,7 @@
             </div>
           </div>
           <!-- * Chamados Ativos -->
-          <div class="col-md-6 col-xl-3 mb-3 card-resultado">
+          <div class="col-md-6 col-xl-3 card-resultado">
             <div class="valores-header rounded-1 d-flex align-items-center gap-3 shadow-sm">
               <!-- ? Texto -->
               <div class="col">
@@ -239,13 +239,11 @@
                   <small class="text-warning">Chamados ativos</small>
                 </div>
                 <div class="mb-0">
-                  <span class="fw-lighter text-white px-2 rounded-5" style="background-color: #0f0f0f;">
-                    4
-                  </span>
+                  <span class="fw-lighter rounded-5" id="chamadosAtivos">0</span>
                 </div>
               </div>
               <!-- ? Ícone -->
-              <i class="Papel col-auto fs-3 bi-chat-square-text text-white py-2 px-3 rounded-5 me-2"></i>
+              <i class="Papel col-auto fs-3 bi-chat-square-text text-white py-2 px-3 me-2 rounded-5"></i>
             </div>
           </div>
         </div>

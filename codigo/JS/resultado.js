@@ -8,6 +8,25 @@ var TAM = 12; // * Quantidade máxima de tarefas
 var editaTodo = false; // * Salva se a lista está em modo de edição
 var ListaTarefas = JSON.parse(localStorage.getItem("ListaTarefas")) || []; // * Será um vetor de objetos do tipo Tarefa
 
+var chamados = JSON.parse(localStorage.getItem("Chamados")) || [];
+
+// Preciso percorrer chamados, somar todos seus valores e atualizar valorTotal
+function atualizaCusto () {
+    let valorTotal  = 0;
+    let chamadosAtivos = 0;
+    for (let i = 0; i < chamados.length; i++) {
+        valorTotal += parseInt(chamados[i].valor);
+        if (chamados[i].status == true) {
+            chamadosAtivos++;
+        }
+    }
+
+    // * Transforma o valorTotal em uma string com o formato R$ 0,00
+    valorTotal = valorTotal.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
+    $('#custoTotal').text(valorTotal);
+    $('#chamadosAtivos').text(chamadosAtivos);
+}
+
 function carregaTarefas() {
 
     var tarefasConcluidas = 0;
@@ -57,6 +76,7 @@ function carregaTarefas() {
 }
 
 $(document).ready(() => {
+    atualizaCusto();
     carregaTarefas();
     $('#adicionaTarefa').click(() => {
         if ($('#todoConteudo li').length >= TAM) { // * Máximo de 12 tarefas
