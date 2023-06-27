@@ -14,7 +14,6 @@ editaCard(element) - Editar o conteúdo do card quando clicar em alguma linha
 selectAll(element) - Permite selecionar todo o texto de um elemento
 criaConteudo(lista, gapping) - HTML de um card
 */
-
 // ? Mesmo não havendo caracteres menores que 2.5 pixels, é bom definir uma margem de segurança
 // ? Seria possível colocar infinitos caracteres de largura 0
 // ? estéticamente não teria efeito algum, porém travaria o programa
@@ -70,12 +69,13 @@ function carregaCards() {
     todasListas = JSON.parse(localStorage.getItem(ListaTipo)); // * Pega todas as listas salvas no localStorage
     console.log(ListaTipo);
     console.log(matriz);
+    console.log("Entrou em carregar cards");
     if (todasListas) { // ? Caso não exista nada no localStorage, todasListas será null e não entrará no if
         let cont = 0; // * Contador para definir a posição dos cards
         for (let i = 0; i < TAM; i++) {
             // * Caso não exista nenhuma informação salva naquela posição, não será criado o card
             if (todasListas[i] != null) {
-
+          
                 // * Cria um objeto do tipo Lista com as informações do objeto salvo no localStorage
                 let lista = new Lista(todasListas[i]._id, todasListas[i].titulo, todasListas[i].linhas, todasListas[i].coordenadas);
                 // * Cria o card com as informações do objeto
@@ -99,14 +99,12 @@ $(document).ready(() => {
     carregaCards();
     $('#adicionaCard').click(() => {
         // * Percorre o vetor, se existir algum elemento com o valor true, criará card
-        if (!matriz[position].includes(true)) {
+        if ($('section').children().length >= TAM) {
             const toastBootstrap = bootstrap.Toast.getOrCreateInstance($('#liveToast'));
             toastBootstrap.show();
             return;
         }
-        // : Sempre que um card é criado, é criado também um objeto que vai guardar as informações daquele card
         // * Realizar testes para checar se foi corrigido
-        // ! Talvez cards se tornem impossíveis de serem arrastados	
         var lista = new Lista(matriz[position].indexOf(true), 'Lista ' + (matriz[position].indexOf(true) + 1), " ", null);
         var newCard = criaConteudo(lista, matriz[position].indexOf(true));
         customDrag(newCard);
@@ -114,6 +112,7 @@ $(document).ready(() => {
         nomeiaCard(newCard);
         resetaCard(newCard);
         removeCard(newCard);
+
         todasListas[matriz[position].indexOf(true)] = lista;
         localStorage.setItem(ListaTipo, JSON.stringify(todasListas));
         matriz[position][matriz[position].indexOf(true)] = false;

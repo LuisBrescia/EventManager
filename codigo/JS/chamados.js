@@ -38,8 +38,9 @@ function carregaBlocos() {
       valorChamado(bloco);
       realizaChamado(bloco);
       $('#items-chamado-I').append(bloco);
-      chamados[i].titulo = ListaServicos[i].titulo;
+
       $(bloco).find(`#valorChamado`).val(chamados[i].valor);
+      chamados[i].titulo = ListaInsumos[i].titulo;
       if (chamados[i].status == true) {
         $(bloco).find('#realizaChamado').text(" Fechar chamado");
         $(bloco).find('#realizaChamado').addClass("bi-wifi-off aberto").removeClass("bi-wifi");
@@ -63,16 +64,12 @@ function carregaBlocos() {
   }
   
   let qtd = $('#items-chamado-I').children().length - 1;
-  let resto = qtd % 3;
-  let htmlCaixaTracejada = '';
+  let resto;
 
-  if (qtd == 0) {resto = 3;}
-  if (qtd == 1) {resto = 2;}
-  if (qtd == 2) {resto = 1;}
-  if (qtd == 3) {resto = 0;}
-  if (qtd == 4) {resto = 2;}
-  if (qtd == 5) {resto = 1;}
-  if (qtd >= 6) {resto = 0;}
+  if (qtd == 0) {resto = 3;} 
+  else {resto = 3 % qtd;}
+
+  let htmlCaixaTracejada = '';
 
   for (let i = 0; i < resto; i++) {
     htmlCaixaTracejada += '<div class="caixa-tracejada rounded-3"></div>';
@@ -80,16 +77,10 @@ function carregaBlocos() {
   $('#items-chamado-I').append(htmlCaixaTracejada)
 
   qtd = $('#items-chamado-S').children().length - 1;
-  resto = qtd % 3;
+  if (qtd == 0) {resto = 3;} 
+  else {resto = 3 % qtd;}
+  
   htmlCaixaTracejada = '';
-
-  if (qtd == 0) {resto = 3;}
-  if (qtd == 1) {resto = 2;}
-  if (qtd == 2) {resto = 1;}
-  if (qtd == 3) {resto = 0;}
-  if (qtd == 4) {resto = 2;}
-  if (qtd == 5) {resto = 1;}
-  if (qtd >= 6) {resto = 0;}
   
   for (let i = 0; i < resto; i++) {
     htmlCaixaTracejada += '<div class="caixa-tracejada rounded-3"></div>';
