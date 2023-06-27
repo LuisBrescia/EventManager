@@ -165,7 +165,7 @@ function blocoChamadoHTML_I(ListaInsumo) {
         </span>
 
         <select class="form-select shadow-sm" aria-label="Default select example">
-            <option value="0">Selecione a categoria</option>
+            <option value="0">Categoria</option>
             <option value="1">Alimento</option>
             <option value="2">Bebidas</option>
             <option value="3">Ingressos</option>
@@ -215,7 +215,7 @@ function blocoChamadoHTML_S(ListaServicos) { // 309 x 340
         </span>
 
         <select name="categoria" class="form-select shadow-sm" aria-label="Default select example">
-            <option value="0">Selecione a categoria</option>
+            <option value="0">Categoria</option>
             <option value="1">Fotógrado</option>
             <option value="2">Designer</option>
             <option value="3">Garçom</option>

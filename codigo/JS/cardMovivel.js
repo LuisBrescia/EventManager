@@ -34,7 +34,7 @@ var elemento = "elementosParticipantes"; // * Para manipular listas de uma deter
 var vetor = Array(TAM).fill(true); // * True = Disponível, False = Ocupado
 var matriz = [];
 for (var i = 0; i < 3; i++) {
-  matriz.push(Array(TAM).fill(true));
+    matriz.push(Array(TAM).fill(true));
 }
 
 // * Pegará do local Storage para deixar salvo quando a página recarregar
@@ -99,11 +99,6 @@ $(document).ready(() => {
     carregaCards();
 
     $('#adicionaCard').click(() => {
-
-        console.log("position: " + position);
-        console.log(matriz);
-        console.log("matriz[position]: " + matriz[position]);
-
         let indiceTrue = -1;
         for (var i = 0; i < TAM; i++) {
             if (matriz[position][i] === true) {
@@ -281,6 +276,7 @@ function removerLiVazias(cardContainer) {
         // * Vai remover todos os espaços em branco, e checar se ainda resta alguma coisa
         if ($(this).text().trim() === '' && cardContainer.find('.list-group-item').length > 1) {
             $(this).remove();
+            atualizaConteudo(cardContainer);
         }
     });
 }
@@ -302,7 +298,6 @@ function atualizaConteudo(element) {
         novoConteudo.push($(this).text().trim());
     });
     let cardId = element.closest('.card-container').attr('id');
-    // Caso card id seja null, não é necessário atualizar o conteúdo
     if (cardId != null) {
         let cardNumber = parseInt(cardId.split('-')[1]);
         todasListas[cardNumber].linhas = novoConteudo;
