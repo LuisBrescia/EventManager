@@ -462,7 +462,7 @@ function criaElementoInsumo(element, gapping) {
         posicao = 'top: ' + element.coordenadas[1] + 'px; left: ' + element.coordenadas[0] + 'px';
     }
     let linha = '';
-    if (element.linhas.length > 1) {
+    if (element.linhas.length > 1 || element.linhas[0].trim() != '') {
         for (let i = 0; i < element.linhas.length - 1; i++) {
             // Vou pegar só os 30 primeiros caracteres de cada linha
             let linhaAtual = element.linhas[i].substring(0, 30);
