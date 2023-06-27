@@ -813,7 +813,7 @@ li.concluido h6 {
   }
 
   50% {
-    filter: blur(0.5px);
+    filter: blur(0.2px) brightness(1.2);
   }
 
   100% {

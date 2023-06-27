@@ -67,8 +67,9 @@ function carregaBlocos() {
   let resto;
 
   if (qtd == 0) {resto = 3;} 
-  else {resto = 3 % qtd;}
-
+  else if (qtd > 3) {resto = 6 - qtd;}
+  else {resto = 3 - qtd;}
+  
   let htmlCaixaTracejada = '';
 
   for (let i = 0; i < resto; i++) {
@@ -78,7 +79,8 @@ function carregaBlocos() {
 
   qtd = $('#items-chamado-S').children().length - 1;
   if (qtd == 0) {resto = 3;} 
-  else {resto = 3 % qtd;}
+  else if (qtd > 3) {resto = 6 - qtd;}
+  else {resto = 3 - qtd;}
   
   htmlCaixaTracejada = '';
   

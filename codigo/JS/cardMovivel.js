@@ -32,7 +32,10 @@ const TAM = 6;      // * Quantidade de cards que será possível adicionar
 var elemento = "elementosParticipantes"; // * Para manipular listas de uma determinada careogoria
 
 var vetor = Array(TAM).fill(true); // * True = Disponível, False = Ocupado
-var matriz = Array(3).fill(Array(TAM).fill(true));
+var matriz = [];
+for (var i = 0; i < 3; i++) {
+  matriz.push(Array(TAM).fill(true));
+}
 
 // * Pegará do local Storage para deixar salvo quando a página recarregar
 var ListaTipo = localStorage.getItem("ultimaLista") || "ListaParticipantes";
@@ -67,15 +70,12 @@ function carregaCards() {
     // * Limpa todos os cards
     $('.card').parent().remove();
     todasListas = JSON.parse(localStorage.getItem(ListaTipo)); // * Pega todas as listas salvas no localStorage
-    console.log(ListaTipo);
-    console.log(matriz);
-    console.log("Entrou em carregar cards");
     if (todasListas) { // ? Caso não exista nada no localStorage, todasListas será null e não entrará no if
         let cont = 0; // * Contador para definir a posição dos cards
         for (let i = 0; i < TAM; i++) {
             // * Caso não exista nenhuma informação salva naquela posição, não será criado o card
             if (todasListas[i] != null) {
-          
+
                 // * Cria um objeto do tipo Lista com as informações do objeto salvo no localStorage
                 let lista = new Lista(todasListas[i]._id, todasListas[i].titulo, todasListas[i].linhas, todasListas[i].coordenadas);
                 // * Cria o card com as informações do objeto
@@ -92,30 +92,47 @@ function carregaCards() {
                 matriz[position][i] = false; // * Posição ocupada
             } else { matriz[position][i] = true; console.log("entrou") } // * Posição disponível
         }
-    } else {todasListas = [];}
+    } else { todasListas = []; }
 }
 // * Botões só estarão disponíveis após o carregamento da página	
 $(document).ready(() => {
     carregaCards();
+
     $('#adicionaCard').click(() => {
+
+        console.log("position: " + position);
+        console.log(matriz);
+        console.log("matriz[position]: " + matriz[position]);
+
+        let indiceTrue = -1;
+        for (var i = 0; i < TAM; i++) {
+            if (matriz[position][i] === true) {
+                matriz[position][i] = false;
+                indiceTrue = i;
+                break;
+            }
+        }
+
         // * Percorre o vetor, se existir algum elemento com o valor true, criará card
-        if ($('section').children().length >= TAM) {
+        if (indiceTrue === -1) {
             const toastBootstrap = bootstrap.Toast.getOrCreateInstance($('#liveToast'));
             toastBootstrap.show();
             return;
         }
+
         // * Realizar testes para checar se foi corrigido
-        var lista = new Lista(matriz[position].indexOf(true), 'Lista ' + (matriz[position].indexOf(true) + 1), " ", null);
-        var newCard = criaConteudo(lista, matriz[position].indexOf(true));
+        var lista = new Lista(indiceTrue, 'Lista ' + (indiceTrue + 1), " ", null);
+        var newCard = criaConteudo(lista, indiceTrue);
+
         customDrag(newCard);
         editaCard(newCard);
         nomeiaCard(newCard);
         resetaCard(newCard);
         removeCard(newCard);
 
-        todasListas[matriz[position].indexOf(true)] = lista;
+        todasListas[indiceTrue] = lista;
         localStorage.setItem(ListaTipo, JSON.stringify(todasListas));
-        matriz[position][matriz[position].indexOf(true)] = false;
+
         $('section').append(newCard);
     });
     // > Nome poderia ser removeTodosCards
@@ -187,7 +204,7 @@ function nomeiaCard(element) {
         selectAll(cardTitle[0]);
         // * Ao editar o título, outros cards se tornam fixos
         $('.card-container').not($(this).closest('.card-container')).css('position', 'fixed');
-        
+
         // * Cards em edição tem z-index maior que os outros 
         $(this).closest('.card-container').css('z-index', '1');
         $('.card-container').not($(this).closest('.card-container')).css('z-index', '0');
@@ -276,7 +293,6 @@ function atualizaTitulo(element) {
         let cardNumber = parseInt(cardId.split('-')[1]);
         todasListas[cardNumber].titulo = novoNome;
         localStorage.setItem(ListaTipo, JSON.stringify(todasListas));
-        ////console.log('Título salvo no card de ID ' + cardNumber + ' como: ' + novoNome);
     }
 }
 // * Atualiza conteudo do card
