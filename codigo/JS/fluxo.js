@@ -505,7 +505,7 @@ function criaElementoInsumo(element, gapping) {
 // * Elemento será uma lista do tipo Insumo
 function criaConexao(idP, element) {
     let opcoes = '';
-    if (element.linhas.length > 1) {
+    if (element.linhas.length > 1 || element.linhas[0].trim() != '') {
         element.linhas.forEach((linha) => {
             linha = linha.substring(0, 30);
             opcoes += `<option value="${linha}">${linha}</option>`;
@@ -564,7 +564,7 @@ function criaParametro(i, element) {
 }
 // * Função para setar os valores da conexão
 function recalculaValor(idDestino, insumosAlterado) { // Vai recber o id dos insumos e qual elemento da lista foi alterado
-    if (elementosInsumos[idDestino].linhas.length == 1) { return; }
+    if (elementosInsumos[idDestino].linhas[0].trim() == 0) {return;}
     // > Acredito que tenha formas mais simples de fazer isso, revisarei o código caso tenha tempo
     console.log("Quantidade de parametros da conexao", insumosAlterado.length);
 
