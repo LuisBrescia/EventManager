@@ -448,7 +448,7 @@ function criaElementoParticipante(element, gapping) {
                 </span>
                 <button id="fluxoConecta-${element._id}" class="fluxoConecta elP-button py-2 bi-chevron-double-right d-inline-block text-white btn-connection"></button>
             </div>
-            <div class="card-body p-0 mt-1 d-flex flex-column gap-1" style="overflow-y: auto; max-height: 80vh;">
+            <div class="mt-1 card-body p-0 d-flex flex-column gap-1" style="overflow-y: auto; max-height: 80vh;">
             </div>
         </div>
     </div>`);
@@ -464,19 +464,18 @@ function criaElementoInsumo(element, gapping) {
     let linha = '';
     if (element.linhas.length > 1 || element.linhas[0].trim() != '') {
         for (let i = 0; i < element.linhas.length - 1; i++) {
-            // Vou pegar só os 30 primeiros caracteres de cada linha
             let linhaAtual = element.linhas[i].substring(0, 30);
             linha += `
-            <span id="${element._id}-${i}" class="shadow-sm bg-white mt-1">
-                <button class="py-2 d-inline-block bg-1 border-0 bg-gradient text-white no-shadow quantidadeInsumo">0</button>
+            <span id="${element._id}-${i}" class="shadow-sm bg-white border-bottom">
+                <button class="py-2 d-inline-block bg-1 border-0 Papel text-white no-shadow quantidadeInsumo">0</button>
                 <span class="text-nowrap px-2">${linhaAtual}</span>
             </span>`;
         }
         // ? Úlitma linha
         let linhaAtual = element.linhas[element.linhas.length - 1].substring(0, 30);
         linha += `
-            <span id="${element._id}-${element.linhas.length - 1}" class="shadow-sm bg-white mt-1">
-                <button class="py-2 d-inline-block border-0 bg-1 bg-gradient text-white no-shadow quantidadeInsumo">0</button>
+            <span id="${element._id}-${element.linhas.length - 1}" class="shadow-sm bg-white">
+                <button class="py-2 d-inline-block border-0 bg-1 Papel text-white no-shadow quantidadeInsumo">0</button>
                 <span class="text-nowrap px-2">${linhaAtual}</span>
             </span>`;
     } else {
@@ -486,11 +485,10 @@ function criaElementoInsumo(element, gapping) {
         </span>`;
     }
     return $(`
-        <div id="listaI-${element._id}" class="bg-dark insumos-container ms-5" style="${posicao}; z-index: 1; width: 0%;">
-            <div class="elementoMovivel draggable card col-3 border-0 overflow-x-hidden shadow bg-escuro">
-                <div class="moverElemento Papel bg-escuro fs-4 fw-bold text-nowrap d-flex justify-content-between align-items-center"
-                style="border-top-left-radius: 20px; border-top-right-radius: 5px;">
-                    <button id="fluxoDestino-${element._id}" class="fluxoDestinoGenerico py-2 bi-diamond d-inline-block text-white btn-3 Papel no-shadow"
+        <div id="listaI-${element._id}" class="insumos-container ms-5" style="${posicao}; z-index: 1; width: 0%;">
+            <div class="elementoMovivel draggable card col-3 border-0 overflow-x-hidden shadow-sm bg-escuro">
+                <div class="elP-header moverElemento fs-4 fw-bold text-nowrap d-flex justify-content-between align-items-center">
+                    <button id="fluxoDestino-${element._id}" class="fluxoDestinoGenerico elI-button py-2 bi-diamond d-inline-block text-white btn-connection"
                     style="border-top-left-radius: 5px;"></button>
                     <span class="py-2 d-flex px-3 gap-2 ps-4 border-0 w-100">
                         <span class="text-white ms-auto w-100">${element.titulo}</span>
@@ -529,11 +527,11 @@ function criaConexao(idP, element) {
     }
     return $(`
     <div id="conexaoCom-${element._id}" class="d-flex flex-column conexaoParticipante">
-        <span class="py-1 px-3 bg-1 Papel text-white d-flex justify-content-between">
-            <i class="rounded-3 adicionaConexao bi-plus-circle position-absolute shadow-sm Papel border border-white"></i>
+        <span class="py-1 px-3 bg-1 Topography text-white d-flex justify-content-between border border-2 border-escuro">
+            <i class="rounded-3 border-1 adicionaConexao bi-plus-circle position-absolute shadow-sm bg-1 Papel border border-white"></i>
             <span class="mx-auto opacity-0">${element.titulo}</span>
-            <span class="position-absolute text-nowrap text-center Papel border border-white rounded-3 bg-1 shadow-sm px-3" style="transform: translateX(-50%); left: 50%;">${element.titulo}</span>
-            <i class="rounded-3 excluiConexao bi-trash shadow-sm Papel border border-white"></i>
+            <span class="border-1 position-absolute text-nowrap text-center Papel border border-white rounded-3 bg-1 shadow-sm px-3" style="transform: translateX(-50%); left: 50%;">${element.titulo}</span>
+            <i class="border-1 rounded-3 excluiConexao bi-trash shadow-sm Papel bg-1 border border-white"></i>
         </span>
         ${parametros}    
     </div>
