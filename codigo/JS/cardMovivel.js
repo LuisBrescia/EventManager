@@ -110,8 +110,8 @@ $(document).ready(() => {
 
         // * Percorre o vetor, se existir algum elemento com o valor true, criará card
         if (indiceTrue === -1) {
-            const toastBootstrap = bootstrap.Toast.getOrCreateInstance($('#liveToast'));
-            toastBootstrap.show();
+            $('.toast-body').text('Este elemento já está conectado a este insumo.');
+            $('.toast').toast('show');
             return;
         }
 
@@ -217,10 +217,12 @@ function nomeiaCard(element) {
                 let listGroup = $(this).closest('.card-container').find('.list-group');
                 let lastLi = listGroup.find('li:last-child').focus();
                 finalDaLinha(lastLi[0]);
-            } else if (($(this).width() >= maxWidth || $(this).text().length >= maxLength) && !isTextSelected(cardTitle[0]) 
-            && e.keyCode !== 8 && e.keyCode !== 46 && e.keyCode !== 37 && e.keyCode !== 39 && !e.ctrlKey) {
+            } else if (($(this).width() >= maxWidth || $(this).text().length >= maxLength) && !isTextSelected(cardTitle[0])
+                && e.keyCode !== 8 && e.keyCode !== 46 && e.keyCode !== 37 && e.keyCode !== 39 && !e.ctrlKey) {
                 // * Impede que o usuário digite mais caracteres que o permitido
                 e.preventDefault();
+                $('.toast-body').text('Tamanho máximo de título atingido.');
+                $('.toast').toast('show');
             }
             // * Caso o usuário consiga digitar mais caracteres que o permitido, o título é cortado
             if ($(this).text().length > maxLength) {

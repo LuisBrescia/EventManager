@@ -434,7 +434,7 @@ function criaElementoParticipante(element, gapping) {
     }
 
     return $(`
-    <div id="listaP-${element._id}" class="card-container ms-5" style="${posicao}; z-index: 1; width: 0%;">
+    <div id="listaP-${element._id}" class="card-container" style="${posicao}; z-index: 1; width: 0%;">
         <div class="elementoMovivel draggable card col-3 border-0 overflow-x-hidden shadow-sm" style="min-width: 300px; width: fit-content;">
             <div class="w-100 fs-4 fw-bold text-nowrap d-flex justify-content-between align-items-center" style="width: fit-content;">
                 <span class="w-100 py-2 d-flex moverElemento px-3 gap-2 elP-header" style="border-top-left-radius: 3px;">
@@ -485,7 +485,7 @@ function criaElementoInsumo(element, gapping) {
         </span>`;
     }
     return $(`
-        <div id="listaI-${element._id}" class="insumos-container ms-5" style="${posicao}; z-index: 1; width: 0%;">
+        <div id="listaI-${element._id}" class="insumos-container" style="${posicao}; z-index: 1; width: 0%;">
             <div class="elementoMovivel draggable card col-3 border-0 overflow-x-hidden shadow-sm bg-escuro">
                 <div class="elP-header moverElemento fs-4 fw-bold text-nowrap d-flex justify-content-between align-items-center">
                     <button id="fluxoDestino-${element._id}" class="fluxoDestinoGenerico elI-button py-2 bi-diamond d-inline-block text-white btn-connection"

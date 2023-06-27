@@ -746,7 +746,18 @@ li.concluido h6 {
     position: sticky;
   }
 }
-
+@media screen and (max-width: 1120px) {
+  .items-chamado {
+    flex-direction: column;
+    gap: 50em;
+  }
+  .bloco-chamado {
+    width: 100%;
+  }
+  .caixa-tracejada {
+    display: none;
+  }
+}
 @media screen and (max-width: 991px) {
   #graficoParticipantes, #graficoServicos {
     width: 50%;
