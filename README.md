@@ -1,4 +1,4 @@
-# 💮 Event Manager
+# Event Manager
 Um site desenvolvido para ajudar para ajudar pessoas a realizarem um planejamento dos seus eventos.
 
 ### `Sobre o projeto`
