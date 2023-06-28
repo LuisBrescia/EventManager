@@ -678,7 +678,7 @@ li.concluido h6 {
   color: #f0f0f0;
 }
 .elI-button {
-  border-image: linear-gradient(to right, var(--primaria), var(--gradiente), var(--primaria-n1));
+  border-image: linear-gradient(to right, var(--primaria-n1), var(--primaria-n1), var(--gradiente));
   border-image-slice: 100% 25% 100% 25%;
   border-image-width: 2px;
   border-radius: 0;

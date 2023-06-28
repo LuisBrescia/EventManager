@@ -138,6 +138,7 @@ function carregaElementos() {
             var elementoInsumoCarregado = criaElementoInsumo(elementosInsumos[i], contI++);
 
             dragInsumos($(elementoInsumoCarregado));
+            fluxoDestinoGenerico($(elementoInsumoCarregado));
             $('section').append(elementoInsumoCarregado);
 
         } else { // * Se a conexão já existir, mas o elemento não, apagar conexões onde está envolvido
@@ -326,6 +327,13 @@ function fluxoConecta(element) {
         });
     });
 }
+// * Função que programa o botão insumo | No momento não faz nada
+function fluxoDestinoGenerico(element) {
+    element.find(".fluxoDestinoGenerico").mousedown(function () {
+        $('.toast-body').text('No momento esse botão não faz nada.');
+        $('.toast').toast('show');
+    });
+}
 // * Cria uma nova funcionalidade em conexão já existente
 function adicionaConexao(element) {
     element.find('.card-body').on('click', '.adicionaConexao', function () {
@@ -467,7 +475,8 @@ function criaElementoInsumo(element, gapping) {
             let linhaAtual = element.linhas[i].substring(0, 30);
             linha += `
             <span id="${element._id}-${i}" class="shadow-sm bg-white border-bottom">
-                <button class="py-2 d-inline-block bg-1 border-0 Papel text-white no-shadow quantidadeInsumo">0</button>
+                <button class="text-nowrap py-2 d-inline-block bg-1 border-0 Papel text-white no-shadow quantidadeInsumo"
+                style="min-width: 20%">0</button>
                 <span class="text-nowrap px-2">${linhaAtual}</span>
             </span>`;
         }
@@ -475,7 +484,8 @@ function criaElementoInsumo(element, gapping) {
         let linhaAtual = element.linhas[element.linhas.length - 1].substring(0, 30);
         linha += `
             <span id="${element._id}-${element.linhas.length - 1}" class="shadow-sm bg-white">
-                <button class="py-2 d-inline-block border-0 bg-1 Papel text-white no-shadow quantidadeInsumo">0</button>
+                <button class="text-nowrap py-2 d-inline-block border-0 bg-1 Papel text-white no-shadow quantidadeInsumo"
+                style="min-width: 20%">0</button>
                 <span class="text-nowrap px-2">${linhaAtual}</span>
             </span>`;
     } else {
