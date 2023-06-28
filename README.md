@@ -1,5 +1,5 @@
 # Event Manager
-Um site desenvolvido para ajudar para ajudar pessoas a realizarem um planejamento dos seus eventos.
+Auxiliar no planejamento de um evento tanto em sua organização, quanto a achar fornecedores ideias para sua demanda.
 
 ### `Sobre o projeto`
 
