@@ -189,17 +189,17 @@ main h1 {
 .btn-chamado.aberto {
   background-color: inherit;
   animation: none;
-  filter: drop-shadow(1px 1px 4px #fff);
+  filter: drop-shadow(1px 1px 2px #fff);
 }
 .btn-chamado.aberto:hover {
   background-image: none;
-  filter: drop-shadow(1px 1px 4px #fff);
+  filter: drop-shadow(1px 1px 4px #fff) !important;
 }
 .btn-chamado.aberto:active {
   color: #fff !important;
   background-color: inherit !important;
   background-image: none !important;  
-  filter: drop-shadow(1px 1px 4px #fff);
+  filter: drop-shadow(1px 1px 4px #fff) blur(0.5px) !important;
 }
 
 .btn-2 {

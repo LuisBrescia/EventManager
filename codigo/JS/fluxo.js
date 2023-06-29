@@ -474,18 +474,16 @@ function criaElementoInsumo(element, gapping) {
         for (let i = 0; i < element.linhas.length - 1; i++) {
             let linhaAtual = element.linhas[i].substring(0, 30);
             linha += `
-            <span id="${element._id}-${i}" class="shadow-sm bg-white border-bottom">
-                <button class="text-nowrap py-2 d-inline-block bg-1 border-0 Papel text-white no-shadow quantidadeInsumo"
-                style="min-width: 20%">0</button>
+            <span id="${element._id}-${i}" class="shadow-sm bg-white border-bottom" style="overflow: hidden">
+                <button class="text-nowrap py-2 d-inline-block bg-1 border-0 Papel text-white no-shadow quantidadeInsumo">0</button>
                 <span class="text-nowrap px-2">${linhaAtual}</span>
             </span>`;
         }
         // ? Úlitma linha
         let linhaAtual = element.linhas[element.linhas.length - 1].substring(0, 30);
         linha += `
-            <span id="${element._id}-${element.linhas.length - 1}" class="shadow-sm bg-white">
-                <button class="text-nowrap py-2 d-inline-block border-0 bg-1 Papel text-white no-shadow quantidadeInsumo"
-                style="min-width: 20%">0</button>
+            <span id="${element._id}-${element.linhas.length - 1}" class="shadow-sm bg-white" style="overflow: hidden">
+                <button class="text-nowrap py-2 d-inline-block border-0 bg-1 Papel text-white no-shadow quantidadeInsumo">0</button>
                 <span class="text-nowrap px-2">${linhaAtual}</span>
             </span>`;
     } else {
@@ -504,7 +502,7 @@ function criaElementoInsumo(element, gapping) {
                         <span class="text-white ms-auto w-100">${element.titulo}</span>
                     </span>
                 </div>
-                <div class="bg-fundo Cork overflow-auto mx-0 p-0 d-flex flex-column" style="max-height: 400px; min-width:200px; border-bottom-left-radius: 3px; border-bottom-right-radius: 3px;">
+                <div class="bg-fundo Cork overflow-auto mx-0 p-0 d-flex flex-column" style="max-height: 400px; min-width: 200px; border-bottom-left-radius: 3px; border-bottom-right-radius: 3px;">
                     ${linha}
                 </div>
             </div>
