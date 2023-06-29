@@ -110,7 +110,7 @@ $(document).ready(() => {
 
         // * Percorre o vetor, se existir algum elemento com o valor true, criará card
         if (indiceTrue === -1) {
-            $('.toast-body').text('Este elemento já está conectado a este insumo.');
+            $('.toast-body').text('O Número máximo de cards para esta categoria foi atingido.');
             $('.toast').toast('show');
             return;
         }
