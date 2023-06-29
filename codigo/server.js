@@ -31,7 +31,7 @@ app.get('/Valores.html', (req, res) => {
 });
 
 // Defina a porta em que o servidor irá escutar
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // Inicie o servidor
 app.listen(port, () => {
