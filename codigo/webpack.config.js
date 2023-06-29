@@ -21,6 +21,6 @@ module.exports = {
   devServer: {
     contentBase: path.resolve(__dirname, 'html'),
     open: true,
-    port: 3300,
+    port: process.env.PORT || 3300,
   },
 };
