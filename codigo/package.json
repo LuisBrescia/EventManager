@@ -14,8 +14,8 @@
   "version": "1.0.0",
   "main": "HTML/Listas.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node server.js"
+    "start": "node server.js",
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
@@ -35,7 +35,11 @@
   },
   "homepage": "https://github.com/LuisBrescia/EventManager#readme",
   "devDependencies": {
+    "css-loader": "^6.8.1",
+    "html-loader": "^4.2.0",
+    "style-loader": "^3.3.3",
     "webpack": "^5.88.1",
-    "webpack-cli": "^5.1.4"
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
   }
 }
