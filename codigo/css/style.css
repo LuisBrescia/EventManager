@@ -751,11 +751,8 @@ li.concluido h6 {
     flex-direction: column;
     gap: 50em;
   }
-  .bloco-chamado {
+  .bloco-chamado, .caixa-tracejada {
     width: 100%;
-  }
-  .caixa-tracejada {
-    display: none;
   }
 }
 @media screen and (max-width: 991px) {
