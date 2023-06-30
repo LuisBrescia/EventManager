@@ -1,4 +1,0 @@
-web:
-    cd codigo
-    npm install
-    npm run start
