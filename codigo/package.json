@@ -23,12 +23,13 @@
     "type": "git",
     "url": "git+https://github.com/LuisBrescia/EventManager.git"
   },
+  "engines": {
+    "node": "18.15.0"
+  },
   "keywords": [
     "gerenciador",
     "listas",
-    "conectado",
-    "por",
-    "linhas"
+    "leaderLine"
   ],
   "author": "Luis Brescia",
   "license": "MIT",
