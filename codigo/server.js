@@ -34,9 +34,10 @@ router.get('/Valores.html', (req, res) => {
 
 app.use(router);
 
-// Defina a porta em que o servidor irá escutar
-const port = process.env.PORT || 3000;
-
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 8000;
+}
 // Inicie o servidor
 app.listen(port, () => {
     console.log(`Servidor está rodando na porta ${port}`);
