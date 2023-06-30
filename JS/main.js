@@ -11,14 +11,10 @@ document.querySelector('#app').innerHTML = `
     <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
       <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
     </a>
-    <h1>Hello Vite!</h1>
+    <h1>Event Manager</h1>
+    <h3>Trabalho interdisciplinar de aplicações web</h3>
     <div class="card">
-      <button id="counter" type="button"></button>
+      <a href="./HTML/Listas.html"><button type="button">Clique aqui para iniciar</button>
     </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
   </div>
 `
-
-setupCounter(document.querySelector('#counter'))
