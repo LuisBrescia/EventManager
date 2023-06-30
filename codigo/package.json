@@ -6,18 +6,14 @@
     "http": "^0.0.1-security",
     "jquery": "^3.7.0",
     "jquery-ui-dist": "^1.13.2",
-    "leader-line": "^1.0.7",
-    "vite": "^4.3.9"
+    "leader-line": "^1.0.7"
   },
   "name": "event-manager",
   "description": "Mantenha neste diretório todo o código fonte do projeto.",
   "version": "1.0.0",
   "main": "HTML/Listas.html",
   "scripts": {
-    "start": "node server.js",
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
