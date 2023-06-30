@@ -1,0 +1,5 @@
+{
+    "scripts": {
+        "start": "npm start --prefix codigo"
+    }
+}
