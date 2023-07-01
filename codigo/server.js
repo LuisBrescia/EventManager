@@ -38,6 +38,7 @@ let port = process.env.PORT;
 if (port == null || port == "") {
   port = 8000;
 }
+
 // Inicie o servidor
 app.listen(port, () => {
     console.log(`Servidor está rodando na porta ${port}`);
