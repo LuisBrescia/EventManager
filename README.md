@@ -17,5 +17,5 @@ Auxiliar no planejamento de um evento tanto em sua organização, quanto a achar
 * Cleiton Silva Tavares
 * Thiago Augusto Nicolini Silva
 
-## Instruções de utilização
-> Assim que a primeira versão do sistema estiver disponível, iremos descrever aqui como instalar eventuais dependências e como executar a aplicação.
+## Utilização
+> [Link para o site](https://event-manager-tiaw-e7211e805cd0.herokuapp.com)
