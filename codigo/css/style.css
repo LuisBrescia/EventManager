@@ -704,7 +704,7 @@ li.concluido h6 {
   background-color: var(--primaria-3);
 }
 
-#graficoParticipantes, #graficoServicos {
+#graficoParticipantes, #graficoChamados {
   width: 100%;
 }
 
@@ -756,7 +756,7 @@ li.concluido h6 {
   }
 }
 @media screen and (max-width: 991px) {
-  #graficoParticipantes, #graficoServicos {
+  #graficoParticipantes, #graficoChamados {
     width: 50%;
   }
   aside li:hover {
@@ -777,7 +777,7 @@ li.concluido h6 {
     filter: blur(0);
   }
 
-  #graficoParticipantes, #graficoServicos {
+  #graficoParticipantes, #graficoChamados {
     width: 100%;
   }
 }
@@ -787,13 +787,13 @@ li.concluido h6 {
     position: fixed;
   }
 
-  #graficoParticipantes, #graficoServicos {
+  #graficoParticipantes, #graficoChamados {
     width: 75%;
   }
 }
 
 @media screen and (min-width: 2000px) {
-  #graficoParticipantes, #graficoServicos {
+  #graficoParticipantes, #graficoChamados {
     width: 50%;
   }
 }

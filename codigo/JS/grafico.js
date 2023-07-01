@@ -12,6 +12,14 @@ class ListaParticipantes {
     }
 }
 
+class Chamado {
+    constructor(titulo, valor, percentual) {
+        this.titulo = titulo;
+        this.valor = valor;
+        this.percentual = percentual;
+    }
+}
+
 // * Aqui eu tenho todas as listas de participantes do usuário
 var ListasParticipantes = JSON.parse(localStorage.getItem("ListaParticipantes"));
 // : graficoPizza será nosso vetor onde conterá as listas de participantes devidamente formatadas
@@ -34,6 +42,7 @@ for (let i = 0; i < 6; i++) {
         }
     }
 }
+
 // ? O número de participantes dividido pelo total de participantes nos da o percentual
 for (let i = 0; i < k + 1; i++) {
     graficoParticipantes[i].percentual = (graficoParticipantes[i].elementos / totalParticipantes) * 100;
@@ -72,38 +81,32 @@ var myChart = new Chart(ctx, {
     data: data,
     options: options
 });
-/* TIPOS DE GRÁFICOS
-pie
-doughnut
-polarArea
-bar
-line
-radar
-bubble
-scatter */
 
+// ! Gráfico de gastos
 var Chamados = JSON.parse(localStorage.getItem("Chamados"));
-let totalServicos = 0;
+let totalGastos = 0;
 let custoTotal = 0;
-// roda todos chamados, e todos que tiverem valor > 0 adiciona 1
+
+backgroundColors.reverse();
 
 for (let i = 0; i < Chamados.length; i++) {
     if (Chamados[i].valor > 0) {
-        totalServicos++;
-        custoTotal += Chamados[i].valor;
+        totalGastos++;
+        custoTotal += parseInt(Chamados[i].valor);
     }
 }
 
-$('.valor-S h6').text("Servicos (" + totalServicos + ")");
+console.log("Custo total é",custoTotal);
 
-// Pegarei o custo total, e calcularei a porcentagem de cada elemento
-// e adicionarei no vetor graficoServicos
-var graficoServicos = [];
+$('.valor-S h6').text("Gastos (" + totalGastos + ")");
+
+var graficoChamados = [];
 var k = -1;
 for (let i = 0; i < Chamados.length; i++) {
     if (Chamados[i].valor > 0) {
-        graficoServicos[++k] = new ListaParticipantes(Chamados[i].titulo, Chamados[i].valor, 0);
-        graficoServicos[k].percentual = (graficoServicos[k].elementos / custoTotal) * 100;
+        graficoChamados[++k] = new Chamado(Chamados[i].titulo, Chamados[i].valor, 0);
+        graficoChamados[k].percentual = (graficoChamados[k].valor / custoTotal) * 100;
+        graficoChamados[k].titulo += " R$ " + graficoChamados[k].valor;
     }
 }
 
@@ -119,19 +122,29 @@ var data = {
     }]
 };
 
-for (var i = 0; i < graficoServicos.length; i++) {
-    data.labels.push(graficoServicos[i].titulo);
-    data.datasets[0].data.push(graficoServicos[i].percentual);
+for (var i = 0; i < graficoChamados.length; i++) {
+    data.labels.push(graficoChamados[i].titulo);
+    data.datasets[0].data.push(graficoChamados[i].percentual);
 }
 
 var options = {
     responsive: true
 };
 
-var ctx = document.getElementById("graficoServicos").getContext("2d");
+var ctx = document.getElementById("graficoChamados").getContext("2d");
 
 var myChart = new Chart(ctx, {
     type: "pie",
     data: data,
     options: options
 });
+
+/* TIPOS DE GRÁFICOS
+pie
+doughnut
+polarArea
+bar
+line
+radar
+bubble
+scatter */
