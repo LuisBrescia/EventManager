@@ -118,7 +118,7 @@ main h1 {
 }
 
 .text-1 {
-  color: #06f;
+  color: #06f !important;
 }
 
 .border-escuro {

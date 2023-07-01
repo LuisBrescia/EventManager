@@ -185,23 +185,21 @@
             <div class="valores-header rounded-1 d-flex align-items-center gap-3 shadow-sm">
               <!-- ? Texto -->
               <div class="col">
-                <div class="fw-bold text-xs"><small class="text-danger">Custo</small></div>
+                <div class="fw-bold text-xs"><small class="text-1">Custo</small></div>
                 <div class="mb-0"><span class="text-nowrap" id="custoTotal"></span></div>
               </div>
               <!-- ? Ícone -->
-              <i class="Papel col-auto fs-3 text-white py-2 px-3 rounded-5 me-2 bi-cash-stack"></i>
+              <i class="bi-currency-dollar Papel col-auto fs-3 text-white py-2 px-3 rounded-5 me-2"></i>
             </div>
           </div>
           <!-- * Lucro ou Prejuízo-->
           <div class="col-md-6 col-xl-3 mb-3 card-resultado">
             <div class="valores-header rounded-1 d-flex align-items-center gap-3 shadow-sm">
-              <!-- ? Texto -->
               <div class="col">
-                <div class="fw-bolder text-xs"><small class="text-success">Lucro</small></div>
+                <div class="fw-bolder"><small class="text-1">Lucro</small></div>
                 <div class="mb-0"><span class="text-nowrap">Indiferente</span></div>
               </div>
-              <!-- ? Ícone -->
-              <i class="Papel col-auto fs-3 bi-currency-dollar text-white py-2 px-3 rounded-5 me-2"></i>
+              <i class="bi-cash-stack Papel col-auto fs-3 text-white py-2 px-3 rounded-5 me-2"></i>
             </div>
           </div>
           <!-- * Progresso -->
@@ -236,8 +234,8 @@
             <div class="valores-header rounded-1 d-flex align-items-center gap-3 shadow-sm">
               <!-- ? Texto -->
               <div class="col">
-                <div class="fw-bolder text-xs text-nowrap">
-                  <small class="text-warning">Chamados ativos</small>
+                <div class="fw-bolder text-nowrap">
+                  <small class="text-1">Chamados</small>
                 </div>
                 <div class="mb-0">
                   <span class="fw-lighter rounded-5" id="chamadosAtivos">0</span>
@@ -254,11 +252,15 @@
           <!-- * Participantes -->
           <div class="graficoPizza valor-P col-lg-6">
             <div class="card shadow mb-4 border-0 rounded-1">
-              <div class="pizza-header Topography d-flex justify-content-between align-items-center">
+              <div class="pizza-header d-flex justify-content-between align-items-center Topography">
                 <h6 class="m-0">Participantes</h6>
               </div>
               <div class="card-body">
                 <div class="chart-area">
+                  <!-- <h2 class="shadow px-3 py-2 rounded-3 position-absolute start-50 translate-middle"
+                  style="top: 55%; width: 80%;">
+                    Insira listas de convidados para visualizar o gráfico de Participantes.
+                  </h2> -->
                   <canvas id="graficoParticipantes" class="mx-auto"></canvas>
                 </div>
                 <!-- <div class="text-center small mt-4"><span class="me-2">
@@ -284,6 +286,10 @@
                 </div> -->
               </div>
               <div class="card-body">
+                <!-- <h2 class="shadow px-3 py-2 rounded-3 position-absolute start-50 translate-middle"
+                  style="top: 55%; width: 80%;">
+                    Insira valores nos chamados para visualizar o gráfico de Gastos.
+                  </h2> -->
                 <div class="chart-area">
                   <canvas id="graficoChamados" class="mx-auto"></canvas>
                 </div>

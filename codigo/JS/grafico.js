@@ -21,7 +21,7 @@ class Chamado {
 }
 
 // * Aqui eu tenho todas as listas de participantes do usuário
-var ListasParticipantes = JSON.parse(localStorage.getItem("ListaParticipantes"));
+var ListasParticipantes = JSON.parse(localStorage.getItem("ListaParticipantes")) || [];
 // : graficoPizza será nosso vetor onde conterá as listas de participantes devidamente formatadas
 var graficoParticipantes = [];
 
@@ -46,6 +46,10 @@ for (let i = 0; i < 6; i++) {
 // ? O número de participantes dividido pelo total de participantes nos da o percentual
 for (let i = 0; i < k + 1; i++) {
     graficoParticipantes[i].percentual = (graficoParticipantes[i].elementos / totalParticipantes) * 100;
+}
+
+if (graficoParticipantes.length == 0) {
+    graficoParticipantes[0] = new ListaParticipantes("Crie listas de Participantes para o gráfico ser exibido", 100, 100);
 }
 
 // * Aqui começa o código do gráfico
@@ -83,11 +87,12 @@ var myChart = new Chart(ctx, {
 });
 
 // ! Gráfico de gastos
-var Chamados = JSON.parse(localStorage.getItem("Chamados"));
+var Chamados = JSON.parse(localStorage.getItem("Chamados")) || [];
 let totalGastos = 0;
 let custoTotal = 0;
 
-backgroundColors.reverse();
+var backgroundColors2 = ["#0088ff", "#1066ff", "#0044ff", "#0224d0", "#0020a0", "#016"];
+backgroundColors2.reverse();
 
 for (let i = 0; i < Chamados.length; i++) {
     if (Chamados[i].valor > 0) {
@@ -101,6 +106,7 @@ console.log("Custo total é",custoTotal);
 $('.valor-S h6').text("Gastos (" + totalGastos + ")");
 
 var graficoChamados = [];
+
 var k = -1;
 for (let i = 0; i < Chamados.length; i++) {
     if (Chamados[i].valor > 0) {
@@ -110,11 +116,15 @@ for (let i = 0; i < Chamados.length; i++) {
     }
 }
 
+if (graficoChamados.length == 0) {
+    graficoChamados[0] = new Chamado("Insira valores nos chamados para visualizar o gráfico de Gastos.", 100, 100);
+}
+
 var data = {
     labels: [],
     datasets: [{
         data: [],
-        backgroundColor: backgroundColors,
+        backgroundColor: backgroundColors2,
         pattern: {
             src: backgroundImageUrl,
             repeat: 'repeat'

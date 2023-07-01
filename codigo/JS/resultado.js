@@ -12,19 +12,21 @@ var chamados = JSON.parse(localStorage.getItem("Chamados")) || [];
 
 // Preciso percorrer chamados, somar todos seus valores e atualizar valorTotal
 function atualizaCusto () {
-    let valorTotal  = 0;
-    let chamadosAtivos = 0;
+    let valorTotal  = 0, chamadosAtivos = 0, totalChamados = 0;
     for (let i = 0; i < chamados.length; i++) {
         valorTotal += parseInt(chamados[i].valor);
         if (chamados[i].status == true) {
             chamadosAtivos++;
+        }
+        if (chamados[i].valor != 0) {
+            totalChamados++;
         }
     }
 
     // * Transforma o valorTotal em uma string com o formato R$ 0,00
     valorTotal = valorTotal.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
     $('#custoTotal').text(valorTotal);
-    $('#chamadosAtivos').text(chamadosAtivos);
+    $('#chamadosAtivos').text(chamadosAtivos  + " de " + totalChamados);
 }
 
 function carregaTarefas() {
@@ -33,8 +35,21 @@ function carregaTarefas() {
     $('#todoConteudo li').remove();
 
     if (ListaTarefas.length == 0) {
-        let objGenerico = new Tarefa(0, "Abrir Chamado para insumos e servicos", false);
+        let objGenerico = new Tarefa(0, "Montar lista de participantes", false);
         let tarefaGenerica = criaHtmlTarefa(objGenerico, false);
+
+        ListaTarefas.unshift(objGenerico);
+        localStorage.setItem("ListaTarefas", JSON.stringify(ListaTarefas));
+
+        selectAll(tarefaGenerica.find('h6')[0]);
+        nomeTarefa(tarefaGenerica);
+        excluirTarefa(tarefaGenerica);
+        estadoTarefa(tarefaGenerica);
+
+        $('#todoConteudo').append(tarefaGenerica);
+
+        objGenerico = new Tarefa(0, "Abrir Chamados para insumos e serviços", false);
+        tarefaGenerica = criaHtmlTarefa(objGenerico, false);
 
         ListaTarefas.unshift(objGenerico);
         localStorage.setItem("ListaTarefas", JSON.stringify(ListaTarefas));
@@ -95,7 +110,7 @@ $(document).ready(() => {
 
         var index = $('#todoConteudo li').length;
 
-        var tarefinha = new Tarefa(0, "Random", false);
+        var tarefinha = new Tarefa(0, "Nova Tarefa", false);
         novaTarefa = criaHtmlTarefa(tarefinha, true);
 
         $('#todoConteudo').prepend(novaTarefa);
