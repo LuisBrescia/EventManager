@@ -1,15 +1,13 @@
 # Informações do Projeto:
 
-`TÍTULO DO PROJETO:`
-**Gerenciador de Eventos**
+### `TÍTULO:` **Event Manager**
 
-`CURSO:` 
-**Engenharia de Software**
+### `CURSO:` **Engenharia de Software**
 
 ## Participantes:
+
 * Luís Felipe Teixeira Dias Brescia
 * Bernardo Carvalho Denucci Mercado
-* João Victor Borges de Oliveira
 * Thiago Cury Freire
 * Vitor Rebula Nogueira
 
@@ -37,7 +35,6 @@
   - [Divisão de Papéis](#divisão-de-papéis)
   - [Ferramentas](#ferramentas)
   - [Controle de Versão](#controle-de-versão)
-- [**############## SPRINT 1 ACABA AQUI #############**](#-sprint-1-acaba-aqui-)
 - [Projeto da Solução](#projeto-da-solução)
   - [Tecnologias Utilizadas](#tecnologias-utilizadas)
   - [Arquitetura da solução](#arquitetura-da-solução)
@@ -50,35 +47,31 @@
 
 # Introdução
 
-Eventos sempre existiram, sejam eles, festas, encontros, comemorações, e a maneira que o seu planejamento é feito não apresenta grandes mudanças.
+Neste contexto a palavra "evento" pode significar qualquer tipo de atividade onde tenha múltiplas pessoas envolvidas, como um jogo de futebol, ida a um show, campanha beneficente de moletom, churrasco, festa de formatura, casamento, uma saida com os amigos, desenvolvimento de um jogo, criação de uma música, entre outros.
 
-Ao planejar eventos, geralmente, as pessoas levam em conta os gastos individuais de cada convidado, como comida e local. Existem diversas formas de realizar esse planejamento, há pessoas que utilizam o papel, pessoas que anotam no celular, mas até hoje não existem ferramentas específicas para esse planejamento.
-
-Diante disso, torna-se fundamental que existam ferramentas que auxiliem o usuário a realizar seu planejamento de uma forma mais eficaz.
+Dito isso, durante o planejmanto de um evento devemos levar em consideração diversos fatores, dentre eles, número de convidados, local, comida, bebida, fotógrafo, motorista, ingresso.
 
 ## Problema
 
-Conforme exposto, os principais problemas que se busca resolver com este projeto são o desgaste e a desorganização gerados pelo planejamento de um evento.
+A dificuldade não está apenas em avaliar quais serão os gastos necessários e estimar o valor de cada um deles, mas também em encontrar alguém para suprir aquela demanda, o que atualemente costuma ser feito por pesquisas na internet, indicação de amigos, redes sociais... O que pode ser um processo demorado e cansativo, além de dificultar a comparação de preços e não garantir a qualidade do serviço.
 
 ## Objetivos
 
-O objetivo <strong>geral</strong> deste trabalho é a criação de um site que auxilie no planejamento de eventos:
+Juntar de uma forma concisa ferramentes necessárias para o planejamento de um evento, desenvolvendo uma forma mais eficiente, fácil, e rápida de planeja-lo.
 
 Como objetivos específicos, podemos ressaltar:
-* Calcular a demanda de um evento.
-* Estimar o valor de um evento.
-* Gerir convidados de um evento.
+* Estimar valor de um evento.
+* Estimar a quantidade de cada insumo em um evento.
+* Organizar e armazenar dados sobre o evento.
+* Facilitar a conexão entre o organizador e os fornecedores.
 
 ## Justificativa
 
-Segundo dados obtidos através de entrevistas realizadas dentro do nosso ciclo social, 
-100% das pessoas que organizaram eventos em um período de 1 ano, não usaram uma ferramenta específica para isso, a maior parte anotou em um papel ou no whatsapp, e algumas pessoas utilizaram o Canva ou o excel, não houveram eventos não planejados com mais de 8 pessoas.
-
-Adicionalmente, existem sites que calculam gastos específicos, como comida e bebida, mas não encontrei nenhum site que engloba todos os gastos necessários para realizar um evento.
+Diversas pessoas utilizam ferramentas como excel, whatsapp, e até mesmo papel e caneta para organizar seus eventos, acreditamos que uma ferramenta que junte todas essas funcionalidades em um só lugar, de forma simples e intuitiva, pode ser muito útil para o público alvo, já que atualmente nenhuma ferramenta acessível é capaz de fazer isso de forma dinâmica, permitindo alterações tanto do organizador quanto do fornecedor. 
 
 ## Público-Alvo
 
-Qualquer pessoa que for planejar um evento pode se beneficiar do site, porém visto que é um site de fácil manuseio, rápido de aprender, é voltado a usuários que não tem experiência em organizar eventos.
+Tanto organizadores de eventos quanto fornecedores podem se beneficiar do site, porém, o foco no momento é direcionado aos organizadores, visto que o site sem eles não funcionaria.
  
 # Especificações do Projeto
 
@@ -113,10 +106,6 @@ Definição técnica do problema e os pontos mais relevantes a serem tratados ne
 > Fonte: [Como criar uma persona para o seu negócio](https://raissaviegas.com.br/como-criar-uma-persona/)
 
 <p align="center">
-  <img src="images/<MAPA DE EMPATIA>">
-</p>
-
-<p align="center">
   <img src="images/personaAnaBeatriz.jpeg">
 </p>
 
@@ -131,7 +120,7 @@ Com base na análise das personas forma identificadas as seguintes histórias de
 |EU COMO... `PERSONA`| QUERO/PRECISO ... `FUNCIONALIDADE` |PARA ... `MOTIVO/VALOR`                 |
 |--------------------|------------------------------------|----------------------------------------|
 |Ana Beatriz | criar uma lista com os convidados e o que irão levar          | ter conhecimento do que preciso pedir.          |
-|Ana Beatriz | azer uma estimativa de custo por convidado em 1 evento        | fazer a lista de quantas pessoas vou convidar             |
+|Ana Beatriz | fazer uma estimativa de custo por convidado em 1 evento        | fazer a lista de quantas pessoas vou convidar             |
 |Maria Lana  | reaproveitar o planejamento de um evento.      | não ter que escrever tudo novamente, e encher meu whatsapp com mensagens desnecessárias.  |
 |Maria Lana  | listar, e lembrar o que falta ser avaliado         | não esquecer de algo essencial para o evento.               |
 |Caio Martins | personalizar os preços médios com gastos do eventos | personalizar os preços médios com gastos do evento ter uma estimativa do custo lucro.|
@@ -265,7 +254,7 @@ Dentre as preocupações para a montagem da interface do sistema, estamos estabe
 |-----------|-------------------------|---------------|
 |Processo de Design Thinkgin  | Miro |  https://miro.com/XXXXXXX | 
 |Repositório de código | GitHub | https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2023-1-ti1-2401100-quantofica | 
-|Hospedagem do site | Heroku |  https://XXXXXXX.herokuapp.com | 
+|Hospedagem do site | Heroku |  https://event-manager-tiaw-e7211e805cd0.herokuapp.com | 
 |Protótipo Interativo | Figma | https://www.figma.com/team_invite/redeem/SZo4o5DOifRFVUaJ224P66 | 
 | Reuniões | Discord | https://discord.gg/QcnfPCfZ |
 | Documentação | Google Docs | https://docs.google.com/document/d/1qjGNgSORIWJKUIP3m1bH0Y8Otmr99sSKhRu7RO_rozI/edit?usp=sharing |
