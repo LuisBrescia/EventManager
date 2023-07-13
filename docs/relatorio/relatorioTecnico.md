@@ -207,8 +207,8 @@ Para realizar os **commits**, independentemente da **branch** foi utilizado o se
 
 Quanto a gerência de **issues**, o projeto adota a seguinte convenção para etiquetas:
 
-* `single`: afeta apenas uma funcionalidade
-* `multiple`: afeta mais de uma funcionalidade
+* `single` afeta apenas uma funcionalidade
+* `multiple` afeta mais de uma funcionalidade
 
 > Geralmente, funcionalidades com maior número de issues single, são as geradoras de issues multiple.
 
