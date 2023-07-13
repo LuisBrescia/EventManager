@@ -167,17 +167,7 @@ Nesta parte do documento será abordado de forma objetiva os problemas que a apl
 
 # Metodologia
 
-......  COLOQUE AQUI O SEU TEXTO ......
-
-> Nesta parte do documento, você deve apresentar a metodologia 
-> adotada pelo grupo, descrevendo o processo de trabalho baseado nas metodologias ágeis, 
-> a divisão de papéis e tarefas, as ferramentas empregadas e como foi realizada a
-> gestão de configuração do projeto via GitHub.
->
-> Coloque detalhes sobre o processo de Design Thinking e a implementação do Framework Scrum seguido
-> pelo grupo. O grupo poderá fazer uso de ferramentas on-line para acompanhar
-> o andamento do projeto, a execução das tarefas e o status de desenvolvimento
-> da solução.
+Neste contexto, o grupo optou por utilizar o framework Scrum para o desenvolvimento do projeto, visto que o mesmo é um framework ágil que permite a adaptação do processo de desenvolvimento de acordo com as necessidades do projeto.
 
 ## Ferramentas
 
@@ -207,8 +197,8 @@ Para realizar os **commits**, independentemente da **branch** foi utilizado o se
 
 Quanto a gerência de **issues**, o projeto adota a seguinte convenção para etiquetas:
 
-* `single` afeta apenas uma funcionalidade
-* `multiple` afeta mais de uma funcionalidade
+* `single:` afeta apenas uma funcionalidade
+* `multiple:` afeta mais de uma funcionalidade
 
 > Geralmente, funcionalidades com maior número de issues single, são as geradoras de issues multiple.
 
