@@ -234,15 +234,17 @@ Nesta parte será abordado as estapas realizadas para verificar se o projeto des
 
 ## Plano de Testes
 
-Primeiramente, pegamos um evento real, e tentamos planeja-lo utilizando o site, para ver se ele atendia as necessidades do usuário. Após isso, fizemos um teste de usabilidade com um usuário, para ver se ele conseguia utilizar o site sem dificuldades.
+Primeiramente, pegamos a tabela [histórias de usuário](#histórias-de-usuários), e verificamos se todas as histórias foram atendidas.
 
-Após isso, voltamos na tabela de requisitos, e verificamos se todos os requisitos funcionais foram atendidos, e se os não funcionais foram atendidos de forma satisfatória.
+Após isso voltamos na tabela de requisitos, e verificamos se os requisitos foram atendidos fe forma satisfatória. 
 
-Após isso voltamos na tabela de [histórias de usuário](#histórias-de-usuários), e verificamos se todas as histórias foram atendidas.
+Foi realizado planejamanto de eventos reais, visando testar a aplicação em um cenário real, e verificar se ela atendia as necessidades do usuário.
+
+No final, fizemos um teste de usabilidade com um usuário, para ver se ele conseguia utilizar o site sem dificuldades.
 
 ## Registros de Testes
 
-Os testes mostraram que com devida **criatividade** e esforço, é possível sim planejar um evento utilizando o site, e que o site atendeu todas as necessidades do usuário.
+Os testes mostraram que com devida **criatividade** e esforço, é possível sim planejar um evento utilizando o site, sendo alguma das vezes, necessária uma visão um pouco mais abstrata, seria bem vindo templates pré-definidos para simplificar ainda mais o processo.
 
 # Referências
 
