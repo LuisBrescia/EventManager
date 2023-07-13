@@ -178,12 +178,6 @@ Nesta parte do documento será abordado de forma objetiva os problemas que a apl
 > pelo grupo. O grupo poderá fazer uso de ferramentas on-line para acompanhar
 > o andamento do projeto, a execução das tarefas e o status de desenvolvimento
 > da solução.
-> 
-> **Links Úteis**:
-> - [Tutorial Trello](https://trello.com/b/8AygzjUA/tutorial-trello)
-> - [Gestão ágil de projetos com o Trello](https://www.youtube.com/watch?v=1o9BOMAKBRE)
-> - [Gerência de projetos - Trello com Scrum](https://www.youtube.com/watch?v=DHLA8X_ujwo)
-> - [Tutorial Slack](https://slack.com/intl/en-br/)
 
 ## Ferramentas
 
@@ -199,38 +193,24 @@ Nesta parte do documento será abordado de forma objetiva os problemas que a apl
 
 ## Controle de Versão
 
-......  COLOQUE AQUI O SEU TEXTO ......
+Em nosso repositório existem 3 diferentes branchs, sendo elas:
 
-> Discuta como a configuração do projeto foi feita na ferramenta de
-> versionamento escolhida. Exponha como a gerência de tags, merges,
-> commits e branchs é realizada. Discuta como a gerência de issues foi
-> realizada.
-> A ferramenta de controle de versão adotada no projeto foi o
-> [Git](https://git-scm.com/), sendo que o [Github](https://github.com)
-> foi utilizado para hospedagem do repositório `upstream`.
-> 
-> O projeto segue a seguinte convenção para o nome de branchs:
-> 
-> - `master`: versão estável já testada do software
-> - `unstable`: versão já testada do software, porém instável
-> - `testing`: versão em testes do software
-> - `dev`: versão de desenvolvimento do software
-> 
-> Quanto à gerência de issues, o projeto adota a seguinte convenção para
-> etiquetas:
-> 
-> - `bugfix`: uma funcionalidade encontra-se com problemas
-> - `enhancement`: uma funcionalidade precisa ser melhorada
-> - `feature`: uma nova funcionalidade precisa ser introduzida
->
-> **Links Úteis**:
-> - [Tutorial GitHub](https://guides.github.com/activities/hello-world/)
-> - [Git e Github](https://www.youtube.com/Valores.html?list=PLHz_AreHm4dm7ZULPAmadvNhH6vk9oNZA)
-> - [5 Git Workflows & Branching Strategy to deliver better code](https://zepel.io/blog/5-git-workflows-to-improve-development/)
->
-> **Exemplo - GitHub Feature Branch Workflow**:
->
-> ![Exemplo de Wireframe](images/Github-Workflow.png)
+* **master**: branch principal, onde se encontra o código fonte da aplicação.
+* **novo**: branch onde se encontra o código fonte da aplicação antes de ser reescrito. 
+* **antigo**: branch onde se encontra a primeira versão da aplicação. 
+
+Para realizar os **commits**, independentemente da **branch** foi utilizado o seguinte padrão:
+
+`git commit -m "Adicionada funcionalidade x"`
+
+> Onde a mensagem de commit deverá sempre começar com letra maiúscula e estar conjugada no particípio passado, indicando uma ação já concluída.
+
+Quanto a gerência de **issues**, o projeto adota a seguinte convenção para etiquetas:
+
+* `single`: afeta apenas uma funcionalidade
+* `multiple`: afeta mais de uma funcionalidade
+
+> Geralmente, funcionalidades com maior número de issues single, são as geradoras de issues multiple.
 
 # Projeto da Solução
 
