@@ -28,9 +28,7 @@
     - [Requisitos Funcionais](#requisitos-funcionais)
     - [Requisitos não Funcionais](#requisitos-não-funcionais)
   - [Restrições](#restrições)
-- [Projeto de Interface](#projeto-de-interface)
-  - [User Flow](#user-flow)
-  - [Wireframes](#wireframes)
+- [Userflow](#projeto-de-interface)
 - [Metodologia](#metodologia)
   - [Ferramentas](#ferramentas)
   - [Controle de Versão](#controle-de-versão)
@@ -145,7 +143,7 @@ Nesta parte do documento será abordado de forma objetiva os problemas que a apl
 | RE-03 | A equipe não pode subcontratar o desenvolvimento do trabalho. |
 | RE-04 | As tecnologias utilizadas devem restringir à HTML, CSS e JavaScript. |
 
-# Interface do projeto
+# Userflow
 
 > 1° Listas: Organizando entre as categorias Participantes, Insumos, e Serviços, o usuário deve especificar quais elementos existirão para aquele evento
 
@@ -191,35 +189,13 @@ Nesta parte do documento será abordado de forma objetiva os problemas que a apl
 
 | Ambiente  | Plataforma              |Link de Acesso |
 |-----------|-------------------------|---------------|
-|Processo de Design Thinkgin  | Miro |  https://miro.com/XXXXXXX | 
-|Repositório de código | GitHub | https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2023-1-ti1-2401100-quantofica | 
-|Hospedagem do site | Heroku |  https://event-manager-tiaw-e7211e805cd0.herokuapp.com | 
-|Protótipo Interativo | Figma | https://www.figma.com/team_invite/redeem/SZo4o5DOifRFVUaJ224P66 | 
-| Reuniões | Discord | https://discord.gg/QcnfPCfZ |
 | Documentação | Google Docs | https://docs.google.com/document/d/1qjGNgSORIWJKUIP3m1bH0Y8Otmr99sSKhRu7RO_rozI/edit?usp=sharing |
+| Weekly Scrum | Discord | https://discord.gg/QcnfPCfZ |
+| Backlog | Trello | https://trello.com/invite/b/IRT28t7u/ATTIa9c7c509f0e7eaf3ac96967fc2edecff66B9AE32/event-manager |
+| Código fonte | GitHub | https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2023-1-ti1-2401100-quantofica | 
+|Hospedagem do site | Heroku |  https://event-manager-tiaw-e7211e805cd0.herokuapp.com | 
 
->
-> Liste as ferramentas empregadas no desenvolvimento do
-> projeto, justificando a escolha delas, sempre que possível.
-> 
-> As ferramentas empregadas no projeto são:
-> 
-> - Editor de código.
-> - Ferramentas de comunicação
-> - Ferramentas de diagramação
-> - Plataforma de hospedagem
-> 
-> O editor de código foi escolhido porque ele possui uma integração com o
-> sistema de versão. As ferramentas de comunicação utilizadas possuem
-> integração semelhante e por isso foram selecionadas. Por fim, para criar
-> diagramas utilizamos essa ferramenta por melhor captar as
-> necessidades da nossa solução.
-> 
-> **Links Úteis - Hospedagem**:
-> - [Getting Started with Heroku](https://devcenter.heroku.com/start)
-> - [Crie seu Site com o HostGator](https://www.hostgator.com.br/como-publicar-seu-site)
-> - [GoDady](https://br.godaddy.com/how-to)
-> - [GitHub Pages](https://pages.github.com/)
+> Heroku foi escolhido como plataforma de hospedagem por não exigir que o código fonte passe pelo processo de minificação, algo realizado por ferramentas como rollup, webpack, e gulp. Como o código fonte não é minificado, é possível inspeciona-lo apenas com o link de seu deploy.
 
 ## Controle de Versão
 
