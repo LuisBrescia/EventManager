@@ -47,7 +47,7 @@
 
 # Introdução
 
-Neste contexto a palavra "evento" pode significar qualquer tipo de atividade onde tenha múltiplas pessoas envolvidas, como um jogo de futebol, ida a um show, campanha beneficente de moletom, churrasco, festa de formatura, casamento, uma saida com os amigos, desenvolvimento de um jogo, criação de uma música, entre outros.
+Neste contexto a palavra "evento" pode significar qualquer tipo de atividade onde tenha múltiplas pessoas envolvidas, como um jogo de futebol, ida a um show, campanha beneficente de moletom, churrasco, festa de formatura, casamento, uma saida com os amigos, desenvolvimento de um jogo, criação de uma música, acampamento, viagem em grupo, entre outros.
 
 Dito isso, durante o planejmanto de um evento devemos levar em consideração diversos fatores, dentre eles, número de convidados, local, comida, bebida, fotógrafo, motorista, ingresso.
 
