@@ -32,7 +32,6 @@
   - [User Flow](#user-flow)
   - [Wireframes](#wireframes)
 - [Metodologia](#metodologia)
-  - [Divisão de Papéis](#divisão-de-papéis)
   - [Ferramentas](#ferramentas)
   - [Controle de Versão](#controle-de-versão)
 - [Projeto da Solução](#projeto-da-solução)
@@ -40,7 +39,6 @@
   - [Arquitetura da solução](#arquitetura-da-solução)
 - [Avaliação da Aplicação](#avaliação-da-aplicação)
   - [Plano de Testes](#plano-de-testes)
-  - [Ferramentas de Testes (Opcional)](#ferramentas-de-testes-opcional)
   - [Registros de Testes](#registros-de-testes)
 - [Referências](#referências)
 
@@ -75,35 +73,10 @@ Tanto organizadores de eventos quanto fornecedores podem se beneficiar do site, 
  
 # Especificações do Projeto
 
-Definição técnica do problema e os pontos mais relevantes a serem tratados neste projeto. Foram realizadas entrevistas pelos membros da equipe com possíveis usuários. Os detalhes levantados nesse processo foram consolidados na forma de personas e histórias de usuários.
-
-> Apresente uma visão geral do que será abordado nesta parte do
-> documento, enumerando as técnicas e/ou ferramentas utilizadas para
-> realizar a especificações do projeto
+Nesta parte do documento será abordado de forma objetiva os problemas que a aplicação busca resolver, bem como as funcionalidades que ela deve apresentar. Para tanto, iremos utilizar as personas e histórias de usuários levantadas pelo grupo por meio de entrevistas com possíveis usuários.
 
 ## Personas e Mapas de Empatia
 
-> Relacione as personas identificadas no seu projeto e os respectivos mapas de empatia. Lembre-se que 
-> você deve ser enumerar e descrever precisamente e de forma
-> personalizada todos os principais envolvidos com a solução almeja. 
-> 
-> Para tanto, baseie-se tanto nos documentos disponibilizados na disciplina
-> e/ou nos seguintes links:
->
-> **Links Úteis**:
-> - [Persona x Público-alvo](https://flammo.com.br/blog/persona-e-publico-alvo-qual-a-diferenca/)
-> - [O que é persona?](https://resultadosdigitais.com.br/blog/persona-o-que-e/)
-> - [Rock Content](https://rockcontent.com/blog/personas/)
-> - [Hotmart](https://blog.hotmart.com/pt-br/como-criar-persona-negocio/)
-> - [Mapa de Empatia](https://resultadosdigitais.com.br/blog/mapa-da-empatia/)
-> - [Como fazer um mapa de empatia - Vídeo](https://www.youtube.com/watch?v=JlKHGpVoA2Y)
-> 
-> 
-> **Exemplo de Persona**
-> 
-> ![Exemplo de Persona](imaages/../images/persona.png)
-> 
-> Fonte: [Como criar uma persona para o seu negócio](https://raissaviegas.com.br/como-criar-uma-persona/)
 
 <p align="center">
   <img src="images/personaAnaBeatriz.jpeg">
@@ -115,52 +88,55 @@ Definição técnica do problema e os pontos mais relevantes a serem tratados ne
 
 ## Histórias de Usuários
 
-Com base na análise das personas forma identificadas as seguintes histórias de usuários:
+> Com base na análise das personas forma identificadas as seguintes histórias de usuários:
 
 |EU COMO... `PERSONA`| QUERO/PRECISO ... `FUNCIONALIDADE` |PARA ... `MOTIVO/VALOR`                 |
 |--------------------|------------------------------------|----------------------------------------|
 |Ana Beatriz | criar uma lista com os convidados e o que irão levar          | ter conhecimento do que preciso pedir.          |
 |Ana Beatriz | fazer uma estimativa de custo por convidado em 1 evento        | fazer a lista de quantas pessoas vou convidar             |
-|Maria Lana  | reaproveitar o planejamento de um evento.      | não ter que escrever tudo novamente, e encher meu whatsapp com mensagens desnecessárias.  |
+|Maria Lana  | reaproveitar o planejamento de um evento      | não ter que escrever tudo novamente, e encher meu whatsapp com mensagens desnecessárias.  |
 |Maria Lana  | listar, e lembrar o que falta ser avaliado         | não esquecer de algo essencial para o evento.               |
-|Caio Martins | personalizar os preços médios com gastos do eventos | personalizar os preços médios com gastos do evento ter uma estimativa do custo lucro.|
+|Caio Martins | personalizar os preços médios com gastos do eventos | personalizar os preços médios com gastos do evento ter uma estimativa do custo.|
 |Caio Martins | planejar o evento junto de outras pessoas          | criar grupos sobre a todo momento é desgastante.             |
 |Gabriel Chagas | facilidade em adicionar gastos         | usar o teclado para fazer tudo cansa.              |
-|Gabriel Chagas       | diferenciação do tipo de evento que irá acontecer     | alguns eventos precisarão de mais espaço que outros, mesmo tendo menos convidados. |
+|Gabriel Chagas       | que outras pessoas saibam do que eu preciso | não gastar meu tempo procurando gente para resolver meu problema. |
 
 ## Requisitos
 
-As tabelas que se seguem apresentam os requisitos funcionais e não funcionais que detalham o escopo do projeto.
+> As tabelas a seguir apresentam os requisitos funcionais e não funcionais que detalham o escopo do projeto.
 
 ### Requisitos Funcionais
 
 |ID    | Descrição do Requisito  | Prioridade |
 |------|-----------------------------------------|----|
-|RF-001| O site deverá calcular o valor aproximado que 1 convidado irá custar em cada evento. | Alta | 
-|RF-002| O site deverá permitir que o usuário adicione o número de convidados para um evento. | Alta |
-|RF-003| O site deverá permitir que o usuário informe seu orçamento para um evento|Alta|
-|RF-004| O site deverá permitir que o usuário insira a área de um evento.|Média|
-|RF-005| O site deverá permitir que o usuário especifique o que será considerado um gasto em cada evento.|Alta|
-|RF-006| O site deve permitir ao usuário personalizar informações específicas sobre cada convidado|Média|
-|RF-007| O site deverá lembrar o usuário do que falta ser avaliado em seu evento.|Média|
-|RF-008| O site deverá recomendar mudanças sobre o planejamento de um evento.|Baixa|
-|RF-009| O site deverá utilizar algum meio para reconhecer o preço médio de um produto. (API)|Baixa|
-|RF-010| O site deverá diferenciar diferentes eventos.|Baixa|
-|RF-011| O site deverá permitir que mais de uma pessoa planeje cada evento.|Baixa|
+|RF-001| Possibilitar o usuário de criar listas de participantes para o seu evento | Alta | 
+|RF-002| Possibilitar o usuário de listar elementos que deseja em seu evento | Alta |
+|RF-003| Auxiliar o usuário calcular a quantidade necessária de cada insumo para seu evento | Alta |
+|RF-004| Possibilitar o usuário de criar múltiplas demandas para seu evento | Alta |
+|RF-005| Permitir que o usuário especifique o que será considerado um gasto em cada evento |Alta|
+|RF-006| Estimar o valor de um evento com base nos participantes, insumos e serviços | Alta |
+|RF-007| Possibilitar o usuário de compartilhar uma demanda com outros usuários | Média |
+|RF-008| Lista de afazeres para auxiliar organização do evento | Média |
+|RF-009| Permitir que o usuário seja específico quanto á algum serviço do seu evento | Média |
+|RF-010| Recomendar mudanças sobre o planejamento de um evento |Baixa|
+|RF-011| Utilizar algum meio para reconhecer o preço médio de um produto (API) |Baixa|
+|RF-012| Diferenciar diferentes eventos |Baixa|
+|RF-013| Permitir que mais de uma pessoa planeje cada evento |Baixa|
+|RF-014| Permitir ao usuário personalizar um elemento em específico de uma lista | Baixa |
 
 
 ### Requisitos não Funcionais
 
 |ID     | Descrição do Requisito  |Prioridade |
 |-------|-------------------------|----|
-|RNF-001| O sistema deve ser responsivo para rodar em um dispositivos móvel | MÉDIA | 
-|RNF-002| Deve processar requisições do usuário em no máximo 3s |  BAIXA | 
-|RNF-003|O site deverá usar Ajax para fornecer melhor experiência para usuários.|Baixa|
-|RNF-004|O site deverá ser de fácil entendimento, e seus comandos auto explicativos.|Alta|
+|RNF-001| O site deverá ser de intuitivo | Alta |
+|RNF-002| Página não deverá ser recarregadada a cada mudança realizada | Alta | 
+|RNF-003| O site deverá apresentar responsividade | Média | 
+|RNF-004| Todas as páginas deverão rodar de forma fluída | Baixa |
 
 ## Restrições
 
-O projeto está restrito pelos itens apresentados na tabela a seguir.
+> Regras eu deverão ser seguidas a risca durante desenvolvimento do projeto
 
 | ID | Restrição                                             |
 | -- |-------------------------------------------------------|
@@ -169,53 +145,27 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 | RE-03 | A equipe não pode subcontratar o desenvolvimento do trabalho. |
 | RE-04 | As tecnologias utilizadas devem restringir à HTML, CSS e JavaScript. |
 
-# Projeto de Interface
+# Interface do projeto
 
-Dentre as preocupações para a montagem da interface do sistema, estamos estabelecendo foco em questões como agilidade, acessibilidade e usabilidade. Desta forma, o projeto tem uma identidade visual padronizada em todas as telas que são projetadas para funcionamento em desktops e dispositivos móveis.
+> 1° Listas: Organizando entre as categorias Participantes, Insumos, e Serviços, o usuário deve especificar quais elementos existirão para aquele evento
 
-> Apresente as principais interfaces da solução. Discuta como 
-> foram elaboradas de forma a atender os requisitos funcionais, não
-> funcionais e histórias de usuário abordados nas [Especificações do
-> Projeto](#especificações-do-projeto).
+![Tela Listas](images/listas.jpeg)
 
-## User Flow
+> 2° Fluxo: Usuário criará relações entre as listas de particpantes e os elementos das listas de Insumos
 
-......  INCLUA AQUI O DIAGRAMA COM O FLUXO DO USUÁRIO NA APLICAÇÃO ......
+![Tela Fluxo](images/fluxo.jpeg)
 
-> Fluxo de usuário (User Flow) é uma técnica que permite ao desenvolvedor
-> mapear todo fluxo de telas do site ou app. Essa técnica funciona
-> para alinhar os caminhos e as possíveis ações que o usuário pode
-> fazer junto com os membros de sua equipe.
->
-> **Links Úteis**:
-> - [User Flow: O Quê É e Como Fazer?](https://medium.com/7bits/fluxo-de-usu%C3%A1rio-user-flow-o-que-%C3%A9-como-fazer-79d965872534)
-> - [User Flow vs Site Maps](http://designr.com.br/sitemap-e-user-flow-quais-as-diferencas-e-quando-usar-cada-um/)
-> - [Top 25 User Flow Tools & Templates for Smooth](https://www.mockplus.com/blog/post/user-flow-tools)
->
-> **Exemplo**:
-> 
-> ![Exemplo de UserFlow](images/userflow.jpg)
+> 3° Chamados: Usuário compartilhará sua demanda e valor que está disposto a pagar por ela, sendo contactado por aqueles interessados em supri-la  
 
+![Tela Chamados](images/chamados.jpeg)
 
-## Wireframes
+> 4° Coleção: Usuário terá uma visão geral sobre os elementos de seu evento
 
-......  INCLUA AQUI OS WIREFRAMES DAS TELAS DA APLICAÇÃO COM UM BREVE DESCRITIVO ......
+![Tela Coleção](images/collection.jpeg)
 
-> Wireframes são protótipos das telas da aplicação usados em design de interface para sugerir a
-> estrutura de um site web e seu relacionamentos entre suas
-> páginas. Um wireframe web é uma ilustração semelhante ao
-> layout de elementos fundamentais na interface.
-> 
-> **Links Úteis**:
-> - [Ferramentas de Wireframes](https://rockcontent.com/blog/wireframes/)
-> - [Figma](https://www.figma.com/)
-> - [Adobe XD](https://www.adobe.com/br/products/xd.html#scroll)
-> - [MarvelApp](https://marvelapp.com/developers/documentation/tutorials/)
-> 
-> **Exemplo**:
-> 
-> ![Exemplo de Wireframe](images/wireframe-example.png)
+> 5° Valores: Com os dados já coletados, dá uma estimativa de quanto o evento custará, e disponibilizará gráficos onde serão mostrados proporcionalidades de cada categoria
 
+![Tela Valores](images/valores.jpeg)
 
 # Metodologia
 
@@ -236,17 +186,6 @@ Dentre as preocupações para a montagem da interface do sistema, estamos estabe
 > - [Gestão ágil de projetos com o Trello](https://www.youtube.com/watch?v=1o9BOMAKBRE)
 > - [Gerência de projetos - Trello com Scrum](https://www.youtube.com/watch?v=DHLA8X_ujwo)
 > - [Tutorial Slack](https://slack.com/intl/en-br/)
-
-## Divisão de Papéis
-
-......  COLOQUE AQUI O SEU TEXTO ......
-
-> Apresente a divisão de papéis e tarefas entre os membros do grupo.
->
-> **Links Úteis**:
-> - [11 Passos Essenciais para Implantar Scrum no seu Projeto](https://mindmaster.com.br/scrum-11-passos/)
-> - [Scrum em 9 minutos](https://www.youtube.com/watch?v=XfvQWnRgxG0)
-
 
 ## Ferramentas
 
@@ -317,91 +256,55 @@ Dentre as preocupações para a montagem da interface do sistema, estamos estabe
 >
 > ![Exemplo de Wireframe](images/Github-Workflow.png)
 
-# **############## SPRINT 1 ACABA AQUI #############**
-
-
 # Projeto da Solução
 
-......  COLOQUE AQUI O SEU TEXTO ......
+Nesta seção do documento será apresentado a solução desenvolvida pelo grupo para o problema apresentado na seção [Introdução](#introdução). Para tanto, será apresentado as tecnologias utilizadas, a arquitetura da solução e a forma como a solução foi desenvolvida.
 
 ## Tecnologias Utilizadas
 
-......  COLOQUE AQUI O SEU TEXTO ......
+O projeto foi desenvolvido como uma aplicação **Node Vanilla** (HTML, CSS, Javascript), utilizando o **Express** como framework para o servidor, o **localStorage** do próprio navegador como banco de dados, e **Git** para versionamento. 
 
-> Descreva aqui qual(is) tecnologias você vai usar para resolver o seu
-> problema, ou seja, implementar a sua solução. Liste todas as
-> tecnologias envolvidas, linguagens a serem utilizadas, serviços web,
-> frameworks, bibliotecas, IDEs de desenvolvimento, e ferramentas.
-> Apresente também uma figura explicando como as tecnologias estão
-> relacionadas ou como uma interação do usuário com o sistema vai ser
-> conduzida, por onde ela passa até retornar uma resposta ao usuário.
-> 
-> Inclua os diagramas de User Flow, esboços criados pelo grupo
-> (stoyboards), além dos protótipos de telas (wireframes). Descreva cada
-> item textualmente comentando e complementando o que está apresentado
-> nas imagens.
+Bibliotecas utilizadas para para o front-end:
+* Bootstrap ( Sistema de grid )
+* Bootstrap Icons ( Ícones )
+* jQuery ( Programação em JavaScript mais eficiente )
+* jQuery UI ( Função draggable() )
+* Leader Line ( Cria uma linha entre dois elementos HTML )
+* Hero Patterns ( Conjunto de texturas )
 
 ## Arquitetura da solução
 
-......  COLOQUE AQUI O SEU TEXTO E O DIAGRAMA DE ARQUITETURA .......
+![Exemplo de Arquitetura](images/arquitetura.png)
 
-> Inclua um diagrama da solução e descreva os módulos e as tecnologias
-> que fazem parte da solução. Discorra sobre o diagrama.
-> 
-> **Exemplo do diagrama de Arquitetura**:
-> 
-> ![Exemplo de Arquitetura](images/arquitetura-exemplo.png)
+### Na imagem acima podemos ver a organização das pastas e o localStorage após um uso simples do site, como o Heroku não aceita personalização da pasta raiz, tive que rodar o sguinte comando para fazer o deploy:
 
+`git subtree push --prefix codigo heroku master`
+
+> Onde heroku é a variável que contém o link para o repositório remoto, master é a branch que será enviada, e 'codigo' é a pasta que contém os arquivos da imagem acima.
 
 # Avaliação da Aplicação
 
-......  COLOQUE AQUI O SEU TEXTO ......
-
-> Apresente os cenários de testes utilizados na realização dos testes da
-> sua aplicação. Escolha cenários de testes que demonstrem os requisitos
-> sendo satisfeitos.
+Nesta parte será abordado as estapas realizadas para verificar se o projeto desenvolvido se adequa nas especificações levantadas na seção [Especificação do Projeto](#especificações-do-projeto).
 
 ## Plano de Testes
 
-......  COLOQUE AQUI O SEU TEXTO ......
+Primeiramente, pegamos um evento real, e tentamos planeja-lo utilizando o site, para ver se ele atendia as necessidades do usuário. Após isso, fizemos um teste de usabilidade com um usuário, para ver se ele conseguia utilizar o site sem dificuldades.
 
-> Enumere quais cenários de testes foram selecionados para teste. Neste
-> tópico o grupo deve detalhar quais funcionalidades avaliadas, o grupo
-> de usuários que foi escolhido para participar do teste e as
-> ferramentas utilizadas.
-> 
-> **Links Úteis**:
-> - [IBM - Criação e Geração de Planos de Teste](https://www.ibm.com/developerworks/br/local/rational/criacao_geracao_planos_testes_software/index.html)
-> - [Práticas e Técnicas de Testes Ágeis](http://assiste.serpro.gov.br/serproagil/Apresenta/slides.pdf)
-> -  [Teste de Software: Conceitos e tipos de testes](https://blog.onedaytesting.com.br/teste-de-software/)
+Após isso, voltamos na tabela de requisitos, e verificamos se todos os requisitos funcionais foram atendidos, e se os não funcionais foram atendidos de forma satisfatória.
 
-## Ferramentas de Testes (Opcional)
-
-......  COLOQUE AQUI O SEU TEXTO ......
-
-> Comente sobre as ferramentas de testes utilizadas.
-> 
-> **Links Úteis**:
-> - [Ferramentas de Test para Java Script](https://geekflare.com/javascript-unit-testing/)
-> - [UX Tools](https://uxdesign.cc/ux-user-research-and-user-testing-tools-2d339d379dc7)
+Após isso voltamos na tabela de [histórias de usuário](#histórias-de-usuários), e verificamos se todas as histórias foram atendidas.
 
 ## Registros de Testes
 
-......  COLOQUE AQUI O SEU TEXTO ......
-
-> Discorra sobre os resultados do teste. Ressaltando pontos fortes e
-> fracos identificados na solução. Comente como o grupo pretende atacar
-> esses pontos nas próximas iterações. Apresente as falhas detectadas e
-> as melhorias geradas a partir dos resultados obtidos nos testes.
-
+Os testes mostraram que com devida **criatividade** e esforço, é possível sim planejar um evento utilizando o site, e que o site atendeu todas as necessidades do usuário.
 
 # Referências
 
-......  COLOQUE AQUI O SEU TEXTO ......
+### Sites utilizados no desenvolvimento do projeto:
 
-> Inclua todas as referências (livros, artigos, sites, etc) utilizados
-> no desenvolvimento do trabalho.
-> 
-> **Links Úteis**:
-> - [Formato ABNT](https://www.normastecnicas.com/abnt/trabalhos-academicos/referencias/)
-> - [Referências Bibliográficas da ABNT](https://comunidade.rockcontent.com/referencia-bibliografica-abnt/)
+* [Chat GPT](https://chat.openai.com)
+* [Bootstrap](https://getbootstrap.com)
+* [Bootstrap Icons](https://icons.getbootstrap.com)
+* [jQuery UI](https://jqueryui.com)
+* [Leader Line](https://anseki.github.io/leader-line/)
+* [Hero Patterns](https://heropatterns.com)
