@@ -3,6 +3,14 @@
 > aside = conteudo aside da página
 > $('.telaInteira').prepend(aside);
 */
+
+console.log('main.js');
+
+import $ from 'jquery';
+import jQuery from 'jquery';
+window.jQuery = jQuery;
+await import("jquery-ui-dist/jquery-ui.min.js");
+
 var currentAudio = null;
 function stopSound() {
     // if (currentAudio) {
@@ -33,5 +41,5 @@ function whooshLow(e) {
     // audio.volume = 0.5;
     // audio.play();
     // currentAudio = audio;
-} 
+}
 

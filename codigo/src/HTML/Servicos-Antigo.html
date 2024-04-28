@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+ <html lang="en">
 
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Event Manager</title>
-  <link rel="icon" type="image/svg+xml" href="../node_modules/bootstrap-icons/icons/flower1.svg">
   <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css" />
   <link rel="stylesheet" href="../CSS/style.css" />
@@ -14,8 +13,76 @@
 
 <body>
   <div class="d-flex">
-    <!-- ! GAMBIARRA  -->
-    <aside class="col-xxl-2 active">
+    <!-- ! GAMBIARRA EM SEU ESTADO MAIS PURO-->
+    <aside class="col-xxl-2 ultraGambiarra active opacity-0">
+      <div class="px-lg-2 py-3 d-flex">
+        <h1 class="fs-4 mx-auto my-0 text-nowrap">
+          <span class="d-none d-lg-inline-block text-white rounded shadow fs-3 px-2 text-center"><i
+              class="bi-flower1"></i></span>
+          <span class="d-lg-none text-white rounded fs-3 px-2 text-center"><i class="bi-flower1"></i></span>
+          <span class="text-white me-3 fw-bolder d-none d-lg-inline-block fs-5">Event Manager</span>
+        </h1>
+      </div>
+      <ul class="list-unstyled">
+        <li class="active text-center text-lg-start">
+          <a href="Collection" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-collection"></i>
+            <span class="d-none d-lg-inline-block">Coleção</span>
+            <span class="d-none d-md-block d-lg-none">Coleção</span>
+          </a>
+        </li>
+        <li class="text-center text-lg-start">
+          <a href="Listas" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-journal"></i>
+            <span class="d-none d-lg-inline-block">Listas</span>
+            <span class="d-none d-md-block d-lg-none">Listas</span>
+          </a>
+        </li>
+        <li class="text-center text-lg-start">
+          <a href="Chamados" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-stickies"></i>
+            <span class="d-none d-lg-inline-block">Serviços</span>
+            <span class="d-none d-md-block d-lg-none">Serviços</span>
+          </a>
+        </li>
+        <li class="text-center text-lg-start">
+          <a href="Valores" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-receipt"></i>
+            <span class="d-none d-lg-inline-block">Valores</span>
+            <span class="d-none d-md-block d-lg-none">Valores</span>
+          </a>
+        </li>
+      </ul>
+      <hr class="text-black fw-bolder mx-3" />
+      <!-- * 4 últimas -->
+      <!-- > Usar componente MODAL do Bootstrap -->
+      <ul class="list-unstyled">
+        <li class="text-center text-lg-start">
+          <a href="perfil.html" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-person"></i>
+            <span class="d-none d-lg-inline-block">Perfil</span>
+            <span class="d-none d-md-block d-lg-none">Perfil</span>
+          </a>
+        </li>
+        <li class="text-center text-lg-start">
+          <a href="#" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-sliders"></i>
+            <span class="d-none d-lg-inline-block">Temas</span>
+            <span class="d-none d-md-block d-lg-none">Temas</span>
+          </a>
+        </li>
+        <li class="text-center text-lg-start">
+          <a href="settings.html" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-gear"></i>
+            <span class="d-none d-lg-inline-block">Configurações</span>
+            <span class="d-none d-md-block d-lg-none">Settings</span>
+          </a>
+        </li>
+      </ul>
+    </aside>
+    <!-- ? Ínicio da Barra Lateral -->
+    <!-- > Barra Lateral vai ser a mesma para todas as páginas -->
+    <aside class="col-xxl-2 active position-fixed">
       <!-- * Título da Barra Lateral -->
       <div class="px-lg-2 py-3 d-flex">
         <h1 class="fs-4 mx-auto my-0 text-nowrap">
@@ -28,35 +95,28 @@
       <!-- * 4 primeiras páginas da barra lateral -->
       <ul class="list-unstyled">
         <li onmouseenter="whooshMid()" class="text-center text-lg-start">
-          <a href="Collection.html" class="px-3 py-2 d-block">
+          <a href="Collection" class="px-3 py-2 d-block">
             <i class="me-lg-2 bi-collection"></i>
             <span class="d-none d-lg-inline-block">Coleção</span>
             <span class="d-none d-md-block d-lg-none">Coleção</span>
           </a>
         </li>
         <li onmouseenter="whooshMid()" class="text-center text-lg-start">
-          <a href="Listas.html" class="px-3 py-2 d-block">
+          <a href="Listas" class="px-3 py-2 d-block">
             <i class="me-lg-2 bi-journal"></i>
             <span class="d-none d-lg-inline-block">Listas</span>
             <span class="d-none d-md-block d-lg-none">Listas</span>
-          </a>
-        </li>
-        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
-          <a href="Fluxo.html" class="px-3 py-2 d-block">
-            <i class="me-lg-2 bi-bezier"></i>
-            <span class="d-none d-lg-inline-block">Fluxo</span>
-            <span class="d-none d-md-block d-lg-none">Fluxo</span>
           </a>
         </li>
         <li onmouseenter="whooshMid()" class="active text-center text-lg-start">
-          <a href="Chamados.html" class="px-3 py-2 d-block">
+          <a href="Chamados" class="px-3 py-2 d-block">
             <i class="me-lg-2 bi-stickies"></i>
-            <span class="d-none d-lg-inline-block">Chamados</span>
-            <span class="d-none d-md-block d-lg-none">Chamados</span>
+            <span class="d-none d-lg-inline-block">Serviços</span>
+            <span class="d-none d-md-block d-lg-none">Serviços</span>
           </a>
         </li>
-        <li onmouseenter="whooshMid()" class=" text-center text-lg-start">
-          <a href="Valores.html" class="px-3 py-2 d-block">
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
+          <a href="Valores" class="px-3 py-2 d-block">
             <i class="me-lg-2 bi-receipt"></i>
             <span class="d-none d-lg-inline-block">Valores</span>
             <span class="d-none d-md-block d-lg-none">Valores</span>
@@ -75,7 +135,7 @@
           </a>
         </li>
         <li onmouseenter="whooshMid()" class="text-center text-lg-start">
-          <a href="Connect.html" class="px-3 py-2 d-block">
+          <a href="#" class="px-3 py-2 d-block">
             <i class="me-lg-2 bi-sliders"></i>
             <span class="d-none d-lg-inline-block">Temas</span>
             <span class="d-none d-md-block d-lg-none">Temas</span>
@@ -90,101 +150,44 @@
         </li>
       </ul>
     </aside>
-    <!-- ? Barra Lateral -->
-    <aside class="col-xxl-2 active position-fixed Topography">
-      <!-- * Título da Barra Lateral -->
-      <div class="px-lg-2 py-3 d-flex">
-        <h1 class="fs-4 mx-auto my-0 text-nowrap">
-          <span class="d-none d-lg-inline-block text-white rounded shadow bg-1 fs-3 px-2 text-center"><i
-              class="bi-flower1"></i></span>
-          <span class="d-lg-none text-white rounded fs-3 px-2 text-center"><i class="bi-flower1"></i></span>
-          <span class="text-white me-3 fw-bolder d-none d-lg-inline-block">Event Manager</span>
-        </h1>
-      </div>
-      <!-- * 4 primeiras páginas da barra lateral -->
-      <ul class="list-unstyled">
-        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
-          <a href="Listas.html" class="px-3 py-2 d-block">
-            <i class="me-lg-2 bi-journal"></i>
-            <span class="d-none d-lg-inline-block">Listas</span>
-            <span class="d-none d-md-block d-lg-none">Listas</span>
-          </a>
-        </li>
-        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
-          <a href="Fluxo.html" class="px-3 py-2 d-block">
-            <i class="me-lg-2 bi-bezier"></i>
-            <span class="d-none d-lg-inline-block">Fluxo</span>
-            <span class="d-none d-md-block d-lg-none">Fluxo</span>
-          </a>
-        </li>
-        <li onmouseenter="whooshMid()" class="text-center text-lg-start active">
-          <a href="Chamados.html" class="px-3 py-2 d-block">
-            <i class="me-lg-2 bi-stickies"></i>
-            <span class="d-none d-lg-inline-block">Chamados</span>
-            <span class="d-none d-md-block d-lg-none">Chamados</span>
-          </a>
-        </li>
-        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
-          <a href="Collection.html" class="px-3 py-2 d-block">
-            <i class="me-lg-2 bi-collection"></i>
-            <span class="d-none d-lg-inline-block">Coleção</span>
-            <span class="d-none d-md-block d-lg-none">Coleção</span>
-          </a>
-        </li>
-        <li onmouseenter="whooshMid()" class=" text-center text-lg-start">
-          <a href="Valores.html" class="px-3 py-2 d-block">
-            <i class="me-lg-2 bi-receipt"></i>
-            <span class="d-none d-lg-inline-block">Valores</span>
-            <span class="d-none d-md-block d-lg-none">Valores</span>
-          </a>
-        </li>
-      </ul>
-      <hr class="text-dark mx-3" />
-      <!-- * 4 últimas -->
-      <!-- > Usar componente MODAL do Bootstrap -->
-      <ul class="list-unstyled">
-        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
-          <a href="perfil.html" class="px-3 py-2 d-block">
-            <i class="me-lg-2 bi-person"></i>
-            <span class="d-none d-lg-inline-block">Perfil</span>
-            <span class="d-none d-md-block d-lg-none">Perfil</span>
-          </a>
-        </li>
-        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
-          <a href="Connect.html" class="px-3 py-2 d-block">
-            <i class="me-lg-2 bi-sliders"></i>
-            <span class="d-none d-lg-inline-block">Temas</span>
-            <span class="d-none d-md-block d-lg-none">Temas</span>
-          </a>
-        </li>
-        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
-          <a href="settings.html" class="px-3 py-2 d-block">
-            <i class="me-lg-2 bi-gear"></i>
-            <span class="d-none d-lg-inline-block">Configurações</span>
-            <span class="d-none d-md-block d-lg-none">Settings</span>
-          </a>
-        </li>
-      </ul>
-    </aside>
+    <!-- ! Fim da Barra Lateral -->
 
     <!-- ? Página -->
-    <main class="col align p-3">
+    <main class="col p-0 m-0">
+      <div class="funcionalidades btn-group shadow d-flex" role="group">
+        <button type="button" id="adicionaCard" class="border-0 col-4 funcionalidade btn btn-dark rounded-0 fw-light">
+          <i class="bi-journal-plus"></i>
+          <span class="d-none d-md-inline ms-2">Adicionar</span>
+        </button>
+        <!-- > Sempre que esse for clicado seu ícone mudará-->
+        <button type="button" id="organizaCard" class=" border-0 col-4 funcionalidade btn btn-dark rounded-0 bolder">
+          <i class="bi-journals"></i>
+          <span class="d-none d-md-inline ms-2">Organizar</span>
+        </button>
 
-      <div class="d-flex justify-content-between align-items-center mb-3">
-        <h3 class="mb-0 fw-bolder fs-1 ms-1">Chamados</h3><a id="exportarDados"
-          class="btn btn-1 btn-primary rounded-5 fw-bolder shadow-sm py-2 px-3 fs-5 d-inline-block" role="button"
-          href="#"><i class="bi-pencil-square"></i>&nbsp;Sobre Evento</a>
+        <button type="button" id="removeCard" class="border-0 col-4 funcionalidade btn btn-dark rounded-0 fw-light">
+          <i class="bi-journal-x"></i>
+          <span class="d-none d-md-inline ms-2">Limpar</span>
+        </button>
       </div>
 
-      <div id="items-chamado-I"
-        class="mb-3 shadow bg-white py-3 rounded-1 card-header items-chamado d-flex flex-wrap gap-3">
-        <div class="fs-4 w-100 fw-bold text-1">Insumos</div>
+      <div class="bg-info d-flex m-3">
+        <div class="col-8 container p-0 m-0 bg-warning">
+          <span class="row fs-1 m-0 fw-bold">Título do Evento</span>
+          <span class="row fs-2 m-0 fw-semibold">Descrição</span>
+        </div>
+        <div class="col bg-dark">
+          <div class="card h-100 border-0 shadow-sm">
+            <div class="card-header">
+              <span class="fs-2 fw-bold">Local do evento</span>
+            </div>
+            <div class="card-body">
+              <span class="placeholder bg-secondary w-100 h-100"></span>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <div id="items-chamado-S" class="shadow bg-white py-3 rounded-1 card-header items-chamado d-flex flex-wrap gap-3">
-        <div class="fs-4 w-100 fw-bold text-1">Serviços</div>
-      </div>
-    </main>
+    </main>    
   </div>
 
   <script src="../node_modules/jquery/dist/jquery.min.js"></script>
@@ -192,7 +195,5 @@
   <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="../JS/barraLateral.js"></script>
   <script src="../JS/back-end.js"></script>
-  <script src="../JS/chamados.js"></script>
 </body>
-
 </html>

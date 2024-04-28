@@ -19,6 +19,12 @@ criaConteudo(lista, gapping) - HTML de um card
 // ? estéticamente não teria efeito algum, porém travaria o programa
 
 // * Objeto que guarda as informações de cada card (Objeto do tipo Lista)
+
+import $ from 'jquery';
+import jQuery from 'jquery';
+window.jQuery = jQuery;
+await import("jquery-ui-dist/jquery-ui.min.js");
+
 function Lista(_id, titulo, linhas, coordenadas) {
     this._id = _id;
     this.titulo = titulo;

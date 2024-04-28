@@ -1,26 +1,27 @@
 {
+  "name": "event-manager",
+  "private": true,
+  "version": "2.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.2.10"
+  },
   "dependencies": {
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.5",
     "express": "^4.18.2",
     "http": "^0.0.1-security",
     "jquery": "^3.7.0",
+    "jquery-ui-bundle": "^1.12.1-migrate",
     "jquery-ui-dist": "^1.13.2",
-    "leader-line": "^1.0.7"
-  },
-  "name": "event-manager",
-  "description": "Mantenha neste diretório todo o código fonte do projeto.",
-  "version": "1.0.0",
-  "main": "HTML/Listas.html",
-  "scripts": {
-    "start": "node server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/LuisBrescia/EventManager.git"
-  },
-  "engines": {
-    "node": "18.15.0"
+    "leader-line": "^1.0.7",
+    "path": "^0.12.7"
   },
   "keywords": [
     "gerenciador",
@@ -28,9 +29,5 @@
     "leaderLine"
   ],
   "author": "Luis Brescia",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/LuisBrescia/EventManager/issues"
-  },
-  "homepage": "https://github.com/LuisBrescia/EventManager#readme"
+  "license": "MIT"
 }

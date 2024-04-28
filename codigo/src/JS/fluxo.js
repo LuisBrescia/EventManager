@@ -12,19 +12,23 @@ criaConexao(element) - Criará as conexões que ficam em baixo de um elemento do
 recalculaValor(idDestino, insumoAlterado) - Função para setar os valores da conexão
 */
 // * Pegará as informações da página anterior e salvará as coordenadas dos elementos
-function Elemento(_id, titulo, coordenadas, linhas) {
-    this._id = _id;
-    this.titulo = titulo;
-    this.coordenadas = coordenadas;
-    this.linhas = linhas;
+class Elemento {
+    constructor(_id, titulo, coordenadas, linhas) {
+        this._id = _id;
+        this.titulo = titulo;
+        this.coordenadas = coordenadas;
+        this.linhas = linhas;
+    }
 }
 // * Objeto que guardará informações de cada conexão
-function Conexao(idOrigem, idDestino, quantidade, medida, insumo) {
-    this.idOrigem = idOrigem;
-    this.idDestino = idDestino;
-    this.quantidade = quantidade;
-    this.medida = medida;
-    this.insumo = insumo;
+class Conexao {
+    constructor(idOrigem, idDestino, quantidade, medida, insumo) {
+        this.idOrigem = idOrigem;
+        this.idDestino = idDestino;
+        this.quantidade = quantidade;
+        this.medida = medida;
+        this.insumo = insumo;
+    }
 }
 // * Estilização da linha
 var options = {

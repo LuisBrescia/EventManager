@@ -1,6 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat|Quicksand|Quicksand:wght@600&display=swap");
 
 
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+
 /** Configurações gerais da página*/
 
 /* .blur {
