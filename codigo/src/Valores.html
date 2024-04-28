@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Event Manager</title>
+  <link rel="stylesheet" href="CSS/style.css" />
+</head>
+
+<body>
+  <!-- > Enquanto Bg-gradient estiver ligado não é possível utilizar textura -->
+  <div class="d-flex">
+
+    <!-- ! GAMBIARRA  -->
+    <aside class="col-xxl-2 active">
+      <!-- * Título da Barra Lateral -->
+      <div class="px-lg-2 py-3 d-flex">
+        <h1 class="fs-4 mx-auto my-0 text-nowrap">
+          <span class="d-none d-lg-inline-block text-white rounded shadow bg-1 fs-3 px-2 text-center"><i
+              class="bi-flower1"></i></span>
+          <span class="d-lg-none text-white rounded fs-3 px-2 text-center"><i class="bi-flower1"></i></span>
+          <span class="text-white me-3 fw-bolder d-none d-lg-inline-block">Event Manager</span>
+        </h1>
+      </div>
+      <!-- * 4 primeiras páginas da barra lateral -->
+      <ul class="list-unstyled">
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
+          <a href="Collection" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-collection"></i>
+            <span class="d-none d-lg-inline-block">Coleção</span>
+            <span class="d-none d-md-block d-lg-none">Coleção</span>
+          </a>
+        </li>
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
+          <a href="Listas" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-journal"></i>
+            <span class="d-none d-lg-inline-block">Listas</span>
+            <span class="d-none d-md-block d-lg-none">Listas</span>
+          </a>
+        </li>
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
+          <a href="Fluxo" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-bezier"></i>
+            <span class="d-none d-lg-inline-block">Fluxo</span>
+            <span class="d-none d-md-block d-lg-none">Fluxo</span>
+          </a>
+        </li>
+        <li onmouseenter="whooshMid()" class="active text-center text-lg-start">
+          <a href="Chamados" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-stickies"></i>
+            <span class="d-none d-lg-inline-block">Chamados</span>
+            <span class="d-none d-md-block d-lg-none">Chamados</span>
+          </a>
+        </li>
+        <li onmouseenter="whooshMid()" class=" text-center text-lg-start">
+          <a href="Valores" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-receipt"></i>
+            <span class="d-none d-lg-inline-block">Valores</span>
+            <span class="d-none d-md-block d-lg-none">Valores</span>
+          </a>
+        </li>
+      </ul>
+      <hr class="text-dark mx-3" />
+      <!-- * 4 últimas -->
+      <!-- > Usar componente MODAL do Bootstrap -->
+      <ul class="list-unstyled">
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
+          <a href="perfil.html" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-person"></i>
+            <span class="d-none d-lg-inline-block">Perfil</span>
+            <span class="d-none d-md-block d-lg-none">Perfil</span>
+          </a>
+        </li>
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
+          <a href="Connect.html" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-sliders"></i>
+            <span class="d-none d-lg-inline-block">Temas</span>
+            <span class="d-none d-md-block d-lg-none">Temas</span>
+          </a>
+        </li>
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
+          <a href="settings.html" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-gear"></i>
+            <span class="d-none d-lg-inline-block">Configurações</span>
+            <span class="d-none d-md-block d-lg-none">Settings</span>
+          </a>
+        </li>
+      </ul>
+    </aside>
+    <!-- ? Barra Lateral -->
+    <aside class="col-xxl-2 active position-fixed Topography">
+      <!-- * Título da Barra Lateral -->
+      <div class="px-lg-2 py-3 d-flex">
+        <h1 class="fs-4 mx-auto my-0 text-nowrap">
+          <span class="d-none d-lg-inline-block text-white rounded shadow bg-1 fs-3 px-2 text-center"><i
+              class="bi-flower1"></i></span>
+          <span class="d-lg-none text-white rounded fs-3 px-2 text-center"><i class="bi-flower1"></i></span>
+          <span class="text-white me-3 fw-bolder d-none d-lg-inline-block">Event Manager</span>
+        </h1>
+      </div>
+      <!-- * 4 primeiras páginas da barra lateral -->
+      <ul class="list-unstyled">
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
+          <a href="Listas" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-journal"></i>
+            <span class="d-none d-lg-inline-block">Listas</span>
+            <span class="d-none d-md-block d-lg-none">Listas</span>
+          </a>
+        </li>
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
+          <a href="Fluxo" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-bezier"></i>
+            <span class="d-none d-lg-inline-block">Fluxo</span>
+            <span class="d-none d-md-block d-lg-none">Fluxo</span>
+          </a>
+        </li>
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
+          <a href="Chamados" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-stickies"></i>
+            <span class="d-none d-lg-inline-block">Chamados</span>
+            <span class="d-none d-md-block d-lg-none">Chamados</span>
+          </a>
+        </li>
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
+          <a href="Collection" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-collection"></i>
+            <span class="d-none d-lg-inline-block">Coleção</span>
+            <span class="d-none d-md-block d-lg-none">Coleção</span>
+          </a>
+        </li>
+        <li onmouseenter="whooshMid()" class="active text-center text-lg-start">
+          <a href="Valores" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-receipt"></i>
+            <span class="d-none d-lg-inline-block">Valores</span>
+            <span class="d-none d-md-block d-lg-none">Valores</span>
+          </a>
+        </li>
+      </ul>
+      <hr class="text-dark mx-3" />
+      <!-- * 4 últimas -->
+      <!-- > Usar componente MODAL do Bootstrap -->
+      <ul class="list-unstyled">
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
+          <a href="perfil.html" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-person"></i>
+            <span class="d-none d-lg-inline-block">Perfil</span>
+            <span class="d-none d-md-block d-lg-none">Perfil</span>
+          </a>
+        </li>
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
+          <a href="Connect.html" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-sliders"></i>
+            <span class="d-none d-lg-inline-block">Temas</span>
+            <span class="d-none d-md-block d-lg-none">Temas</span>
+          </a>
+        </li>
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
+          <a href="settings.html" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-gear"></i>
+            <span class="d-none d-lg-inline-block">Configurações</span>
+            <span class="d-none d-md-block d-lg-none">Settings</span>
+          </a>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- ? Página -->
+    <main class="col d-flex align-items-stretch p-3">
+      <div class="container-fluid">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h3 class="mb-0 fw-bolder fs-1 ms-1">Valores</h3><a id="exportarDados"
+            class="btn btn-1 btn-primary rounded-5 fw-bolder shadow-sm py-2 px-3 fs-5 d-inline-block border-0"
+            role="button" href="#"><i class="bi-download"></i>&nbsp;Exportar Dados</a>
+        </div>
+        <!-- > Seção informativa -->
+        <div class="row align-items-stretch">
+          <!-- * Custo Total -->
+          <div class="col-md-6 col-xl-3 mb-3 card-resultado">
+            <div class="valores-header rounded-1 d-flex align-items-center gap-3 shadow-sm">
+              <!-- ? Texto -->
+              <div class="col">
+                <div class="fw-bold text-xs"><small class="text-1">Custo</small></div>
+                <div class="mb-0"><span class="text-nowrap" id="custoTotal"></span></div>
+              </div>
+              <!-- ? Ícone -->
+              <i class="bi-currency-dollar Papel col-auto fs-3 text-white py-2 px-3 rounded-5 me-2"></i>
+            </div>
+          </div>
+          <!-- * Lucro ou Prejuízo-->
+          <div class="col-md-6 col-xl-3 mb-3 card-resultado">
+            <div class="valores-header rounded-1 d-flex align-items-center gap-3 shadow-sm">
+              <div class="col">
+                <div class="fw-bolder"><small class="text-1">Lucro</small></div>
+                <div class="mb-0"><span class="text-nowrap">Indiferente</span></div>
+              </div>
+              <i class="bi-cash-stack Papel col-auto fs-3 text-white py-2 px-3 rounded-5 me-2"></i>
+            </div>
+          </div>
+          <!-- * Progresso -->
+          <div class="col-md-6 col-xl-3 mb-3 card-resultado">
+            <div class="valores-header rounded-1 d-flex align-items-center gap-3 shadow-sm">
+              <div class="col">
+                <!-- ? Título -->
+                <div class="fw-bold text-xs text-nowrap">
+                  <small class="text-primary">Progresso</small>
+                </div>
+                <!-- ? Barra de progresso -->
+                <div class="row g-0 align-items-center">
+                  <div class="col-auto">
+                    <div class="mb-0 me-3"><span class="porcentagemConcluida"></span></div>
+                  </div>
+                  <div class="col">
+                    <div class="progress progress-sm">
+                      <div class="progress-bar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"
+                        style="width: 0%; background-color: #08f;">
+                        <span class="visually-hidden porcentagemConcluida"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- ? Ícone -->
+              <i class="Papel col-auto fs-3 bi-card-list text-white py-2 px-3 rounded-5 me-2"></i>
+            </div>
+          </div>
+          <!-- * Chamados Ativos -->
+          <div class="col-md-6 col-xl-3 mb-3 card-resultado">
+            <div class="valores-header rounded-1 d-flex align-items-center gap-3 shadow-sm">
+              <!-- ? Texto -->
+              <div class="col">
+                <div class="fw-bolder text-nowrap">
+                  <small class="text-1">Chamados</small>
+                </div>
+                <div class="mb-0">
+                  <span class="fw-lighter rounded-5" id="chamadosAtivos">0</span>
+                </div>
+              </div>
+              <!-- ? Ícone -->
+              <i class="Papel col-auto fs-3 bi-chat-square-text text-white py-2 px-3 me-2 rounded-5"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- ! Gráficos pizza-->
+        <div class="row">
+          <!-- * Participantes -->
+          <div class="graficoPizza valor-P col-lg-6">
+            <div class="card shadow mb-4 border-0 rounded-1">
+              <div class="pizza-header d-flex justify-content-between align-items-center Topography">
+                <h6 class="m-0">Participantes</h6>
+              </div>
+              <div class="card-body">
+                <div class="chart-area">
+                  <!-- <h2 class="shadow px-3 py-2 rounded-3 position-absolute start-50 translate-middle"
+                  style="top: 55%; width: 80%;">
+                    Insira listas de convidados para visualizar o gráfico de Participantes.
+                  </h2> -->
+                  <canvas id="graficoParticipantes" class="mx-auto"></canvas>
+                </div>
+                <!-- <div class="text-center small mt-4"><span class="me-2">
+                    <i class="bi-circle-fill" style="color: #04f;"></i>&nbsp;Hombres</span><span class="me-2">
+                    <i class="bi-circle-fill" style="color: #f04;"></i>&nbsp;Mujeres</span><span class="me-2">
+                    <i class="bi-circle-fill" style="color: #0d0;"></i>&nbsp;Viado</span>
+                </div> -->
+              </div>
+            </div>
+          </div>
+          <!-- * Gastos -->
+          <div class="graficoPizza mb-4 valor-S col-lg-6">
+            <div class="card shadow border-0 rounded-1">
+              <div class="pizza-header d-flex justify-content-between align-items-center Topography">
+                <h6 class="m-0">Gastos</h6>
+                <!-- <div class="dropdown no-arrow"><button class="btn btn-link btn-sm dropdown-toggle" aria-expanded="false"
+                    data-bs-toggle="dropdown" type="button"><i class="fas fa-ellipsis-v text-gray-400"></i></button>
+                  <div class="dropdown-menu shadow dropdown-menu-end animated--fade-in">
+                    <p class="text-center dropdown-header">dropdown header:</p><a class="dropdown-item"
+                      href="#">&nbsp;Action</a><a class="dropdown-item" href="#">&nbsp;Another action</a>
+                    <div class="dropdown-divider"></div><a class="dropdown-item" href="#">&nbsp;Something else here</a>
+                  </div>
+                </div> -->
+              </div>
+              <div class="card-body">
+                <!-- <h2 class="shadow px-3 py-2 rounded-3 position-absolute start-50 translate-middle"
+                  style="top: 55%; width: 80%;">
+                    Insira valores nos chamados para visualizar o gráfico de Gastos.
+                  </h2> -->
+                <div class="chart-area">
+                  <canvas id="graficoChamados" class="mx-auto"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--  ! Todo e Avisos -->
+        <div class="row">
+          <div class="mb-4 col-lg-6">
+            <!-- * Lista de Afazeres-->
+            <div class="todoLista card border-0 shadow pb-1">
+              <div class="card-header py-3 px-0">
+                <!-- ? Adiciona tarefas -->
+                <button
+                  class="buttonDinamico bi-plus-lg btn shadow-sm py-1 px-2 rounded-3 position-absolute top-0 end-0 m-2 mx-5"
+                  id="adicionaTarefa"></button>
+                <!-- ? Edita tarefas -->
+                <button
+                  class="buttonDinamico bi-pen btn shadow-sm py-1 px-2 rounded-3 position-absolute top-0 end-0 m-2"
+                  id="editaTarefa"></button>
+                <p class="fw-bolder fs-4 m-0 ms-2 ps-1">Lista de Progresso</p>
+              </div>
+              <ul id="todoConteudo" class="list-group list-group-flush m-0 mx-2">
+
+                <li class="list-group-item py-2">
+                  <div class="row align-items-center no-gutters">
+                    <div class="col me-2 dadosTarefa p-0">
+                      <i class="bi-trash text-secondary position-absolute excluirTarefa d-none" ms-3></i>
+                      <h6 class="dadoTarefa mb-0 fw-bolder" style="z-index: 1" contenteditable="${editavel}">Abrir
+                        chamado para Insumos e Serviços</h6>
+                    </div>
+                    <div class="col-auto">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="formCheck-1">
+                        <label class="form-check-label" for="formCheck-1"></label>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+
+              </ul>
+            </div>
+          </div>
+
+          <div class="mb-4 col-lg-6">
+            <!-- * Avisos -->
+            <div class="todoLista card border-0 shadow pb-1">
+              <div class="card-header py-3 px-0">
+                <p class="fw-bolder fs-4 m-0 mx-2"><i class="bi-exclamation-triangle text-1"></i>&nbsp;Avisos</p>
+                <ul class="list-group p-0 m-2 mt-3 mb-0 bg-dark fw-bold">
+                  <li class="list-group-item fs-6">Faltam insumos</li>
+                  <li class="list-group-item fs-6">Solicitações pendentes</li>
+                  <li class="list-group-item fs-6">Verifique seu email</li>
+                  <li class="list-group-item fs-6">Fluxo redundante</li>
+                </ul>
+              </div>
+              <ul id="todoConteudo" class="list-group list-group-flush m-0 mx-2">
+              </ul>
+            </div>
+          </div>
+
+          <!-- * Toaster caso usuário crie + de 20 items na lista todo -->
+          <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="liveToast" class="toast shadow" role="alert" aria-live="assertive" aria-atomic="true">
+              <div class="toast-header border-bottom border-2">
+                <!-- <img src="..." class="rounded me-2" alt="..."> -->
+                <i class="bi-flower1 me-3"></i>
+                <strong class="me-auto">Event Manager</strong>
+                <small>agora</small>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"
+                  aria-label="Close"></button>
+              </div>
+              <div class="toast-body">
+                O máximo de items em uma lista de afazeres é 12.
+              </div>
+            </div>
+          </div>
+        </div>
+    </main>
+  </div>
+  <script src="JS/audio.js"></script>
+  <script type="module" src="JS/barraLateral.js"></script>
+  <script type="module" src="JS/grafico.js"></script>
+  <script type="module" src="JS/resultado.js"></script>
+</body>
+
+</html>

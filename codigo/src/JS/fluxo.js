@@ -11,6 +11,13 @@ criaElementoInsumo(element, gapping) - HTML de um elemento insumo
 criaConexao(element) - Criará as conexões que ficam em baixo de um elemento do tipo participante
 recalculaValor(idDestino, insumoAlterado) - Função para setar os valores da conexão
 */
+
+import './bootstrap.js';
+import 'jquery-ui-dist/jquery-ui';
+import * as bootstrap from 'bootstrap';
+
+import LeaderLine from 'leader-line-new';
+
 // * Pegará as informações da página anterior e salvará as coordenadas dos elementos
 class Elemento {
     constructor(_id, titulo, coordenadas, linhas) {
@@ -574,7 +581,7 @@ function criaParametro(i, element) {
 }
 // * Função para setar os valores da conexão
 function recalculaValor(idDestino, insumosAlterado) { // Vai recber o id dos insumos e qual elemento da lista foi alterado
-    if (elementosInsumos[idDestino].linhas[0].trim() == 0) {return;}
+    if (elementosInsumos[idDestino].linhas[0].trim() == 0) { return; }
     // > Acredito que tenha formas mais simples de fazer isso, revisarei o código caso tenha tempo
     console.log("Quantidade de parametros da conexao", insumosAlterado.length);
 
@@ -601,7 +608,7 @@ function recalculaValor(idDestino, insumosAlterado) { // Vai recber o id dos ins
         let quantidade = Math.ceil(dicionario[linha]);
         $(`#${idDestino}-${i}`).find('.quantidadeInsumo').text(quantidade);
     }
-    
+
     let dados = "dicionario-" + elementosInsumos[idDestino].titulo;
 
     // * Preciso salvar no localStorage o dicionario

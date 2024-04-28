@@ -1,7 +1,9 @@
-function Tarefa(_id, titulo, concluida) {
-    this._id = _id;
-    this.titulo = titulo;
-    this.concluida = concluida;
+class Tarefa {
+    constructor(_id, titulo, concluida) {
+        this._id = _id;
+        this.titulo = titulo;
+        this.concluida = concluida;
+    }
 }
 
 var TAM = 12; // * Quantidade máxima de tarefas
@@ -11,8 +13,8 @@ var ListaTarefas = JSON.parse(localStorage.getItem("ListaTarefas")) || []; // * 
 var chamados = JSON.parse(localStorage.getItem("Chamados")) || [];
 
 // Preciso percorrer chamados, somar todos seus valores e atualizar valorTotal
-function atualizaCusto () {
-    let valorTotal  = 0, chamadosAtivos = 0, totalChamados = 0;
+function atualizaCusto() {
+    let valorTotal = 0, chamadosAtivos = 0, totalChamados = 0;
     for (let i = 0; i < chamados.length; i++) {
         valorTotal += parseInt(chamados[i].valor);
         if (chamados[i].status == true) {
@@ -26,7 +28,7 @@ function atualizaCusto () {
     // * Transforma o valorTotal em uma string com o formato R$ 0,00
     valorTotal = valorTotal.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
     $('#custoTotal').text(valorTotal);
-    $('#chamadosAtivos').text(chamadosAtivos  + " de " + totalChamados);
+    $('#chamadosAtivos').text(chamadosAtivos + " de " + totalChamados);
 }
 
 function carregaTarefas() {
@@ -66,7 +68,7 @@ function carregaTarefas() {
 
         for (let i = 0; i < ListaTarefas.length; i++) {
 
-            tarefaCarregada = criaHtmlTarefa(ListaTarefas[i], false);
+            let tarefaCarregada = criaHtmlTarefa(ListaTarefas[i], false);
 
             selectAll(tarefaCarregada.find('h6')[0]);
             nomeTarefa(tarefaCarregada);
@@ -111,7 +113,7 @@ $(document).ready(() => {
         var index = $('#todoConteudo li').length;
 
         var tarefinha = new Tarefa(0, "Nova Tarefa", false);
-        novaTarefa = criaHtmlTarefa(tarefinha, true);
+        let novaTarefa = criaHtmlTarefa(tarefinha, true);
 
         $('#todoConteudo').prepend(novaTarefa);
         $('#todoConteudo li:first-child h6').focus();

@@ -1,12 +1,14 @@
 var menuAtivo = true;
 var allowCtrl = true;
-var primariaN1 = "#00ffff";
-var primaria = "#0044ff";
-var primaria1 = "#0044fe";
-var primaria2 = "#003bfb";
-var primaria3 = "#0033ee";
+const primariaN1 = "#00ffff";
+const primaria = "#0044ff";
+const primaria1 = "#0044fe";
+const primaria2 = "#003bfb";
+const primaria3 = "#0033ee";
 
-// > Não implementado ainda
+import './bootstrap.js';
+import 'jquery-ui-dist/jquery-ui';
+
 $('#menu').on('click', () => {
     if (menuAtivo) {
         console.log('Menu Fechado');

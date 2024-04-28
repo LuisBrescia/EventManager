@@ -4,6 +4,13 @@
 // > Na parte cima da tela tem 2 "Cards" confirmados, CustO e Progresso, muito provavelmente
 // > Terá Chamados ativos também
 
+import './bootstrap.js';
+import 'jquery-ui-dist/jquery-ui';
+import * as bootstrap from 'bootstrap';
+
+// https://cdn.jsdelivr.net/npm/chart.js
+import Chart from 'chart.js/auto';
+
 class ListaParticipantes {
     constructor(titulo, elementos, percentual) {
         this.titulo = titulo;
@@ -101,7 +108,7 @@ for (let i = 0; i < Chamados.length; i++) {
     }
 }
 
-console.log("Custo total é",custoTotal);
+console.log("Custo total é", custoTotal);
 
 $('.valor-S h6').text("Gastos (" + totalGastos + ")");
 

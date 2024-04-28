@@ -6,8 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Event Manager</title>
-    <link rel="icon" type="image/svg+xml" href="../../node_modules/bootstrap-icons/icons/flower1.svg">
-    <link rel="stylesheet" href="../CSS/style.css" />
+  <script type="module" crossorigin src="/assets/Fluxo-B8F_cR76.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/style-C1Vxo-0u.js">
+  <link rel="modulepreload" crossorigin href="/assets/bootstrap.esm-DHJneFca.js">
+  <link rel="stylesheet" crossorigin href="/assets/style-OyDuVvXH.css">
 </head>
 
 <body class="overflow-hidden">
@@ -101,14 +103,14 @@
             </div>
             <!-- * 4 primeiras páginas da barra lateral -->
             <ul class="list-unstyled">
-                <li onmouseenter="whooshMid()" class="active text-center text-lg-start">
+                <li onmouseenter="whooshMid()" class="text-center text-lg-start">
                     <a href="Listas" class="px-3 py-2 d-block">
                         <i class="me-lg-2 bi-journal"></i>
                         <span class="d-none d-lg-inline-block">Listas</span>
                         <span class="d-none d-md-block d-lg-none">Listas</span>
                     </a>
                 </li>
-                <li onmouseenter="whooshMid()" class="text-center text-lg-start">
+                <li onmouseenter="whooshMid()" class="text-center text-lg-start active">
                     <a href="Fluxo" class="px-3 py-2 d-block">
                         <i class="me-lg-2 bi-bezier"></i>
                         <span class="d-none d-lg-inline-block">Fluxo</span>
@@ -170,22 +172,22 @@
             <!-- * Botões -->
             <div class="barraLista funcionalidades btn-group shadow-lg d-flex position-sticky top-0" role="group"
                 aria-label="Basic example">
-                <button type="button" id="adicionaCard"
+                <button type="button" id="visibilidadeFluxo"
                     class="border-0 col-4 funcionalidade btn btn-dark rounded-0 fw-light">
-                    <i class="bi-journal-plus"></i>
-                    <span class="d-none d-md-inline ms-2">Adicionar</span>
+                    <i></i>
+                    <span class="d-none d-md-inline ms-2"></span>
                 </button>
                 <!-- > Sempre que esse for clicado seu ícone mudará-->
-                <button type="button" id="organizaCard"
+                <button type="button" id="dividirFluxo"
                     class=" border-0 col-4 funcionalidade btn btn-dark rounded-0 bolder">
-                    <i class="bi-journals"></i>
-                    <span class="d-none d-md-inline ms-2">Organizar</span>
+                    <i class="bi-columns-gap"></i>
+                    <span class="d-none d-md-inline ms-2">Dividir</span>
                 </button>
 
-                <button type="button" id="removeCard"
+                <button type="button" id="informacoesFluxo"
                     class="border-0 col-4 funcionalidade btn btn-dark rounded-0 fw-light">
-                    <i class="bi-journal-x"></i>
-                    <span class="d-none d-md-inline ms-2">Limpar</span>
+                    <i class="bi-question-lg"></i>
+                    <span class="d-none d-md-inline ms-2">Ajuda</span>
                 </button>
             </div>
 
@@ -208,35 +210,26 @@
             <section class="col position-static">
                 <!-- * Cards estãrao aqui -->
             </section>
-            <div class="d-flex flex-column gap-3 position-fixed escolheLista" style="bottom: 1em; right: 1em;">
-                <button onmouseenter="whooshLow(this)"
-                    class="btn btn-primary rounded-5 shadow-sm border-0 listaParticipantes">
-                    <i class="bi-people d-inline-block"></i>
-                    <span class="ms-2">Participantes</span>
-                </button>
-                <button onmouseenter="whooshLow(this)"
-                    class="btn btn-primary rounded-5 shadow-sm border-0 listaInsumos">
-                    <i class="bi-cash d-inline-block"></i>
-                    <span class="ms-2">Insumos</span>
-                </button>
-                <button onmouseenter="whooshLow(this)"
-                    class="btn btn-primary rounded-5 shadow-sm border-0 listaServicos">
-                    <i class="bi-briefcase d-inline-block"></i>
-                    <span class="ms-2">Serviços</span>
-                </button>
-            </div>
-            <!-- <footer class="position-fixed bottom-0 text-center w-100">© Event Manager 2023</footer> -->
+            <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                <div id="liveToast" class="toast shadow" role="alert" aria-live="assertive" aria-atomic="true">
+                  <div class="toast-header border-bottom border-2">
+                    <!-- <img src="..." class="rounded me-2" alt="..."> -->
+                    <i class="bi-flower1 me-3"></i>
+                    <strong class="me-auto">Event Manager</strong>
+                    <small>agora</small>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"
+                      aria-label="Close"></button>
+                  </div>
+                  <div class="toast-body">
+                    O máximo de items em uma lista de afazeres é 12.
+                  </div>
+                </div>
+              </div>
+            <!-- <footer class="position-fixed bottom-0 text-center">
+        © Event Manager 2023
+      </footer> -->
         </main>
     </div>
-    <!-- <script type="module" src="../../node_modules/jquery/dist/jquery.min.js"></script> -->
-    <!-- <script src="../../node_modules/jquery-ui-dist/jquery-ui.min.js"></script> -->
-    <!-- <script src="../../node_modules/@popperjs/core/dist/umd/popper.js"></script> -->
-    <!-- <script src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script> -->
-    <!-- <script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script> -->
-    <!-- <script src="../JS/barraLateral.js"></script> -->
-    <script type="module" src="../JS/main.js"></script>
-    <script type="module" src="../JS/cardMovivel.js"></script>
-    <!-- <script src="../JS/back-end.js"></script> -->
 </body>
 
 </html>

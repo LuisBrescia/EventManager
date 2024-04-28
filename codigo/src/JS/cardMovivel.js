@@ -20,16 +20,17 @@ criaConteudo(lista, gapping) - HTML de um card
 
 // * Objeto que guarda as informações de cada card (Objeto do tipo Lista)
 
-import $ from 'jquery';
-import jQuery from 'jquery';
-window.jQuery = jQuery;
-await import("jquery-ui-dist/jquery-ui.min.js");
+import './bootstrap.js';
+import 'jquery-ui-dist/jquery-ui';
+import * as bootstrap from 'bootstrap';
 
-function Lista(_id, titulo, linhas, coordenadas) {
-    this._id = _id;
-    this.titulo = titulo;
-    this.linhas = linhas;
-    this.coordenadas = coordenadas;
+class Lista {
+    constructor(_id, titulo, linhas, coordenadas) {
+        this._id = _id;
+        this.titulo = titulo;
+        this.linhas = linhas;
+        this.coordenadas = coordenadas;
+    }
 }
 var maxWidth = 200;    // * Máximo de pixels permitidos no título
 var maxLength = 100;    // * Máximo de caracteres permitidos no título

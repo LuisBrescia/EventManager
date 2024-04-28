@@ -1,3 +1,7 @@
+import './bootstrap.js';
+import 'jquery-ui-dist/jquery-ui';
+import * as bootstrap from 'bootstrap';
+
 var telaMD = false; // Para tela md ou maiores essa variável será true
 
 // * Responsivididade, basicamente altera entre uma tela e outra
@@ -37,7 +41,7 @@ $('#collectionInsumos').hover(
     () => { $('.accordionParticipantes, .accordionServicos').toggleClass('blur') }
 )
 $('#collectionParticipantes').hover(
-    () => { $('.accordionInsumos, .accordionServicos').toggleClass('blur')}
+    () => { $('.accordionInsumos, .accordionServicos').toggleClass('blur') }
 )
 $('#collectionServicos').hover(
     () => { $('.accordionInsumos, .accordionParticipantes').toggleClass('blur') }

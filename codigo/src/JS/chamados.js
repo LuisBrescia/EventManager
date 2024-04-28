@@ -1,13 +1,19 @@
 // ? Objeto do tipo chamado
-function Chamado(id, tipo, titulo, valor, categoria, status) {
-  this.id = id;
-  this.tipo = tipo;
-  this.titulo = titulo;
-  this.valor = valor;
-  this.categoria = categoria;
-  this.status = status;
-}
 
+import './bootstrap.js';
+import 'jquery-ui-dist/jquery-ui';
+import * as bootstrap from 'bootstrap';
+
+class Chamado {
+  constructor(id, tipo, titulo, valor, categoria, status) {
+    this.id = id;
+    this.tipo = tipo;
+    this.titulo = titulo;
+    this.valor = valor;
+    this.categoria = categoria;
+    this.status = status;
+  }
+}
 
 // * Primeiramente vou pegar a listaInsumos do localStorage
 var ListaInsumos = JSON.parse(localStorage.getItem("ListaInsumos")) || [];
@@ -62,14 +68,14 @@ function carregaBlocos() {
       // $(bloco).find(`[name="categoria"]`).val(chamados[i + 6].categoria);
     }
   }
-  
+
   let qtd = $('#items-chamado-I').children().length - 1;
   let resto;
 
-  if (qtd == 0) {resto = 3;} 
-  else if (qtd > 3) {resto = 6 - qtd;}
-  else {resto = 3 - qtd;}
-  
+  if (qtd == 0) { resto = 3; }
+  else if (qtd > 3) { resto = 6 - qtd; }
+  else { resto = 3 - qtd; }
+
   let htmlCaixaTracejada = '';
 
   for (let i = 0; i < resto; i++) {
@@ -78,12 +84,12 @@ function carregaBlocos() {
   $('#items-chamado-I').append(htmlCaixaTracejada)
 
   qtd = $('#items-chamado-S').children().length - 1;
-  if (qtd == 0) {resto = 3;} 
-  else if (qtd > 3) {resto = 6 - qtd;}
-  else {resto = 3 - qtd;}
-  
+  if (qtd == 0) { resto = 3; }
+  else if (qtd > 3) { resto = 6 - qtd; }
+  else { resto = 3 - qtd; }
+
   htmlCaixaTracejada = '';
-  
+
   for (let i = 0; i < resto; i++) {
     htmlCaixaTracejada += '<div class="caixa-tracejada rounded-3"></div>';
   }
@@ -92,8 +98,8 @@ function carregaBlocos() {
 // > Futuramente quero que essa funcionalidade seja drag & drop
 // * Botão para abrir fechar chamado
 function realizaChamado(element) {
-  
-  if (element == null) {return;}
+
+  if (element == null) { return; }
 
   element.find('#realizaChamado').click(function () {
 
@@ -111,7 +117,7 @@ function realizaChamado(element) {
 // * Sempre que algum atributo é alterado, essa função é chamada
 function valorChamado(element) {
   // console.log(typeof chamados[0].categoria);
-  if (element == null) {return;}
+  if (element == null) { return; }
 
   // * Valor em dinheiro
   element.find('#valorChamado').change(function () {
@@ -136,7 +142,7 @@ function valorChamado(element) {
 // * Carrega os blocos referentes a insumos
 function blocoChamadoHTML_I(ListaInsumo) {
   let dicionario = JSON.parse(localStorage.getItem("dicionario-" + ListaInsumo.titulo));
-  if (dicionario == null) {return;}
+  if (dicionario == null) { return; }
   let conteudo = "";
 
   Object.keys(dicionario).forEach(chave => {
@@ -145,7 +151,7 @@ function blocoChamadoHTML_I(ListaInsumo) {
     }
   });
 
-  if (conteudo == "") {return;}
+  if (conteudo == "") { return; }
   // conteudo = `<li class="d-flex list-group-item justify-content-between"><span>Crie conexões entre Insumos e Participantes na tela de fluxo.</span></li>`;
 
   return $(`
@@ -161,7 +167,7 @@ function blocoChamadoHTML_I(ListaInsumo) {
       <div class="d-flex gap-3 mb-3 justify-content-end">
         <span class="input-group shadow-sm">
             <span class="input-group-text btn-chamado" style="filter: none !important; font-size: 12px;">R$</span>
-            <input id="valorChamado" type="number" class="form-control shadow-none" placeholder="Valor do chamado">  
+            <input id="valorChamado" type="number" class="form-control shadow-none" placeholder="Valor do chamado" />  
         </span>
 
         <select class="form-select shadow-sm" aria-label="Default select example">
@@ -186,7 +192,7 @@ function blocoChamadoHTML_I(ListaInsumo) {
 // * Carrega os blocos referentes a serviços
 function blocoChamadoHTML_S(ListaServicos) { // 309 x 340
 
-  if (ListaServicos.linhas == null) {return;}
+  if (ListaServicos.linhas == null) { return; }
 
   let conteudo = "";
 
