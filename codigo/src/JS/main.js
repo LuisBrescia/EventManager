@@ -7,7 +7,7 @@
 import { ROUTES } from "../router/routes.js";
 
 // redirecionar para /Listas
-window.location.href = "/Listas";
+window.location.href = "/Listas.html";
 
 // export function clearScript(src) {
 //   const script = document.createElement("script");
