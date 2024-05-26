@@ -18,4 +18,4 @@ Auxiliar no planejamento de um evento tanto em sua organização, quanto a achar
 * Thiago Augusto Nicolini Silva
 
 ## Utilização
-> [Link para o site](https://event-manager-tiaw-e7211e805cd0.herokuapp.com)
+> [Link para o site](https://event-manager-phi.vercel.app)

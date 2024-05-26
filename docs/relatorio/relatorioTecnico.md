@@ -177,9 +177,13 @@ Neste contexto, o grupo optou por utilizar o framework Scrum para o desenvolvime
 | Weekly Scrum | Discord | https://discord.gg/QcnfPCfZ |
 | Backlog | Trello | https://trello.com/invite/b/IRT28t7u/ATTIa9c7c509f0e7eaf3ac96967fc2edecff66B9AE32/event-manager |
 | Código fonte | GitHub | https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2023-1-ti1-2401100-quantofica | 
-|Hospedagem do site | Heroku |  https://event-manager-tiaw-e7211e805cd0.herokuapp.com | 
+|~~Hospedagem do site~~ | ~~Heroku~~ |  ~~https://event-manager-tiaw-e7211e805cd0.herokuapp.com~~| 
+|Hospedagem do site| Vercel | https://event-manager-phi.vercel.app |
 
-> Heroku foi escolhido como plataforma de hospedagem por não exigir que o código fonte passe pelo processo de minificação, algo realizado por ferramentas como rollup, webpack, e gulp. Como o código fonte não é minificado, é possível inspeciona-lo apenas com o link de seu deploy.
+
+> ~~Heroku foi escolhido como plataforma de hospedagem por não exigir que o código fonte passe pelo processo de minificação, algo realizado por ferramentas como rollup, webpack, e gulp. Como o código fonte não é minificado, é possível inspeciona-lo apenas com o link de seu deploy.~~
+
+> Deploy atual no vercel.app utilizando vite
 
 ## Controle de Versão
 
@@ -218,7 +222,7 @@ Bibliotecas utilizadas para para o front-end:
 * Leader Line ( Cria uma linha entre dois elementos HTML )
 * Hero Patterns ( Conjunto de texturas )
 
-## Arquitetura da solução
+## Arquitetura da solução (Antigo)
 
 ![Exemplo de Arquitetura](images/arquitetura.png)
 
