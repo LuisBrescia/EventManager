@@ -3,7 +3,7 @@ Auxiliar no planejamento de um evento tanto em sua organização, quanto a achar
 
 ### `Sobre o projeto`
 
-> [Documentação](https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2023-1-ti1-2401100-conversor-de-medidas-2/tree/master/docs) <br/>
+> [Documentação](https://github.com/LuisBrescia/EventManager/tree/master/docs) <br/>
 
 ## Alunos integrantes da equipe:
 
