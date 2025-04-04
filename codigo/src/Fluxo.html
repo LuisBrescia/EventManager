@@ -2,234 +2,232 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Event Manager</title>
-    <link rel="stylesheet" href="CSS/style.css" />
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <title>Event Manager</title>
+  <link rel="stylesheet" href="CSS/style.css" />
 </head>
 
 <body class="overflow-hidden">
-    <div class="telaInteira d-flex">
-        <!-- ! GAMBIARRA  -->
-        <aside class="col-xxl-2 active">
-            <!-- * Título da Barra Lateral -->
-            <div class="px-lg-2 py-3 d-flex">
-                <h1 class="fs-4 mx-auto my-0 text-nowrap">
-                    <span class="d-none d-lg-inline-block text-white rounded shadow bg-1 fs-3 px-2 text-center"><i
-                            class="bi-flower1"></i></span>
-                    <span class="d-lg-none text-white rounded fs-3 px-2 text-center"><i class="bi-flower1"></i></span>
-                    <span class="text-white me-3 fw-bolder d-none d-lg-inline-block">Event Manager</span>
-                </h1>
-            </div>
-            <!-- * 4 primeiras páginas da barra lateral -->
-            <ul class="list-unstyled">
-                <li onmouseenter="whooshMid()" class="text-center text-lg-start">
-                    <a href="Collection.html" class="px-3 py-2 d-block">
-                        <i class="me-lg-2 bi-collection"></i>
-                        <span class="d-none d-lg-inline-block">Coleção</span>
-                        <span class="d-none d-md-block d-lg-none">Coleção</span>
-                    </a>
-                </li>
-                <li onmouseenter="whooshMid()" class="text-center text-lg-start">
-                    <a href="Listas.html" class="px-3 py-2 d-block">
-                        <i class="me-lg-2 bi-journal"></i>
-                        <span class="d-none d-lg-inline-block">Listas</span>
-                        <span class="d-none d-md-block d-lg-none">Listas</span>
-                    </a>
-                </li>
-                <li onmouseenter="whooshMid()" class="text-center text-lg-start">
-                    <a href="Fluxo.html" class="px-3 py-2 d-block">
-                        <i class="me-lg-2 bi-bezier"></i>
-                        <span class="d-none d-lg-inline-block">Fluxo</span>
-                        <span class="d-none d-md-block d-lg-none">Fluxo</span>
-                    </a>
-                </li>
-                <li onmouseenter="whooshMid()" class="active text-center text-lg-start">
-                    <a href="Chamados.html" class="px-3 py-2 d-block">
-                        <i class="me-lg-2 bi-stickies"></i>
-                        <span class="d-none d-lg-inline-block">Chamados</span>
-                        <span class="d-none d-md-block d-lg-none">Chamados</span>
-                    </a>
-                </li>
-                <li onmouseenter="whooshMid()" class=" text-center text-lg-start">
-                    <a href="Valores.html" class="px-3 py-2 d-block">
-                        <i class="me-lg-2 bi-receipt"></i>
-                        <span class="d-none d-lg-inline-block">Valores</span>
-                        <span class="d-none d-md-block d-lg-none">Valores</span>
-                    </a>
-                </li>
-            </ul>
-            <hr class="text-dark mx-3" />
-            <!-- * 4 últimas -->
-            <!-- > Usar componente MODAL do Bootstrap -->
-            <ul class="list-unstyled">
-                <li onmouseenter="whooshMid()" class="text-center text-lg-start">
-                    <a href="perfil.html" class="px-3 py-2 d-block">
-                        <i class="me-lg-2 bi-person"></i>
-                        <span class="d-none d-lg-inline-block">Perfil</span>
-                        <span class="d-none d-md-block d-lg-none">Perfil</span>
-                    </a>
-                </li>
-                <li onmouseenter="whooshMid()" class="text-center text-lg-start">
-                    <a href="Connect.html" class="px-3 py-2 d-block">
-                        <i class="me-lg-2 bi-sliders"></i>
-                        <span class="d-none d-lg-inline-block">Temas</span>
-                        <span class="d-none d-md-block d-lg-none">Temas</span>
-                    </a>
-                </li>
-                <li onmouseenter="whooshMid()" class="text-center text-lg-start">
-                    <a href="settings.html" class="px-3 py-2 d-block">
-                        <i class="me-lg-2 bi-gear"></i>
-                        <span class="d-none d-lg-inline-block">Configurações</span>
-                        <span class="d-none d-md-block d-lg-none">Settings</span>
-                    </a>
-                </li>
-            </ul>
-        </aside>
-        <!-- ? Barra Lateral -->
-        <aside class="col-xxl-2 active position-fixed Topography">
-            <!-- * Título da Barra Lateral -->
-            <div class="px-lg-2 py-3 d-flex">
-                <h1 class="fs-4 mx-auto my-0 text-nowrap">
-                    <span class="d-none d-lg-inline-block text-white rounded shadow bg-1 fs-3 px-2 text-center"><i
-                            class="bi-flower1"></i></span>
-                    <span class="d-lg-none text-white rounded fs-3 px-2 text-center"><i class="bi-flower1"></i></span>
-                    <span class="text-white me-3 fw-bolder d-none d-lg-inline-block">Event Manager</span>
-                </h1>
-            </div>
-            <!-- * 4 primeiras páginas da barra lateral -->
-            <ul class="list-unstyled">
-                <li onmouseenter="whooshMid()" class="text-center text-lg-start">
-                    <a href="Listas.html" class="px-3 py-2 d-block">
-                        <i class="me-lg-2 bi-journal"></i>
-                        <span class="d-none d-lg-inline-block">Listas</span>
-                        <span class="d-none d-md-block d-lg-none">Listas</span>
-                    </a>
-                </li>
-                <li onmouseenter="whooshMid()" class="text-center text-lg-start active">
-                    <a href="Fluxo.html" class="px-3 py-2 d-block">
-                        <i class="me-lg-2 bi-bezier"></i>
-                        <span class="d-none d-lg-inline-block">Fluxo</span>
-                        <span class="d-none d-md-block d-lg-none">Fluxo</span>
-                    </a>
-                </li>
-                <li onmouseenter="whooshMid()" class="text-center text-lg-start">
-                    <a href="Chamados.html" class="px-3 py-2 d-block">
-                        <i class="me-lg-2 bi-stickies"></i>
-                        <span class="d-none d-lg-inline-block">Chamados</span>
-                        <span class="d-none d-md-block d-lg-none">Chamados</span>
-                    </a>
-                </li>
-                <li onmouseenter="whooshMid()" class="text-center text-lg-start">
-                    <a href="Collection.html" class="px-3 py-2 d-block">
-                        <i class="me-lg-2 bi-collection"></i>
-                        <span class="d-none d-lg-inline-block">Coleção</span>
-                        <span class="d-none d-md-block d-lg-none">Coleção</span>
-                    </a>
-                </li>
-                <li onmouseenter="whooshMid()" class=" text-center text-lg-start">
-                    <a href="Valores.html" class="px-3 py-2 d-block">
-                        <i class="me-lg-2 bi-receipt"></i>
-                        <span class="d-none d-lg-inline-block">Valores</span>
-                        <span class="d-none d-md-block d-lg-none">Valores</span>
-                    </a>
-                </li>
-            </ul>
-            <hr class="text-dark mx-3" />
-            <!-- * 4 últimas -->
-            <!-- > Usar componente MODAL do Bootstrap -->
-            <ul class="list-unstyled">
-                <li onmouseenter="whooshMid()" class="text-center text-lg-start">
-                    <a href="perfil.html" class="px-3 py-2 d-block">
-                        <i class="me-lg-2 bi-person"></i>
-                        <span class="d-none d-lg-inline-block">Perfil</span>
-                        <span class="d-none d-md-block d-lg-none">Perfil</span>
-                    </a>
-                </li>
-                <li onmouseenter="whooshMid()" class="text-center text-lg-start">
-                    <a href="Connect.html" class="px-3 py-2 d-block">
-                        <i class="me-lg-2 bi-sliders"></i>
-                        <span class="d-none d-lg-inline-block">Temas</span>
-                        <span class="d-none d-md-block d-lg-none">Temas</span>
-                    </a>
-                </li>
-                <li onmouseenter="whooshMid()" class="text-center text-lg-start">
-                    <a href="settings.html" class="px-3 py-2 d-block">
-                        <i class="me-lg-2 bi-gear"></i>
-                        <span class="d-none d-lg-inline-block">Configurações</span>
-                        <span class="d-none d-md-block d-lg-none">Settings</span>
-                    </a>
-                </li>
-            </ul>
-        </aside>
+  <div class="telaInteira d-flex">
+    <!-- ! GAMBIARRA  -->
+    <aside class="col-xxl-2 active">
+      <!-- * Título da Barra Lateral -->
+      <div class="px-lg-2 py-3 d-flex">
+        <h1 class="fs-4 mx-auto my-0 text-nowrap">
+          <span class="d-none d-lg-inline-block text-white rounded shadow bg-1 fs-3 px-2 text-center"><i
+              class="bi-flower1"></i></span>
+          <span class="d-lg-none text-white rounded fs-3 px-2 text-center"><i class="bi-flower1"></i></span>
+          <span class="text-white me-3 fw-bolder d-none d-lg-inline-block">Event Manager</span>
+        </h1>
+      </div>
+      <!-- * 4 primeiras páginas da barra lateral -->
+      <ul class="list-unstyled">
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
+          <a href="Collection.html" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-collection"></i>
+            <span class="d-none d-lg-inline-block">Coleção</span>
+            <span class="d-none d-md-block d-lg-none">Coleção</span>
+          </a>
+        </li>
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
+          <a href="Listas.html" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-journal"></i>
+            <span class="d-none d-lg-inline-block">Listas</span>
+            <span class="d-none d-md-block d-lg-none">Listas</span>
+          </a>
+        </li>
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
+          <a href="Fluxo.html" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-bezier"></i>
+            <span class="d-none d-lg-inline-block">Fluxo</span>
+            <span class="d-none d-md-block d-lg-none">Fluxo</span>
+          </a>
+        </li>
+        <li onmouseenter="whooshMid()" class="active text-center text-lg-start">
+          <a href="Chamados.html" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-stickies"></i>
+            <span class="d-none d-lg-inline-block">Chamados</span>
+            <span class="d-none d-md-block d-lg-none">Chamados</span>
+          </a>
+        </li>
+        <li onmouseenter="whooshMid()" class=" text-center text-lg-start">
+          <a href="Valores.html" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-receipt"></i>
+            <span class="d-none d-lg-inline-block">Valores</span>
+            <span class="d-none d-md-block d-lg-none">Valores</span>
+          </a>
+        </li>
+      </ul>
+      <hr class="text-dark mx-3" />
+      <!-- * 4 últimas -->
+      <!-- > Usar componente MODAL do Bootstrap -->
+      <ul class="list-unstyled">
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
+          <a href="perfil.html" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-person"></i>
+            <span class="d-none d-lg-inline-block">Perfil</span>
+            <span class="d-none d-md-block d-lg-none">Perfil</span>
+          </a>
+        </li>
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
+          <a href="Connect.html" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-sliders"></i>
+            <span class="d-none d-lg-inline-block">Temas</span>
+            <span class="d-none d-md-block d-lg-none">Temas</span>
+          </a>
+        </li>
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
+          <a href="settings.html" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-gear"></i>
+            <span class="d-none d-lg-inline-block">Configurações</span>
+            <span class="d-none d-md-block d-lg-none">Settings</span>
+          </a>
+        </li>
+      </ul>
+    </aside>
+    <!-- ? Barra Lateral -->
+    <aside class="col-xxl-2 active position-fixed Topography">
+      <!-- * Título da Barra Lateral -->
+      <div class="px-lg-2 py-3 d-flex">
+        <h1 class="fs-4 mx-auto my-0 text-nowrap">
+          <span class="d-none d-lg-inline-block text-white rounded shadow bg-1 fs-3 px-2 text-center"><i
+              class="bi-flower1"></i></span>
+          <span class="d-lg-none text-white rounded fs-3 px-2 text-center"><i class="bi-flower1"></i></span>
+          <span class="text-white me-3 fw-bolder d-none d-lg-inline-block">Event Manager</span>
+        </h1>
+      </div>
+      <!-- * 4 primeiras páginas da barra lateral -->
+      <ul class="list-unstyled">
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
+          <a href="Listas.html" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-journal"></i>
+            <span class="d-none d-lg-inline-block">Listas</span>
+            <span class="d-none d-md-block d-lg-none">Listas</span>
+          </a>
+        </li>
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start active">
+          <a href="Fluxo.html" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-bezier"></i>
+            <span class="d-none d-lg-inline-block">Fluxo</span>
+            <span class="d-none d-md-block d-lg-none">Fluxo</span>
+          </a>
+        </li>
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
+          <a href="Chamados.html" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-stickies"></i>
+            <span class="d-none d-lg-inline-block">Chamados</span>
+            <span class="d-none d-md-block d-lg-none">Chamados</span>
+          </a>
+        </li>
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
+          <a href="Collection.html" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-collection"></i>
+            <span class="d-none d-lg-inline-block">Coleção</span>
+            <span class="d-none d-md-block d-lg-none">Coleção</span>
+          </a>
+        </li>
+        <li onmouseenter="whooshMid()" class=" text-center text-lg-start">
+          <a href="Valores.html" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-receipt"></i>
+            <span class="d-none d-lg-inline-block">Valores</span>
+            <span class="d-none d-md-block d-lg-none">Valores</span>
+          </a>
+        </li>
+      </ul>
+      <hr class="text-dark mx-3" />
+      <!-- * 4 últimas -->
+      <!-- > Usar componente MODAL do Bootstrap -->
+      <ul class="list-unstyled">
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
+          <a href="perfil.html" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-person"></i>
+            <span class="d-none d-lg-inline-block">Perfil</span>
+            <span class="d-none d-md-block d-lg-none">Perfil</span>
+          </a>
+        </li>
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
+          <a href="Connect.html" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-sliders"></i>
+            <span class="d-none d-lg-inline-block">Temas</span>
+            <span class="d-none d-md-block d-lg-none">Temas</span>
+          </a>
+        </li>
+        <li onmouseenter="whooshMid()" class="text-center text-lg-start">
+          <a href="settings.html" class="px-3 py-2 d-block">
+            <i class="me-lg-2 bi-gear"></i>
+            <span class="d-none d-lg-inline-block">Configurações</span>
+            <span class="d-none d-md-block d-lg-none">Settings</span>
+          </a>
+        </li>
+      </ul>
+    </aside>
 
-        <!-- ? Página -->
-        <main class="col h-100 d-flex flex-column justify-content-between">
-            <!-- * Botões -->
-            <div class="barraLista funcionalidades btn-group shadow-lg d-flex position-sticky top-0" role="group"
-                aria-label="Basic example">
-                <button type="button" id="visibilidadeFluxo"
-                    class="border-0 col-4 funcionalidade btn btn-dark rounded-0 fw-light">
-                    <i></i>
-                    <span class="d-none d-md-inline ms-2"></span>
-                </button>
-                <!-- > Sempre que esse for clicado seu ícone mudará-->
-                <button type="button" id="dividirFluxo"
-                    class=" border-0 col-4 funcionalidade btn btn-dark rounded-0 bolder">
-                    <i class="bi-columns-gap"></i>
-                    <span class="d-none d-md-inline ms-2">Dividir</span>
-                </button>
+    <!-- ? Página -->
+    <main class="col h-100 d-flex flex-column justify-content-between">
+      <!-- * Botões -->
+      <div class="barraLista funcionalidades btn-group shadow-lg d-flex position-sticky top-0" role="group"
+        aria-label="Basic example">
+        <button type="button" id="visibilidadeFluxo"
+          class="border-0 col-4 funcionalidade btn btn-dark rounded-0 fw-light">
+          <i></i>
+          <span class="d-none d-md-inline ms-2"></span>
+        </button>
+        <!-- > Sempre que esse for clicado seu ícone mudará-->
+        <button type="button" id="dividirFluxo" class=" border-0 col-4 funcionalidade btn btn-dark rounded-0 bolder">
+          <i class="bi-columns-gap"></i>
+          <span class="d-none d-md-inline ms-2">Dividir</span>
+        </button>
 
-                <button type="button" id="informacoesFluxo"
-                    class="border-0 col-4 funcionalidade btn btn-dark rounded-0 fw-light">
-                    <i class="bi-question-lg"></i>
-                    <span class="d-none d-md-inline ms-2">Ajuda</span>
-                </button>
-            </div>
+        <button type="button" id="informacoesFluxo"
+          class="border-0 col-4 funcionalidade btn btn-dark rounded-0 fw-light">
+          <i class="bi-question-lg"></i>
+          <span class="d-none d-md-inline ms-2">Ajuda</span>
+        </button>
+      </div>
 
-            <!-- * Caso exceder o número limite de cards-->
-            <div class="toast-container position-fixed bottom-0 end-0 p-3">
-                <div id="liveToast" class="toast shadow" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-header border-bottom border-2">
-                        <!-- <img src="..." class="rounded me-2" alt="..."> -->
-                        <i class="bi-flower1 me-3"></i>
-                        <strong class="me-auto">Event Manager</strong>
-                        <small>agora</small>
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"
-                            aria-label="Close"></button>
-                    </div>
-                    <div class="toast-body">Não é possível adicionar mais cards.</div>
-                </div>
-            </div>
+      <!-- * Caso exceder o número limite de cards-->
+      <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast shadow" role="alert" aria-live="assertive" aria-atomic="true">
+          <div class="toast-header border-bottom border-2">
+            <!-- <img src="..." class="rounded me-2" alt="..."> -->
+            <i class="bi-flower1 me-3"></i>
+            <strong class="me-auto">Event Manager</strong>
+            <small>agora</small>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+          </div>
+          <div class="toast-body">Não é possível adicionar mais cards.</div>
+        </div>
+      </div>
 
-            <!-- * Nosso "Canvas" onde os cards serão adicionados -->
-            <section class="col position-static">
-                <!-- * Cards estãrao aqui -->
-            </section>
-            <div class="toast-container position-fixed bottom-0 end-0 p-3">
-                <div id="liveToast" class="toast shadow" role="alert" aria-live="assertive" aria-atomic="true">
-                  <div class="toast-header border-bottom border-2">
-                    <!-- <img src="..." class="rounded me-2" alt="..."> -->
-                    <i class="bi-flower1 me-3"></i>
-                    <strong class="me-auto">Event Manager</strong>
-                    <small>agora</small>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"
-                      aria-label="Close"></button>
-                  </div>
-                  <div class="toast-body">
-                    O máximo de items em uma lista de afazeres é 12.
-                  </div>
-                </div>
-              </div>
-            <!-- <footer class="position-fixed bottom-0 text-center">
+      <!-- * Nosso "Canvas" onde os cards serão adicionados -->
+      <section class="col position-static">
+        <!-- * Cards estãrao aqui -->
+      </section>
+      <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast shadow" role="alert" aria-live="assertive" aria-atomic="true">
+          <div class="toast-header border-bottom border-2">
+            <!-- <img src="..." class="rounded me-2" alt="..."> -->
+            <i class="bi-flower1 me-3"></i>
+            <strong class="me-auto">Event Manager</strong>
+            <small>agora</small>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+          </div>
+          <div class="toast-body">
+            O máximo de items em uma lista de afazeres é 12.
+          </div>
+        </div>
+      </div>
+      <!-- <footer class="position-fixed bottom-0 text-center">
         © Event Manager 2023
       </footer> -->
-        </main>
-    </div>
-    <script src="JS/audio.js"></script>
-    <script type="module" src="JS/barraLateral.js"></script>
-    <script type="module" src="JS/fluxo.js"></script>
+    </main>
+  </div>
+  <script src="JS/audio.js"></script>
+  <script type="module" src="JS/barraLateral.js"></script>
+  <script type="module" src="JS/fluxo.js"></script>
 </body>
 
 </html>
